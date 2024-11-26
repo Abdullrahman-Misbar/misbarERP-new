@@ -38,3 +38,20 @@
 .css-1ip1oky > .ps-menu-button {
   height: 33px !important;
 }
+*::selection {
+  background-color: #2e3188;
+  color: #fff;
+}
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--dark-color);
+}
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2e3188, #999);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #999, #2e3188);
+}
