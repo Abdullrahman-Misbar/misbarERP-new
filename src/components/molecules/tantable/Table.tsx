@@ -96,7 +96,7 @@ export const Table = <T extends object>({
   }
   const generateFooters = (footerData: any[]) => {
     return footerData?.map((footerRow: { value: any[] }, rowIndex: any) => (
-      <tr key={`footer-row-${rowIndex}`} className=" border-t-4 border-white ">
+      <tr key={`footer-row-${rowIndex}`} className="border-t-4 border-white ">
         {columns.map((column: any, colIndex: any) => {
           const footerValue =
             footerRow.value.find(
@@ -117,81 +117,88 @@ export const Table = <T extends object>({
 
   return (
     <>
-      <div className="GlobalTable w-full flex flex-col gap-4  overflow-x-scroll ">
-        {isLoading && <Loading />}
-        <table id="print-table" className="min-w-full text-center">
-          <thead className="border-b ">
-            {table?.getHeaderGroups()?.map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="px-6 py-4 text-sm  text-white dark:!bg-dark-tertiary capitalize"
-                  >
-                    {header.isPlaceholder ? null : (
-                      <div
-                        {...{
-                          className: header.column.getCanSort()
-                            ? "cursor-pointer select-none"
-                            : "",
-                          onClick: () => handleSorting(header),
-                        }}
-                      >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {header.column?.columnDef?.filterKey && (
-                          <span className="table-sort-arrow">
-                            {{
-                              asc: " 🔼",
-                              desc: " 🔽",
-                            }[sortingState[header.id]] ?? null}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-
-          {isSuccess && !!data.length && (
-            <tbody className="">
-              {table?.getRowModel()?.rows?.map((row) => (
-                <tr key={row.id} className="border-b ">
-                  {row?.getVisibleCells()?.map((cell) => (
-                    <td
-                      className="whitespace-nowrap px-6 py-4 text-sm  font-light text-gray-300 td-col-dark first:text-black  "
-                      key={cell.id}
-                      style={{
-                        background: !!row.original.is_free_session
-                          ? "#F4FFFA"
-                          : "",
-                      }}
+      <div className="flex flex-col w-full gap-4 overflow-x-scroll GlobalTable ">
+        {isLoading ? (
+          <div className="flex items-center justify-center h-[78vh]">
+            <Loading
+            subTitle="جاري التحميل"
+            />
+          </div>
+        ) : (
+          <table id="print-table" className="min-w-full text-center">
+            <thead className="border-b ">
+              {table?.getHeaderGroups()?.map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className="px-6 py-4 text-sm  text-white dark:!bg-dark-tertiary capitalize"
                     >
-                      {flexRender(
-                        cell?.column?.columnDef.cell,
-                        cell.getContext()
+                      {header.isPlaceholder ? null : (
+                        <div
+                          {...{
+                            className: header.column.getCanSort()
+                              ? "cursor-pointer select-none"
+                              : "",
+                            onClick: () => handleSorting(header),
+                          }}
+                        >
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                          {header.column?.columnDef?.filterKey && (
+                            <span className="table-sort-arrow">
+                              {{
+                                asc: " 🔼",
+                                desc: " 🔽",
+                              }[sortingState[header.id]] ?? null}
+                            </span>
+                          )}
+                        </div>
                       )}
-                    </td>
+                    </th>
                   ))}
                 </tr>
               ))}
-            </tbody>
-          )}
-          <tfoot>{generateFooters(footerData)}</tfoot>
-        </table>
+            </thead>
+
+            {isSuccess && !!data.length && (
+              <tbody className="">
+                {table?.getRowModel()?.rows?.map((row) => (
+                  <tr key={row.id} className="border-b ">
+                    {row?.getVisibleCells()?.map((cell) => (
+                      <td
+                        className="px-6 py-4 text-sm font-light text-gray-300 whitespace-nowrap td-col-dark first:text-black "
+                        key={cell.id}
+                        style={{
+                          background: !!row.original.is_free_session
+                            ? "#F4FFFA"
+                            : "",
+                        }}
+                      >
+                        {flexRender(
+                          cell?.column?.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            )}
+            <tfoot>{generateFooters(footerData)}</tfoot>
+          </table>
+        )}
         {isSuccess &&
           !!!data?.length &&
           !!!footerData?.length &&
           !!!isLoading &&
           !!!isFetching && (
-            <div className="mb-5 pr-5">
+            <div className="pr-5 mb-5">
               {/* <Header
                 header={t("nothing")}
-                className="text-center text-2xl font-bold dark:text-white"
+                className="text-2xl font-bold text-center dark:text-white"
               /> */}
             </div>
           )}

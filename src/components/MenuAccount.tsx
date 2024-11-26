@@ -18,7 +18,7 @@ const MenuAccount = () => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-2 relative">
+    <div className="relative flex items-center justify-center gap-2">
       <div className="relative">
         {/* الصورة الرمزية */}
         <Avatar
@@ -29,12 +29,12 @@ const MenuAccount = () => {
             fontFamily: "Somar-Medium",
           }}
         >
-          <span className="w-full flex  item-center justify-center pb-2">
+          <span className="flex justify-center w-full pb-2 item-center">
             ع
           </span>
         </Avatar>
 
-        <span className="absolute bottom-0 left-0 w-3 h-3 rounded-full bg-green-500 border-2 border-white animate-glow"></span>
+        <span className="absolute bottom-0 left-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full animate-glow"></span>
       </div>
       <div
         onClick={handleClick}
@@ -66,7 +66,6 @@ const MenuAccount = () => {
         <IoIosArrowDown className="text-gray-500" />
       </div>
 
-      {/* القائمة المنسدلة */}
       <Menu
         anchorEl={anchorEl}
         open={open}

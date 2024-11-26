@@ -1,12 +1,14 @@
-import React from "react";
-import BaseInputField from "../../atoms/Label/formik/BaseInputField";
-import { Link } from "react-router-dom";
-import { Form } from "formik";
+import Button from "../../atoms/button/Button"
+import BaseInputField from "../../atoms/formik/BaseInputField"
+import { Label } from "../../atoms/formik/Label"
 
-const LoginForm = () => {
+type LoginForm_TP = {
+  isPending:boolean
+}
+const LoginForm = ({ isPending }: LoginForm_TP) => {
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-12">
-      <div className="hidden md:col-span-7 md:flex bg-gray-100 items-center justify-center">
+    <div className="grid min-h-screen grid-cols-1 md:grid-cols-12">
+      <div className="items-center justify-center hidden bg-gray-100 md:col-span-8 md:flex">
         <img
           src="/src/assets/login.png"
           alt="Login Illustration"
@@ -14,14 +16,14 @@ const LoginForm = () => {
         />
       </div>
 
-      <div className="col-span-12 md:col-span-5 flex items-center justify-center bg-white p-8">
+      <div className="flex items-center justify-center col-span-12 p-8 bg-white md:col-span-4">
         <div className="w-full max-w-[450px]">
           {/* Header */}
-          <div className="text-start mb-6">
+          <div className="mb-6 text-start">
             <h1 className="text-[1.5rem] font-somarBold text-[#434050]">
               مرحبًا بك في erpMisbar!👋🏻
             </h1>
-            <p className="text-light mt-2 font-somarBold">
+            <p className="mt-2 text-light font-somarBold">
               يرجى تسجيل الدخول إلى حسابك وبدء المغامرة
             </p>
           </div>
@@ -30,70 +32,61 @@ const LoginForm = () => {
             <p>اسم المستخدم: admin / كلمة المرور: admin</p>
           </div>
 
-          <Form>
-            <div className="space-y-4">
-              {/* Username Field */}
-              <div>
-                <label className="font-somarBold text-[14px] my-1">
-                  اسم المستخدم
-                </label>
-                <BaseInputField
-                  name="email"
-                  label=" أدخل اسم المستخدم الخاص بك"
-                  type="email"
-                />
-              </div>
-
-              {/* Password Field */}
-              <div>
-                <label className="font-somarBold text-[14px] my-1">
-                  كلمة المرور
-                </label>
-                <BaseInputField
-                  name="password"
-                  label=" أدخل كلمه المرور الخاصة بك"
-                  type="password"
-                />
-              </div>
-
-              <div className="flex items-center justify-between font-somar">
-                <label className="flex items-center text-sm text-gray-700">
-                  <input type="checkbox" defaultChecked className="mr-2" />
-                  تذكرني
-                </label>
-                <a href="#" className="text-sm text-primary hover:underline">
-                  هل نسيت كلمة المرور؟
-                </a>
-              </div>
+          <div className="space-y-4">
+            <div>
+              <BaseInputField
+                name="username"
+                label="اسم المستخدم"
+                placeholder=" أدخل اسم المستخدم الخاص بك"
+                type="email"
+              />
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-[#104bba] text-white rounded-lg py-2 mt-6 hover:bg-blue-700 transition font-somarBold"
-            >
-              تسجيل الدخول
-            </button>
-
-            <div className="flex items-center my-6">
-              <div className="flex-grow bg-gray-300 h-px"></div>
-              <p className="px-4 text-gray-500 text-sm font-somarLight">أو</p>
-              <div className="flex-grow bg-gray-300 h-px"></div>
+            <div>
+              <BaseInputField
+                name="password"
+                label="  كلمة المرور"
+                placeholder=" أدخل كلمه المرور الخاصة بك"
+                type="password"
+              />
             </div>
 
-            <p className="text-center text-sm text-gray-700 font-somar">
-              جديد على منصتنا؟{" "}
-              <Link
-                to="#"
-                className="text-primary hover:underline font-somarBold"
+            <div className="flex items-center justify-between font-somar">
+              <Label
+                htmlFor=""
+                className="flex items-center text-sm text-gray-700"
               >
-                أنشئ حسابًا
-              </Link>
-            </p>
-          </Form>
+                <input type="checkbox" defaultChecked className="mr-2" />
+                <span className="mx-2">تذكرني</span>
+              </Label>
+
+              <a href="#" className="text-sm text-primary hover:underline">
+                هل نسيت كلمة المرور؟
+              </a>
+            </div>
+          </div>
+
+          <Button text="تسجيل الدخول" type="submit" isPending={isPending} />
+
+          {/* <div className="flex items-center my-6">
+            <div className="flex-grow h-px bg-gray-300"></div>
+            <p className="px-4 text-sm text-gray-500 font-somarLight">أو</p>
+            <div className="flex-grow h-px bg-gray-300"></div>
+          </div> */}
+
+          {/* <p className="text-sm text-center text-gray-700 font-somar">
+            جديد على منصتنا؟{" "}
+            <Link
+              to="#"
+              className="text-primary hover:underline font-somarBold"
+            >
+              أنشئ حسابًا
+            </Link>
+          </p> */}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm

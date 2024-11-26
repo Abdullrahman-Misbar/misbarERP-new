@@ -1,10 +1,9 @@
-import React from "react";
-import MenuAccount from "../MenuAccoutn";
+import MenuAccount from "../MenuAccount";
 
 const NavBar = () => {
   return (
     <div
-      className="w-full flex h-14 items-center justify-end px-14 bg-white shadow-md"
+      className="flex items-center justify-end w-full bg-white shadow-md h-14 px-14"
       style={{
         position: "relative",
         boxShadow: "-5px 0px 1px #000000bf",

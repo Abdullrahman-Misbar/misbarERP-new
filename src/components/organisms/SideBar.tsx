@@ -125,10 +125,11 @@ export const SideBar = () => {
   return (
     <Sidebar
       rtl={isRTL}
-      className="col-start-1 col-end-2 row-start-2 row-end-3 h-screen"
+      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3"
       transitionDuration={270}
+      width="265"
     >
-      <div className="px-5 py-2 flex flex-col items-start">
+      <div className="flex flex-col items-start px-5 py-2">
         <div className="w-full p-3">
           <img src="/src/assets/logo.png" alt="Logo" />
         </div>

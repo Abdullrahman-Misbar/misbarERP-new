@@ -162,7 +162,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchase order",
-        link: "",
+        link: "/purchase/purchaseOrder",
         icon: RequestOrderIcon,
       },
       {

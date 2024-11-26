@@ -47,5 +47,25 @@
 
   "The most mobile suppliers": "الموردين الآكثر حركة",
   "Receivables maturity summary": "ملخص استحقاق ذمم",
-  "Receivables reconstruction": "اعمار الذمم"
+  "Receivables reconstruction": "اعمار الذمم",
+  "code":"الكود",
+  "reference Document":"المستند المرجعي",
+  "approval Date":"تاريخ اعتماد الطلب",
+  "confirmation Dyes":"تاريخ الطلب",
+  "vendor Name":"المستخدم",
+  "expected Receipt Date":"تاريخ انتهاء الطلب",
+  "status":"الحالة",
+  "Actions":"إجراءات",
+  "note":"ملاحظات",
+  "Active":"نشط",
+  "Not active":"غير نشط",
+  "loading":"جاري التحميل",
+  "Delete":"حذف",
+  "Edit":"تعديل",
+  "Successful operation":"تمت العملية بنجاح",
+  "Something went wrong":"لقد حدث خطأ ما",
+  "Are you sure?":"هل انت متاكد",
+  "You cannot go back in this process":"لا يمكنك الرجوع في هذه العملية",
+  "Ok":"موافق",
+  "Cancel":"الغاء"
 }

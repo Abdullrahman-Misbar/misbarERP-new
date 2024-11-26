@@ -1,7 +1,7 @@
 import { t } from "i18next";
 import type { GroupBase, OptionsOrGroups } from "react-select";
 import { CFile_TP } from "../types";
-import { toHijri } from "hijri-converter";
+// import { toHijri } from "hijri-converter";
 
 //  PDF OR IMAGE
 type pdfOrImageReturn = "pdf" | "image" | "unknown";
@@ -172,14 +172,14 @@ export function convertDateTime(dateTimeString: string): string {
   return ` ${formattedDate} `;
 }
 
-export const convertToHijri = (date: string | number | Date) => {
-  let hijriDate = new Date(date);
-  return toHijri(
-    hijriDate.getFullYear(),
-    hijriDate.getMonth() + 1,
-    hijriDate.getDate()
-  );
-};
+// export const convertToHijri = (date: string | number | Date) => {
+//   let hijriDate = new Date(date);
+//   return toHijri(
+//     hijriDate.getFullYear(),
+//     hijriDate.getMonth() + 1,
+//     hijriDate.getDate()
+//   );
+// };
 export const padWithZero = (number: { toString: () => any }) => {
   let numStr = number.toString();
   if (numStr.length === 1) {

@@ -7,6 +7,8 @@ import { HelmetProvider } from "react-helmet-async"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import "./i18n"
 import { ProSidebarProvider } from "react-pro-sidebar"
+import { AuthProvider } from "./context/auth-and-perm/AuthProvider.tsx"
+import { Spinner } from "./components/atoms/UI/Spinner.tsx"
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,12 +19,12 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+        <AuthProvider>
         <HelmetProvider>
           <Suspense
             fallback={
               <div className="h-[100vh] flex items-center justify-center">
-                {/* <Spinner size="large" /> */}
-                loading ...
+                <Spinner  size="large" />
               </div>
             }
           >
@@ -31,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
             </ProSidebarProvider>
           </Suspense>
         </HelmetProvider>
+        </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>
   </StrictMode>

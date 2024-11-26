@@ -4,6 +4,8 @@ import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
 import Home from "../pages/Home";
 import Login from "../pages/login";
+import PurchaseOrder from "../pages/PURCHASE/PurchaseOrder";
+import AddPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Add";
 
 export const AllRoutesProvider = () => {
   return (
@@ -11,6 +13,16 @@ export const AllRoutesProvider = () => {
       <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route path="*" element={<ErrorPage />} />
         <Route index element={<Home title={t("Home")} />} />
+
+        {/* PURCHASE */}
+        <Route
+          path="/purchase/purchaseOrder"
+          element={<PurchaseOrder title={t("Purchase Order")} />}
+        />
+        <Route
+          path="/purchase/purchaseOrder/add"
+          element={<AddPurchaseOrder title={t("Add Purchase Order")} />}
+        />
       </Route>
 
       <Route

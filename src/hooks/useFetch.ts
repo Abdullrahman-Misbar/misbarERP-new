@@ -7,14 +7,15 @@ import { useIsRTL } from "./useIsRTL";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 
 type useFetchPops_TP = {
-  queryKey: [string];
-  endpoint: string;
-  enabled?: boolean;
-  select?: ((data: any) => any) | undefined;
-  onError?: (err: any) => void;
-  onSuccess?: (err: any) => void;
-  localization?: boolean;
-};
+  queryKey: [string]
+  endpoint: string
+  enabled?: boolean
+  select?: ((data: any) => any) | undefined
+  onError?: (err: any) => void
+  onSuccess?: (err: any) => void
+  localization?: boolean
+  Module?:"PURCHASE"
+}
 function useFetch<T>({
   endpoint,
   enabled,
@@ -22,45 +23,46 @@ function useFetch<T>({
   queryKey,
   onError,
   onSuccess,
-  localization,
+  Module,
 }: useFetchPops_TP) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
-  const {project_id} = useAuth()
 
   const isRTL = useIsRTL();
   const config = {
     headers: {
       Authorization: authorizationHeader,
       "Accept-Language": isRTL ? "ar" : "en",
-      // project_id:project_id
-
     },
   };
   const baseURL = import.meta.env.VITE_BASE_URL;
+  const customEndPoint =
+    Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL
 
 
   const query = useQuery<T>({
     queryKey,
     queryFn: () =>
-      axios.get(`${baseURL}/${endpoint}`, config).then((res) => res.data),
+      axios
+        .get(`${customEndPoint}/${endpoint}`, config)
+        .then((res) => res.data),
     enabled,
     select,
     onError: (error) => {
-      notify("error", error?.response?.data?.message);
+      notify("error", error?.response?.data?.message)
       if (error?.response?.data?.message == "Unauthenticated.") {
-        localStorage.removeItem("user");
-        navigate("/login");
-        Cookies.remove("token");
+        localStorage.removeItem("user")
+        navigate("/login")
+        Cookies.remove("token")
       }
       if (onError) {
-        onError(error);
+        onError(error)
       }
     },
     onSuccess,
-  });
+  })
   return query;
 }
 
