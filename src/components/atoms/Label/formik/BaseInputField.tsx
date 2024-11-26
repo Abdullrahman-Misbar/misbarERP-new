@@ -1,27 +1,27 @@
-import { TextField } from "@mui/material"
-import { useFormikContext } from "formik"
-import React, { useState } from "react"
-import { FaEye, FaEyeSlash } from "react-icons/fa"
-import { FormikError } from "./FormikError"
+import { TextField } from "@mui/material";
+import { useFormikContext } from "formik";
+import React, { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FormikError } from "./FormikError";
 
 interface BaseInputFieldProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  id?: string
-  required?: boolean
-  style?: React.CSSProperties 
-  sx?: object 
-  name: string
-  type: "text" | "password" | "email" | "number" | "date" | "textarea"
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning" 
+  label?: string;
+  id?: string;
+  required?: boolean;
+  style?: React.CSSProperties;
+  sx?: object;
+  name: string;
+  type: "text" | "password" | "email" | "number" | "date" | "textarea";
+  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
 }
 
 const BaseInputField: React.FC<BaseInputFieldProps> = ({
   label,
   id,
   required = false,
-  style = {}, 
-  sx = {}, 
+  style = {},
+  sx = {},
   name,
   placeholder = "",
   type = "text",
@@ -30,16 +30,16 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
   ...props
 }) => {
   const { setFieldValue, setFieldTouched, errors, touched, values } =
-    useFormikContext<{ [key: string]: any }>()
-  const [showPassword, setShowPassword] = useState(false)
+    useFormikContext<{ [key: string]: any }>();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => setShowPassword((prev) => !prev)
+  const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
 
-  const handleBlur = () => setFieldTouched(name, true)
+  const handleBlur = () => setFieldTouched(name, true);
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    if (type === "date") event.target.showPicker()
-  }
+    if (type === "date") event.target.showPicker();
+  };
 
   return (
     <div className={`rtl:text-right ${style}`} dir="rtl">
@@ -58,6 +58,10 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
         error={touched[name] && !!errors[name]}
         onChange={(e) => setFieldValue(name, e.target.value)}
         sx={{
+          "& .MuiInputLabel-root": {
+            fontFamily: "Somar-Bold, sans-serif", // Apply somarBold font to the label
+            fontWeight: "bold",
+          },
           "& input[type='date']::-webkit-calendar-picker-indicator": {
             display: "none",
           },
@@ -79,7 +83,7 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
       )}
       <FormikError name={name} />
     </div>
-  )
-}
+  );
+};
 
-export default BaseInputField
+export default BaseInputField;
