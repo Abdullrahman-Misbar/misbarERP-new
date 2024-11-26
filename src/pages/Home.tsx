@@ -12,7 +12,7 @@ function Home({ title }: Home_TP) {
         <title>{title}</title>
       </Helmet>
       <div>
-        <Table columns={[]} data={{}} />
+        {/* <Table columns={[]} data={{}} /> */}
       </div>
     </>
   );
