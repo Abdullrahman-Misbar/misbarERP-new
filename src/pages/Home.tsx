@@ -1,10 +1,10 @@
-import React from "react"
-import { Helmet } from "react-helmet-async"
-import { Table } from "../components/molecules/tantable/Table"
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { Table } from "../components/molecules/tantable/Table";
 
 type Home_TP = {
-  title: string
-}
+  title: string;
+};
 function Home({ title }: Home_TP) {
   return (
     <>
@@ -12,12 +12,10 @@ function Home({ title }: Home_TP) {
         <title>{title}</title>
       </Helmet>
       <div>
-        <Table columns={[]} data={{}} 
-        
-        />
+        <Table columns={[]} data={{}} />
       </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

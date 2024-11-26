@@ -1,56 +1,143 @@
-import { Avatar } from "@mui/material"
-import { deepOrange } from "@mui/material/colors"
-import { BiSearchAlt } from "react-icons/bi"
-import { IoIosArrowDown } from "react-icons/io"
-import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5"
-// import logo from "../../assets/altebr_logo.png"
+import React, { useState } from "react";
+import { Avatar, Menu, MenuItem, Typography, Divider } from "@mui/material";
+import { IoSettingsOutline } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { IoIosArrowDown } from "react-icons/io";
 
 const NavBar = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <div className="w-100 flex h-14 items-center justify-end p-2 bg-gray-400">
-      <div className="me-2 flex  items-center gap-4">
-        <div className="flex items-center justify-center gap-2">
-          <Avatar>N</Avatar>
-          <div>
-            <h6 className="m-0">اسم المستخدم</h6>
-            <p>مدير النظام</p>
+    <div className="w-full flex h-14 items-center justify-end px-14 bg-white shadow-md">
+      <div className="flex items-center justify-center gap-2">
+        <Avatar
+          onClick={handleClick}
+          style={{
+            cursor: "pointer",
+            backgroundColor: "#999999",
+            fontFamily: "Somar-Medium",
+          }}
+        >
+          ع
+        </Avatar>
+        <div
+          onClick={handleClick}
+          className="flex items-center gap-3"
+          style={{ cursor: "pointer" }}
+        >
+          <div className="flex flex-col items-start">
+            <Typography
+              variant="body2"
+              style={{
+                fontFamily: "Somar-Bold",
+                fontSize: "13px",
+              }}
+            >
+              عبد العزيز طارق العلي
+            </Typography>
+            <Typography
+              variant="caption"
+              style={{
+                fontFamily: "Somar-Light",
+                fontSize: "14px",
+                color: "gray",
+              }}
+            >
+              مدير النظام
+            </Typography>
           </div>
 
-          <IoIosArrowDown className="h-4 w-4 fill-mainBlack" />
+          <IoIosArrowDown className="text-gray-500" />
         </div>
       </div>
+
+      {/* القائمة المنسدلة */}
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        {/* الجزء العلوي */}
+        <div className="p-4">
+          <Typography
+            variant="body2"
+            style={{
+              fontFamily: "Somar-Bold",
+              fontSize: "14px",
+              padding: "0 5px",
+            }}
+          >
+            عبد العزيز طارق العلي
+          </Typography>
+          <Typography
+            variant="caption"
+            style={{
+              fontFamily: "Somar-Light",
+              fontSize: "14px",
+              color: "gray",
+              padding: "0 5px",
+            }}
+          >
+            مدير النظام
+          </Typography>
+        </div>
+        <Divider />
+
+        {/* الخيارات */}
+        <MenuItem onClick={handleClose} className="gap-2">
+          <IoSettingsOutline className="text-gray-500" />
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+            }}
+          >
+            إعدادات
+          </Typography>
+        </MenuItem>
+        <MenuItem onClick={handleClose} className="gap-2">
+          <FaUserAlt className="text-gray-500" />
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+            }}
+          >
+            الملف الشخصي
+          </Typography>
+        </MenuItem>
+        <MenuItem onClick={handleClose} className="gap-2">
+          <FiLogOut className="text-gray-500" />
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+            }}
+          >
+            خروج
+          </Typography>
+        </MenuItem>
+      </Menu>
     </div>
-  )
-  //  return (
-  //    <div className="w-100 flex h-14 items-center justify-between p-2">
-  //      <div className="w-100 flex items-center gap-12 py-6 px-4">
-  //        <img src={logo} className="ms-3 h-12 w-12 object-contain" alt="logo" />
-  //          <form className="flex items-center rounded-md border-2 border-slate-200 p-1 ">
-  //            <input
-  //              type="search"
-  //              placeholder="بحث"
-  //              className=" placeholder-slate-400 border-transparent p-0"
-  //            />
-  //            <BiSearchAlt className="fill-slate-400" />
-  //          </form>
+  );
+};
 
-  //      </div>
-  //      <div className="me-2 flex  items-center gap-4">
-  //        <IoSettingsOutline className="icon fill-mainBlack cursor-pointer" />
-  //        <div className=" relative">
-  //          <IoNotificationsOutline className="icon fill-mainBlack" />
-  //          <span className=" absolute -top-2 left-3 rounded-full  bg-mainRed p-[2px] text-xs text-white">
-  //            10
-  //          </span>
-  //        </div>
-  //        <div className="flex items-center justify-center gap-2">
-  //          <img src={logo} className="w-6 h-6  object-contain" alt="logo" />
-  //          <h6 className="m-0">اسم المستخدم</h6>
-  //          <IoIosArrowDown className="h-4 w-4 fill-mainBlack" />
-  //        </div>
-  //      </div>
-  //    </div>
-  //  )
-}
-
-export default NavBar
+export default NavBar;

@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* تعريف الخطوط */
+@font-face {
+  font-family: "Somar-Bold";
+  src: url("/font/alfont_com_Somar-Bold.woff2") format("woff2"),
+    url("/font/alfont_com_Somar-Bold.woff") format("woff"),
+    url("/font/alfont_com_Somar-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Somar-Medium";
+  src: url("/font/alfont_com_Somar-Medium.woff2") format("woff2"),
+    url("/font/alfont_com_Somar-Medium.woff") format("woff"),
+    url("/font/alfont_com_Somar-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Somar-Light";
+  src: url("/font/alfont_com_Somar-Light.woff2") format("woff2"),
+    url("/font/alfont_com_Somar-Light.woff") format("woff"),
+    url("/font/alfont_com_Somar-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* تخصيص مكونات الأزرار */
+.css-ugehy5 > .ps-menu-button {
+  height: 30px !important;
+}
+
+.css-1ip1oky > .ps-menu-button {
+  height: 33px !important;
+}
