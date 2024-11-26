@@ -26,6 +26,10 @@ const LoginForm = () => {
             </p>
           </div>
 
+          <div className="bg-[#104bba29] text-[#104bba] px-4 py-4 rounded-lg text-sm mb-4 font-somarBold relative">
+            <p>اسم المستخدم: admin / كلمة المرور: admin</p>
+          </div>
+
           <Form>
             <div className="space-y-4">
               {/* Username Field */}
