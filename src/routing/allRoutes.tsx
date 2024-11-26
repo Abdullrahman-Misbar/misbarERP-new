@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
 import Home from "../pages/Home";
+import Login from "../pages/login";
 
 export const AllRoutesProvider = () => {
   return (
@@ -12,11 +13,11 @@ export const AllRoutesProvider = () => {
         <Route index element={<Home title={t("Home")} />} />
       </Route>
 
-      {/* <Route
+      <Route
         errorElement={<ErrorPage />}
         path="/login"
         element={<Login title={t("login")} />}
-      /> */}
+      />
     </Routes>
   )
 };
