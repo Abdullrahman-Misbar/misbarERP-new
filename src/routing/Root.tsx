@@ -14,8 +14,8 @@ export const Root = () => {
 
   // if (!!user) {
   return (
-    <div className="grid h-screen grid-cols-[17%_83%] grid-rows-[auto_1fr] bg-flatWhite">
-      <div className="col-start-1 col-end-2 row-span-full bg-gray-200">
+    <div className="grid h-screen grid-cols-[17%_83%] grid-rows-[auto_1fr] ">
+      <div className="col-start-1 col-end-2 row-span-full">
         <SideBar />
       </div>
 
@@ -23,7 +23,7 @@ export const Root = () => {
         <NavBar />
       </nav>
 
-      <main className="col-start-2 col-end-3 row-start-2 overflow-y-auto p-10 bg-white">
+      <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-white">
         <Outlet />
         
       </main>
