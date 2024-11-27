@@ -5,16 +5,29 @@ import CoordinationIcon from "../../assets/icon/CoordinationIcon";
 import QrcodeIcon from "../../assets/icon/QrcodeIcon";
 import VerticalLinesIcon from "../../assets/icon/VerticalLinesIcon";
 import FilterMenu from "./FilterMenu";
+import GroupByMenu from "./GroupByMenu";
 
 const GlobalFilter = () => {
-  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const [filterMenuAnchor, setFilterMenuAnchor] = useState<null | HTMLElement>(
+    null
+  );
+  const [groupByMenuAnchor, setGroupByMenuAnchor] =
+    useState<null | HTMLElement>(null);
 
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMenuAnchor(event.currentTarget);
+  const handleFilterMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setFilterMenuAnchor(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
-    setMenuAnchor(null);
+  const handleFilterMenuClose = () => {
+    setFilterMenuAnchor(null);
+  };
+
+  const handleGroupByMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setGroupByMenuAnchor(event.currentTarget);
+  };
+
+  const handleGroupByMenuClose = () => {
+    setGroupByMenuAnchor(null);
   };
 
   return (
@@ -23,32 +36,35 @@ const GlobalFilter = () => {
       <div className="flex space-x-reverse space-x-2 items-center">
         {/* Filter Button with Menu */}
         <button
-          onClick={handleMenuOpen}
+          onClick={handleFilterMenuOpen}
           className="flex items-center px-4 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <FilterIcon />
-
           <span className="font-somar">فلتر</span>
         </button>
-
         <FilterMenu
-          anchorEl={menuAnchor}
-          open={Boolean(menuAnchor)}
-          onClose={handleMenuClose}
+          anchorEl={filterMenuAnchor}
+          open={Boolean(filterMenuAnchor)}
+          onClose={handleFilterMenuClose}
         />
 
-        {/* Group by Button */}
+        {/* Group by Button with Menu */}
         <button
-          onClick={handleMenuOpen}
+          onClick={handleGroupByMenuOpen}
           className="flex items-center px-4 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <GroupByIcon />
           <span className="font-somar">تجميع حسب</span>
         </button>
+        <GroupByMenu
+          anchorEl={groupByMenuAnchor}
+          open={Boolean(groupByMenuAnchor)}
+          onClose={handleGroupByMenuClose}
+        />
 
         {/* Settings Button */}
         <button
-          onClick={handleMenuOpen}
+          onClick={handleGroupByMenuOpen}
           className="flex items-center px-6 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <CoordinationIcon />
