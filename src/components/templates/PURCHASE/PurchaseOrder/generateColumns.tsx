@@ -1,12 +1,12 @@
-import { ColumnDef } from "@tanstack/react-table"
-import { t } from "i18next"
-import { indexTable } from "../../../../utils/helpers"
-import { Edit } from "../../../atoms/icons/Edit"
-import ActionMenu from "../../../molecules/ActionMenu"
-import DeleteMain from "./DeleteMain"
-import { RowData } from "./Types&Validation"
+import { ColumnDef } from "@tanstack/react-table";
+import { t } from "i18next";
+import { indexTable } from "../../../../utils/helpers";
+import { Edit } from "../../../atoms/icons/Edit";
+import ActionMenu from "../../../molecules/ActionMenu";
+import DeleteMain from "./DeleteMain";
+import { RowData } from "./Types&Validation";
 
-type RefetchFunction = () => void
+type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
@@ -73,7 +73,7 @@ export const generateColumns = (
       accessorKey: "actions",
       cell: (info) => (
         <div className="flex justify-center">
-          <ActionMenu >
+          <ActionMenu>
             <div>
               <span>
                 <Edit
@@ -89,5 +89,5 @@ export const generateColumns = (
         </div>
       ),
     },
-  ]
-}
+  ];
+};

@@ -1,19 +1,22 @@
-import { useNavigate } from "react-router"
-import { Outlet } from "react-router-dom"
-import NavBar from "../components/organisms/NavBar"
-import { useAuth } from "../context/auth-and-perm/AuthProvider"
-import { useEffect } from "react"
-import { SideBar } from "../components/organisms/SideBar"
+import { useNavigate } from "react-router";
+import { Outlet } from "react-router-dom";
+import NavBar from "../components/organisms/NavBar";
+import { useAuth } from "../context/auth-and-perm/AuthProvider";
+import { useEffect } from "react";
+import { SideBar } from "../components/organisms/SideBar";
+import NotFound from "../pages/404";
+
+import NoData from "../pages/505";
 
 export const Root = () => {
-  const { token } = useAuth()
-  const navigate = useNavigate()
+  const { token } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
-      navigate("/login")
+      navigate("/login");
     }
-  }, [navigate, token])
+  }, [navigate, token]);
 
   if (token) {
     return (
@@ -26,12 +29,14 @@ export const Root = () => {
           <NavBar />
         </nav>
 
-        <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-gray-300">
+        <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-[#F6F8FF]">
           <Outlet />
+          {/* <NotFound /> */}
+          {/* <NoData /> */}
         </main>
       </div>
-    )
+    );
   } else {
-    navigate("/login")
+    navigate("/login");
   }
-}
+};

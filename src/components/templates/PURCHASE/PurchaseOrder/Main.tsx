@@ -1,51 +1,64 @@
-import { useMemo, useState } from "react"
-import { useFetch } from "../../../../hooks"
-import useDebounce from "../../../../hooks/useDebounce"
-import Button from "../../../atoms/button/Button"
-import Paginate from "../../../molecules/table/Paginate"
-import { Table } from "../../../molecules/tantable/Table"
-import { generateColumns } from "./generateColumns"
-import { useNavigate } from "react-router-dom"
-import BaseInputSearch from "../../../atoms/formik/BaseInputSearch"
-import Filter from "./Filter"
+import { useMemo, useState } from "react";
+import { useFetch } from "../../../../hooks";
+import useDebounce from "../../../../hooks/useDebounce";
+import Button from "../../../atoms/button/Button";
+import Paginate from "../../../molecules/table/Paginate";
+import { Table } from "../../../molecules/tantable/Table";
+import { generateColumns } from "./generateColumns";
+import { useNavigate } from "react-router-dom";
+import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
+import Filter from "./Filter";
+import BreadcrumbComponent from "../../../Breadcrumb";
+import { MdSettings } from "react-icons/md";
 
 function Main() {
-  const [page, setPage] = useState(0)
-  const [word, setWord] = useState("")
-  const navigate = useNavigate()
-  const debouncedWord = useDebounce(word, 3000)
+  const [page, setPage] = useState(0);
+  const [word, setWord] = useState("");
+  const navigate = useNavigate();
+  const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
     // page: page,
     // term: word,
-  }
-  const searchParams = new URLSearchParams(queryParams as any)
-  const endpoint = `api/PurchasOrder?Take=50${searchParams.toString()}`
+  };
+  const searchParams = new URLSearchParams(queryParams as any);
+  const endpoint = `api/PurchasOrder?Take=50${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     onSuccess: () => {},
-  })
-  const columns = useMemo(() => generateColumns(page, refetch), [page, refetch])
+  });
+  const columns = useMemo(
+    () => generateColumns(page, refetch),
+    [page, refetch]
+  );
   const handlePageChange = (selectedPage: number) => {
-    setPage(selectedPage)
-  }
+    setPage(selectedPage);
+  };
   return (
     <div>
+      <p className=" bg-white rounded-lg mb-2">
+        <BreadcrumbComponent />
+      </p>
       <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
         <div className="col-span-12">
-          <p className="mb-2 font-bold">التصفيات</p>
           <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
+          <Filter />
         </div>
-        <Filter/>
       </div>
+
       <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
-        <div className="col-span-1">
+        <div className="col-span-3 flex gap-2">
           <Button
             text="اضافة"
             type="button"
             action={() => navigate("/purchase/purchaseOrder/add")}
+            className="!w-[100px]"
           />
+          <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center  ">
+            {" "}
+            <MdSettings className="size-6" />
+          </span>
         </div>
       </div>
       <div className="p-3 bg-white rounded-md">
@@ -72,7 +85,7 @@ function Main() {
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;

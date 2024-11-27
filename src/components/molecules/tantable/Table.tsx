@@ -1,5 +1,5 @@
-import { rankItem } from "@tanstack/match-sorter-utils"
-import type { ColumnFiltersState } from "@tanstack/react-table"
+import { rankItem } from "@tanstack/match-sorter-utils";
+import type { ColumnFiltersState } from "@tanstack/react-table";
 import {
   FilterFn,
   SortingState,
@@ -9,11 +9,11 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table"
-import { t } from "i18next"
-import React, { useEffect, useState } from "react"
-import { Loading } from "../../molecules/Loading/Loading"
-import { ReactTableProps } from "./tableTypes"
+} from "@tanstack/react-table";
+import { t } from "i18next";
+import React, { useEffect, useState } from "react";
+import { Loading } from "../../molecules/Loading/Loading";
+import { ReactTableProps } from "./tableTypes";
 
 export const Table = <T extends object>({
   data,
@@ -28,18 +28,18 @@ export const Table = <T extends object>({
   footerData,
 }: ReactTableProps<T>) => {
   const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-    const itemRank = rankItem(row.getValue(columnId), value)
+    const itemRank = rankItem(row.getValue(columnId), value);
     addMeta({
       itemRank,
-    })
-    return itemRank.passed
-  }
+    });
+    return itemRank.passed;
+  };
 
-  const [globalFilter, setGlobalFilter] = useState("")
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
-  const [currentPageData, setCurrentPageData] = useState<T[]>([])
-  const [sorting, setSorting] = React.useState<SortingState[]>([])
-  const [sortingState, setSortingState] = useState<Record<string, string>>({})
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [currentPageData, setCurrentPageData] = useState<T[]>([]);
+  const [sorting, setSorting] = React.useState<SortingState[]>([]);
+  const [sortingState, setSortingState] = useState<Record<string, string>>({});
 
   const table = useReactTable(
     {
@@ -69,31 +69,31 @@ export const Table = <T extends object>({
     // @ts-ignore
     (hooks: { onPageChange: (({ rows }: { rows: any }) => void)[] }) => {
       hooks.onPageChange.push(({ rows }) => {
-        setCurrentPageData(rows.map((row: { original: any }) => row.original))
-      })
+        setCurrentPageData(rows.map((row: { original: any }) => row.original));
+      });
     }
-  )
+  );
 
   useEffect(() => {
-    setCurrentPageData(table.getRowModel().rows.map((row) => row.original))
-  }, [table.getRowModel().rows])
+    setCurrentPageData(table.getRowModel().rows.map((row) => row.original));
+  }, [table.getRowModel().rows]);
 
-  useEffect(() => {}, [currentPageData])
+  useEffect(() => {}, [currentPageData]);
 
   const handleSorting = (header: any) => {
     if (header.column?.columnDef?.filterKey) {
-      header.column.toggleSorting()
-      const newSortingState = header.column.getIsSorted() as string
+      header.column.toggleSorting();
+      const newSortingState = header.column.getIsSorted() as string;
       setSortingState((prevState) => ({
         ...prevState,
         [header.id]: newSortingState || "none",
-      }))
+      }));
       setSortingData({
         state: newSortingState || "",
         name: header.column?.columnDef?.filterKey || "",
-      })
+      });
     }
-  }
+  };
   const generateFooters = (footerData: any[]) => {
     return footerData?.map((footerRow: { value: any[] }, rowIndex: any) => (
       <tr key={`footer-row-${rowIndex}`} className="border-t-4 border-white ">
@@ -101,7 +101,7 @@ export const Table = <T extends object>({
           const footerValue =
             footerRow.value.find(
               (cell: { index: any }) => cell.index === colIndex
-            )?.value || null
+            )?.value || null;
           return (
             <td
               key={`footer-cell-${rowIndex}-${colIndex}`}
@@ -109,20 +109,18 @@ export const Table = <T extends object>({
             >
               {footerValue}
             </td>
-          )
+          );
         })}
       </tr>
-    ))
-  }
+    ));
+  };
 
   return (
     <>
       <div className="flex flex-col w-full gap-4 overflow-x-scroll GlobalTable ">
         {isLoading ? (
           <div className="flex items-center justify-center h-[78vh]">
-            <Loading
-            subTitle="جاري التحميل"
-            />
+            <Loading subTitle="جاري التحميل" />
           </div>
         ) : (
           <table id="print-table" className="min-w-full text-center">
@@ -132,13 +130,13 @@ export const Table = <T extends object>({
                   {headerGroup.headers.map((header) => (
                     <th
                       key={header.id}
-                      className="px-6 py-4 text-sm  text-white dark:!bg-dark-tertiary capitalize"
+                      className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
                     >
                       {header.isPlaceholder ? null : (
                         <div
                           {...{
                             className: header.column.getCanSort()
-                              ? "cursor-pointer select-none"
+                              ? "cursor-pointer select-none  font-somar font-bold !text-[14px] text-[#000000de]"
                               : "",
                             onClick: () => handleSorting(header),
                           }}
@@ -169,10 +167,10 @@ export const Table = <T extends object>({
                   <tr key={row.id} className="border-b ">
                     {row?.getVisibleCells()?.map((cell) => (
                       <td
-                        className="px-6 py-4 text-sm font-light text-gray-300 whitespace-nowrap td-col-dark first:text-black "
+                        className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  !font-somar td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
                         key={cell.id}
                         style={{
-                          background: !!row.original.is_free_session
+                          background: row.original.is_free_session
                             ? "#F4FFFA"
                             : "",
                         }}
@@ -191,10 +189,10 @@ export const Table = <T extends object>({
           </table>
         )}
         {isSuccess &&
-          !!!data?.length &&
-          !!!footerData?.length &&
-          !!!isLoading &&
-          !!!isFetching && (
+          !data?.length &&
+          !footerData?.length &&
+          !isLoading &&
+          !isFetching && (
             <div className="pr-5 mb-5">
               {/* <Header
                 header={t("nothing")}
@@ -204,5 +202,5 @@ export const Table = <T extends object>({
           )}
       </div>
     </>
-  )
-}
+  );
+};
