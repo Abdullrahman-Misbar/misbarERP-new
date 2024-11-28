@@ -22,7 +22,10 @@ function Curve() {
               <span className="text-black text-2xl font-somar font-semibold my-1">
                 15
               </span>
-              <p className="text-light font-somar font-normal">المهلة للشراء</p>
+              <p className="rounded-[100px] w-full border-[2px] border-[#BDBDBD] text-[14px] p-2  font-somar font-normal">
+                {" "}
+                قيد الارسال(مسودة)
+              </p>
             </div>
             <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
           </div>
@@ -40,7 +43,9 @@ function Curve() {
               <span className="text-black text-2xl font-somar font-semibold my-1">
                 2
               </span>
-              <p className="text-light font-somar font-normal">المهلة للشراء</p>
+              <p className="rounded-[100px] w-full border-[2px] border-[#0288D1 ] p-2 text-[#0288D1] font-somar font-normal">
+                قيد الانتظار
+              </p>
             </div>
             <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
           </div>
@@ -58,7 +63,10 @@ function Curve() {
               <span className="text-black text-2xl font-somar font-semibold my-1">
                 3
               </span>
-              <p className="text-light font-somar font-normal">المهلة للشراء</p>
+              <p className=" rounded-[100px] w-full border p-2 border-[#D32F2F] text-[#D32F2F] font-somar font-normal">
+                {" "}
+                متأخرة
+              </p>
             </div>
           </div>
         </div>
