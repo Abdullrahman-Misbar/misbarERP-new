@@ -6,6 +6,7 @@ import QrcodeIcon from "../../assets/icon/QrcodeIcon";
 import VerticalLinesIcon from "../../assets/icon/VerticalLinesIcon";
 import FilterMenu from "./FilterMenu";
 import GroupByMenu from "./GroupByMenu";
+import CoordinationMenu from "./CoordinationMenu"; // Import the CoordinationMenu component
 
 const GlobalFilter = () => {
   const [filterMenuAnchor, setFilterMenuAnchor] = useState<null | HTMLElement>(
@@ -13,6 +14,8 @@ const GlobalFilter = () => {
   );
   const [groupByMenuAnchor, setGroupByMenuAnchor] =
     useState<null | HTMLElement>(null);
+  const [coordinationMenuAnchor, setCoordinationMenuAnchor] =
+    useState<null | HTMLElement>(null); // State for "التنسيقات" menu
 
   const handleFilterMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setFilterMenuAnchor(event.currentTarget);
@@ -28,6 +31,14 @@ const GlobalFilter = () => {
 
   const handleGroupByMenuClose = () => {
     setGroupByMenuAnchor(null);
+  };
+
+  const handleCoordinationMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setCoordinationMenuAnchor(event.currentTarget); // Open the "التنسيقات" menu
+  };
+
+  const handleCoordinationMenuClose = () => {
+    setCoordinationMenuAnchor(null); // Close the "التنسيقات" menu
   };
 
   return (
@@ -62,14 +73,19 @@ const GlobalFilter = () => {
           onClose={handleGroupByMenuClose}
         />
 
-        {/* Settings Button */}
+        {/* التنسيقات Button with Menu */}
         <button
-          onClick={handleGroupByMenuOpen}
+          onClick={handleCoordinationMenuOpen} // Trigger the CoordinationMenu
           className="flex items-center px-6 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <CoordinationIcon />
           <span className="font-somar">التنسيقات</span>
         </button>
+        <CoordinationMenu
+          anchorEl={coordinationMenuAnchor}
+          open={Boolean(coordinationMenuAnchor)}
+          onClose={handleCoordinationMenuClose} // Close the menu
+        />
       </div>
 
       {/* Second Group */}

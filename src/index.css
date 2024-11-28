@@ -30,13 +30,11 @@
   font-style: normal;
 }
 
-
 body {
-  font-family: "Somar-Light", sans-serif  !important;
+  font-family: "Somar-Light", sans-serif !important;
 }
-::placeholder{
-  font-family: "Somar-Light", sans-serif  !important;
-
+::placeholder {
+  font-family: "Somar-Light", sans-serif !important;
 }
 
 .css-ugehy5 > .ps-menu-button {
@@ -64,9 +62,8 @@ body {
   background: linear-gradient(180deg, #999, #2e3188);
 }
 @layer utilities {
-
   .GlobalTable th {
-    @apply border-b-[0px] ltr:border-r-[0px] rtl:border-l-[0px]  font-[600]  p-2 text-center bg-[#f7f7f7] text-black rounded-t-md  ;
+    @apply border-b-[0px] ltr:border-r-[0px] rtl:border-l-[0px]  font-[600]  p-2 text-center bg-[#f7f7f7] text-black rounded-t-md;
   }
 
   .GlobalTable td {
@@ -80,12 +77,13 @@ body {
   .subTable td {
     @apply border-l-[1px] bg-white p-2 text-center text-black;
   }
-  .primaryButtons
-  {
-    @apply bg-mainColorLight text-main border-purple-200 border-b-[1px] border-l-[0.2px]  w-14 hover:bg-main hover:text-white hover:cursor-pointer  rounded p-1 m-auto
+  .primaryButtons {
+    @apply bg-mainColorLight text-main border-purple-200 border-b-[1px] border-l-[0.2px]  w-14 hover:bg-main hover:text-white hover:cursor-pointer  rounded p-1 m-auto;
   }
-  .addBtn
-  {
-    @apply relative active:top-[1px] md:w-[100px] cutsom-button-sub hover:cursor-pointer py-2 px-4 font-bold rounded-md w-full bg-main dark:bg-dark-tertiary dark:!border-dark-borderDark text-white border border-lightBlack   flex items-center justify-center gap-2 
+  .addBtn {
+    @apply relative active:top-[1px] md:w-[100px] cutsom-button-sub hover:cursor-pointer py-2 px-4 font-bold rounded-md w-full bg-main dark:bg-dark-tertiary dark:!border-dark-borderDark text-white border border-lightBlack   flex items-center justify-center gap-2;
   }
+}
+.MuiButtonBase-root {
+  justify-content: space-between !important;
 }
