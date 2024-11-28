@@ -4,7 +4,7 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 
 const BreadcrumbComponent = () => {
   return (
-    <div className="w-full p-4">
+    <div className="w-full p-4 bg-white rounded-lg mb-2">
       <Breadcrumbs
         aria-label="breadcrumb"
         separator=" / "

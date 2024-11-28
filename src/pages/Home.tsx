@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useFetch } from "../hooks";
+import MainHome from "../components/templates/MainHome";
+import { useState } from "react";
 
 type Home_TP = {
   title: string;
@@ -16,18 +17,20 @@ function Home({ title }: Home_TP) {
   //     endpoint: endpoint,
   //     queryKey: [endpoint],
   //     onSuccess: (data) => {
-        
+
   //     },
-    
+
   //   }
   // );
+  const [word, setWord] = useState("");
   return (
     <>
       <Helmet>
         <title>{title}</title>
       </Helmet>
       <div>
-        
+        <MainHome />
+
         {/* <Table columns={[]} data={{}} /> */}
       </div>
     </>
