@@ -64,7 +64,6 @@ function Curve() {
                 3
               </span>
               <p className=" rounded-[100px] w-full border p-2 border-[#D32F2F] text-[#D32F2F] font-somar font-normal">
-                {" "}
                 متأخرة
               </p>
             </div>
