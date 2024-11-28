@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { Avatar, Menu, MenuItem, Typography, Divider } from "@mui/material";
-import { IoSettingsOutline } from "react-icons/io5";
-import { FaUserAlt } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
-import { IoIosArrowDown } from "react-icons/io";
+import { Avatar, Divider, Menu, MenuItem, Typography } from "@mui/material"
+import { MouseEvent, useState } from "react"
+import { FaUserAlt } from "react-icons/fa"
+import { FiLogOut } from "react-icons/fi"
+import { IoIosArrowDown } from "react-icons/io"
+import { IoSettingsOutline } from "react-icons/io5"
+import { useAuth } from "../context/auth-and-perm/AuthProvider"
 
 const MenuAccount = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const open = Boolean(anchorEl)
+  const { logout } = useAuth()
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+    setAnchorEl(null)
+  }
+  const handelLogOut = () => {
+    setAnchorEl(null)
+    logout()
+  }
   return (
     <div className="relative flex items-center justify-center gap-2">
       <div className="relative">
@@ -29,9 +33,7 @@ const MenuAccount = () => {
             fontFamily: "Somar-Medium",
           }}
         >
-          <span className="flex justify-center w-full pb-2 item-center">
-            ع
-          </span>
+          <span className="flex justify-center w-full pb-2 item-center">ع</span>
         </Avatar>
 
         <span className="absolute bottom-0 left-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full animate-glow"></span>
@@ -128,7 +130,7 @@ const MenuAccount = () => {
             الملف الشخصي
           </Typography>
         </MenuItem>
-        <MenuItem onClick={handleClose} className="gap-2">
+        <MenuItem onClick={handelLogOut} className="gap-2">
           <FiLogOut className="text-gray-500" />
           <Typography
             style={{
@@ -141,7 +143,7 @@ const MenuAccount = () => {
         </MenuItem>
       </Menu>
     </div>
-  );
-};
+  )
+}
 
-export default MenuAccount;
+export default MenuAccount
