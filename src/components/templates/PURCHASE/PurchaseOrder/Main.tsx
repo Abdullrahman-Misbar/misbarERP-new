@@ -21,20 +21,25 @@ function Main() {
     // term: word,
   };
   const searchParams = new URLSearchParams(queryParams as any);
+
   const endpoint = `api/PurchasOrder?Take=50${searchParams.toString()}`;
+
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     onSuccess: () => {},
   });
+
   const columns = useMemo(
     () => generateColumns(page, refetch),
     [page, refetch]
   );
+
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
+
   return (
     <div>
       <p className=" bg-white rounded-lg mb-2">

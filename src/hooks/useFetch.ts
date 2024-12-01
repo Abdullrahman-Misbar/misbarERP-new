@@ -7,15 +7,15 @@ import { useIsRTL } from "./useIsRTL";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 
 type useFetchPops_TP = {
-  queryKey: [string]
-  endpoint: string
-  enabled?: boolean
-  select?: ((data: any) => any) | undefined
-  onError?: (err: any) => void
-  onSuccess?: (err: any) => void
-  localization?: boolean
-  Module?:"PURCHASE"
-}
+  queryKey: [string];
+  endpoint: string;
+  enabled?: boolean;
+  select?: ((data: any) => any) | undefined;
+  onError?: (err: any) => void;
+  onSuccess?: (err: any) => void;
+  localization?: boolean;
+  Module?: "PURCHASE";
+};
 function useFetch<T>({
   endpoint,
   enabled,
@@ -39,11 +39,10 @@ function useFetch<T>({
   };
   const baseURL = import.meta.env.VITE_BASE_URL;
   const customEndPoint =
-    Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL
-
-
+    Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
   const query = useQuery<T>({
     queryKey,
+
     queryFn: () =>
       axios
         .get(`${customEndPoint}/${endpoint}`, config)
@@ -51,18 +50,18 @@ function useFetch<T>({
     enabled,
     select,
     onError: (error) => {
-      notify("error", error?.response?.data?.message)
+      notify("error", error?.response?.data?.message);
       if (error?.response?.data?.message == "Unauthenticated.") {
-        localStorage.removeItem("user")
-        navigate("/login")
-        Cookies.remove("token")
+        localStorage.removeItem("user");
+        navigate("/login");
+        Cookies.remove("token");
       }
       if (onError) {
-        onError(error)
+        onError(error);
       }
     },
     onSuccess,
-  })
+  });
   return query;
 }
 
