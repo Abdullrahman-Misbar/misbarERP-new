@@ -20,35 +20,48 @@ interface TableDynamicProps {
 
 const TableDynamic: React.FC<TableDynamicProps> = ({ headers, items, actions }) => {
   return (
-    <table className='w-full border-collapse text-right'>
-      <thead>
-        <tr className='bg-gray-100'>
-          {headers.map(header => (
-            <th key={header.name} className='p-3 border-b-2 border-gray-300 text-center text-[16px]'>
-              {header.label}
+    <div className="overflow-x-scroll">
+      <table className="w-full text-right border-collapse">
+        <thead>
+          <tr className="bg-gray-100">
+            {headers.map((header) => (
+              <th
+                key={header.name}
+                className="p-3 border-b-2 border-gray-300 text-center text-[16px]"
+              >
+                {header.label}
+              </th>
+            ))}
+            <th className="p-3 border-b-2 border-gray-300 text-center text-[16px]">
+              العمليات
             </th>
-          ))}
-          <th className='p-3 border-b-2 border-gray-300 text-center text-[16px]'>العمليات</th>
-        </tr>
-      </thead>
-      <tbody>
-        {items.map((item, index) => (
-          <tr key={index}>
-            {headers.map(header => (
-              <td key={header.name} className='p-3 border-b border-gray-200'>
-                <header.component
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, index) => (
+            <tr key={index}>
+              {headers.map((header) => (
+                <td
+                  key={header.name}
+                  className="p-3 border-b border-gray-200 min-w-[200px]"
+                >
+                  {/* <header.component
                   name={`items[${index}][${header.name}]`}
                   label={header?.label}
-                  type={header.type || 'text'}
-                  className='w-full'
-                />
+                  type={header.type || "text"}
+                  className="w-full"
+                /> */}
+                  {header.component}
+                </td>
+              ))}
+              <td className="p-3 text-center border-b border-gray-200">
+                {actions && actions(index)}
               </td>
-            ))}
-            <td className='p-3 border-b border-gray-200 text-center'>{actions && actions(index)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

@@ -11,6 +11,7 @@ import { useLocalStorage } from "../../hooks"
 
 interface User {
   name: string
+  fullName: string
 }
 
 type AuthProvider_TP = {
@@ -22,6 +23,7 @@ type AuthContext_TP = {
   login: (data: User, token: string) => void
   logout: () => void
   token: string | null
+  setUser:()=>void
 }
 const AuthContext = createContext<AuthContext_TP | undefined>(undefined)
 export const AuthProvider = ({ children }: AuthProvider_TP) => {
@@ -49,10 +51,11 @@ export const AuthProvider = ({ children }: AuthProvider_TP) => {
     () => ({
       user: user ?? null,
       login,
+      setUser,
       logout,
       token: token ?? null,
     }),
-    [login, logout, token, user]
+    [login, logout, token, user, setUser]
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

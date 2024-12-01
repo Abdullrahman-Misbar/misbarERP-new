@@ -1,15 +1,16 @@
 import { Avatar, Divider, Menu, MenuItem, Typography } from "@mui/material"
-import { MouseEvent, useState } from "react"
+import { MouseEvent, useEffect, useState } from "react"
 import { FaUserAlt } from "react-icons/fa"
 import { FiLogOut } from "react-icons/fi"
 import { IoIosArrowDown } from "react-icons/io"
 import { IoSettingsOutline } from "react-icons/io5"
 import { useAuth } from "../context/auth-and-perm/AuthProvider"
+import { useFetch } from "../hooks"
 
 const MenuAccount = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const { logout } = useAuth()
+  const { logout, setUser , user } = useAuth()
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -21,6 +22,17 @@ const MenuAccount = () => {
     setAnchorEl(null)
     logout()
   }
+  const endpoint = `api/UserManagement/GetUsers`
+  const { data } = useFetch<[]>({
+    endpoint: endpoint,
+    queryKey: [endpoint],
+  })
+
+  useEffect(() => {
+    if(data?.length )
+    setUser(data[0])
+  }, [data, setUser])
+
   return (
     <div className="relative flex items-center justify-center gap-2">
       <div className="relative">
@@ -51,7 +63,7 @@ const MenuAccount = () => {
               fontSize: "12px",
             }}
           >
-            عبد العزيز طارق العلي
+            {user?.fullName}
           </Typography>
           <Typography
             variant="caption"
@@ -91,7 +103,7 @@ const MenuAccount = () => {
               padding: "0 5px",
             }}
           >
-            عبد العزيز طارق العلي
+            {user?.fullName}
           </Typography>
           <Typography
             variant="caption"
