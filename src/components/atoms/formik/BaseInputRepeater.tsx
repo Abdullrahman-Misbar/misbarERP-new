@@ -26,24 +26,30 @@ function BaseInputRepeater({
   error,
   ...props
 }: BaseInputRepeater_TP) {
-  const { setFieldValue, setFieldTouched, errors, touched, values } = useFormikContext<{
-    [key: string]: any
-  }>()
+  const { setFieldValue, setFieldTouched, errors, touched, values } =
+    useFormikContext<{
+      [key: string]: any;
+    }>();
 
   return (
-    <div className='col-span-1 mt-[2px]'>
+    <div className="col-span-1 mt-[2px]">
       {/* <Label htmlFor={id} required={required} className={`mb-3 text-sm flex justify-start`}>
         {label}
       </Label> */}
-      <div className=''>
-        
+      <div className="">
         <TextField
           type={type}
           id={id}
           label={label}
-          variant='outlined'
+          variant="outlined"
           fullWidth
           value={value || values[name]}
+          style={{
+            borderColor: "#0000003B",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            borderRadius: "4px",
+          }}
           // error={!!errors[name] && touched[name]}
           // helperText={touched[name] && errors[name] ? errors[name] : ''}
           placeholder={placeholder}
@@ -54,7 +60,7 @@ function BaseInputRepeater({
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default BaseInputRepeater
+export default BaseInputRepeater;

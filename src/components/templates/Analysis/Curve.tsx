@@ -39,6 +39,7 @@ function Curve() {
                 alt="Payments"
               />
             </div>
+
             <div className="flex flex-col items-start">
               <span className="text-black text-2xl font-somar font-semibold my-1">
                 2
