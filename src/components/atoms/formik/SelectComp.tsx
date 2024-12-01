@@ -3,6 +3,7 @@ import { useFormikContext } from "formik";
 import React from "react";
 import Select from "react-select";
 import { Label } from "./Label";
+
 interface Option {
   label: string;
   value: string | number;
@@ -13,7 +14,6 @@ interface DynamicSelectProps {
   label: string;
   placeholder?: string;
   options: Option[];
-  // value: string | number
   onChange: (event: any) => void;
   disabled?: boolean;
   id?: string;
@@ -26,7 +26,6 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
   label,
   placeholder = "Select an option",
   options,
-  // value,
   onChange,
   disabled,
   id,
@@ -39,13 +38,18 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
   const handleSearchChange = (newValue: string) => {
     if (setSearchTerm) setSearchTerm(newValue);
   };
+
   return (
     <Grid item xs={12} sm={12}>
-      <Label htmlFor={`${id}`} className="m-1">{label}</Label>
+      <Label
+        htmlFor={`${id}`}
+        className="m-1 !text-[14px] !font-somar !font-semibold !my-1 !text-[#000000a3] "
+      >
+        {label}
+      </Label>
       <Select
         name={name}
         options={options}
-        // value={value}
         onInputChange={handleSearchChange}
         onChange={onChange}
         placeholder={placeholder || "اختر..."}
@@ -61,9 +65,16 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
           }),
           control: (baseStyles, state) => ({
             ...baseStyles,
-            height:"40px"
+            height: "56px",
+            borderRadius: "4px",
+            borderColor: state.isFocused ? "#0000008F" : baseStyles.borderColor,
+            boxShadow: state.isFocused
+              ? "0 0 0 0px #0000003B"
+              : baseStyles.boxShadow,
+            "&:hover": {
+              borderColor: "#0000003B",
+            },
           }),
-
         }}
         {...props}
       />
