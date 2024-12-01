@@ -39,13 +39,13 @@ function Main() {
   const initialValues = {
     code: '',
     expectedReceiptDate: '',
+    approvalDate:'',
     total: '',
     createDate: '',
     referenceDocument: '',
-    currency: '',
-    supplier: '',
-    purchaseAgreement: '',
-    notes: '',
+    // currency: '',
+    purchaseAgreementId: '',
+    note: '',
     orderDetailsModal: []
   }
   return (

@@ -7,6 +7,9 @@ import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchas
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import { Label } from "../../../../atoms/formik/Label";
+import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
+import RadioButtons from "../../../../atoms/formik/RadioComp";
 
 function MainData() {
   return (
@@ -29,6 +32,20 @@ function MainData() {
             <SelectVendor name="vendorId" />
           </Grid>
           <Grid item xs={12} sm={6}>
+            <div className="flex items-center gap-4">
+              <Label htmlFor="">تأكيد موعد الاستلام</Label>
+              <SwitchComp />
+              <div className="flex-1">
+                <BaseInputField
+                  name="createDate"
+                  placeholder="التأكيد قبل"
+                  type="number"
+                />
+              </div>
+              <p>ايام</p>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
               name="createDate"
               placeholder="تاريخ الطلب"
@@ -39,20 +56,30 @@ function MainData() {
             <SelectCurrency name="currencyId" />
           </Grid>
           <Grid item xs={12} sm={6}>
+            <BaseInputDatepicker
+              name="expectedReceiptDate"
+              placeholder="تاريخ انتهاء الطلب"
+              label="تاريخ انتهاء الطلب"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <SelectWarehouse name="warehouseId" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
               name="approvalDate"
-              placeholder="تاريخ الاعتماد"
-              label="تاريخ الاعتماد"
+              placeholder="تاريخ اعتماد الطلب"
+              label="تاريخ اعتماد الطلب"
             />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            الحالة
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
               name="expectedReceiptDate"
-              placeholder="تاريخ الاستلام"
-              label="تاريخ الاستلام"
+              placeholder="الحد الاقصى للاستلام"
+              label="الحد الاقصى للاستلام"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -63,13 +90,30 @@ function MainData() {
               label="الإجمالي"
             />
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
-              name="createDate"
-              placeholder="تاريخ إنشاء الأمر"
-              label="تاريخ إنشاء الأمر"
+              name="expectedReceiptDate"
+              placeholder="تاريخ الاستلام"
+              label="تاريخ الاستلام"
             />
-          </Grid> */}
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <div className="flex items-center gap-4">
+              <Label htmlFor="">الحصول على الأسعار</Label>
+              <RadioButtons
+                name="x"
+                label="باستثناء الضريبة"
+                onChange={() => {}}
+              />
+              <RadioButtons
+                name="x"
+                label="شاملة الضريبة"
+                onChange={() => {}}
+              />
+            </div>
+          </Grid>
+
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="referenceDocument"
@@ -79,10 +123,6 @@ function MainData() {
             />
           </Grid>
 
- 
-          {/* <Grid item xs={12} sm={6}>
-          <SelectWarehouse name="warehouseId" />
-        </Grid> */}
           <Grid item xs={6}>
             <BaseInputField
               name="note"

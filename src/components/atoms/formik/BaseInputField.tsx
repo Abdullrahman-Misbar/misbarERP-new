@@ -44,7 +44,10 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
 
   return (
     <div>
+      {
+        label &&
       <Label htmlFor={`${id}`} className="mb-1">{label}</Label>
+      }
       <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
         <TextField
           // label={label}
