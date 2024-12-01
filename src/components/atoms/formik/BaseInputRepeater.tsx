@@ -1,19 +1,17 @@
-import { useFormikContext } from 'formik'
-import { Label } from './Label'
-import { BaseInput } from './Base'
 import { TextField } from '@mui/material'
+import { useFormikContext } from 'formik'
 
 type BaseInputRepeater_TP = {
   name: string
   type: 'text' | 'number'
-  id: string
+  id?: string
   placeholder: string
-  label: string
-  value: string
+  label?: string
+  value?: string
   required?: boolean
   disabled?: boolean
   error?: string | string[]
-  onChange: (e: { target: { value: string } }) => void
+  onChange?: (e: { target: { value: string } }) => void
 }
 function BaseInputRepeater({
   name,

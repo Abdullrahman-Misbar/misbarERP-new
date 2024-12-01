@@ -33,7 +33,6 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
   const { setFieldValue, setFieldTouched, errors, touched, values } =
     useFormikContext<{ [key: string]: any }>()
   const [showPassword, setShowPassword] = useState(false)
-  console.log("🚀 ~ showPassword:", showPassword)
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev)
 
@@ -45,7 +44,7 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
 
   return (
     <div>
-      <Label htmlFor={`${id}`}>{label}</Label>
+      <Label htmlFor={`${id}`} className="mb-1">{label}</Label>
       <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
         <TextField
           // label={label}

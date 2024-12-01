@@ -84,6 +84,7 @@ body {
     @apply relative active:top-[1px] md:w-[100px] cutsom-button-sub hover:cursor-pointer py-2 px-4 font-bold rounded-md w-full bg-main dark:bg-dark-tertiary dark:!border-dark-borderDark text-white border border-lightBlack   flex items-center justify-center gap-2;
   }
 }
-.MuiButtonBase-root {
+/* .MuiButtonBase-root {
   justify-content: space-between !important;
-}
+} */
+
