@@ -33,9 +33,10 @@
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.0.1",
     "react-toastify": "^10.0.6",
-    "sweetalert2": "^11.14.5",
+    "sweetalert2": "^11.6.13",
     "tailwind-merge": "^2.5.5",
     "tailwind-variants": "^0.3.0",
+    "yarn": "^1.22.22",
     "yet-another-react-lightbox": "^3.21.7",
     "yup": "^1.4.0"
   },
