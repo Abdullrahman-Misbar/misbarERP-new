@@ -1,9 +1,9 @@
 import React from 'react'
-import Select from '../formik/Select'
 /* eslint-disable import/named */
 import { Autocomplete, SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import { useFetch } from '../../../hooks'
+import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectWarehouseProps = {
   name: string
@@ -23,13 +23,14 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
   const { setFieldValue, values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
+    setFieldValue(name, event.value)
   }
 
-  const endpoint = 'Warehouse/Lookup'
+  const endpoint = 'api/Warehouse/Lookup'
   const { data, isLoading, isSuccess } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
+    endpoint: endpoint,
+    Module:"PURCHASE"
   })
 
   const options: Option[] =
@@ -39,12 +40,13 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
     })) || []
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label='المستودع'
       placeholder='اختر المستودع'
       options={options}
-      value={values[name as keyof FormikValues] || ''}
+      // value={values[name as keyof FormikValues] || ''}
+      isLoading={isLoading}
       onChange={handleChange}
       disabled={disabled}
     />

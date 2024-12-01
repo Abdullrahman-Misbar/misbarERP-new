@@ -11,8 +11,10 @@ import Setting from "../../assets/icon/SettingIcon";
 import UndoIcon from "../../assets/icon/UndoIcon";
 import FileClock from "../../assets/icon/FileClock";
 import ClenderIcon from "../../assets/icon/ClenderIcon";
+import { useFormikContext } from "formik";
 
 const Toolbar = () => {
+  const {handleSubmit , values} = useFormikContext()
   return (
     <div className="flex items-center justify-between  p-4">
       <div className="flex items-center justify-start ">
@@ -36,7 +38,7 @@ const Toolbar = () => {
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </button>
 
-        <button className="flex items-center p-3">
+        <button className="flex items-center p-3" onClick={()=>handleSubmit()}>
           <SaveIcon />
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </button>

@@ -1,9 +1,9 @@
 /* eslint-disable import/named */
 import React from 'react'
-import Select from '../formik/Select'
 import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import { useFetch } from '../../../hooks'
+import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectCurrencyProps = {
   name: string
@@ -27,10 +27,11 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({ name, labelName, disabl
     setFieldValue(name, event.target.value)
   }
 
-  const endpoint = 'Currency'
+  const endpoint = 'api/Currency'
   const { data, isLoading, isSuccess, refetch } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
+    endpoint: endpoint,
+    Module:"PURCHASE"
   })
 
   const options: Option[] =
@@ -40,13 +41,15 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({ name, labelName, disabl
     })) || []
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label={labelName ? labelName : 'العمله'}
       placeholder='اختر العملة'
       options={options}
-      value={values[name] || ''}
+      // value={values[name] || ''}
       onChange={handleChange}
+      isLoading={isLoading}
+
       disabled={disabled}
     />
   )

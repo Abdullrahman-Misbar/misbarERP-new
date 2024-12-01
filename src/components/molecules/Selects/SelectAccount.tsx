@@ -43,14 +43,15 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
     setFieldValue(name, event.target.value)
-    console.log(event.target.value) // For debugging purposes
+    console.log(event.target.value) 
   }
 
-  const endpoint = "Account/Lookup"
+  const endpoint = "api/Account/Lookup"
 
   const { data } = useFetch<FetchResponse<AccountLookupResponse[]>>({
     queryKey: [endpoint],
     endpoint: endpoint,
+    Module: "PURCHASE",
   })
 
   const options: Option[] =

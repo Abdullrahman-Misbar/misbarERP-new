@@ -4,12 +4,6 @@ import NavBar from "../components/organisms/NavBar";
 import { SideBar } from "../components/organisms/SideBar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
 
-import AnalysisCardSkeleton from "../components/molecules/Skeleton/AnalysisCardSkeleton";
-import NavbarSkeleton from "../components/molecules/Skeleton/NavbarSkeleton";
-import OverviewSkeleton from "../components/molecules/Skeleton/OverviewSkeleton";
-import PlayoffsSketeton from "../components/molecules/Skeleton/PlayoffsSketeton";
-import TableSkeleton from "../components/molecules/Skeleton/TableSkeleton";
-
 export const Root = () => {
   const { token } = useAuth();
   const navigate = useNavigate();

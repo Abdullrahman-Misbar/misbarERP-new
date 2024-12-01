@@ -1,115 +1,87 @@
-import React, { useState } from "react"
-import TableDynamic from "./table/TabelDynamic"
-import BaseInputField from "../atoms/formik/BaseInputField"
 import { FieldArray, useFormikContext } from "formik"
-import AddIcon from "../../assets/icon/AddIcon"
+import BaseInputRepeater from "../atoms/formik/BaseInputRepeater"
 import SelectItem from "./Selects/SelectItem"
+import TableDynamic from "./table/TabelDynamic"
 
-export default function ItemsTable() {
+type ItemsTable_TP = {
+  moduleName: string
+}
+
+export default function ItemsTable({ moduleName }: ItemsTable_TP) {
   const headers = [
     {
-      name: "serial",
+      name: "barcode",
       label: "رمز الصنف",
-      component: (
-        <div>
-          <BaseInputField name="codeItem" type="text" label="رمز الصنف" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "text",
     },
     {
-      name: "serial",
+      name: "itemId",
       label: "اسم الصنف",
-      component: (
-        <div>
-          <SelectItem name="itemName" label="الصنف" />
-        </div>
-      ),
+      component: SelectItem,
       type: "text",
     },
     {
-      name: "serial",
+      name: "uomId",
       label: "وحدة القياس",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="وحدة القياس" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "text",
     },
     {
-      name: "serial",
+      name: "warehouseId",
       label: "المخزن",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="المخزن" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "text",
     },
     {
-      name: "serial",
+      name: "quantity",
       label: "الكمية",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="الكمية" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "text",
     },
     {
-      name: "serial",
+      name: "price",
       label: "التكلفة",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="التكلفة" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "text",
     },
     {
       name: "debit",
       label: "تاريخ الصلاحية",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="تاريخ الصلاحية" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "number",
     },
     {
       name: "credit",
       label: "المجموع",
-      component: (
-        <div>
-          <BaseInputField name="" type="text" label="المجموع" />
-        </div>
-      ),
+      component: BaseInputRepeater,
       type: "number",
     },
   ]
 
-  const { values } = useFormikContext()
+  const { values } = useFormikContext<any>()
   return (
     <div>
-      <FieldArray name="items">
+      <FieldArray name={moduleName}>
         {({ push, remove }) => (
           <div className="relative">
-            {/* عرض الحقول في جدول Formik */}
             <div>
               <button
                 type="button"
-                onClick={() => push({ serial: "", debit: "", credit: "" })}
+                onClick={() => push({ code: "", itemId: "", barcode: "", description: "", quantity: "", uomId: "", price: "", total: "" })}
                 className="px-4 py-2 mt-4 mb-2 text-white bg-blue-500 rounded"
               >
                 إضافة سطر جديد
               </button>
             </div>
             <div className="relative">
-              <TableDynamic headers={headers} items={values?.items} />
-
-              <div className="">
-                {values?.items?.map((item, index) => (
+              <TableDynamic
+                //@ts-ignore
+                headers={headers} items={values[moduleName]} moduleName={moduleName} 
+                remove={remove}
+                />
+              <div>
+                {/* {values[moduleName]?.map((_: any, index: number) => (
                   <div key={index} className="flex gap-2 mt-4">
                     <button
                       type="button"
@@ -119,19 +91,12 @@ export default function ItemsTable() {
                       حذف
                     </button>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
           </div>
         )}
       </FieldArray>
-
-      {/* <button
-        type="submit"
-        className="px-4 py-2 mt-4 text-white bg-green-500 rounded"
-      >
-        حفظ التغييرات
-      </button> */}
     </div>
   )
 }
