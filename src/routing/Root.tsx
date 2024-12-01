@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import NavBar from "../components/organisms/NavBar";
 import { SideBar } from "../components/organisms/SideBar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
@@ -32,14 +32,14 @@ export const Root = () => {
         </nav>
 
         <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-[#F6F8FF]">
-          {/* <Outlet /> */}
+          <Outlet />
           {/* <NotFound /> */}
           {/* <NoData /> */}
-          <NavbarSkeleton />
+          {/* <NavbarSkeleton />
           <OverviewSkeleton />
           <PlayoffsSketeton />
           <AnalysisCardSkeleton />
-          <TableSkeleton />
+          <TableSkeleton /> */}
         </main>
       </div>
     );
