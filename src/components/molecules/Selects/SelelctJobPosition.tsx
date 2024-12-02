@@ -1,52 +1,56 @@
-import React from 'react'
-import Select from '../formik/Select'
-import { SelectChangeEvent } from '@mui/material'
-import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import React from "react";
+import { SelectChangeEvent } from "@mui/material";
+import { useFormikContext } from "formik";
+import SelectComp from "../../atoms/formik/SelectComp";
+import { useFetch } from "../../../hooks";
 
 type SelelctJobPositionProps = {
-  name: string
-  label?: string
-}
+  name: string;
+  label?: string;
+};
 
 interface Option {
-  value: number
-  label: string
+  value: number;
+  label: string;
 }
 
 interface FormikValues {
-  [key: string]: any
+  [key: string]: any;
 }
 
-const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({ name, label }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>()
+const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({
+  name,
+  label,
+}) => {
+  const { setFieldValue, values } = useFormikContext<FormikValues>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
-  }
+    setFieldValue(name, event.target.value);
+  };
 
-  const endpoint = 'Hr/GetPositionLookup'
+  const endpoint = "Hr/GetPositionLookup";
   const { data, isLoading, isSuccess } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
-  })
+    endpoint: endpoint,
+    Module: "PURCHASE",
+  });
 
   const options: Option[] =
     data?.map((item: { id: number; partnerName: string }) => ({
       value: item.id,
-      label: item.name
-    })) || []
+      label: item.name,
+    })) || [];
 
   return (
-    <Select
+    <SelectComp
       name={name}
-      label={label ? label : 'المنصب الوظيفي'}
-      placeholder='اختر المنصب'
+      label={label ? label : "المنصب الوظيفي"}
+      placeholder="اختر المنصب"
       options={options}
-      value={values[name] || ''}
+      isLoading={isLoading}
       onChange={handleChange}
     />
-  )
-}
+  );
+};
 
-export default SelelctJobPosition
+export default SelelctJobPosition;

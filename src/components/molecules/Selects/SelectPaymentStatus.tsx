@@ -1,9 +1,6 @@
-/* eslint-disable import/named */
-import React, { useState } from 'react'
-import Select from '../formik/Select'
 import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectPaymentStatus_TP = {
   name: string
@@ -15,7 +12,7 @@ const SelectPaymentStatus = ({ name }: SelectPaymentStatus_TP) => {
   const { setFieldValue, values } = useFormikContext<Formik_Values>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
+    setFieldValue(name, event.value)
   }
 
   const options = [
@@ -25,13 +22,13 @@ const SelectPaymentStatus = ({ name }: SelectPaymentStatus_TP) => {
   ]
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label='حالة الدفع'
       placeholder='حالة الدفع'
       options={options}
-      value={values[name as keyof Formik_Values]}
       onChange={handleChange}
+
     />
   )
 }
