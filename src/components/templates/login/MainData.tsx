@@ -66,7 +66,7 @@ const LoginForm = ({ isPending }: LoginForm_TP) => {
             </div>
           </div>
 
-          <Button text="تسجيل الدخول" type="submit" isPending={isPending} />
+          <Button text="تسجيل الدخول" type="submit" isPending={isPending}  className="mt-3"/>
 
           {/* <div className="flex items-center my-6">
             <div className="flex-grow h-px bg-gray-300"></div>

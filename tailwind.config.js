@@ -8,9 +8,9 @@ module.exports = {
         light: "#999999",
       },
       fontFamily: {
-        somar: ['"Somar-Medium"', "sans-serif"],
-        somarBold: ['"Somar-Bold"', "sans-serif"],
-        somarLight: ['"Somar-Light"', "sans-serif"],
+        somar: ["Somar-Medium", "sans-serif"],
+        somarBold: ["Somar-Bold", "sans-serif"],
+        somarLight: ["Somar-Light", "sans-serif"],
       },
       animation: {
         glow: "glow 1.5s infinite ease-in-out",

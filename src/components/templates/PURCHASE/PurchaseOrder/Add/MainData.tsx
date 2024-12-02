@@ -1,19 +1,22 @@
 import { Grid } from "@mui/material";
+import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
+import { Label } from "../../../../atoms/formik/Label";
+import RadioButtons from "../../../../atoms/formik/RadioComp";
+import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import ItemsTable from "../../../../molecules/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
-import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
+import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
-import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
-import { Label } from "../../../../atoms/formik/Label";
-import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
-import RadioButtons from "../../../../atoms/formik/RadioComp";
 
 function MainData() {
   return (
-    <LayoutMainData>
+    <LayoutMainData
+    
+    componentCopy=""
+    >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
@@ -136,6 +139,7 @@ function MainData() {
           <ItemsTable moduleName="orderDetailsModal" />
         </Grid>
       </div>
+
     </LayoutMainData>
   );
 }

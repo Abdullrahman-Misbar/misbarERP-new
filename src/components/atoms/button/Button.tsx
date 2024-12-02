@@ -1,4 +1,3 @@
-import { FaSpinner } from "react-icons/fa";
 import { Spinner } from "../UI/Spinner";
 
 type Button_TP = {
@@ -7,7 +6,8 @@ type Button_TP = {
   isPending?: boolean;
   disabled?: boolean;
   action?: () => void;
-  className?: string; // Optional className prop
+  className?: string; 
+  variant?:"outline" | "primary"
 };
 
 function Button({
@@ -17,13 +17,18 @@ function Button({
   disabled,
   action,
   className = "",
+  variant='primary'
 }: Button_TP) {
   return (
     <div onClick={action}>
       <button
         disabled={isPending || disabled}
         type={type}
-        className={`w-full bg-primary text-white rounded-lg py-2 hover:bg-blue-700 transition font-somarBold disabled:bg-gray-500 ${className}`}
+        className={
+          variant == "primary" ? 
+          `w-full bg-primary text-white rounded-lg py-2 hover:bg-blue-700 transition font-somarBold disabled:bg-gray-500 ${className}`
+        :  `w-full bg-transparent text-black rounded-lg py-2  transition font-somarBold disabled:bg-gray-500 border ${className}`
+        }
       >
         {isPending ? (
           <div className="flex justify-center">

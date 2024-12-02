@@ -14,6 +14,7 @@ import { t } from "i18next";
 import React, { useEffect, useState } from "react";
 import { Loading } from "../../molecules/Loading/Loading";
 import { ReactTableProps } from "./tableTypes";
+import TableSkeleton from "../Skeleton/TableSkeleton";
 
 export const Table = <T extends object>({
   data,
@@ -120,7 +121,8 @@ export const Table = <T extends object>({
       <div className="flex flex-col w-full gap-4 overflow-x-scroll GlobalTable ">
         {isLoading ? (
           <div className="flex items-center justify-center h-[78vh]">
-            <Loading subTitle="جاري التحميل" />
+            {/* <Loading subTitle="جاري التحميل" /> */}
+            <TableSkeleton/>
           </div>
         ) : (
           <table id="print-table" className="min-w-full text-center">

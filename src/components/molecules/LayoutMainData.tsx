@@ -3,12 +3,13 @@ import Toolbar from "./Toolbar";
 
 type LayoutMainData_TP = {
   children: React.ReactNode;
+  componentCopy: React.ReactNode;
 };
-function LayoutMainData({ children }: LayoutMainData_TP) {
+function LayoutMainData({ children, componentCopy }: LayoutMainData_TP) {
   return (
     <div className="p-3 bg-white rounded-md">
       <div>
-        <Toolbar />
+        <Toolbar componentCopy={componentCopy} />
       </div>
       <div className="">{children}</div>
     </div>
