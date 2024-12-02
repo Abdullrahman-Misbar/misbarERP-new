@@ -31,10 +31,10 @@
 }
 
 body {
-  font-family: "Somar-Light", sans-serif !important;
+  font-family: "Somar-Medium", sans-serif !important;
 }
 ::placeholder {
-  font-family: "Somar-Light", sans-serif !important;
+  font-family: "Somar-Medium", sans-serif !important;
 }
 
 .css-ugehy5 > .ps-menu-button {
@@ -87,4 +87,3 @@ body {
 /* .MuiButtonBase-root {
   justify-content: space-between !important;
 } */
-

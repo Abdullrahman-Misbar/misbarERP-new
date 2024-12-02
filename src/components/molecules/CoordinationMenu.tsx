@@ -66,7 +66,7 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
         <FormControlLabel
           value="التنسيق 1"
           control={<Radio />}
-          label={<span className="font-somar text-[14px]">التنسيق 1</span>}
+          label={<span className="text-[14px]">التنسيق 1</span>}
           checked={selectedItem === "التنسيق 1"}
           onChange={handleRadioChange}
         />
@@ -80,7 +80,7 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
         <FormControlLabel
           value="التنسيق 2"
           control={<Radio />}
-          label={<span className="font-somar text-[14px]">التنسيق 2</span>}
+          label={<span className="text-[14px]">التنسيق 2</span>}
           checked={selectedItem === "التنسيق 2"}
           onChange={handleRadioChange}
         />
@@ -91,7 +91,7 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
         <FormControlLabel
           value="التنسيق 3"
           control={<Radio />}
-          label={<span className="font-somar text-[14px]">التنسيق 3</span>}
+          label={<span className="text-[14px]">التنسيق 3</span>}
           checked={selectedItem === "التنسيق 3"}
           onChange={handleRadioChange}
         />
@@ -103,7 +103,7 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
       <MenuItem>
         <IconButton size="small">
           <AddIcon />
-          <span className="font-somar text-[14px]"> حفظ التنسيق الحالى</span>
+          <span className="text-[14px]"> حفظ التنسيق الحالى</span>
         </IconButton>
       </MenuItem>
     </Menu>

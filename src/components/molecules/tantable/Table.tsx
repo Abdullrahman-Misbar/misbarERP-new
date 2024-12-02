@@ -136,7 +136,7 @@ export const Table = <T extends object>({
                         <div
                           {...{
                             className: header.column.getCanSort()
-                              ? "cursor-pointer select-none  font-somar font-bold !text-[14px] text-[#000000de]"
+                              ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
                               : "",
                             onClick: () => handleSorting(header),
                           }}
@@ -167,7 +167,7 @@ export const Table = <T extends object>({
                   <tr key={row.id} className="border-b ">
                     {row?.getVisibleCells()?.map((cell) => (
                       <td
-                        className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  !font-somar td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
+                        className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
                         key={cell.id}
                         style={{
                           background: row.original.is_free_session

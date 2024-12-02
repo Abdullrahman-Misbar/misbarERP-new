@@ -5,7 +5,7 @@ function Curve() {
     <div>
       <div className="bg-white p-4">
         <div className="bg-white flex items-center justify-between my-2">
-          <span className="text-2xl font-somar ">طلبات الشراء</span>
+          <span className="text-2xl  ">طلبات الشراء</span>
           <img src="/src/assets/curve.png" alt="curve" />
         </div>
         <div className="grid grid-cols-12 gap-4 mt-20 mb-5 ">
@@ -19,10 +19,10 @@ function Curve() {
               />
             </div>
             <div className="flex flex-col items-start ">
-              <span className="text-black text-2xl font-somar font-semibold my-1">
+              <span className="text-black text-2xl  font-semibold my-1">
                 15
               </span>
-              <p className="rounded-[100px] w-full border-[2px] border-[#BDBDBD] text-[14px] p-2  font-somar font-normal">
+              <p className="rounded-[100px] w-full border-[2px] border-[#BDBDBD] text-[14px] p-2  font-normal">
                 {" "}
                 قيد الارسال(مسودة)
               </p>
@@ -41,10 +41,8 @@ function Curve() {
             </div>
 
             <div className="flex flex-col items-start">
-              <span className="text-black text-2xl font-somar font-semibold my-1">
-                2
-              </span>
-              <p className="rounded-[100px] w-full border-[2px] border-[#0288D1 ] p-2 text-[#0288D1] font-somar font-normal">
+              <span className="text-black text-2xl  font-semibold my-1">2</span>
+              <p className="rounded-[100px] w-full border-[2px] border-[#0288D1 ] p-2 text-[#0288D1]  font-normal">
                 قيد الانتظار
               </p>
             </div>
@@ -61,10 +59,8 @@ function Curve() {
               />
             </div>
             <div className="flex flex-col items-start">
-              <span className="text-black text-2xl font-somar font-semibold my-1">
-                3
-              </span>
-              <p className=" rounded-[100px] w-full border p-2 border-[#D32F2F] text-[#D32F2F] font-somar font-normal">
+              <span className="text-black text-2xl  font-semibold my-1">3</span>
+              <p className=" rounded-[100px] w-full border p-2 border-[#D32F2F] text-[#D32F2F]  font-normal">
                 متأخرة
               </p>
             </div>
