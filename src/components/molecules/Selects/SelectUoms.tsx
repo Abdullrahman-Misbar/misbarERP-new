@@ -1,4 +1,3 @@
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
 import SelectComp from "../../atoms/formik/SelectComp";
 
@@ -8,21 +7,22 @@ type SelectUoms_TP = {
 };
 type Formik_Values = {
   name: string;
+  uoms: [];
 };
 const SelectUoms = ({ name, disabled }: SelectUoms_TP) => {
   const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const options =
-  values?.uoms?.map((item: { id: number; lookupName: string  , uoms:string[] }) => ({
-    value: item.id,
-    label: item.companyCode,
-   
-  })) || [];
-
+    values?.uoms?.map(
+      (item: { id: number; companyCode: string; uom: string[] }) => ({
+        value: item.id,
+        label: item.uom,
+      })
+    ) || [];
 
   return (
     <SelectComp

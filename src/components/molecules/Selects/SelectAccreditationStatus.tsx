@@ -10,9 +10,9 @@ type Formik_Values = {
   name: string;
 };
 const SelectAccreditationStatus = ({ name }: SelectAccreditationStatus_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>();
+  const { setFieldValue } = useFormikContext<Formik_Values>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
   };
 

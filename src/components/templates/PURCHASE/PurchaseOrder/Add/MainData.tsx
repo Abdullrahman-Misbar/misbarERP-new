@@ -90,7 +90,9 @@ function MainData({}: Main_TP) {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectWarehouse name="warehouseId" />
+            <SelectWarehouse name="warehouseId" 
+            label="اختر المستودع"
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker

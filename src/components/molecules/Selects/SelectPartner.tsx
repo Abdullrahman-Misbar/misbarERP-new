@@ -19,14 +19,14 @@ interface FormikValues {
 }
 
 const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
     setFieldValue(name, event.target.value);
   };
 
   const endpoint = "Partner/GetAllPartnersList";
-  const { data, isLoading, isSuccess, refetch } = useFetch<any>({
+  const { data, isLoading} = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
@@ -34,6 +34,7 @@ const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
   console.log(data);
 
   const options: Option[] =
+  //@ts-ignore
     data?.map((item: { id: string; partnerName: string }) => ({
       value: item.id,
       label: item.partnerName,

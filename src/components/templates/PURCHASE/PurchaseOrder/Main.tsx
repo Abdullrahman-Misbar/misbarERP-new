@@ -87,7 +87,7 @@ function Main() {
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
-          pagesCount={data?.data?.totalCount}
+          pagesCount={data?.data?.totalCount /5}
           previousLabel={">>"}
           nextLabel={"<<"}
           onPageChange={handlePageChange}

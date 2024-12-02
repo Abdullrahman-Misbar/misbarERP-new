@@ -22,21 +22,23 @@ const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({
   name,
   label,
 }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
     setFieldValue(name, event.target.value);
   };
 
   const endpoint = "Hr/GetPositionLookup";
-  const { data, isLoading, isSuccess } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
   const options: Option[] =
-    data?.map((item: { id: number; partnerName: string }) => ({
+    //@ts-ignore
+
+    data?.map((item: { id: number; name: string }) => ({
       value: item.id,
       label: item.name,
     })) || [];

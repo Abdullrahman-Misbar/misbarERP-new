@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
-import SelectComp from "../../atoms/formik/SelectComp";
+import React, { useState } from "react";
 import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectItemProps = {
   name: string;
@@ -23,7 +22,7 @@ const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
   console.log("🚀 ~ values:", values);
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event:{values:string}) => {
     setFieldValue(name, event.value);
   };
   const [searchTerm, setSearchTerm] = useState("ص" || values[name]);
@@ -37,6 +36,7 @@ const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
   });
 
   const options: Option[] =
+  //@ts-ignore
     data?.data?.data?.map((item: { id: number; lookupName: string  , uoms:string[] }) => ({
       value: item.id,
       label: item.lookupName,

@@ -123,7 +123,7 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
               type="button"
               onClick={handleCopy}
             >
-              <CopyIcon />
+              <CopyIcon  />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </button>
           </Tooltip>
@@ -132,6 +132,7 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
             <button
               className="flex items-center p-3"
               type="button"
+              
               onClick={handleAdd}
             >
               <AddIcon />
@@ -145,7 +146,7 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
               type="button"
               onClick={handleUndo}
             >
-              <UndoIcon />
+              <UndoIcon  />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </button>
           </Tooltip>

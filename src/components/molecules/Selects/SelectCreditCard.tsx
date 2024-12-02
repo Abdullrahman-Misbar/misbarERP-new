@@ -1,9 +1,8 @@
 import React from "react";
 /* eslint-disable import/named */
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
-import SelectComp from "../../atoms/formik/SelectComp";
 import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectCreditCardProps = {
   name: string;
@@ -20,20 +19,21 @@ interface FormikValues {
 }
 
 const SelectCreditCard: React.FC<SelectCreditCardProps> = ({ name, label }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "";
-  const { data, isLoading, isSuccess } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
   const options: Option[] =
+  //@ts-ignore
     data?.map((vendor: { id: number; partnerName: string }) => ({
       value: vendor.id,
       label: vendor.partnerName,

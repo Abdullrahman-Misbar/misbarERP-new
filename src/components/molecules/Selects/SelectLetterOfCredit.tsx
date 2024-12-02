@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
-import React from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
+import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
 
@@ -21,20 +20,21 @@ interface FormikValues {
 const SelectLetterOfCredit: React.FC<SelectLetterOfCreditProps> = ({
   name,
 }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "LetterOfCredit/GetALLLettersOfCreditCard";
-  const { data, isLoading, isSuccess, refetch } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
   const options: Option[] =
+  //@ts-ignore
     data?.data?.map((item: { id: string; lookupName: string }) => ({
       value: item.id,
       label: item.lookupName,
