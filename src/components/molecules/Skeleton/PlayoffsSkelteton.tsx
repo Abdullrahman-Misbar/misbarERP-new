@@ -1,6 +1,6 @@
 import { AppBar, Box, Skeleton, Toolbar } from "@mui/material";
 // THIS IS SHARED COMPONENT
-function PlayoffsSketeton() {
+function PlayoffsSkelteton() {
   return (
     <AppBar
       position="static"
@@ -120,4 +120,4 @@ function PlayoffsSketeton() {
   );
 }
 
-export default PlayoffsSketeton;
+export default PlayoffsSkelteton;
