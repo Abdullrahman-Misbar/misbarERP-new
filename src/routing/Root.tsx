@@ -32,11 +32,11 @@ export const Root = () => {
 
         <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-[#F6F8FF]">
           <Outlet />
-          <LayoutSkeleton />
+          {/* <LayoutSkeleton /> */}
           {/* <NotFound /> */}
           {/* <NoData /> */}
           {/* {/* <NavbarSkeleton /> */}
-          <LayoutSkeleton />
+          {/* <LayoutSkeleton /> */}
           {/* <BaseInputSkeleton /> */}
         </main>
       </div>
