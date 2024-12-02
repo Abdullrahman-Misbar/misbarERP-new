@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router";
 import NavBar from "../components/organisms/NavBar";
 import { SideBar } from "../components/organisms/SideBar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
+import BaseInputSkeleton from "../components/molecules/Skeleton/BaseInputSkeleton";
 
 export const Root = () => {
   const { token } = useAuth();
@@ -26,7 +27,8 @@ export const Root = () => {
         </nav>
 
         <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-[#F6F8FF]">
-          <Outlet />
+          {/* <Outlet /> */}
+
           {/* <NotFound /> */}
           {/* <NoData /> */}
           {/* <NavbarSkeleton />
@@ -34,6 +36,7 @@ export const Root = () => {
           <PlayoffsSketeton />
           <AnalysisCardSkeleton />
           <TableSkeleton /> */}
+          <BaseInputSkeleton />
         </main>
       </div>
     );
