@@ -1,4 +1,3 @@
-/// IMPORTS
 import { useLocation, useNavigate } from "react-router-dom";
 
 // components
@@ -89,41 +88,38 @@ export const SideBar = () => {
     return Item.items ? (
       <SubMenu
         defaultOpen={isOpen(Item.id)}
-        className={
+        className={`text-[14px] font-somarLight my-1 ${
           location.pathname === Item.link
-            ? "font-somarBold text-black"
+            ? "bg-LightGreen font-somarBold"
             : "text-mainBlack"
-        }
+        } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
         key={Item.id}
         label={t(Item.label)}
         icon={
           <div>
+            {/* 1 */}
             <FaRegCircle className="text-gray-300" />
           </div>
         }
       >
         {Item.items.map((innerItem) => (
-          <div className="my-1 text-[14px] font-somarLight">
+          <div className=" text-[14px] font-somarLight">
             {generateItem(innerItem)}
           </div>
         ))}
       </SubMenu>
     ) : (
       <MenuItem
-        className={`text-[14px] my-1 transition duration-200 ${
+        className={`text-[14px]  transition duration-200 ${
           location.pathname === Item.link
             ? "text-black font-somarBold bg-gray-100 hover:bg-gray-200 hover:text-primary"
             : "text-mainBlack hover:bg-gray-100 hover:text-primary"
-        }`}
+        } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
         key={Item.id}
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-        icon={
-          <div>
-            <FaRegCircle className="text-gray-300" />
-          </div>
-        }
+
         active={location.pathname === Item.link}
       >
         {t(Item.label)}
@@ -160,11 +156,11 @@ export const SideBar = () => {
           return Item.items ? (
             <SubMenu
               defaultOpen={isOpen(Item.id)}
-              className={
+              className={`${
                 location.pathname === Item.link
                   ? "bg-LightGreen font-somarBold"
                   : " text-mainBlack"
-              }
+              } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
               key={Item.id}
               label={t(Item.label)}
               icon={<Item.icon size={20} />}

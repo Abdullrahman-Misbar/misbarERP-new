@@ -21,7 +21,8 @@ type Toolbar_TP = {
   newValues?: { [key: string]: string };
 };
 const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
-  const { handleSubmit, setFieldValue, values, setValues } = useFormikContext<any>();
+  const { handleSubmit, setFieldValue, values, setValues } =
+    useFormikContext<any>();
   const [openCopyModal, setOpenCopyModal] = useState(false);
 
   const handleSave = () => {
