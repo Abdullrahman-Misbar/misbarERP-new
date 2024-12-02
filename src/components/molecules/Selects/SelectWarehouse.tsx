@@ -8,6 +8,7 @@ import SelectComp from '../../atoms/formik/SelectComp'
 type SelectWarehouseProps = {
   name: string
   disabled?: boolean
+  label?:string
 }
 
 interface Option {
@@ -19,7 +20,7 @@ interface FormikValues {
   [key: string]: any
 }
 
-const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => {
+const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled , label }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
@@ -43,7 +44,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
   return (
     <SelectComp
       name={name}
-      label='المستودع'
+      label={label}
       placeholder='اختر المستودع'
       options={options}
       value={selectedValue}

@@ -11,7 +11,6 @@ type Main_TP = {
 };
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
-  console.log("🚀 ~ Main ~ id:", id);
   const queryParams = {
     // page: page,
     // term: word,
@@ -44,6 +43,7 @@ function Main({ editable }: Main_TP) {
     mutate(jsonData);
   };
   const initialValues = {
+    editable:editable ? true : false ,
     code:data?.data?.code || "",
     confirmationDayes:data?.data?.confirmationDayes || "",
     currencyId:data?.data?.currencyId || "",
@@ -74,7 +74,7 @@ function Main({ editable }: Main_TP) {
       currencyId: "",
     },
   };
-  if(isLoading) return <>
+  if(editable && isLoading) return <>
   <AddLayoutSkeleton/>
   </>
   return (
@@ -85,7 +85,7 @@ function Main({ editable }: Main_TP) {
         enableReinitialize
       >
         <Form>
-          <MainData />
+          <MainData  />
         </Form>
       </Formik>
     </div>

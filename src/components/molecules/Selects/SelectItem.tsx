@@ -7,6 +7,7 @@ import { useFetch } from "../../../hooks";
 type SelectItemProps = {
   name: string;
   label: string;
+  onChange:()=>void
 };
 
 interface Option {
@@ -18,39 +19,40 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectItem: React.FC<SelectItemProps> = ({ name, label }) => {
+const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
-  const [searchTerm, setSearchTerm] = useState("ص");
+  console.log("🚀 ~ values:", values);
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
     setFieldValue(name, event.value);
   };
+  const [searchTerm, setSearchTerm] = useState("ص" || values[name]);
 
   const endpoint = `api/Item/lookupAutoComplete?searchValue=${searchTerm}`;
   const { data, isLoading } = useFetch({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
+    enabled: !!searchTerm?.length,
   });
-  console.log("🚀 ~ data:", data);
 
   const options: Option[] =
-    data?.data?.data?.map((item: { id: number; lookupName: string }) => ({
+    data?.data?.data?.map((item: { id: number; lookupName: string  , uoms:string[] }) => ({
       value: item.id,
       label: item.lookupName,
-      Module: "PURCHASE"
+      uoms: item?.uoms,
     })) || [];
 
   return (
     <SelectComp
       name={name}
       setSearchTerm={setSearchTerm}
-      label={label || ""}
+      label={label}
       placeholder="اختر الصنف"
       isLoading={isLoading}
       options={options}
       // value={values[name]}
-      onChange={handleChange}
+      onChange={onChange || handleChange}
     />
   );
 };

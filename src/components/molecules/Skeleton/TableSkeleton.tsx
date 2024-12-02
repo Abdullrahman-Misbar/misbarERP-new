@@ -11,7 +11,7 @@ import {
 
 function TableSkeleton() {
   return (
-    <TableContainer sx={{ margin: "20px", paddingX: "16px" }}>
+    <TableContainer sx={{ marginTop: "20px", paddingX: "px" }}>
       <Table>
         {/* رأس الجدول */}
         <TableHead sx={{ background: "#0000000A", borderRadius: "4px" }}>

@@ -14,8 +14,9 @@ import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { newValues_TP } from "./Types&Validation";
 import SelectStatus from "../../../../molecules/Selects/SelectStatus";
-
-function MainData() {
+import DeleteMain from "../DeleteMain";
+type Main_TP = {};
+function MainData({}: Main_TP) {
   const { values } = useFormikContext<newValues_TP>();
   const newValues = {
     code: values?.copValue?.code || "",
@@ -34,7 +35,12 @@ function MainData() {
   };
 
   return (
-    <LayoutMainData componentCopy={<MainCopyComp />} newValues={newValues}>
+    <LayoutMainData
+      componentCopy={<MainCopyComp />}
+      newValues={newValues}
+      deleteEndPoint="api/PurchasOrder"
+     
+    >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
