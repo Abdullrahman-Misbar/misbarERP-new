@@ -3,19 +3,27 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import MainData from "./MainData";
 import { notify } from "../../../../../utils/toast";
 import { Values_TP } from "./Types&Validation";
+import { useParams } from "react-router-dom";
+import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 
-function Main() {
+type Main_TP = {
+  editable?: boolean;
+};
+function Main({ editable }: Main_TP) {
+  const { id } = useParams();
+  console.log("🚀 ~ Main ~ id:", id);
   const queryParams = {
     // page: page,
     // term: word,
   };
   // const searchParams = new URLSearchParams(queryParams as any)
-  const endpoint = `api/PurchasOrder?Take=50`;
-  const { refetch } = useFetch({
+  const endpoint = `api/PurchasOrder/Get/${id}`;
+  const { refetch, data , isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
   });
+  console.log("🚀 ~ Main ~ data:", data);
   const { mutate } = useMutate({
     mutationKey: ["api/PurchasOrder"],
     endpoint: `api/PurchasOrder`,
@@ -36,15 +44,19 @@ function Main() {
     mutate(jsonData);
   };
   const initialValues = {
-    code: "",
-    expectedReceiptDate: "",
-    approvalDate: "",
-    total: "",
-    createDate: "",
-    referenceDocument: "",
-    // currency: '',
-    purchaseAgreementId: "",
-    note: "",
+    code:data?.data?.code || "",
+    confirmationDayes:data?.data?.confirmationDayes || "",
+    currencyId:data?.data?.currencyId || "",
+    expectedReceiptDate:data?.data?.expectedReceiptDate || "",
+    purchaseAgreementId:data?.data?.purchaseAgreementId || "",
+    referenceDocument:data?.data?.referenceDocument || "",
+    status:data?.data?.status || "",
+    vendorId:data?.data?.vendorId || "",
+    warehouseId:data?.data?.warehouseId || "",
+    approvalDate: data?.data?.approvalDate || "",
+    total: data?.data?.total || "",
+    createDate: data?.data?.createDate || "",
+    note: data?.data?.note || "",
     orderDetailsModal: [],
     copValue: {
       code: "",
@@ -62,11 +74,15 @@ function Main() {
       currencyId: "",
     },
   };
+  if(isLoading) return <>
+  <AddLayoutSkeleton/>
+  </>
   return (
     <div>
       <Formik
         initialValues={initialValues}
         onSubmit={(values) => handleSubmit(values)}
+        enableReinitialize
       >
         <Form>
           <MainData />

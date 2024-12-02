@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Login from "../pages/login";
 import PurchaseOrder from "../pages/PURCHASE/PurchaseOrder";
 import AddPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Add";
+import EditPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -22,6 +23,10 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/purchaseOrder/add"
           element={<AddPurchaseOrder title={t("Add Purchase Order")} />}
+        />
+        <Route
+          path="/purchase/purchaseOrder/edit/:id"
+          element={<EditPurchaseOrder title={t("Edit Purchase Order")} />}
         />
       </Route>
 
