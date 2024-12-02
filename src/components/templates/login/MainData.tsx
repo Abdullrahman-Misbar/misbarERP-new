@@ -1,10 +1,10 @@
-import Button from "../../atoms/button/Button"
-import BaseInputField from "../../atoms/formik/BaseInputField"
-import { Label } from "../../atoms/formik/Label"
+import Button from "../../atoms/button/Button";
+import BaseInputField from "../../atoms/formik/BaseInputField";
+import { Label } from "../../atoms/formik/Label";
 
 type LoginForm_TP = {
-  isPending:boolean
-}
+  isPending: boolean;
+};
 const LoginForm = ({ isPending }: LoginForm_TP) => {
   return (
     <div className="grid min-h-screen grid-cols-1 md:grid-cols-12">
@@ -51,7 +51,7 @@ const LoginForm = ({ isPending }: LoginForm_TP) => {
               />
             </div>
 
-            <div className="flex items-center justify-between font-somar">
+            <div className="flex items-center justify-between ">
               <Label
                 htmlFor=""
                 className="flex items-center text-sm text-gray-700"
@@ -86,7 +86,7 @@ const LoginForm = ({ isPending }: LoginForm_TP) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

@@ -1,4 +1,4 @@
-import { AppBar, Box, Skeleton, Toolbar } from "@mui/material";
+import { AppBar, Skeleton, Toolbar } from "@mui/material";
 function OverviewSkeleton() {
   return (
     <AppBar

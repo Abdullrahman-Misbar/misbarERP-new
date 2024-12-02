@@ -11,7 +11,7 @@ function MainHome() {
     <div>
       <Overview />
       <div className="px-6  py-4 my-5 bg-white  rounded-md">
-        <p className="text-xl font-somar pb-3 ">التصفيات</p>
+        <p className="text-xl f pb-3 ">التصفيات</p>
         <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
         <Filter />
       </div>

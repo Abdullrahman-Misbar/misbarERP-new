@@ -43,7 +43,7 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
     <Grid item xs={12} sm={12}>
       <Label
         htmlFor={`${id}`}
-        className="m-1 !text-[14px] !font-somar !font-semibold !my-1 !text-[#000000a3] "
+        className="m-1 !text-[14px]  !font-semibold !my-1 !text-[#000000a3] "
       >
         {label}
       </Label>

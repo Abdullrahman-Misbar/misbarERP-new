@@ -91,7 +91,7 @@ export const SideBar = () => {
         className={
           location.pathname === Item.link
             ? "font-somarBold text-black"
-            : "font-somar text-mainBlack"
+            : "text-mainBlack"
         }
         key={Item.id}
         label={t(Item.label)}
@@ -105,7 +105,7 @@ export const SideBar = () => {
       </SubMenu>
     ) : (
       <MenuItem
-        className={`font-somar text-[14px] my-1 transition duration-200 ${
+        className={`text-[14px] my-1 transition duration-200 ${
           location.pathname === Item.link
             ? "text-black font-somarBold bg-gray-100 hover:bg-gray-200 hover:text-primary"
             : "text-mainBlack hover:bg-gray-100 hover:text-primary"
@@ -133,7 +133,7 @@ export const SideBar = () => {
         <div className="w-full p-3">
           <img src="/src/assets/logo.png" alt="Logo" />
         </div>
-        <p className="text-primary font-somar">مسبار الكون</p>
+        <p className="text-primary ">مسبار الكون</p>
         <h1 className="text-xl text-light font-somarBold">نظام المشتريات</h1>
       </div>
       <Menu>
@@ -154,7 +154,7 @@ export const SideBar = () => {
               className={
                 location.pathname === Item.link
                   ? "bg-LightGreen font-somarBold"
-                  : "font-somar text-mainBlack"
+                  : " text-mainBlack"
               }
               key={Item.id}
               label={t(Item.label)}

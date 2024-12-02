@@ -12,7 +12,7 @@ function NotFound() {
         لقد فقدنا هذه الصفحة
       </h1>
 
-      <p className="text-light font-somar mb-4">
+      <p className="text-light mb-4">
         الصفحة المطلوبة مفقودة. تحقق من عنوان URL أو{" "}
         <a href="/" className="text-primary hover:underline">
           العودة إلى الرئيسية

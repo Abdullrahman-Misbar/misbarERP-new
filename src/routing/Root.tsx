@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
+import AnalysisCardSkeleton from "../components/molecules/Skeleton/AnalysisCardSkeleton";
+import LayoutSkeleton from "../components/molecules/Skeleton/LayoutSkeleton";
+import OverviewSkeleton from "../components/molecules/Skeleton/OverviewSkeleton";
+import PlayoffsSkelteton from "../components/molecules/Skeleton/PlayoffsSkelteton";
+import TableSkeleton from "../components/molecules/Skeleton/TableSkeleton";
 import NavBar from "../components/organisms/NavBar";
 import { SideBar } from "../components/organisms/SideBar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";
@@ -27,13 +32,12 @@ export const Root = () => {
 
         <main className="col-start-2 col-end-3 row-start-2 p-10 overflow-y-auto bg-[#F6F8FF]">
           <Outlet />
+          <LayoutSkeleton />
           {/* <NotFound /> */}
           {/* <NoData /> */}
-          {/* <NavbarSkeleton />
-          <OverviewSkeleton />
-          <PlayoffsSketeton />
-          <AnalysisCardSkeleton />
-          <TableSkeleton /> */}
+          {/* {/* <NavbarSkeleton /> */}
+          <LayoutSkeleton />
+          {/* <BaseInputSkeleton /> */}
         </main>
       </div>
     );
