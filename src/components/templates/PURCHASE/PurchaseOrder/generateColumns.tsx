@@ -10,7 +10,8 @@ type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
-  refetch: RefetchFunction
+  refetch: RefetchFunction,
+  navigate
 ): ColumnDef<RowData>[] => {
   return [
     {
@@ -77,10 +78,9 @@ export const generateColumns = (
             <div>
               <span>
                 <Edit
-                // action={() => {
-                //   setData(info?.row?.original);
-                //   setModel(true);
-                // }}
+                action={() => {
+                  navigate(`/purchase/purchaseOrder/edit/${info?.row?.original?.id}`)
+                }}
                 />
               </span>
             </div>

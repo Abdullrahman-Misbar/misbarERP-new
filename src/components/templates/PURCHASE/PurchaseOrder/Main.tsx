@@ -32,18 +32,23 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch),
+    () => generateColumns(page, refetch , navigate),
     [page, refetch]
   );
 
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
+  const breadcrumbItems = [
+    { label: "الصفحة الرئيسية", link: "/" },
+    { label: "العمليات" },
+    { label: "طلب شراء" },
+  ];
 
   return (
     <div>
       <p className=" bg-white rounded-lg mb-2">
-        <BreadcrumbComponent />
+        <BreadcrumbComponent items={breadcrumbItems} />
       </p>
       <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
         <div className="col-span-12">

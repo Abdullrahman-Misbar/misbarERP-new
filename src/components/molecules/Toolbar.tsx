@@ -21,8 +21,10 @@ type Toolbar_TP = {
   newValues?: { [key: string]: string };
 };
 const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
-  const { handleSubmit, setFieldValue, values, setValues } =
-    useFormikContext<any>();
+
+
+  const { handleSubmit, setFieldValue, values, setValues , resetForm ,  } = useFormikContext<any>();
+  console.log("🚀 ~ Toolbar ~ values:", values)
   const [openCopyModal, setOpenCopyModal] = useState(false);
 
   const handleSave = () => {
@@ -34,7 +36,7 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
   };
 
   const handleAdd = () => {
-    setFieldValue("items", [...values.items, "new item"]);
+    resetForm()
   };
 
   const handleUndo = () => {
@@ -159,7 +161,7 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
             </button>
           </Tooltip>
 
-          <Tooltip title="حفظ الملف">
+          <Tooltip title="اعتماد">
             <button
               className="flex items-center p-3"
               type="button"

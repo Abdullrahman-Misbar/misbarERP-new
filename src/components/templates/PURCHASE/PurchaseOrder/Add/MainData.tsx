@@ -17,7 +17,6 @@ import SelectStatus from "../../../../molecules/Selects/SelectStatus";
 
 function MainData() {
   const { values } = useFormikContext<newValues_TP>();
-  console.log("🚀 ~ MainData ~ values:", values);
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
