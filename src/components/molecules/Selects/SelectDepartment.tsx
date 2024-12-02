@@ -1,8 +1,8 @@
 import React from 'react'
-import Select from '../formik/Select'
 import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import SelectComp from '../../atoms/formik/SelectComp'
+import { useFetch } from '../../../hooks'
 
 type SelectDepartmentProps = {
   name: string
@@ -21,13 +21,14 @@ const SelectDepartment: React.FC<SelectDepartmentProps> = ({ name }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
+    setFieldValue(name, event.value)
   }
 
   const endpoint = 'Hr/GetDeptLookUp'
   const { data, isLoading, isSuccess } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
+    endpoint: endpoint,
+    Module: "PURCHASE"
   })
 
   const options: Option[] =
@@ -37,12 +38,12 @@ const SelectDepartment: React.FC<SelectDepartmentProps> = ({ name }) => {
     })) || []
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label='القسم'
       placeholder='اختر القسم'
       options={options}
-      value={values[name] || ''}
+      // value={values[name] || ''}
       onChange={handleChange}
     />
   )

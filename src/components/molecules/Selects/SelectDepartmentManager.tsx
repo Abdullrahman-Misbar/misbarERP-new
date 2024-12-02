@@ -1,52 +1,57 @@
-import React from 'react'
-import Select from '../formik/Select'
-import { SelectChangeEvent } from '@mui/material'
-import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import React from "react";
+import { SelectChangeEvent } from "@mui/material";
+import { useFormikContext } from "formik";
+import SelectComp from "../../atoms/formik/SelectComp";
+import { useFetch } from "../../../hooks";
 
 type SelectDepartmentManagerProps = {
-  name: string
-  label?: string
-}
+  name: string;
+  label?: string;
+};
 
 interface Option {
-  value: number
-  label: string
+  value: number;
+  label: string;
 }
 
 interface FormikValues {
-  [key: string]: any
+  [key: string]: any;
 }
 
-const SelectDepartmentManager: React.FC<SelectDepartmentManagerProps> = ({ name, label }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>()
+const SelectDepartmentManager: React.FC<SelectDepartmentManagerProps> = ({
+  name,
+  label,
+}) => {
+  const { setFieldValue, values } = useFormikContext<FormikValues>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
-  }
+    setFieldValue(name, event.value);
+  };
 
-  const endpoint = 'managerId'
+  const endpoint = "managerId";
   const { data, isLoading, isSuccess } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
-  })
+    Module: "PURCHASE",
+    endpoint: endpoint,
+  });
 
   const options: Option[] =
     data?.map((item: { id: number; partnerName: string }) => ({
       value: item.id,
-      label: item.name
-    })) || []
+      label: item.name,
+    })) || [];
 
   return (
-    <Select
+    <SelectComp
       name={name}
-      label={label ? label : 'المورد'}
-      placeholder='اختر المورد'
+      label={label ? label : "المورد"}
+      placeholder="اختر المورد"
       options={options}
-      value={values[name] || ''}
+      // value={values[name] || ''}
       onChange={handleChange}
+      isLoading={isLoading}
     />
-  )
-}
+  );
+};
 
-export default SelectDepartmentManager
+export default SelectDepartmentManager;

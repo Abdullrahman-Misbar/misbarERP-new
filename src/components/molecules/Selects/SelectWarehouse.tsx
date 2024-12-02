@@ -1,6 +1,6 @@
 import React from 'react'
 /* eslint-disable import/named */
-import { Autocomplete, SelectChangeEvent } from '@mui/material'
+import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
 import { useFetch } from '../../../hooks'
 import SelectComp from '../../atoms/formik/SelectComp'
@@ -27,7 +27,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
   }
 
   const endpoint = 'api/Warehouse/Lookup'
-  const { data, isLoading, isSuccess } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module:"PURCHASE"
@@ -38,6 +38,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
       value: warehouse.id,
       label: warehouse.lookupName
     })) || []
+    const selectedValue = options?.find((item)=>item?.value == values[name])
 
   return (
     <SelectComp
@@ -45,7 +46,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({ name, disabled }) => 
       label='المستودع'
       placeholder='اختر المستودع'
       options={options}
-      // value={values[name as keyof FormikValues] || ''}
+      value={selectedValue}
       isLoading={isLoading}
       onChange={handleChange}
       disabled={disabled}

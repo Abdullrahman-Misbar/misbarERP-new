@@ -58,7 +58,7 @@ function MainData() {
               <SwitchComp />
               <div className="flex-1">
                 <BaseInputField
-                  name="createDate"
+                  name="confirmationDayes"
                   placeholder="التأكيد قبل"
                   type="number"
                 />
