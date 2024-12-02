@@ -13,6 +13,7 @@ import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { newValues_TP } from "./Types&Validation";
+import SelectStatus from "../../../../molecules/Selects/SelectStatus";
 
 function MainData() {
   const { values } = useFormikContext<newValues_TP>();
@@ -94,7 +95,7 @@ function MainData() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            الحالة
+            <SelectStatus name="status" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker

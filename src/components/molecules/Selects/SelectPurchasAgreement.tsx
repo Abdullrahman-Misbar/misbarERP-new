@@ -1,45 +1,44 @@
 /* eslint-disable import/named */
-import React, { useState } from 'react'
-import { SelectChangeEvent } from '@mui/material'
-import { useFormikContext } from 'formik'
-import { useFetch } from '../../../hooks'
-import SelectComp from '../../atoms/formik/SelectComp'
+import { SelectChangeEvent } from "@mui/material";
+import { useFormikContext } from "formik";
+import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectPurchaseAgreement_TP = {
-  name: string
-}
+  name: string;
+};
 type Formik_Values = {
-  name: string
-}
+  name: string;
+};
 const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>()
+  const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.value)
-  }
+    setFieldValue(name, event.value);
+  };
 
-  const endpoint = 'api/PurchasAgreement/Lookup'
+  const endpoint = "api/PurchasAgreement/Lookup";
   const { data, isLoading, isSuccess, refetch } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
-    Module:"PURCHASE"
-  })
-  const options = data?.data?.map((item:any) => ({
+    Module: "PURCHASE",
+  });
+  const options = data?.data?.map((item: any) => ({
     value: item?.id,
-    label: item?.lookupName
-  }))
+    label: item?.lookupName,
+  }));
 
   return (
-    <SelectComp 
+    <SelectComp
       name={name}
-      label='اتفاقية الشراء'
-      placeholder='اختر اتفاقية الشراء'
+      label="اتفاقية الشراء"
+      placeholder="اختر اتفاقية الشراء"
       options={options}
       isLoading={isLoading}
       // value={values[name as keyof Formik_Values]}
       onChange={handleChange}
     />
-  )
-}
+  );
+};
 
-export default SelectPurchaseAgreement
+export default SelectPurchaseAgreement;

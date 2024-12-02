@@ -45,7 +45,7 @@ const SelectItem: React.FC<SelectItemProps> = ({ name, label }) => {
     <SelectComp
       name={name}
       setSearchTerm={setSearchTerm}
-      label={label || "الصنف"}
+      label={label || ""}
       placeholder="اختر الصنف"
       isLoading={isLoading}
       options={options}

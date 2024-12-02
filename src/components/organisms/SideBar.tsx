@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIsRTL } from "../../hooks/useIsRTL";
 import { MenuItem_TP, sideBarItems } from "../../data/sidebar";
+import { FaRegCircle } from "react-icons/fa";
 
 type OpenMenus_TP = {
   [key: string]: boolean;
@@ -95,7 +96,11 @@ export const SideBar = () => {
         }
         key={Item.id}
         label={t(Item.label)}
-        icon={<Item.icon size={20} />}
+        icon={
+          <div>
+            <FaRegCircle className="text-gray-300" />
+          </div>
+        }
       >
         {Item.items.map((innerItem) => (
           <div className="my-1 text-[14px] font-somarLight">
@@ -114,7 +119,11 @@ export const SideBar = () => {
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-        icon={<Item.icon size={20} className="text-light" />}
+        icon={
+          <div>
+            <FaRegCircle className="text-gray-300" />
+          </div>
+        }
         active={location.pathname === Item.link}
       >
         {t(Item.label)}
@@ -142,7 +151,7 @@ export const SideBar = () => {
             return (
               <div
                 key={index}
-                className="px-6 py-2 text-sm font-bold text-gray-600 uppercase font-somarLight"
+                className="px-6 py-2 text-xs font-bold text-gray-400  font-somarLight"
               >
                 {(Item as any).header}
               </div>
