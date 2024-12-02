@@ -41,13 +41,15 @@ const SelectVendor: React.FC<SelectVendorProps> = ({ name, label, disabled }) =>
       label: vendor.partnerName
     })) || []
 
+    const selectedValue = options?.find((item)=>item?.value == values[name])
+
   return (
     <SelectComp 
       name={name}
       label={label ? label : 'المورد'}
       placeholder='اختر المورد'
       options={options}
-      // value={values[name as keyof FormikValues] || ''}
+      value={selectedValue}
       isLoading={isLoading}
       onChange={handleChange}
       disabled={disabled}

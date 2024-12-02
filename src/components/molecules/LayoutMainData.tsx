@@ -4,12 +4,15 @@ import Toolbar from "./Toolbar";
 type LayoutMainData_TP = {
   children: React.ReactNode;
   componentCopy: React.ReactNode;
-};
-function LayoutMainData({ children, componentCopy }: LayoutMainData_TP) {
+  newValues?:  { [key: string]: string };  
+
+  };
+
+function LayoutMainData({ children, componentCopy , newValues }: LayoutMainData_TP) {
   return (
     <div className="p-3 bg-white rounded-md">
       <div>
-        <Toolbar componentCopy={componentCopy} />
+        <Toolbar componentCopy={componentCopy} newValues={newValues}/>
       </div>
       <div className="">{children}</div>
     </div>

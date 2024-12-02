@@ -1,21 +1,21 @@
-import { Form, Formik } from "formik"
-import { useFetch, useMutate } from "../../../../../hooks"
-import MainData from "./MainData"
-import { notify } from "../../../../../utils/toast"
-import { Values_TP } from "./Types&Validation"
+import { Form, Formik } from "formik";
+import { useFetch, useMutate } from "../../../../../hooks";
+import MainData from "./MainData";
+import { notify } from "../../../../../utils/toast";
+import { Values_TP } from "./Types&Validation";
 
 function Main() {
   const queryParams = {
     // page: page,
     // term: word,
-  }
+  };
   // const searchParams = new URLSearchParams(queryParams as any)
-  const endpoint = `api/PurchasOrder?Take=50`
-  const { refetch, } = useFetch({
+  const endpoint = `api/PurchasOrder?Take=50`;
+  const { refetch } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-  })
+  });
   const { mutate } = useMutate({
     mutationKey: ["api/PurchasOrder"],
     endpoint: `api/PurchasOrder`,
@@ -31,23 +31,37 @@ function Main() {
   });
 
   const handleSubmit = (values: Values_TP) => {
-
     const jsonData = JSON.stringify(values);
 
-    mutate(jsonData)
-  }
+    mutate(jsonData);
+  };
   const initialValues = {
-    code: '',
-    expectedReceiptDate: '',
-    approvalDate:'',
-    total: '',
-    createDate: '',
-    referenceDocument: '',
+    code: "",
+    expectedReceiptDate: "",
+    approvalDate: "",
+    total: "",
+    createDate: "",
+    referenceDocument: "",
     // currency: '',
-    purchaseAgreementId: '',
-    note: '',
-    orderDetailsModal: []
-  }
+    purchaseAgreementId: "",
+    note: "",
+    orderDetailsModal: [],
+    copValue: {
+      code: "",
+      purchaseAgreementId: "",
+      vendorId: "",
+      createDate: "",
+      expectedReceiptDate: "",
+      total: "",
+      referenceDocument: "",
+      note: "",
+      approvalDate: "",
+      confirmationDayes: "",
+      warehouseId: "",
+      purchaseRepresentativeId: "",
+      currencyId: "",
+    },
+  };
   return (
     <div>
       <Formik
@@ -59,7 +73,7 @@ function Main() {
         </Form>
       </Formik>
     </div>
-  )
+  );
 }
 
-export default Main
+export default Main;

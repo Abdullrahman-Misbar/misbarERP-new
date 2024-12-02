@@ -32,3 +32,28 @@ export type Values_TP = {
   notes: string,
   orderDetailsModal: string[]
 }
+
+export type newValues_TP = {
+  copValue:{
+
+    code: string,
+    expectedReceiptDate: string,
+    total: string,
+    creationDate: string,
+    referenceDocument: string,
+    currency: string,
+    supplier: string,
+    purchaseAgreement: string,
+    notes: string,
+    orderDetailsModal: string[]
+    purchaseAgreementId:string
+    vendorId:string
+    createDate:string
+    note:string
+    approvalDate:string
+    confirmationDayes:string
+    warehouseId:string
+    purchaseRepresentativeId:string
+    currencyId:string
+  }
+}

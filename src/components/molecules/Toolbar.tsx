@@ -1,26 +1,27 @@
+import { Tooltip } from "@mui/material";
+import { useFormikContext } from "formik";
+import { useState } from "react";
 import { CloseIcon } from "yet-another-react-lightbox";
 import AddIcon from "../../assets/icon/AddIcon";
 import AttachmentIcon from "../../assets/icon/AttachmentIcon";
+import ClenderIcon from "../../assets/icon/ClenderIcon";
 import CopyIcon from "../../assets/icon/CopyIcon";
 import DeleteIcon from "../../assets/icon/DeleteIcon";
+import FileClock from "../../assets/icon/FileClock";
 import FileNotSaveIcon from "../../assets/icon/FileNotSaveIcon";
 import PrintIcon from "../../assets/icon/PrintIcon";
 import SaveFileIcon from "../../assets/icon/SaveFileIcon";
 import SaveIcon from "../../assets/icon/SaveIcon";
 import Setting from "../../assets/icon/SettingIcon";
 import UndoIcon from "../../assets/icon/UndoIcon";
-import FileClock from "../../assets/icon/FileClock";
-import ClenderIcon from "../../assets/icon/ClenderIcon";
-import { useFormikContext } from "formik";
-import { Tooltip } from "@mui/material";
 import ModalComp from "./ModalComp";
-import { useState } from "react";
 
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
+  newValues?: { [key: string]: string };
 };
-const Toolbar = ({ componentCopy }: Toolbar_TP) => {
-  const { handleSubmit, setFieldValue, values } = useFormikContext();
+const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
+  const { handleSubmit, setFieldValue, values, setValues } = useFormikContext<any>();
   const [openCopyModal, setOpenCopyModal] = useState(false);
 
   const handleSave = () => {
@@ -71,6 +72,10 @@ const Toolbar = ({ componentCopy }: Toolbar_TP) => {
   const handleCalendar = () => {
     console.log("Calendar action triggered");
   };
+
+  // useEffect(() => {
+  //   setValues(newValues);
+  // }, [setValues]);
 
   return (
     <>
@@ -219,6 +224,11 @@ const Toolbar = ({ componentCopy }: Toolbar_TP) => {
         header="حدد طلب الشراء المراد انزال التفاصيل منه"
         open={openCopyModal}
         setOpen={setOpenCopyModal}
+        disabledButtonAgree={!values?.copValue?.id}
+        ActionAgreeButton={() => {
+          setOpenCopyModal(false);
+          setValues(newValues);
+        }}
       >
         <div>{componentCopy}</div>
       </ModalComp>

@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import { useFormikContext } from "formik";
 import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
@@ -10,13 +11,30 @@ import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import MainCopyComp from "./toolbarComponents/MainCopyComp";
+import { newValues_TP } from "./Types&Validation";
 
 function MainData() {
+  const { values } = useFormikContext<newValues_TP>();
+  console.log("🚀 ~ MainData ~ values:", values);
+  const newValues = {
+    code: values?.copValue?.code || "",
+    purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
+    vendorId: values?.copValue?.vendorId || "",
+    createDate: values?.copValue?.createDate || "",
+    expectedReceiptDate: values?.copValue?.expectedReceiptDate || "",
+    total: values?.copValue?.total || "",
+    referenceDocument: values?.copValue?.referenceDocument || "",
+    note: values?.copValue?.note || "",
+    approvalDate: values?.copValue?.approvalDate || "",
+    confirmationDayes: values?.copValue?.confirmationDayes || "",
+    warehouseId: values?.copValue?.warehouseId || "",
+    purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
+    currencyId: values?.copValue?.currencyId || "",
+  };
+
   return (
-    <LayoutMainData
-    
-    componentCopy=""
-    >
+    <LayoutMainData componentCopy={<MainCopyComp />} newValues={newValues}>
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
@@ -139,7 +157,6 @@ function MainData() {
           <ItemsTable moduleName="orderDetailsModal" />
         </Grid>
       </div>
-
     </LayoutMainData>
   );
 }
