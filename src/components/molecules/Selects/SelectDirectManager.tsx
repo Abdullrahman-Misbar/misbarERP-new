@@ -1,8 +1,8 @@
 import React from 'react'
-import Select from '../formik/Select'
 import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import { useFetch } from '../../../hooks'
+import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectDirectManagerProps = {
   name: string
@@ -21,13 +21,14 @@ const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
+    setFieldValue(name, event.value)
   }
 
   const endpoint = 'Hr/GetAllLookupEmployee'
   const { data, isLoading, isSuccess } = useFetch<any>({
     queryKey: [endpoint],
-    endpoint: endpoint
+    endpoint: endpoint,
+    Module: "PURCHASE"
   })
 
   const options: Option[] =
@@ -37,12 +38,14 @@ const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name }) => {
     })) || []
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label='المدير المباشر'
       placeholder='اختر المدير المباشر'
       options={options}
-      value={values[name] || ''}
+      // value={values[name] || ''}
+      isLoading={isLoading}
+
       onChange={handleChange}
     />
   )

@@ -1,8 +1,8 @@
-import React from "react"
 import { SelectChangeEvent } from "@mui/material"
 import { useFormikContext } from "formik"
-import Select from "../../atoms/formik/SelectComp"
+import React from "react"
 import { useFetch } from "../../../hooks"
+import SelectComp from "../../atoms/formik/SelectComp"
 
 interface Option {
   value: string | number
@@ -42,7 +42,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
   const { setFieldValue, values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
+    setFieldValue(name, event.value)
     console.log(event.target.value) 
   }
 
@@ -61,12 +61,12 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
     })) || []
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label={labelName}
       placeholder={labelName}
       options={options}
-      value={value || values[name] || ""}
+
       onChange={onChange || handleChange}
       disabled={disabled}
     />

@@ -1,9 +1,7 @@
 /* eslint-disable import/named */
-import React, { useState } from 'react'
-import Select from '../formik/Select'
 import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
-import useFetch from '@/hooks/useFetch'
+import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectInvoicesStatus_TP = {
   name: string
@@ -24,12 +22,12 @@ const SelectInvoicesStatus = ({ name }: SelectInvoicesStatus_TP) => {
   ]
 
   return (
-    <Select
+    <SelectComp
       name={name}
       label='حالة الفاتورة'
       placeholder='حالة الفاتورة'
       options={options}
-      value={values[name  as keyof Formik_Values ]}
+      // value={values[name  as keyof Formik_Values ]}
       onChange={handleChange}
     />
   )

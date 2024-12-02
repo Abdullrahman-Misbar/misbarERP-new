@@ -1,37 +1,36 @@
 /* eslint-disable import/named */
-import React, { useState } from 'react'
-import Select from '../formik/Select'
-import { SelectChangeEvent } from '@mui/material'
-import { useFormikContext } from 'formik'
+import { SelectChangeEvent } from "@mui/material";
+import { useFormikContext } from "formik";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectAccreditationStatus_TP = {
-  name: string
-}
+  name: string;
+};
 type Formik_Values = {
-  name: string
-}
+  name: string;
+};
 const SelectAccreditationStatus = ({ name }: SelectAccreditationStatus_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>()
+  const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value)
-  }
+    setFieldValue(name, event.value);
+  };
 
   const options = [
-    { label: 'قيد المعالجة', value: 1 },
-    { label: 'تم المعالحه', value: 0 }
-  ]
+    { label: "قيد المعالجة", value: 1 },
+    { label: "تم المعالحه", value: 0 },
+  ];
 
   return (
-    <Select
+    <SelectComp
       name={name}
-      label='حالة الاعتماد'
-      placeholder=' اختر حاله الاعتماد'
+      label="حالة الاعتماد"
+      placeholder=" اختر حاله الاعتماد"
       options={options}
-      value={values[name as keyof Formik_Values] || ''}
+      // value={values[name as keyof Formik_Values] || ""}
       onChange={handleChange}
     />
-  )
-}
+  );
+};
 
-export default SelectAccreditationStatus
+export default SelectAccreditationStatus;
