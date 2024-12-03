@@ -178,9 +178,9 @@ export const Table = <T extends object>({
                         }}
                       >
                         {flexRender(
-                          cell?.column?.columnDef.cell,
-                          cell.getContext()
-                        )}
+                          cell?.column?.columnDef.cell ,
+                          cell.getContext()  
+                        )} 
                       </td>
                     ))}
                   </tr>

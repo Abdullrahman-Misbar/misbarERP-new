@@ -10,8 +10,10 @@ export type RowData = {
   vendorName: string
   expectedReceiptDate: string
   note: string
-  status: number
+  isApproved: boolean
+  requestDate:string
   actions?: unknown 
+  requestEndDate:string
 }
 export const validationSchema = () =>
   Yup.object({

@@ -4,29 +4,27 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import {
-  Values_TP
-} from "./Types&Validation";
+import { Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
 };
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
-  const queryParams = {
-    // page: page,
-    // term: word,
-  };
-  // const searchParams = new URLSearchParams(queryParams as any)
-  const endpoint = `api/PurchasOrder/Get/${id}`;
+
+  const endpoint = `api/PurchasRequest/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
+    enabled:!!id
   });
+  const postEndPoint = id
+    ? `api/PurchasRequest/UpdateRequest/${id}`
+    : `api/PurchasRequest`;
   const { mutate } = useMutate({
-    mutationKey: ["api/PurchasOrder"],
-    endpoint: `api/PurchasOrder`,
+    mutationKey: [postEndPoint],
+    endpoint: postEndPoint,
     onSuccess: () => {
       refetch();
       notify("success");
@@ -35,17 +33,19 @@ function Main({ editable }: Main_TP) {
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },
-    formData: true,
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const jsonData = JSON.stringify(values);
+    const { copValue, editable, ...valuesWithoutCopValue } = values;
+    const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
   };
+  //@ts-ignore
   const response = data?.data;
 
   const initialValues = {
+    id: id ? +id : 0,
     code: response?.code || "",
     vendorId: response?.vendorId || "",
     editable: editable ? true : false,
@@ -55,27 +55,16 @@ function Main({ editable }: Main_TP) {
     expectedReceiptDate: response?.expectedReceiptDate || "",
     deliverdDate: response?.deliverdDate || "",
     referenceDocument: response?.referenceDocument || "",
-    deliverdConfirmation: response?.deliverdConfirmation || "",
+    deliverdConfirmation: response?.deliverdConfirmation || false,
     purchaseAgreementId: response?.purchaseAgreementId || "",
     confirmationDayes: response?.confirmationDayes || "",
     currencyId: response?.currencyId || "",
     warehouseId: response?.warehouseId || "",
     total: response?.total || "",
-    priceIncludeTax: response?.priceIncludeTax || "",
-    isApproved: response?.isApproved || "",
+    priceIncludeTax: response?.priceIncludeTax || false,
+    isApproved: response?.isApproved || false,
     note: response?.note || "",
-    purchaseRequestDetailsDto: [
-      {
-        itemId: "",
-        description: "",
-        quantity: "",
-        uomId: "",
-        price: "",
-        total: "",
-        warehouseId: "",
-        note: "",
-      },
-    ],
+    purchaseRequestDetailsDto: [],
     copValue: {
       code: "",
       purchaseAgreementId: "",
@@ -102,7 +91,7 @@ function Main({ editable }: Main_TP) {
     <div>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={(values: any) => handleSubmit(values)}
         enableReinitialize
       >
         <Form>

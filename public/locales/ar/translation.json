@@ -18,7 +18,7 @@
   "Class variables": "متغيرات الاصناف",
 
   "Operations": "العمليات",
-  "Purchase order": "طلب شراء",
+  "Purchase Request": "طلب شراء",
   "offer price": "عرض سعر",
   "purchase order": "امر شراء",
   "Receipt order": "امر استلام",
@@ -52,7 +52,7 @@
   "reference Document":"المستند المرجعي",
   "approval Date":"تاريخ اعتماد الطلب",
   "confirmation Dyes":"تاريخ الطلب",
-  "vendor Name":"المستخدم",
+  "vendor Name":"المورد",
   "expected Receipt Date":"تاريخ انتهاء الطلب",
   "status":"الحالة",
   "Actions":"إجراءات",
@@ -67,5 +67,13 @@
   "Are you sure?":"هل انت متاكد",
   "You cannot go back in this process":"لا يمكنك الرجوع في هذه العملية",
   "Ok":"موافق",
-  "Cancel":"الغاء"
+  "Cancel":"الغاء",
+  "request Date":"تاريخ الطلب",
+  "request End Date":"تاريخ انتهاء الطلب",
+  "Number of offers":"عدد العروض",
+  "total":"الاجمالي",
+  "Reference number":"الرقم المرجعي",
+  "Approved":"معتمد",
+  "Not Approved":"غير معتمد"
+
 }

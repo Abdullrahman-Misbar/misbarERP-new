@@ -12,14 +12,13 @@ type ItemsTable_TP = {
 export default function ItemsTable({ moduleName }: ItemsTable_TP) {
   const { setFieldValue } = useFormikContext();
   const headers = [
-    {
-      name: "barcode",
-      placeholder: "رمز الصنف",
-      label: "رمز الصنف",
-
-      component: BaseInputRepeater,
-      type: "text",
-    },
+    // {
+    //   name: "barcode",
+    //   placeholder: "رمز الصنف",
+    //   label: "رمز الصنف",
+    //   component: BaseInputRepeater,
+    //   type: "text",
+    // },
     {
       name: "itemId",
       label: "اسم الصنف",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Overview from "../molecules/Overview";
 import BaseInputSearch from "../atoms/formik/BaseInputSearch";
-import Filter from "./PURCHASE/PurchaseOrder/Filter";
+import Filter from "./PURCHASE/PurchaseRequest/Filter";
 import MainCardInfo from "./Analysis/MainCardInfo";
 import Analysis from "./Analysis/Analysis";
 

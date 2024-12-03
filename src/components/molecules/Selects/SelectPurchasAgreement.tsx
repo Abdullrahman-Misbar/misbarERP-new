@@ -10,13 +10,13 @@ type Formik_Values = {
   name: string;
 };
 const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
-  const { setFieldValue } = useFormikContext<Formik_Values>();
+  const { setFieldValue , values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "api/PurchasAgreement/Lookup";
+  const endpoint = "api/PurchasAgreement/AggrementPurchaseLookup";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
@@ -27,6 +27,7 @@ const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
     value: item?.id,
     label: item?.lookupName,
   }));
+  const selectedValue = options?.find((item) => item?.value == values[name]);
 
   return (
     <SelectComp
@@ -35,6 +36,7 @@ const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
       placeholder="اختر اتفاقية الشراء"
       options={options}
       isLoading={isLoading}
+      value={selectedValue}
       // value={values[name as keyof Formik_Values]}
       onChange={handleChange}
     />

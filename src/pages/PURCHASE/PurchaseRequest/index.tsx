@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet-async"
-import Main from "../../../components/templates/PURCHASE/PurchaseOrder/Main"
+import Main from "../../../components/templates/PURCHASE/PurchaseRequest/Main"
 
-type PurchaseOrder_TP = {
+type PurchaseRequest_TP = {
   title: string
 }
-export default function PurchaseOrder({ title }: PurchaseOrder_TP) {
+export default function PurchaseRequest({ title }: PurchaseRequest_TP) {
   return (
     <>
       <Helmet>

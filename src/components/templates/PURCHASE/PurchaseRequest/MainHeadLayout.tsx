@@ -36,7 +36,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/purchaseOrder/add")}
+            action={() => navigate("/purchase/PurchaseRequest/add")}
             className="!w-[100px]"
           />
           <span

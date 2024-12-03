@@ -1,12 +1,12 @@
 import { t } from "i18next";
 import { Route, Routes } from "react-router-dom";
-import { ErrorPage } from "./ErrorPage";
-import { Root } from "./Root";
 import Home from "../pages/Home";
 import Login from "../pages/login";
-import PurchaseOrder from "../pages/PURCHASE/PurchaseOrder";
-import AddPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Add";
-import EditPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Edit";
+import PurchaseRequest from "../pages/PURCHASE/PurchaseRequest";
+import AddPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Add";
+import EditPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Edit";
+import { ErrorPage } from "./ErrorPage";
+import { Root } from "./Root";
 
 export const AllRoutesProvider = () => {
   return (
@@ -17,16 +17,16 @@ export const AllRoutesProvider = () => {
 
         {/* PURCHASE */}
         <Route
-          path="/purchase/purchaseOrder"
-          element={<PurchaseOrder title={t("Purchase Order")} />}
+          path="/purchase/PurchaseRequest"
+          element={<PurchaseRequest title={t("Purchase request")} />}
         />
         <Route
-          path="/purchase/purchaseOrder/add"
-          element={<AddPurchaseOrder title={t("Add Purchase Order")} />}
+          path="/purchase/PurchaseRequest/add"
+          element={<AddPurchaseRequest title={t("Add Purchase request")} />}
         />
         <Route
-          path="/purchase/purchaseOrder/edit/:id"
-          element={<EditPurchaseOrder title={t("Edit Purchase Order")} />}
+          path="/purchase/PurchaseRequest/edit/:id"
+          element={<EditPurchaseRequest title={t("Edit Purchase request")} />}
         />
       </Route>
 

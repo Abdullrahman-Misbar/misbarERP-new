@@ -1,25 +1,23 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFetch } from "../../../../hooks";
-import useDebounce from "../../../../hooks/useDebounce";
-import Paginate from "../../../molecules/table/Paginate";
-import { Table } from "../../../molecules/tantable/Table";
-import { generateColumns } from "./generateColumns";
-import MainHeadLayout from "./MainHeadLayout";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-function Main() {
+import { useFetch } from "../../../../../../hooks";
+import useDebounce from "../../../../../../hooks/useDebounce";
+import BaseInputSearch from "../../../../../atoms/formik/BaseInputSearch";
+import { Table } from "../../../../../molecules/tantable/Table";
+import { generateColumns } from "./generateColumns";
+import { useFormikContext } from "formik";
+
+function MainCopyComp() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
-  const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
     // page: page,
     // term: word,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-
-  const endpoint = `api/PurchasOrder?Take=50${searchParams.toString()}`;
+const {values} = useFormikContext()
+  const endpoint = `api/PurchasRequest?Take=1000${searchParams.toString()}`;
 
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
@@ -29,17 +27,21 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    () => generateColumns(page, refetch),
+    [page, refetch , values]
   );
 
-  const handlePageChange = (selectedPage: number) => {
-    setPage(selectedPage);
-  };
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} />
+     
+      <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
+        <div className="col-span-12">
+          <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
+        </div>
+      </div>
+
+      
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}
@@ -54,17 +56,17 @@ function Main() {
           showStatusFilter
         />
       </div>
-      <div className="flex justify-end mt-3">
+      {/* <div className="flex justify-end mt-3">
         <Paginate
-          pagesCount={data?.data?.totalCount / 5}
-          previousLabel={<IoIosArrowBack />}
-          nextLabel={ <IoIosArrowForward /> }
+          pagesCount={data?.data?.totalCount}
+          previousLabel={">>"}
+          nextLabel={"<<"}
           onPageChange={handlePageChange}
           initialPage={page}
         />
-      </div>
+      </div> */}
     </div>
   );
 }
 
-export default Main;
+export default MainCopyComp;

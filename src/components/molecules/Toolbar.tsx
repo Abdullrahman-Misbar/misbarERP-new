@@ -20,6 +20,8 @@ import showAlert from "./ShowAlert";
 import { t } from "i18next";
 import { useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
+import ApprovedIcon from "../atoms/icons/ApprovedIcon";
+import UnApprovedIcon from "../atoms/icons/UnApprovedIcon";
 
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
@@ -27,7 +29,7 @@ type Toolbar_TP = {
   deleteEndPoint?: string;
 };
 const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
-  const { handleSubmit, values, setValues, resetForm } =
+  const { handleSubmit, values, setValues, resetForm, setFieldValue } =
     useFormikContext<any>();
   const [openCopyModal, setOpenCopyModal] = useState(false);
   const location = useLocation();
@@ -93,8 +95,12 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
     console.log("Attachment logic here");
   };
 
-  const handleSaveFile = () => {
-    console.log("Save file logic here");
+  const handelApproved = () => {
+    if (values?.isApproved) {
+      setFieldValue("isApproved", false);
+    } else {
+      setFieldValue("isApproved", true);
+    }
   };
 
   const handleSettings = () => {
@@ -165,13 +171,21 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
-
-          <Tooltip title="اعتماد">
-            <div className="flex items-center p-3">
-              <SaveFileIcon disabled={false} action={handleSaveFile} />
-              <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </div>
-          </Tooltip>
+          {values?.isApproved == null || values?.isApproved == false ? (
+            <Tooltip title="اعتماد">
+              <div className="flex items-center p-3">
+                <ApprovedIcon disabled={false} action={handelApproved} />
+                <div className="w-px h-12 bg-gray-200 mx-4"></div>
+              </div>
+            </Tooltip>
+          ) : (
+            <Tooltip title="الغاء الاعتماد">
+              <div className="flex items-center p-3">
+                <UnApprovedIcon disabled={false} action={handelApproved} />
+                <div className="w-px h-12 bg-gray-200 mx-4"></div>
+              </div>
+            </Tooltip>
+          )}
 
           <Tooltip title="ملف غير محفوظ">
             <div className="flex items-center p-3">
@@ -201,13 +215,13 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
         <div className="flex items-center justify-start ">
           <Tooltip title="الملف الزمني">
             <div className="flex items-center p-3">
-              <FileClock  action={handleFileClock} />
+              <FileClock action={handleFileClock} />
             </div>
           </Tooltip>
 
           <Tooltip title="التقويم">
             <div className="flex items-center p-3">
-              <CalenderIcon  action={handleCalendar} />
+              <CalenderIcon action={handleCalendar} />
             </div>
           </Tooltip>
         </div>
