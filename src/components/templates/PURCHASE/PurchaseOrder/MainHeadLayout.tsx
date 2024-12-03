@@ -1,24 +1,30 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { MdSettings } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import BreadcrumbComponent from "../../../Breadcrumb";
 import Button from "../../../atoms/button/Button";
 import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
+import ExportExcel from "../../../molecules/exel/ExportExcel";
 import Filter from "./Filter";
+import { Form, Formik } from "formik";
 import ModalComp from "../../../molecules/ModalComp";
+import SettingsMenu from "../../../atoms/SettingsMenu";
+import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
 };
+
 function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
+  const [importExcelModal, setImportExcelModal] = useState(false);
 
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
     { label: "العمليات" },
     { label: "طلب شراء" },
   ];
+
   return (
     <div>
       <p className=" bg-white rounded-lg mb-2">
@@ -39,25 +45,37 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
             action={() => navigate("/purchase/purchaseOrder/add")}
             className="!w-[100px]"
           />
-          <span
-            className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center  "
-            onClick={() => setExportExcelModal(true)}
-          >
-            <MdSettings className="size-6" />
+          <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
+            {/* Display SettingsMenu when MdSettings is clicked */}
+            <SettingsMenu
+              setExportExcelModal={setExportExcelModal}
+              setImportExcelModal={setImportExcelModal}
+            />
           </span>
         </div>
       </div>
+      <Formik initialValues={{}} onSubmit={() => {}}>
+        <Form>
+          <ModalComp
+            header="الموردين - التصدير الى اكسل"
+            open={exportExcelModal}
+            setOpen={setExportExcelModal}
+            AgreeTextButton="تصدير"
+          >
+            <ExportExcel />
+          </ModalComp>
+        </Form>
+      </Formik>
+
       <ModalComp
-        header="الموردين - التصدير الى اكسل"
-        open={exportExcelModal}
-        setOpen={setExportExcelModal}
-        // ActionAgreeButton={() => {
-        //   setOpenCopyModal(false);
-        //   setValues(newValues);
-        // }}
-        AgreeTextButton="تصدير"
+        header=" الموردين - الاستيراد من اكسل "
+        open={importExcelModal}
+        setOpen={setImportExcelModal}
+        AgreeTextButton="استيراد"
       >
-        <div>a7aaa</div>
+        <Formik initialValues={{}} onSubmit={() => {}}>
+          <ImportExcelModal />
+        </Formik>
       </ModalComp>
     </div>
   );

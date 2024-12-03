@@ -119,7 +119,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
         <div className="flex items-center justify-start ">
           <Tooltip title="تكرار">
             <div className="flex items-center">
-              <CopyIcon action={handleCopy} disabled />
+              <CopyIcon action={handleCopy} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
@@ -224,7 +224,6 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
       >
         <div>{componentCopy}</div>
       </ModalComp>
-      
     </>
   );
 };
