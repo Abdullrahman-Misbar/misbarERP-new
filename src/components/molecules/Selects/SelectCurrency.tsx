@@ -27,23 +27,24 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "api/Currency";
-  const { data, isLoading, isSuccess, refetch } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
   const options: Option[] =
+    //@ts-ignore
     data?.data?.map((item: { id: string; currencyName: string }) => ({
       value: item.id,
       label: item.currencyName,
     })) || [];
-    const selectedValue = options?.find((item)=>item?.value == values[name])
+  const selectedValue = options?.find((item) => item?.value == values[name]);
 
   return (
     <SelectComp
@@ -51,7 +52,7 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
       label={labelName ? labelName : "العمله"}
       placeholder="اختر العملة"
       options={options}
-      value={selectedValue}
+      value={`${selectedValue}`}
       onChange={handleChange}
       isLoading={isLoading}
       disabled={disabled}

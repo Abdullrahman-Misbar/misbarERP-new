@@ -1,7 +1,6 @@
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
-import SelectComp from "../../atoms/formik/SelectComp";
 import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectPurchasePaymentTemplate_TP = {
   name: string;
@@ -14,7 +13,7 @@ const SelectPurchasePaymentTemplate = ({
 }: SelectPurchasePaymentTemplate_TP) => {
   const { setFieldValue } = useFormikContext<Formik_Values>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
   };
 
@@ -24,6 +23,7 @@ const SelectPurchasePaymentTemplate = ({
     endpoint: endpoint,
     Module: "PURCHASE",
   });
+  //@ts-ignore
   const options = data?.data?.map((item: any) => ({
     value: item?.id,
     label: item?.lookupName,

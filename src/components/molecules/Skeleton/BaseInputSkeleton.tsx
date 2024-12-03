@@ -5,12 +5,14 @@ function BaseInputSkeleton() {
     <>
       <Skeleton
         variant="rectangular"
-        width={340}
+        // width={440}
+
         height={48}
         sx={{
           margin: "12px 0",
           background: "#0000000A",
           borderRadius: "4px",
+          minWidth:"100%"
         }}
       />
     </>

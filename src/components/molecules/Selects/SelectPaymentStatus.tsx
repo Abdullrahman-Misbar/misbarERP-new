@@ -1,4 +1,3 @@
-import { SelectChangeEvent } from '@mui/material'
 import { useFormikContext } from 'formik'
 import SelectComp from '../../atoms/formik/SelectComp'
 
@@ -9,9 +8,9 @@ type Formik_Values = {
   name: string
 }
 const SelectPaymentStatus = ({ name }: SelectPaymentStatus_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>()
+  const { setFieldValue } = useFormikContext<Formik_Values>()
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value)
   }
 

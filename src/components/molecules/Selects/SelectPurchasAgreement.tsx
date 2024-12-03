@@ -1,5 +1,4 @@
 /* eslint-disable import/named */
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
@@ -11,18 +10,19 @@ type Formik_Values = {
   name: string;
 };
 const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>();
+  const { setFieldValue } = useFormikContext<Formik_Values>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "api/PurchasAgreement/Lookup";
-  const { data, isLoading, isSuccess, refetch } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
+  //@ts-ignore
   const options = data?.data?.map((item: any) => ({
     value: item?.id,
     label: item?.lookupName,

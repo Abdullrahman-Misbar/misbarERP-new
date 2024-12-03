@@ -1,29 +1,35 @@
-import { useFormikContext } from 'formik'
-import React from 'react'
+import { useFormikContext } from "formik";
+import React from "react";
 
 export interface HeaderType {
-  name: string
-  label: string
-  type?: 'text' | 'number'
-  component: React.ComponentType<any>
-  size?: number
+  name: string;
+  label: string;
+  type?: "text" | "number";
+  component: React.ComponentType<any>;
+  size?: number;
+  placeholder?: string;
+  onChange?: () => void;
 }
 
 export type ItemType = {
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
 interface TableDynamicProps {
-  headers: HeaderType[]
-  items: ItemType[]
-  actions?: (index: number) => React.ReactNode
-  moduleName: string
-  remove: () => void
+  headers: HeaderType[];
+  items: ItemType[];
+  actions?: (index: number) => React.ReactNode;
+  moduleName: string;
+  remove: () => void;
 }
 
-const TableDynamic: React.FC<TableDynamicProps> = ({ headers, actions, moduleName, remove }) => {
-  const { values, setFieldValue } = useFormikContext<any>()
-
+const   TableDynamic: React.FC<TableDynamicProps> = ({
+  headers,
+  actions,
+  moduleName,
+  remove,
+}) => {
+  const { values, setFieldValue } = useFormikContext<any>();
 
   return (
     <div className="overflow-x-scroll">
@@ -51,38 +57,33 @@ const TableDynamic: React.FC<TableDynamicProps> = ({ headers, actions, moduleNam
                   key={header.name}
                   className="p-3 border-b border-gray-200 min-w-[200px]"
                 >
-
                   {/* {header.component} */}
                   <header.component
                     name={`${moduleName}[${index}].${header.name}`}
                     value={values[moduleName][header.name]}
-                    onChange={(e: { target: { value: any } }) => setFieldValue(`${moduleName}[${index}].${header.name}`, e?.target?.value)}
-
+                    type={header?.type}
+                    placeholder={header?.placeholder}
+                    onChange={
+                      header?.onChange
+                        ? header?.onChange
+                        : (e: { target: { value: any } }) =>
+                            setFieldValue(
+                              `${moduleName}[${index}].${header.name}`,
+                              e?.value
+                            )
+                    }
                   />
                 </td>
               ))}
-             <td className="p-3 text-center border-b border-gray-200">
+              <td className="p-3 text-center border-b border-gray-200">
                 {actions && actions(index, remove)}
               </td>
-              
             </tr>
-
           ))}
-          {/* {values[moduleName]?.map((_: any, index: number) => (
-            <div key={index} className="flex gap-2 mt-4">
-              <button
-                type="button"
-                onClick={() => remove(index)}
-                className="px-4 py-2 text-white bg-red-500 rounded"
-              >
-                حذف
-              </button>
-            </div>
-          ))} */}
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default TableDynamic
+export default TableDynamic;

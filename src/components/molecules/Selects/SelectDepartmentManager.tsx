@@ -1,8 +1,7 @@
-import React from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
-import SelectComp from "../../atoms/formik/SelectComp";
+import React from "react";
 import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectDepartmentManagerProps = {
   name: string;
@@ -22,21 +21,22 @@ const SelectDepartmentManager: React.FC<SelectDepartmentManagerProps> = ({
   name,
   label,
 }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "managerId";
-  const { data, isLoading, isSuccess } = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     Module: "PURCHASE",
     endpoint: endpoint,
   });
 
   const options: Option[] =
-    data?.map((item: { id: number; partnerName: string }) => ({
+  //@ts-ignore
+    data?.map((item: { id: number; name: string }) => ({
       value: item.id,
       label: item.name,
     })) || [];

@@ -10,7 +10,7 @@ type Formik_Values = {
   name: string
 }
 const SelectInvoicesStatus = ({ name }: SelectInvoicesStatus_TP) => {
-  const { setFieldValue, values } = useFormikContext<Formik_Values>()
+  const { setFieldValue } = useFormikContext<Formik_Values>()
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
     setFieldValue(name, event.target.value)

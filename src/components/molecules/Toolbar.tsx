@@ -15,17 +15,40 @@ import SaveIcon from "../../assets/icon/SaveIcon";
 import Setting from "../../assets/icon/SettingIcon";
 import UndoIcon from "../../assets/icon/UndoIcon";
 import ModalComp from "./ModalComp";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import showAlert from "./ShowAlert";
+import { t } from "i18next";
+import { useMutate } from "../../hooks";
+import { notify } from "../../utils/toast";
 
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
   newValues?: { [key: string]: string };
+  deleteEndPoint?: string;
 };
-const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
-  const { handleSubmit, setFieldValue, values, setValues, resetForm } =
+const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
+  const { handleSubmit, values, setValues, resetForm } =
     useFormikContext<any>();
-  console.log("🚀 ~ Toolbar ~ values:", values);
   const [openCopyModal, setOpenCopyModal] = useState(false);
-
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const { mutate } = useMutate({
+    mutationKey: [`${deleteEndPoint}`],
+    endpoint: `${deleteEndPoint}/${id}`,
+    onSuccess: () => {
+      // refetch();
+      notify("success");
+      navigate(-1);
+    },
+    Module: "PURCHASE",
+    onError: (err) => {
+      notify("error", err?.response?.data?.message);
+    },
+    formData: true,
+    method: "delete",
+  });
   const handleSave = () => {
     handleSubmit();
   };
@@ -35,16 +58,31 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
   };
 
   const handleAdd = () => {
+    if (values?.editable) {
+      const dynamicPath = `/${pathSegments[1]}/${pathSegments[2]}/add`;
+      navigate(dynamicPath);
+    }
     resetForm();
   };
 
   const handleUndo = () => {
-    console.log("Undo action triggered");
+    if (values?.editable) {
+      resetForm();
+    }
   };
 
   const handleDelete = () => {
-    const updatedItems = values.items.slice(0, values.items.length - 1);
-    setFieldValue("items", updatedItems);
+    showAlert(
+      `${t("Are you sure?")}`,
+      `${t("You cannot go back in this process")}`,
+      false,
+      t("Ok"),
+      true,
+      "warning",
+      () => {
+        mutate({});
+      }
+    );
   };
 
   const handlePrint = () => {
@@ -64,7 +102,7 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
   };
 
   const handleClose = () => {
-    console.log("Close action triggered");
+    navigate(-1);
   };
 
   const handleFileClock = () => {
@@ -74,10 +112,6 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
   const handleCalendar = () => {
     console.log("Calendar action triggered");
   };
-
-  // useEffect(() => {
-  //   setValues(newValues);
-  // }, [setValues]);
 
   return (
     <>
@@ -92,7 +126,7 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
 
           <Tooltip title="إضافة">
             <div className="flex items-center p-3">
-              <AddIcon disabled action={handleAdd} />
+              <AddIcon action={handleAdd} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
