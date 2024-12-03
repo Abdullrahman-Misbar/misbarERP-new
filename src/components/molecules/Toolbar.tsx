@@ -24,10 +24,10 @@ import { notify } from "../../utils/toast";
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
   newValues?: { [key: string]: string };
-  deleteEndPoint?:string
+  deleteEndPoint?: string;
 };
-const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
-  const { handleSubmit,  values, setValues, resetForm } =
+const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
+  const { handleSubmit, values, setValues, resetForm } =
     useFormikContext<any>();
   const [openCopyModal, setOpenCopyModal] = useState(false);
   const location = useLocation();
@@ -40,7 +40,7 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
     onSuccess: () => {
       // refetch();
       notify("success");
-      navigate(-1)
+      navigate(-1);
     },
     Module: "PURCHASE",
     onError: (err) => {
@@ -118,110 +118,73 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
       <div className="flex items-center justify-between p-4">
         <div className="flex items-center justify-start ">
           <Tooltip title="تكرار">
-            <button
-              className="flex items-center"
-              type="button"
-              onClick={handleCopy}
-            >
-              <CopyIcon  />
+            <div className="flex items-center">
+              <CopyIcon action={handleCopy} disabled />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="إضافة">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              
-              onClick={handleAdd}
-            >
-              <AddIcon />
+            <div className="flex items-center p-3">
+              <AddIcon action={handleAdd} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="الرجوع">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleUndo}
-            >
-              <UndoIcon  />
+            <div className="flex items-center p-3">
+              <UndoIcon disabled={false} action={handleUndo} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="حذف">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleDelete}
-            >
-              <DeleteIcon />
+            <div className="flex items-center p-3">
+              <DeleteIcon disabled={false} action={handleDelete} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="حفظ">
-            <button
-              className="flex items-center p-3"
-              onClick={handleSave}
-              type="button"
-            >
-              <SaveIcon />
+            <div className="flex items-center p-3">
+              <SaveIcon disabled={false} action={handleSave} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="طباعة">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handlePrint}
-            >
-              <PrintIcon />
+            <div className="flex items-center p-3">
+              <PrintIcon disabled={false} action={handlePrint} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="إرفاق ملف">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleAttachFile}
-            >
-              <AttachmentIcon />
+            <div className="flex items-center p-3">
+              <AttachmentIcon disabled={false} action={handleAttachFile} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="اعتماد">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleSaveFile}
-            >
-              <SaveFileIcon />
+            <div className="flex items-center p-3">
+              <SaveFileIcon disabled={false} action={handleSaveFile} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="ملف غير محفوظ">
-            <button className="flex items-center p-3" type="button">
-              <FileNotSaveIcon />
+            <div className="flex items-center p-3">
+              <FileNotSaveIcon disabled />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="الإعدادات">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleSettings}
-            >
-              <Setting />
+            <div className="flex items-center p-3">
+              <Setting disabled={false} action={handleSettings} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
-            </button>
+            </div>
           </Tooltip>
 
           <Tooltip title="إغلاق">
@@ -237,23 +200,15 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
 
         <div className="flex items-center justify-start ">
           <Tooltip title="الملف الزمني">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleFileClock}
-            >
-              <FileClock />
-            </button>
+            <div className="flex items-center p-3">
+              <FileClock disabled={false} action={handleFileClock} />
+            </div>
           </Tooltip>
 
           <Tooltip title="التقويم">
-            <button
-              className="flex items-center p-3"
-              type="button"
-              onClick={handleCalendar}
-            >
-              <ClenderIcon />
-            </button>
+            <div className="flex items-center p-3">
+              <ClenderIcon disabled={false} action={handleCalendar} />
+            </div>
           </Tooltip>
         </div>
       </div>
