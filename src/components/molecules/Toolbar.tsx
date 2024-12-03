@@ -269,6 +269,7 @@ const Toolbar = ({ componentCopy, newValues , deleteEndPoint }: Toolbar_TP) => {
       >
         <div>{componentCopy}</div>
       </ModalComp>
+      
     </>
   );
 };

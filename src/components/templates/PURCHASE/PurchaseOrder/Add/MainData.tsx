@@ -9,12 +9,11 @@ import ItemsTable from "../../../../molecules/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
+import SelectStatus from "../../../../molecules/Selects/SelectStatus";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { newValues_TP } from "./Types&Validation";
-import SelectStatus from "../../../../molecules/Selects/SelectStatus";
-import DeleteMain from "../DeleteMain";
 type Main_TP = {};
 function MainData({}: Main_TP) {
   const { values } = useFormikContext<newValues_TP>();
@@ -39,7 +38,6 @@ function MainData({}: Main_TP) {
       componentCopy={<MainCopyComp />}
       newValues={newValues}
       deleteEndPoint="api/PurchasOrder"
-     
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -61,7 +59,7 @@ function MainData({}: Main_TP) {
           <Grid item xs={12} sm={6}>
             <div className="flex items-center gap-4">
               <Label htmlFor="">تأكيد موعد الاستلام</Label>
-              <SwitchComp />
+              <SwitchComp name="deliverdConfirmation" />
               <div className="flex-1">
                 <BaseInputField
                   name="confirmationDayes"
@@ -74,7 +72,7 @@ function MainData({}: Main_TP) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
-              name="createDate"
+              name="requestDate"
               placeholder="تاريخ الطلب"
               label="تاريخ الطلب"
             />
@@ -84,15 +82,13 @@ function MainData({}: Main_TP) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
-              name="expectedReceiptDate"
+              name="requestEndDate"
               placeholder="تاريخ انتهاء الطلب"
               label="تاريخ انتهاء الطلب"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectWarehouse name="warehouseId" 
-            label="اختر المستودع"
-            />
+            <SelectWarehouse name="warehouseId" label="اختر المستودع" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
@@ -121,7 +117,7 @@ function MainData({}: Main_TP) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
-              name="expectedReceiptDate"
+              name="deliverdDate"
               placeholder="تاريخ الاستلام"
               label="تاريخ الاستلام"
             />
@@ -131,12 +127,12 @@ function MainData({}: Main_TP) {
             <div className="flex items-center gap-4">
               <Label htmlFor="">الحصول على الأسعار</Label>
               <RadioButtons
-                name="x"
+                name="priceIncludeTax"
                 label="باستثناء الضريبة"
                 onChange={() => {}}
               />
               <RadioButtons
-                name="x"
+                name="priceIncludeTax"
                 label="شاملة الضريبة"
                 onChange={() => {}}
               />
@@ -162,7 +158,7 @@ function MainData({}: Main_TP) {
           </Grid>
         </Grid>
         <Grid item xs={12} mt={5}>
-          <ItemsTable moduleName="orderDetailsModal" />
+          <ItemsTable moduleName="purchaseRequestDetailsDto" />
         </Grid>
       </div>
     </LayoutMainData>
