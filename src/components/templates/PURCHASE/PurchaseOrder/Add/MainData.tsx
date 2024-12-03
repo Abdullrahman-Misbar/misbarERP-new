@@ -39,7 +39,6 @@ function MainData({}: Main_TP) {
       componentCopy={<MainCopyComp />}
       newValues={newValues}
       deleteEndPoint="api/PurchasOrder"
-     
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -58,8 +57,9 @@ function MainData({}: Main_TP) {
           <Grid item xs={12} sm={6}>
             <SelectVendor name="vendorId" />
           </Grid>
+
           <Grid item xs={12} sm={6}>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mt-6">
               <Label htmlFor="">تأكيد موعد الاستلام</Label>
               <SwitchComp />
               <div className="flex-1">
@@ -72,6 +72,7 @@ function MainData({}: Main_TP) {
               <p>ايام</p>
             </div>
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
               name="createDate"
@@ -90,9 +91,7 @@ function MainData({}: Main_TP) {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectWarehouse name="warehouseId" 
-            label="اختر المستودع"
-            />
+            <SelectWarehouse name="warehouseId" label="اختر المستودع" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputDatepicker
@@ -128,7 +127,7 @@ function MainData({}: Main_TP) {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mt-8" >
               <Label htmlFor="">الحصول على الأسعار</Label>
               <RadioButtons
                 name="x"

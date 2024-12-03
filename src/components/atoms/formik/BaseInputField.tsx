@@ -50,8 +50,6 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
       }
       <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
         <TextField
-          // label={label}
-
           type={type == "password" && !showPassword ? "password" : "text"}
           id={id}
           required={required}
@@ -75,6 +73,17 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
             "& input[type='date']": {
               "-webkit-appearance": "textfield",
             },
+            // Add styles when the input is disabled
+            ...(disabled && {
+              backgroundColor: "#00000011", // Light gray background when disabled
+              borderColor: "rgba(0, 0, 0, 0.2)", // Light gray border when disabled
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#00000011", // Ensure border is also light gray
+              },
+              "& input": {
+                color: "rgba(0, 0, 0, 0.5)", // Dark gray text when disabled
+              },
+            }),
             ...sx,
           }}
           onFocus={handleFocus}
