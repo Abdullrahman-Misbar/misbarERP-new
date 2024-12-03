@@ -59,12 +59,13 @@ function MainData({}: Main_TP) {
           <Grid item xs={12} sm={6}>
             <div className="flex items-center gap-4">
               <Label htmlFor="">تأكيد موعد الاستلام</Label>
-              <SwitchComp name="deliverdConfirmation" />
+              <SwitchComp name="deliverdConfirmation"  />
               <div className="flex-1">
                 <BaseInputField
                   name="confirmationDayes"
                   placeholder="التأكيد قبل"
                   type="number"
+                  disabled
                 />
               </div>
               <p>ايام</p>
@@ -122,7 +123,6 @@ function MainData({}: Main_TP) {
               label="تاريخ الاستلام"
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <div className="flex items-center gap-4">
               <Label htmlFor="">الحصول على الأسعار</Label>
@@ -138,7 +138,6 @@ function MainData({}: Main_TP) {
               />
             </div>
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="referenceDocument"

@@ -2,11 +2,11 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../../hooks";
 import useDebounce from "../../../../hooks/useDebounce";
-import ModalComp from "../../../molecules/ModalComp";
 import Paginate from "../../../molecules/table/Paginate";
 import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -57,13 +57,12 @@ function Main() {
       <div className="flex justify-end mt-3">
         <Paginate
           pagesCount={data?.data?.totalCount / 5}
-          previousLabel={">>"}
-          nextLabel={"<<"}
+          previousLabel={<IoIosArrowBack />}
+          nextLabel={ <IoIosArrowForward /> }
           onPageChange={handlePageChange}
           initialPage={page}
         />
       </div>
-
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CloseIcon } from "yet-another-react-lightbox";
 import AddIcon from "../../assets/icon/AddIcon";
 import AttachmentIcon from "../../assets/icon/AttachmentIcon";
-import ClenderIcon from "../../assets/icon/ClenderIcon";
+import CalenderIcon from "../../assets/icon/CalenderIcon";
 import CopyIcon from "../../assets/icon/CopyIcon";
 import DeleteIcon from "../../assets/icon/DeleteIcon";
 import FileClock from "../../assets/icon/FileClock";
@@ -119,28 +119,28 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
         <div className="flex items-center justify-start ">
           <Tooltip title="تكرار">
             <div className="flex items-center">
-              <CopyIcon action={handleCopy} disabled />
+              <CopyIcon action={handleCopy} disabled={values?.editable} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
 
           <Tooltip title="إضافة">
             <div className="flex items-center p-3">
-              <AddIcon action={handleAdd} />
+              <AddIcon action={handleAdd} disabled={!values?.editable} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
 
           <Tooltip title="الرجوع">
             <div className="flex items-center p-3">
-              <UndoIcon disabled={false} action={handleUndo} />
+              <UndoIcon disabled={!values?.editable} action={handleUndo} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
 
           <Tooltip title="حذف">
             <div className="flex items-center p-3">
-              <DeleteIcon disabled={false} action={handleDelete} />
+              <DeleteIcon disabled={!values?.editable} action={handleDelete} />
               <div className="w-px h-12 bg-gray-200 mx-4"></div>
             </div>
           </Tooltip>
@@ -201,13 +201,13 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
         <div className="flex items-center justify-start ">
           <Tooltip title="الملف الزمني">
             <div className="flex items-center p-3">
-              <FileClock disabled={false} action={handleFileClock} />
+              <FileClock  action={handleFileClock} />
             </div>
           </Tooltip>
 
           <Tooltip title="التقويم">
             <div className="flex items-center p-3">
-              <ClenderIcon disabled={false} action={handleCalendar} />
+              <CalenderIcon  action={handleCalendar} />
             </div>
           </Tooltip>
         </div>
@@ -224,7 +224,6 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
       >
         <div>{componentCopy}</div>
       </ModalComp>
-      
     </>
   );
 };
