@@ -1,10 +1,12 @@
 import { Form, Formik } from "formik";
-import { useFetch, useMutate } from "../../../../../hooks";
-import MainData from "./MainData";
-import { notify } from "../../../../../utils/toast";
-import { Values_TP } from "./Types&Validation";
 import { useParams } from "react-router-dom";
+import { useFetch, useMutate } from "../../../../../hooks";
+import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
+import MainData from "./MainData";
+import {
+  Values_TP
+} from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -17,12 +19,11 @@ function Main({ editable }: Main_TP) {
   };
   // const searchParams = new URLSearchParams(queryParams as any)
   const endpoint = `api/PurchasOrder/Get/${id}`;
-  const { refetch, data , isLoading } = useFetch({
+  const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
   });
-  console.log("🚀 ~ Main ~ data:", data);
   const { mutate } = useMutate({
     mutationKey: ["api/PurchasOrder"],
     endpoint: `api/PurchasOrder`,
@@ -42,22 +43,39 @@ function Main({ editable }: Main_TP) {
 
     mutate(jsonData);
   };
+  const response = data?.data;
+
   const initialValues = {
-    editable:editable ? true : false ,
-    code:data?.data?.code || "",
-    confirmationDayes:data?.data?.confirmationDayes || "",
-    currencyId:data?.data?.currencyId || "",
-    expectedReceiptDate:data?.data?.expectedReceiptDate || "",
-    purchaseAgreementId:data?.data?.purchaseAgreementId || "",
-    referenceDocument:data?.data?.referenceDocument || "",
-    status:data?.data?.status || "",
-    vendorId:data?.data?.vendorId || "",
-    warehouseId:data?.data?.warehouseId || "",
-    approvalDate: data?.data?.approvalDate || "",
-    total: data?.data?.total || "",
-    createDate: data?.data?.createDate || "",
-    note: data?.data?.note || "",
-    orderDetailsModal: [],
+    code: response?.code || "",
+    vendorId: response?.vendorId || "",
+    editable: editable ? true : false,
+    requestDate: response?.requestDate || "",
+    requestEndDate: response?.requestEndDate || "",
+    approvalDate: response?.approvalDate || "",
+    expectedReceiptDate: response?.expectedReceiptDate || "",
+    deliverdDate: response?.deliverdDate || "",
+    referenceDocument: response?.referenceDocument || "",
+    deliverdConfirmation: response?.deliverdConfirmation || "",
+    purchaseAgreementId: response?.purchaseAgreementId || "",
+    confirmationDayes: response?.confirmationDayes || "",
+    currencyId: response?.currencyId || "",
+    warehouseId: response?.warehouseId || "",
+    total: response?.total || "",
+    priceIncludeTax: response?.priceIncludeTax || "",
+    isApproved: response?.isApproved || "",
+    note: response?.note || "",
+    purchaseRequestDetailsDto: [
+      {
+        itemId: "",
+        description: "",
+        quantity: "",
+        uomId: "",
+        price: "",
+        total: "",
+        warehouseId: "",
+        note: "",
+      },
+    ],
     copValue: {
       code: "",
       purchaseAgreementId: "",
@@ -74,9 +92,12 @@ function Main({ editable }: Main_TP) {
       currencyId: "",
     },
   };
-  if(editable && isLoading) return <>
-  <AddLayoutSkeleton/>
-  </>
+  if (editable && isLoading)
+    return (
+      <>
+        <AddLayoutSkeleton />
+      </>
+    );
   return (
     <div>
       <Formik
@@ -85,7 +106,7 @@ function Main({ editable }: Main_TP) {
         enableReinitialize
       >
         <Form>
-          <MainData  />
+          <MainData />
         </Form>
       </Formik>
     </div>
