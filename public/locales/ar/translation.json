@@ -74,6 +74,10 @@
   "total":"الاجمالي",
   "Reference number":"الرقم المرجعي",
   "Approved":"معتمد",
-  "Not Approved":"غير معتمد"
+  "Not Approved":"غير معتمد",
+  "Are you sure Approved this order?":"هل انت متاكد من اعتماد هذا الطلب",
+  "Are you sure cancel Approved this order?":"هل انت متاكد من الغاء اعتماد هذا الطلب",
+  "Are you sure cancel Request?":"هل انت متاكد من الغاء الطلب",
+  "After canceling the order, it cannot be restored again.":"بعد الغاء الطلب لا يمكن استعادته مره اخرى"
 
 }

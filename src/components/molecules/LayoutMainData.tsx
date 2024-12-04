@@ -1,5 +1,5 @@
 import React from "react";
-import Toolbar from "./Toolbar";
+import Toolbar from "./toolbar/Toolbar";
 
 type LayoutMainData_TP = {
   children: React.ReactNode;

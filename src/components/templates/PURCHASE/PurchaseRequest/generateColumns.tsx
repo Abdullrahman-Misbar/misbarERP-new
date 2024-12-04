@@ -5,6 +5,7 @@ import { Edit } from "../../../atoms/icons/Edit";
 import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
+import CancelApproved from "./CancelApproved";
 
 type RefetchFunction = () => void;
 
@@ -59,14 +60,18 @@ export const generateColumns = (
       header: `${t("status")}`,
       accessorKey: "isApproved",
       cell: (info) => (
-        <div
-          className="w-[100px] rounded-md p-2 text-white"
-          style={{
-            backgroundColor: info?.row?.original?.isApproved? "green" : "red",
-          }}
-        >
-          {info?.row?.original?.isApproved  ? t("Approved") : t("Not Approved")}
-        </div>
+        <CancelApproved
+        info={info}
+        refetch={refetch}
+        />
+        // <div
+        //   className="w-[100px] rounded-md p-2 text-white"
+        //   style={{
+        //     backgroundColor: info?.row?.original?.isApproved ? "green" : "red",
+        //   }}
+        // >
+        //   {info?.row?.original?.isApproved ? t("Approved") : t("Not Approved")}
+        // </div>
       ),
     },
     {

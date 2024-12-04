@@ -59,6 +59,7 @@ export type Values_TP = {
     priceIncludeTax: string;
     isApproved: string;
   };
+  uoms:string
 };
 
 export type PurchaseOrderData = {
@@ -110,3 +111,19 @@ export type FetchResponse<T> = {
   status: string;
   error?: string;
 };
+
+
+export type Item_TP ={
+  itemId: string;
+  note: string;
+  id:string
+  price: number;
+  quantity: number;
+  total: number;
+  uomId: string;
+  warehouseId: string;
+  description:string
+  product:{
+    uoms:string
+  }
+}

@@ -4,7 +4,7 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Values_TP } from "./Types&Validation";
+import { Item_TP, Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -17,7 +17,7 @@ function Main({ editable }: Main_TP) {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled:!!id
+    enabled:  !!id && !!editable ,
   });
   const postEndPoint = id
     ? `api/PurchasRequest/UpdateRequest/${id}`
@@ -26,7 +26,7 @@ function Main({ editable }: Main_TP) {
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
     onSuccess: () => {
-      refetch();
+      // refetch();
       notify("success");
     },
     Module: "PURCHASE",
@@ -36,7 +36,7 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, editable, ...valuesWithoutCopValue } = values;
+    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -57,14 +57,28 @@ function Main({ editable }: Main_TP) {
     referenceDocument: response?.referenceDocument || "",
     deliverdConfirmation: response?.deliverdConfirmation || false,
     purchaseAgreementId: response?.purchaseAgreementId || "",
-    confirmationDayes: response?.confirmationDayes || "",
+    confirmationDayes: response?.confirmationDayes || 0,
     currencyId: response?.currencyId || "",
     warehouseId: response?.warehouseId || "",
     total: response?.total || "",
     priceIncludeTax: response?.priceIncludeTax || false,
     isApproved: response?.isApproved || false,
     note: response?.note || "",
-    purchaseRequestDetailsDto: [],
+    purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
+      ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
+          itemId: item?.itemId,
+          id:item?.id,
+          note: item?.note,
+          price: item?.price,
+          quantity: item?.quantity,
+          total: item?.total,
+          uomId: item?.uomId,
+          warehouseId: item?.warehouseId,
+          isDeleted: false, 
+          description: item?.description,
+          uoms: item?.product?.uoms,
+        }))
+      : [],
     copValue: {
       code: "",
       purchaseAgreementId: "",
@@ -75,7 +89,7 @@ function Main({ editable }: Main_TP) {
       referenceDocument: "",
       note: "",
       approvalDate: "",
-      confirmationDayes: "",
+      confirmationDayes: 0,
       warehouseId: "",
       purchaseRepresentativeId: "",
       currencyId: "",

@@ -7,6 +7,7 @@ type SelectItemProps = {
   name: string;
   label: string;
   onChange:()=>void
+  value?:string
 };
 
 interface Option {
@@ -18,9 +19,8 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
+const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange , value }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
-  console.log("🚀 ~ values:", values);
 
   const handleChange = (event:{values:string}) => {
     setFieldValue(name, event.value);
@@ -42,6 +42,7 @@ const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
       label: item.lookupName,
       uoms: item?.uoms,
     })) || [];
+    const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -51,7 +52,7 @@ const SelectItem: React.FC<SelectItemProps> = ({ name, label, onChange }) => {
       placeholder="اختر الصنف"
       isLoading={isLoading}
       options={options}
-      // value={values[name]}
+      value={selectedValue}
       onChange={onChange || handleChange}
     />
   );

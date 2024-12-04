@@ -9,27 +9,31 @@ export interface HeaderType {
   size?: number;
   placeholder?: string;
   onChange?: () => void;
+  value: number;
 }
-
-export type ItemType = {
-  [key: string]: any;
-};
 
 interface TableDynamicProps {
   headers: HeaderType[];
-  items: ItemType[];
-  actions?: (index: number) => React.ReactNode;
+  actions?: (originalIndex: number, remove: () => void) => React.ReactNode;
   moduleName: string;
   remove: () => void;
 }
 
-const   TableDynamic: React.FC<TableDynamicProps> = ({
+const TableDynamic: React.FC<TableDynamicProps> = ({
   headers,
   actions,
   moduleName,
   remove,
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
+
+  const filteredItems = values[moduleName]?.reduce(
+    (acc: any[], item: any, index: number) => {
+      if (!item.isDeleted) acc.push({ ...item, originalIndex: index }); 
+      return acc;
+    },
+    []
+  );
 
   return (
     <div className="overflow-x-scroll">
@@ -50,33 +54,39 @@ const   TableDynamic: React.FC<TableDynamicProps> = ({
           </tr>
         </thead>
         <tbody>
-          {values[moduleName]?.map((_: any, index: number) => (
+          {filteredItems?.map((item:any, index:number) => (
             <tr key={index}>
               {headers.map((header) => (
                 <td
                   key={header.name}
                   className="p-3 border-b border-gray-200 min-w-[200px]"
                 >
-                  {/* {header.component} */}
                   <header.component
-                    name={`${moduleName}[${index}].${header.name}`}
-                    value={values[moduleName][header.name]}
+                    name={`${moduleName}[${item.originalIndex}].${header.name}`}
+                    value={
+                      values[moduleName][item.originalIndex][header.name] ||
+                      header?.value
+                    }
                     type={header?.type}
                     placeholder={header?.placeholder}
+                    moduleName={moduleName}
+                    index={item.originalIndex} // Use the original index here
                     onChange={
                       header?.onChange
                         ? header?.onChange
                         : (e: { target: { value: any } }) =>
                             setFieldValue(
-                              `${moduleName}[${index}].${header.name}`,
-                              e?.value
+                              `${moduleName}[${item.originalIndex}].${header.name}`,
+                              header?.type === "number"
+                                ? +e?.target?.value
+                                : e?.target?.value
                             )
                     }
                   />
                 </td>
               ))}
               <td className="p-3 text-center border-b border-gray-200">
-                {actions && actions(index, remove)}
+                {actions && actions(item.originalIndex, remove)}
               </td>
             </tr>
           ))}

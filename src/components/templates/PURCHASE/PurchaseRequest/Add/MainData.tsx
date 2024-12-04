@@ -6,7 +6,7 @@ import { Label } from "../../../../atoms/formik/Label";
 import RadioButtons from "../../../../atoms/formik/RadioComp";
 import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import ApprovedStatus from "../../../../molecules/ApprovedStatus";
-import ItemsTable from "../../../../molecules/ItemsTable";
+import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
@@ -14,10 +14,9 @@ import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-type Main_TP = {};
-function MainData({}: Main_TP) {
+
+function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
-  console.log("🚀 ~ MainData ~ values:", values)
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -27,7 +26,7 @@ function MainData({}: Main_TP) {
     referenceDocument: values?.copValue?.referenceDocument || "",
     note: values?.copValue?.note || "",
     approvalDate: values?.copValue?.approvalDate || "",
-    confirmationDayes: values?.copValue?.confirmationDayes || "",
+    confirmationDayes: values?.copValue?.confirmationDayes || 0,
     warehouseId: values?.copValue?.warehouseId || "",
     currencyId: values?.copValue?.currencyId || "",
     requestDate: values?.copValue?.requestDate || "",
@@ -37,12 +36,12 @@ function MainData({}: Main_TP) {
     priceIncludeTax: values?.copValue?.priceIncludeTax || null,
     isApproved: values?.copValue?.isApproved || null,
     deliverdConfirmation: values?.copValue?.deliverdConfirmation || null,
-
   };
 
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
+      //@ts-ignore
       newValues={newValues}
       deleteEndPoint="api/PurchasRequest"
     >

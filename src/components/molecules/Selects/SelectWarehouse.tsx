@@ -7,6 +7,7 @@ type SelectWarehouseProps = {
   name: string;
   disabled?: boolean;
   label?: string;
+  value?:string
 };
 
 interface Option {
@@ -22,6 +23,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({
   name,
   disabled,
   label,
+  value
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
 
@@ -42,7 +44,7 @@ const SelectWarehouse: React.FC<SelectWarehouseProps> = ({
       value: warehouse.id,
       label: warehouse.lookupName,
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp

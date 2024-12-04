@@ -4,12 +4,21 @@ import SelectComp from "../../atoms/formik/SelectComp";
 type SelectUoms_TP = {
   name: string;
   disabled?: boolean;
+  value?: string;
+  moduleName?: string;
+  index: String;
 };
 type Formik_Values = {
   name: string;
   uoms: [];
 };
-const SelectUoms = ({ name, disabled }: SelectUoms_TP) => {
+const SelectUoms = ({
+  name,
+  disabled,
+  value,
+  moduleName,
+  index,
+}: SelectUoms_TP) => {
   const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: { value: string }) => {
@@ -17,12 +26,16 @@ const SelectUoms = ({ name, disabled }: SelectUoms_TP) => {
   };
 
   const options =
-    values?.uoms?.map(
-      (item: { id: number; companyCode: string; uom: string[] }) => ({
-        value: item.id,
-        label: item.uom?.uomName,
+    values[moduleName][index]?.uoms?.map(
+      (item: { id: number; companyCode: string; uomName: string }) => ({
+        value:item?.uom?.uomName ? item?.uom?.id :  item?.id,
+        label: item?.uomName || item?.uom?.uomName,
       })
     ) || [];
+  console.log("🚀 ~ SelectUoms ~ options:", options);
+  const selectedValue = options?.find(
+    (item) => item?.value == (value || values[name])
+  );
 
   return (
     <SelectComp
@@ -30,6 +43,8 @@ const SelectUoms = ({ name, disabled }: SelectUoms_TP) => {
       label=""
       placeholder="اختر وحدة القياس"
       options={options}
+      //@ts-ignore
+      value={selectedValue}
       onChange={handleChange}
       disabled={disabled}
     />
