@@ -120,7 +120,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
   };
 
   const handleFileClock = () => {
-    setOpenHistoricalDrawer(true); // فتح الدرج عند الضغط على أيقونة FileClock
+    setOpenHistoricalDrawer(true); 
   };
 
   const handleCalendar = () => {

@@ -27,6 +27,7 @@ const BreadcrumbComponent: React.FC<BreadcrumbComponentProps> = ({ items }) => {
               className="font-somarLight text-light font-semibold"
             >
               {item.label}
+              
             </Link>
           );
         })}
