@@ -2231,6 +2231,11 @@ react-is@^18.3.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
+react-modern-drawer@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-modern-drawer/-/react-modern-drawer-1.4.0.tgz#2d616b3f6f45a214186c099dff0c0233f51c2ac2"
+  integrity sha512-5OkcUstqUdd/CNW9+BvLkzm36R2G54RFXWF2mWCH13cUsz5SNo9aB9KzPRbJp2LEVfRL/u+MgikOWRe7/6wKEQ==
+
 react-paginate@^8.2.0:
   version "8.2.0"
   resolved "https://registry.npmjs.org/react-paginate/-/react-paginate-8.2.0.tgz"

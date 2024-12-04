@@ -2,7 +2,7 @@ import { Tooltip } from "@mui/material";
 
 function ThirdControlPrevIcon() {
   return (
-    <Tooltip title="أول">
+    <Tooltip title="الاخير">
       <button type="button">
         <svg
           xmlns="http://www.w3.org/2000/svg"

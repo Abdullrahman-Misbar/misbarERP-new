@@ -1,16 +1,11 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
+import Drawer from "react-modern-drawer";
 import List from "@mui/material/List";
+import * as React from "react";
 import { CloseIcon } from "yet-another-react-lightbox";
 import Button from "../atoms/button/Button";
-import CreateByIcon from "../../assets/icon/CreateByIcon";
-import PhoneIcon from "../../assets/icon/PhoneIcon";
-import DateIcon from "../../assets/icon/DateIcon";
-import PersonIcon from "../../assets/icon/personIcon";
-import FileIcon from "../../assets/icon/FileIcon";
 import HistoricalDrawerCard from "./HistoricalDrawerCard";
-
+import 'react-modern-drawer/dist/index.css'
 interface HistoricalDrawerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,10 +15,8 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
   open,
   setOpen,
 }) => {
-  const anchor: "left" = "left"; // Drawer will open from the left
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
+  const toggleDrawer = () => {
+    setOpen((prevState) => !prevState);
   };
 
   const DrawerList = (
@@ -34,9 +27,7 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
         padding: 2,
         height: "100%",
       }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
+      // role="presentation"
     >
       <List>
         <div className="py-12 px-4">
@@ -44,7 +35,7 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
             <p className="text-xl font-somarBold  ">
               قائمة الأنشطة المجدولة لهذه العملية{" "}
             </p>
-            <span className="text-[#D32F2F] ">
+            <span className="text-[#D32F2F] cursor-pointer " onClick={toggleDrawer}>
               <CloseIcon />
             </span>
           </div>
@@ -149,13 +140,13 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
   );
 
   return (
-    <Drawer
-      anchor={anchor} // Open the drawer from the left
-      open={open}
-      onClose={toggleDrawer(false)}
-    >
-      {DrawerList}
-    </Drawer>
+    <div>
+      <Drawer direction="left" open={open} onClose={toggleDrawer}
+      className="!w-[500px] overflow-y-scroll overflow-x-hidden"
+      >
+        {DrawerList}
+      </Drawer>
+    </div>
   );
 };
 

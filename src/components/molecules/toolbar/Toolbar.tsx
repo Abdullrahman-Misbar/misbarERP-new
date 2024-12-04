@@ -1,18 +1,17 @@
-import { Tooltip } from "@mui/material";
-import CalenderIcon from "../../../assets/icon/CalenderIcon";
-import FileClock from "../../../assets/icon/FileClock";
-import FileNotSaveIcon from "../../../assets/icon/FileNotSaveIcon";
 import AddBar from "./AddBar";
 import ApprovedBar from "./ApprovedBar";
+import CancelBar from "./CancelBar";
 import CloseBar from "./CloseBar";
+import ControlTableButton from "./ControlTableButton";
 import DeleteBar from "./DeleteBar";
+import OperationLogsBar from "./OperationLogsBar";
 import PrintBar from "./PrintBar";
 import RepeaterBar from "./RepeaterBar";
 import SaveBar from "./SaveBar";
+import ScheduledActivities from "./ScheduledActivities";
 import SettingBar from "./SettingBar";
 import UndoBar from "./UndoBar";
 import UploadFileBar from "./UploadFileBar";
-import CancelBar from "./CancelBar";
 
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
@@ -20,14 +19,6 @@ type Toolbar_TP = {
   deleteEndPoint?: string;
 };
 const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
-  const handleFileClock = () => {
-    console.log("File clock action triggered");
-  };
-
-  const handleCalendar = () => {
-    console.log("Calendar action triggered");
-  };
-
   return (
     <>
       <div className="flex items-center justify-between p-4">
@@ -40,27 +31,14 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
           <PrintBar />
           <UploadFileBar />
           <ApprovedBar />
-
-          
-          <CancelBar/>
-
+          <CancelBar />
           <SettingBar />
-
           <CloseBar />
         </div>
-
+        <ControlTableButton />
         <div className="flex items-center justify-start ">
-          <Tooltip title="الملف الزمني">
-            <div className="flex items-center p-3">
-              <FileClock action={handleFileClock} />
-            </div>
-          </Tooltip>
-
-          <Tooltip title="التقويم">
-            <div className="flex items-center p-3">
-              <CalenderIcon action={handleCalendar} />
-            </div>
-          </Tooltip>
+          <OperationLogsBar />
+          <ScheduledActivities />
         </div>
       </div>
     </>

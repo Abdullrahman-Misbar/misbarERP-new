@@ -2,7 +2,7 @@ import { Tooltip } from "@mui/material";
 
 function FirstControlNextIcon() {
   return (
-    <Tooltip title="الثاني">
+    <Tooltip title="التالي">
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"

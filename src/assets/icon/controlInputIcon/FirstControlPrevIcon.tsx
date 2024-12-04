@@ -3,7 +3,7 @@ import React from "react";
 
 function FirstControlPrevIcon() {
   return (
-    <Tooltip title="الثاني">
+    <Tooltip title="السابق">
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"

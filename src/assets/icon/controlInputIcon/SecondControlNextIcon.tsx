@@ -4,7 +4,7 @@ import React from "react";
 function SecondControlNextIcon() {
   return (
     <>
-      <Tooltip title=" عشر سجلات للخلف ">
+      <Tooltip title=" 10 سجلات للامام ">
         <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
