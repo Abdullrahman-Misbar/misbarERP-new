@@ -10,7 +10,8 @@ type ItemsTable_TP = {
 };
 
 export default function ItemsTable({ moduleName }: ItemsTable_TP) {
-  const { setFieldValue } = useFormikContext();
+  const { setFieldValue , values } = useFormikContext();
+  console.log("🚀 ~ ItemsTable ~ values:", values)
   const headers = [
     // {
     //   name: "barcode",
@@ -74,10 +75,10 @@ export default function ItemsTable({ moduleName }: ItemsTable_TP) {
       placeholder: "المجموع",
       component: BaseInputRepeater,
       type: "number",
+
     },
   ];
 
-  const { values } = useFormikContext<any>();
   return (
     <div>
       <FieldArray name={moduleName}>

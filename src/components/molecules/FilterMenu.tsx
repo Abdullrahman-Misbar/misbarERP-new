@@ -67,7 +67,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({ anchorEl, onClose, open }) => {
             onChange={() => handleCheckboxChange(item)}
             size="small"
           />
-          <span>{item}</span>
+          <span className="font-somar">{item}</span>
         </MenuItem>
       ))}
 

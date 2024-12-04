@@ -1,10 +1,5 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router";
-import AnalysisCardSkeleton from "../components/molecules/Skeleton/AnalysisCardSkeleton";
-import LayoutSkeleton from "../components/molecules/Skeleton/LayoutSkeleton";
-import OverviewSkeleton from "../components/molecules/Skeleton/OverviewSkeleton";
-import PlayoffsSkelteton from "../components/molecules/Skeleton/PlayoffsSkelteton";
-import TableSkeleton from "../components/molecules/Skeleton/TableSkeleton";
 import NavBar from "../components/organisms/NavBar";
 import { SideBar } from "../components/organisms/SideBar";
 import { useAuth } from "../context/auth-and-perm/AuthProvider";

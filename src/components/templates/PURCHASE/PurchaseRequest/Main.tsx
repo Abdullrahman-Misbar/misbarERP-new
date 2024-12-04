@@ -22,7 +22,6 @@ function Main() {
   const searchParams = new URLSearchParams(queryParams as any);
 
   const endpoint = `api/PurchasRequest?${searchParams.toString()}`;
-
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

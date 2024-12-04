@@ -20,7 +20,7 @@ const SelectUoms = ({ name, disabled }: SelectUoms_TP) => {
     values?.uoms?.map(
       (item: { id: number; companyCode: string; uom: string[] }) => ({
         value: item.id,
-        label: item.uom,
+        label: item.uom?.uomName,
       })
     ) || [];
 

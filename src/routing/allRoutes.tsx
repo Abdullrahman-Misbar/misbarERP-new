@@ -18,7 +18,9 @@ export const AllRoutesProvider = () => {
         {/* PURCHASE */}
         <Route
           path="/purchase/PurchaseRequest"
-          element={<PurchaseRequest title={t("Purchase request")} />}
+          element={<PurchaseRequest title={t("Purchase request")} />
+          
+        }
         />
         <Route
           path="/purchase/PurchaseRequest/add"
@@ -36,5 +38,5 @@ export const AllRoutesProvider = () => {
         element={<Login title={t("login")} />}
       />
     </Routes>
-  )
+  );
 };

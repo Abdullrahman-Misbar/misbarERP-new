@@ -17,6 +17,7 @@ import { Values_TP } from "./Types&Validation";
 type Main_TP = {};
 function MainData({}: Main_TP) {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
+  console.log("🚀 ~ MainData ~ values:", values)
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -35,6 +36,8 @@ function MainData({}: Main_TP) {
     deliverdDate: values?.copValue?.deliverdDate || "",
     priceIncludeTax: values?.copValue?.priceIncludeTax || null,
     isApproved: values?.copValue?.isApproved || null,
+    deliverdConfirmation: values?.copValue?.deliverdConfirmation || null,
+
   };
 
   return (

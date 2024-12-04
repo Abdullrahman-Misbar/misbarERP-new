@@ -46,6 +46,7 @@ export type Values_TP = {
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
+    deliverdConfirmation:boolean
     note: string;
     approvalDate: string;
     confirmationDayes: string;

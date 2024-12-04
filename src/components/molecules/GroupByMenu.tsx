@@ -74,7 +74,7 @@ const GroupByMenu: React.FC<GroupByMenuProps> = ({
             onChange={() => handleCheckboxChange(item)}
             size="small"
           />
-          <span>{item}</span>
+          <span className="font-somar">{item}</span>
         </MenuItem>
       ))}
 

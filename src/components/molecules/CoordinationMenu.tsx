@@ -13,6 +13,7 @@ import { FiSave } from "react-icons/fi";
 import CoordinationIcon from "../../assets/icon/CoordinationIcon";
 import DeleteIcon from "../../assets/icon/DeleteIcon";
 import AddIcon from "../../assets/icon/AddIcon";
+import RadioButtons from "../atoms/formik/RadioComp";
 
 type CoordinationMenuProps = {
   anchorEl: HTMLElement | null;
@@ -27,7 +28,11 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
 }) => {
   const [selectedItem, setSelectedItem] = useState<string>("التنسيق 1");
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRadioChange = (event: {
+    target: {
+      value: string;
+    };
+  }) => {
     setSelectedItem(event.target.value);
   };
 
@@ -62,40 +67,47 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
         </IconButton>
       </div>
       {/* ITEM 1  */}
-      <MenuItem className="flex justify-between ">
+      <MenuItem className="!flex !justify-between ">
         <FormControlLabel
           value="التنسيق 1"
           control={<Radio />}
-          label={<span className="text-[14px]">التنسيق 1</span>}
+          label={<span className="text-[14px] font-somar">التنسيق 1</span>}
           checked={selectedItem === "التنسيق 1"}
           onChange={handleRadioChange}
         />
+        {/* <RadioButtons
+        label="التنسيق 1"
+        name=""
+        onChange={handleRadioChange}
+        checked={selectedItem === "التنسيق 1"}
+
+        /> */}
 
         {/* إضافة margin-left */}
-        <DeleteIcon />
+        <DeleteIcon action={() => {}} disabled />
       </MenuItem>
 
       {/* ITEM 2  */}
-      <MenuItem className="flex justify-between items-center">
+      <MenuItem className="!flex !justify-between !items-center">
         <FormControlLabel
           value="التنسيق 2"
           control={<Radio />}
-          label={<span className="text-[14px]">التنسيق 2</span>}
+          label={<span className="text-[14px] font-somar">التنسيق 2</span>}
           checked={selectedItem === "التنسيق 2"}
           onChange={handleRadioChange}
         />
-        <DeleteIcon />
+        <DeleteIcon action={() => {}} disabled />
       </MenuItem>
       {/* ITEM 3  */}
-      <MenuItem className="flex justify-between items-center">
+      <MenuItem className="!flex !justify-between !items-center">
         <FormControlLabel
           value="التنسيق 3"
           control={<Radio />}
-          label={<span className="text-[14px]">التنسيق 3</span>}
+          label={<span className="text-[14px] font-somar">التنسيق 3</span>}
           checked={selectedItem === "التنسيق 3"}
           onChange={handleRadioChange}
         />
-        <DeleteIcon />
+        <DeleteIcon action={() => {}} disabled />
       </MenuItem>
 
       <Divider />
@@ -103,7 +115,7 @@ const CoordinationMenu: React.FC<CoordinationMenuProps> = ({
       <MenuItem>
         <IconButton size="small">
           <AddIcon />
-          <span className="text-[14px]"> حفظ التنسيق الحالى</span>
+          <span className="text-[14px] font-somar"> حفظ التنسيق الحالى</span>
         </IconButton>
       </MenuItem>
     </Menu>

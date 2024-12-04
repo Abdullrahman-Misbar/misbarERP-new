@@ -12,7 +12,7 @@ const style = {
   minWidth: 1000,
   bgcolor: "background.paper",
   padding: "24px",
-  height: "700px",
+  // maxHeight: "800px",
   border: "0px solid transparent",
   boxShadow: 24,
   p: 4,
@@ -47,14 +47,14 @@ export default function ModalComp({
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between  h-full relative">
+          <div className="flex flex-col  h-full relative">
             <div className="border-b   ">
               <p className="pb-3">{header}</p>
               <span className=" cursor-pointer" onClick={() => setOpen(false)}>
                 <IoMdClose className="absolute top-[0] left-0" />
               </span>
             </div>
-            <div className="mt-5 overflow-scroll">{children}</div>
+            <div className="mt-5 overflow-scroll max-h-[600px]">{children}</div>
             <div className="flex  justify-end gap-3">
               <Button
                 text={`${AgreeTextButton}`}
