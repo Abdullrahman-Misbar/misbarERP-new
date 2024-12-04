@@ -1,21 +1,26 @@
-import { Tooltip } from '@mui/material'
-import React from 'react'
-import CalenderIcon from '../../../assets/icon/CalenderIcon'
+import { Tooltip } from "@mui/material";
+import React, { useState } from "react";
+import CalenderIcon from "../../../assets/icon/CalenderIcon";
+import ScheduledActivitiesDrawer from "./ScheduledActivitiesDrawer";
 
 function ScheduledActivities() {
-  
+  const [openHistoricalDrawer, setOpenHistoricalDrawer] = useState(false);
   const handleCalendar = () => {
-    console.log("Calendar action triggered");
+    setOpenHistoricalDrawer(true);
   };
   return (
     <div>
-        <Tooltip title="الانشطة المجدولة">
-            <div className="flex items-center p-3">
-              <CalenderIcon action={handleCalendar} />
-            </div>
-          </Tooltip>
+      <Tooltip title="الانشطة المجدولة">
+        <div className="flex items-center p-3">
+          <CalenderIcon action={handleCalendar} />
+        </div>
+      </Tooltip>
+      <ScheduledActivitiesDrawer
+        open={openHistoricalDrawer}
+        setOpen={setOpenHistoricalDrawer}
+      />
     </div>
-  )
+  );
 }
 
-export default ScheduledActivities
+export default ScheduledActivities;
