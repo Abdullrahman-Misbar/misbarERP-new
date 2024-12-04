@@ -7,6 +7,13 @@ import { CloseIcon } from "yet-another-react-lightbox";
 import AddIcon from "../../assets/icon/AddIcon";
 import AttachmentIcon from "../../assets/icon/AttachmentIcon";
 import CalenderIcon from "../../assets/icon/CalenderIcon";
+import FirstControlNextIcon from "../../assets/icon/controlInputIcon/FirstControlNextIcon";
+import FirstControlPrevIcon from "../../assets/icon/controlInputIcon/FirstControlPrevIcon";
+import RedoIcon from "../../assets/icon/controlInputIcon/RedoIcon";
+import SecondControlNextIcon from "../../assets/icon/controlInputIcon/SecondControlNextIcon";
+import SecondControlPrevIcon from "../../assets/icon/controlInputIcon/SecondControlPrevIcon";
+import ThirdControlNextIcon from "../../assets/icon/controlInputIcon/ThirdControlNextIcon";
+import ThirdControlPrevIcon from "../../assets/icon/controlInputIcon/ThirdControlPrevIcon";
 import CopyIcon from "../../assets/icon/CopyIcon";
 import DeleteIcon from "../../assets/icon/DeleteIcon";
 import FileClock from "../../assets/icon/FileClock";
@@ -19,6 +26,7 @@ import { useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
 import ApprovedIcon from "../atoms/icons/ApprovedIcon";
 import UnApprovedIcon from "../atoms/icons/UnApprovedIcon";
+import HistoricalDrawer from "./HistoricalDrawer";
 import ModalComp from "./ModalComp";
 import showAlert from "./ShowAlert";
 
@@ -27,6 +35,7 @@ type Toolbar_TP = {
   newValues?: { [key: string]: string };
   deleteEndPoint?: string;
 };
+
 const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
   const { handleSubmit, values, setValues, resetForm, setFieldValue } =
     useFormikContext<any>();
@@ -111,12 +120,23 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
   };
 
   const handleFileClock = () => {
-    console.log("File clock action triggered");
+    setOpenHistoricalDrawer(true); // فتح الدرج عند الضغط على أيقونة FileClock
   };
 
   const handleCalendar = () => {
     console.log("Calendar action triggered");
   };
+
+  const [controlInput, setControlInput] = useState(0);
+
+  const handelcontrolInput = () => {
+    if (controlInput > 0) {
+      setControlInput(controlInput + 1);
+    }
+  };
+
+  // إدارة حالة الدرج التاريخي
+  const [openHistoricalDrawer, setOpenHistoricalDrawer] = useState(false);
 
   return (
     <>
@@ -211,6 +231,26 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
           </Tooltip>
         </div>
 
+        <div className="flex items-center justify-center  gap-3">
+          <div className="flex items-center gap-2">
+            <ThirdControlNextIcon />
+            <SecondControlNextIcon />
+            <FirstControlNextIcon />
+          </div>
+          <input
+            placeholder="0"
+            type="text"
+            value={controlInput}
+            className="rounded-[4px] border w-10 px-2 py-1 border-[#0000003B] text-center focus:outline-none"
+          />
+          <div className="flex items-center gap-2">
+            <RedoIcon />
+            <FirstControlPrevIcon />
+            <SecondControlPrevIcon />
+            <ThirdControlPrevIcon />
+          </div>
+        </div>
+
         <div className="flex items-center justify-start ">
           <Tooltip title="الملف الزمني">
             <div className="flex items-center p-3">
@@ -225,6 +265,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
           </Tooltip>
         </div>
       </div>
+
       <ModalComp
         header="حدد طلب الشراء المراد انزال التفاصيل منه"
         open={openCopyModal}
@@ -237,6 +278,13 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
       >
         <div>{componentCopy}</div>
       </ModalComp>
+
+      {/* إضافة مكون HistoricalDrawer وتمرير الـ props */}
+
+      <HistoricalDrawer
+        open={openHistoricalDrawer}
+        setOpen={setOpenHistoricalDrawer}
+      />
     </>
   );
 };
