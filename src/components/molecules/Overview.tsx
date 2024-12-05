@@ -1,5 +1,5 @@
 import { useState } from "react";
-import GreySttingIcon from "../../assets/icon/GreySttingIcon";
+import GreySttingIcon from "../atoms/icons/GreySttingIcon";
 
 function Overview() {
   return (

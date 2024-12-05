@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { AiOutlinePlus, AiOutlineClose } from "react-icons/ai";
-import FilterIcon from "../../assets/icon/FilterIcon";
+import FilterIcon from "../atoms/icons/FilterIcon";
 
 type FilterMenuProps = {
   anchorEl: HTMLElement | null;

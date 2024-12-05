@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import { useFormikContext } from "formik";
-import UndoIcon from "../../../assets/icon/UndoIcon";
+import UndoIcon from "../../atoms/icons/UndoIcon";
 
 function UndoBar() {
   const { values, resetForm } = useFormikContext<any>();

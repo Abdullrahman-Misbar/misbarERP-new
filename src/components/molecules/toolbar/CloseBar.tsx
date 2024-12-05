@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import React from "react";
-import CloseIcon from "../../../assets/icon/CloseIcon";
+import CloseIcon from "../../atoms/icons/CloseIcon";
 import { useNavigate } from "react-router-dom";
 
 function CloseBar() {

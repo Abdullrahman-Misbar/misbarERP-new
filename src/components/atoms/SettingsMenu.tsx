@@ -2,8 +2,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MdSettings } from "react-icons/md";
-import ExportIcon from "../../assets/icon/ExportIcon";
-import ImportIcon from "../../assets/icon/ImportIcon";
+import ExportIcon from "./icons/ExportIcon";
+import ImportIcon from "./icons/ImportIcon";
 type SettingsMenu_TP = {
   setExportExcelModal: Dispatch<SetStateAction<boolean>>;
   setImportExcelModal: Dispatch<SetStateAction<boolean>>;

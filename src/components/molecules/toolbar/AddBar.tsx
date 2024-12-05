@@ -1,7 +1,7 @@
 import { Tooltip } from "@mui/material";
 import { useFormikContext } from "formik";
 import { useLocation, useNavigate } from "react-router-dom";
-import AddIcon from "../../../assets/icon/AddIcon";
+import AddIcon from "../../atoms/icons/AddIcon";
 
 function AddBar() {
   const { values, resetForm } = useFormikContext<any>();

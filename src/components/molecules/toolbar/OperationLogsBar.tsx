@@ -1,7 +1,5 @@
-
-
 import { Tooltip } from "@mui/material";
-import FileClock from "../../../assets/icon/FileClock";
+import FileClock from "../../atoms/icons/FileClock";
 import { useState } from "react";
 import HistoricalDrawer from "../HistoricalDrawer";
 

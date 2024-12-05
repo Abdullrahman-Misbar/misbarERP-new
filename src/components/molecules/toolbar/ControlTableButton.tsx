@@ -1,11 +1,11 @@
 import { useState } from "react";
-import FirstControlNextIcon from "../../../assets/icon/controlInputIcon/FirstControlNextIcon";
-import FirstControlPrevIcon from "../../../assets/icon/controlInputIcon/FirstControlPrevIcon";
-import RedoIcon from "../../../assets/icon/controlInputIcon/RedoIcon";
-import SecondControlNextIcon from "../../../assets/icon/controlInputIcon/SecondControlNextIcon";
-import SecondControlPrevIcon from "../../../assets/icon/controlInputIcon/SecondControlPrevIcon";
-import ThirdControlNextIcon from "../../../assets/icon/controlInputIcon/ThirdControlNextIcon";
-import ThirdControlPrevIcon from "../../../assets/icon/controlInputIcon/ThirdControlPrevIcon";
+import FirstControlNextIcon from "../../atoms/icons/controlInputIcon/FirstControlNextIcon";
+import FirstControlPrevIcon from "../../atoms/icons/controlInputIcon/FirstControlPrevIcon";
+import RedoIcon from "../../atoms/icons/controlInputIcon/RedoIcon";
+import SecondControlNextIcon from "../../atoms/icons/controlInputIcon/SecondControlNextIcon";
+import SecondControlPrevIcon from "../../atoms/icons/controlInputIcon/SecondControlPrevIcon";
+import ThirdControlNextIcon from "../../atoms/icons/controlInputIcon/ThirdControlNextIcon";
+import ThirdControlPrevIcon from "../../atoms/icons/controlInputIcon/ThirdControlPrevIcon";
 
 function ControlTableButton() {
   const [controlInput, setControlInput] = useState(0);

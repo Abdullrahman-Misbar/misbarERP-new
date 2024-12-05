@@ -4,24 +4,24 @@ import { t } from "i18next";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { CloseIcon } from "yet-another-react-lightbox";
-import AddIcon from "../../assets/icon/AddIcon";
-import AttachmentIcon from "../../assets/icon/AttachmentIcon";
-import CalenderIcon from "../../assets/icon/CalenderIcon";
-import FirstControlNextIcon from "../../assets/icon/controlInputIcon/FirstControlNextIcon";
-import FirstControlPrevIcon from "../../assets/icon/controlInputIcon/FirstControlPrevIcon";
-import RedoIcon from "../../assets/icon/controlInputIcon/RedoIcon";
-import SecondControlNextIcon from "../../assets/icon/controlInputIcon/SecondControlNextIcon";
-import SecondControlPrevIcon from "../../assets/icon/controlInputIcon/SecondControlPrevIcon";
-import ThirdControlNextIcon from "../../assets/icon/controlInputIcon/ThirdControlNextIcon";
-import ThirdControlPrevIcon from "../../assets/icon/controlInputIcon/ThirdControlPrevIcon";
-import CopyIcon from "../../assets/icon/CopyIcon";
-import DeleteIcon from "../../assets/icon/DeleteIcon";
-import FileClock from "../../assets/icon/FileClock";
-import FileNotSaveIcon from "../../assets/icon/FileNotSaveIcon";
-import PrintIcon from "../../assets/icon/PrintIcon";
-import SaveIcon from "../../assets/icon/SaveIcon";
-import Setting from "../../assets/icon/SettingIcon";
-import UndoIcon from "../../assets/icon/UndoIcon";
+import AddIcon from "../atoms/icons/AddIcon";
+import AttachmentIcon from "../atoms/icons/AttachmentIcon";
+import CalenderIcon from "../atoms/icons/CalenderIcon";
+import FirstControlNextIcon from "../atoms/icons/controlInputIcon/FirstControlNextIcon";
+import FirstControlPrevIcon from "../atoms/icons/controlInputIcon/FirstControlPrevIcon";
+import RedoIcon from "../atoms/icons/controlInputIcon/RedoIcon";
+import SecondControlNextIcon from "../atoms/icons/controlInputIcon/SecondControlNextIcon";
+import SecondControlPrevIcon from "../atoms/icons/controlInputIcon/SecondControlPrevIcon";
+import ThirdControlNextIcon from "../atoms/icons/controlInputIcon/ThirdControlNextIcon";
+import ThirdControlPrevIcon from "../atoms/icons/controlInputIcon/ThirdControlPrevIcon";
+import CopyIcon from "../atoms/icons/CopyIcon";
+import DeleteIcon from "../atoms/icons/DeleteIcon";
+import FileClock from "../atoms/icons/FileClock";
+import FileNotSaveIcon from "../atoms/icons/FileNotSaveIcon";
+import PrintIcon from "../atoms/icons/PrintIcon";
+import SaveIcon from "../atoms/icons/SaveIcon";
+import Setting from "../atoms/icons/SettingIcon";
+import UndoIcon from "../atoms/icons/UndoIcon";
 import { useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
 import ApprovedIcon from "../atoms/icons/ApprovedIcon";
@@ -120,7 +120,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
   };
 
   const handleFileClock = () => {
-    setOpenHistoricalDrawer(true); 
+    setOpenHistoricalDrawer(true);
   };
 
   const handleCalendar = () => {

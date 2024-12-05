@@ -1,5 +1,5 @@
 import { FieldArray, useFormikContext } from "formik";
-import DeleteIcon from "../../../assets/icon/DeleteIcon";
+import DeleteIcon from "../../atoms/icons/DeleteIcon";
 import BaseInputRepeater from "../../atoms/formik/BaseInputRepeater";
 import SelectItem from "../Selects/SelectItem";
 import SelectUoms from "../Selects/SelectUoms";

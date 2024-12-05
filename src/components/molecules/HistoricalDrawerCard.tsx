@@ -1,8 +1,8 @@
-import CreateByIcon from "../../assets/icon/CreateByIcon";
-import DateIcon from "../../assets/icon/DateIcon";
-import FileIcon from "../../assets/icon/FileIcon";
-import PersonIcon from "../../assets/icon/personIcon";
-import PhoneIcon from "../../assets/icon/PhoneIcon";
+import CreateByIcon from "../atoms/icons/CreateByIcon";
+import DateIcon from "../atoms/icons/DateIcon";
+import FileIcon from "../atoms/icons/FileIcon";
+import PersonIcon from "../atoms/icons/personIcon";
+import PhoneIcon from "../atoms/icons/PhoneIcon";
 
 function HistoricalDrawerCard() {
   return (

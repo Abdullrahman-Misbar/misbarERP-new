@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import React, { useState } from "react";
-import CalenderIcon from "../../../assets/icon/CalenderIcon";
+import CalenderIcon from "../../atoms/icons/CalenderIcon";
 import ScheduledActivitiesDrawer from "./ScheduledActivitiesDrawer";
 
 function ScheduledActivities() {

@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import React from "react";
-import PrintIcon from "../../../assets/icon/PrintIcon";
+import PrintIcon from "../../atoms/icons/PrintIcon";
 
 function PrintBar() {
   const handlePrint = () => {

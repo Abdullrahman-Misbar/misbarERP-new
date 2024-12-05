@@ -1,5 +1,5 @@
 import { Tooltip } from "@mui/material";
-import FileNotSaveIcon from "../../../assets/icon/FileNotSaveIcon";
+import FileNotSaveIcon from "../../atoms/icons/FileNotSaveIcon";
 import showAlert from "../ShowAlert";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
