@@ -6,6 +6,8 @@ import "react-modern-drawer/dist/index.css";
 import ScheduledActivitiesCard from "./ScheduledActivitiesCard";
 import { useFetch } from "../../../hooks";
 import CloseIcon from "../../../assets/icon/CloseIcon";
+
+import 'react-modern-drawer/dist/index.css';
 interface ScheduledActivitiesDrawerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,6 +36,7 @@ const ScheduledActivitiesDrawer: React.FC<ScheduledActivitiesDrawerProps> = ({
         height: "100%",
       }}
     >
+   
       <List>
         <div className="w-full flex items-center justify-between mb-6">
           <p className="text-2xl font-somarBold  ">سجل العمليات</p>
@@ -52,11 +55,8 @@ const ScheduledActivitiesDrawer: React.FC<ScheduledActivitiesDrawerProps> = ({
 
   return (
     <div>
-      <Drawer
-        direction="left"
-        open={open}
-        onClose={toggleDrawer}
-        className="!w-[500px] overflow-y-scroll overflow-x-hidden"
+      <Drawer direction="left" open={open} onClose={toggleDrawer}
+      className="!w-[500px] overflow-y-scroll overflow-x-hidden"
       >
         {DrawerList}
       </Drawer>

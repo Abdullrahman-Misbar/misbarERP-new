@@ -1,7 +1,7 @@
 import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import CalenderIcon from "../../../assets/icon/CalenderIcon";
-import HistoricalDrawer from "../HistoricalDrawer";
+import HistoricalDrawer from "./Histroical/HistoricalDrawer";
 
 function ScheduledActivities() {
   const [openHistoricalDrawer, setOpenHistoricalDrawer] = useState(false);

@@ -26,7 +26,7 @@ import { useMutate } from "../../hooks";
 import { notify } from "../../utils/toast";
 import ApprovedIcon from "../atoms/icons/ApprovedIcon";
 import UnApprovedIcon from "../atoms/icons/UnApprovedIcon";
-import HistoricalDrawer from "./HistoricalDrawer";
+import HistoricalDrawer from "./toolbar/Histroical/HistoricalDrawer";
 import ModalComp from "./ModalComp";
 import showAlert from "./ShowAlert";
 

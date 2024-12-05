@@ -64,6 +64,7 @@ function Main({ editable }: Main_TP) {
     priceIncludeTax: response?.priceIncludeTax || false,
     isApproved: response?.isApproved || false,
     note: response?.note || "",
+    SourceActivityType:1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
           itemId: item?.itemId,
