@@ -2,7 +2,7 @@ import DataNotFoundDrawarImg from "../atoms/icons/DataNotFoundDrawarImg";
 type DataNotFoundDrawarProps_TP = {
   text: string;
 };
-function DataNotFoundDrawar({ text }: DataNotFoundDrawarProps_TP) {
+function DataNotFoundDrawer({ text }: DataNotFoundDrawarProps_TP) {
   return (
     <div className="flex item-enter justify-center flex-col">
       <DataNotFoundDrawarImg />
@@ -13,4 +13,4 @@ function DataNotFoundDrawar({ text }: DataNotFoundDrawarProps_TP) {
   );
 }
 
-export default DataNotFoundDrawar;
+export default DataNotFoundDrawer;

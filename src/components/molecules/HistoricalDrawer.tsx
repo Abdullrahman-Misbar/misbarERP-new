@@ -3,12 +3,11 @@ import List from "@mui/material/List";
 import * as React from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import { CloseIcon } from "yet-another-react-lightbox";
+import DataNotFoundDrawar from "./DataNotFoundDrawer";
 import HistoricalModelForm from "./HistoricalModelForm";
 import ModalComp from "./ModalComp";
-import DataNotFoundDrawar from "./DataNotFoundDrawar";
-import { CloseIcon } from "yet-another-react-lightbox";
-import { Button } from "@mui/material";
-import HistoricalDrawerCard from "./HistoricalDrawerCard";
+import DataNotFoundDrawer from "./DataNotFoundDrawer";
 
 interface HistoricalDrawerProps {
   open: boolean;
@@ -64,7 +63,7 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
           {/* عندما يكون السجل فارف   */}
           <div className="w-full h-full flex item-enter justify-center mt-[40%] ">
             {" "}
-            <DataNotFoundDrawar text="سجل العمليات" />
+            <DataNotFoundDrawer text="سجل العمليات" />
           </div>
         </div>
       </List>
