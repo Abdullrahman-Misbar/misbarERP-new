@@ -63,7 +63,7 @@ function ApprovedBar() {
         </Tooltip>
       ) : (
         <Tooltip title="الغاء الاعتماد">
-          <div className="flex items-center p-3">
+          <div className="flex items-center ">
             <UnApprovedIcon disabled={false} action={handelApproved} />
             <div className="w-px h-12 bg-gray-200 mx-4"></div>
           </div>

@@ -13,7 +13,7 @@ function CloseBar() {
     <div>
       <Tooltip title="إغلاق">
         <button
-          className="flex items-center p-3"
+          className="flex items-center "
           type="button"
           onClick={handleClose}
         >

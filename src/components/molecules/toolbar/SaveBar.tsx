@@ -10,7 +10,7 @@ function SaveBar() {
   return (
     <div>
       <Tooltip title="حفظ">
-        <div className="flex items-center p-3">
+        <div className="flex items-center ">
           <SaveIcon disabled={false} action={handleSave} />
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </div>
