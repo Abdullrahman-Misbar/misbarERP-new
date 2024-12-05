@@ -1,37 +1,36 @@
-import { Avatar, Divider, Menu, MenuItem, Typography } from "@mui/material"
-import { MouseEvent, useEffect, useState } from "react"
-import { FaUserAlt } from "react-icons/fa"
-import { FiLogOut } from "react-icons/fi"
-import { IoIosArrowDown } from "react-icons/io"
-import { IoSettingsOutline } from "react-icons/io5"
-import { useAuth } from "../context/auth-and-perm/AuthProvider"
-import { useFetch } from "../hooks"
+import { Avatar, Divider, Menu, MenuItem, Typography } from "@mui/material";
+import { MouseEvent, useEffect, useState } from "react";
+import { FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { IoIosArrowDown } from "react-icons/io";
+import { IoSettingsOutline } from "react-icons/io5";
+import { useAuth } from "../context/auth-and-perm/AuthProvider";
+import { useFetch } from "../hooks";
 
 const MenuAccount = () => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const open = Boolean(anchorEl)
-  const { logout, setUser , user } = useAuth()
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const { logout, setUser, user } = useAuth();
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
+    setAnchorEl(event.currentTarget);
+  };
   const handleClose = () => {
-    setAnchorEl(null)
-  }
+    setAnchorEl(null);
+  };
   const handelLogOut = () => {
-    setAnchorEl(null)
-    logout()
-  }
-  const endpoint = `api/UserManagement/GetUsers`
+    setAnchorEl(null);
+    logout();
+  };
+  const endpoint = `api/UserManagement/GetUsers`;
   const { data } = useFetch<[]>({
     endpoint: endpoint,
     queryKey: [endpoint],
-  })
+  });
 
   useEffect(() => {
-    if(data?.length )
-    setUser(data[0])
-  }, [data, setUser])
+    if (data?.length) setUser(data[0]);
+  }, [data, setUser]);
 
   return (
     <div className="relative flex items-center justify-center gap-2">
@@ -155,7 +154,7 @@ const MenuAccount = () => {
         </MenuItem>
       </Menu>
     </div>
-  )
-}
+  );
+};
 
-export default MenuAccount
+export default MenuAccount;

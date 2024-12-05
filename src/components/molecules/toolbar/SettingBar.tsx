@@ -1,28 +1,29 @@
 import React, { useState } from "react";
-import { Tooltip, Menu, MenuItem, ListItemText } from "@mui/material";
+import { Tooltip, Menu, MenuItem, Typography } from "@mui/material";
+import { IoSettingsOutline } from "react-icons/io5";
 import Setting from "../../atoms/icons/SettingIcon";
+import GoBackArow from "../../atoms/icons/GoBackArow";
 
 function SettingBar() {
   const [anchorEl, setAnchorEl] = useState(null); // Anchor for the main menu
   const [subMenuAnchorEl, setSubMenuAnchorEl] = useState(null); // Anchor for the submenu
 
-  // Open main menu
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  // Close main menu
   const handleMenuClose = () => {
     setAnchorEl(null);
     setSubMenuAnchorEl(null); // Close the submenu as well
   };
 
-  // Open submenu
+
   const handleSubMenuOpen = (event) => {
     setSubMenuAnchorEl(event.currentTarget);
   };
 
-  // Close submenu
+
   const handleSubMenuClose = () => {
     setSubMenuAnchorEl(null);
   };
@@ -39,22 +40,53 @@ function SettingBar() {
         </div>
       </Tooltip>
 
-      {/* Main Menu */}
+
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <MenuItem onClick={() => console.log("Send to supplier")}>
-          <ListItemText primary="ارسال للمورد عن طريق الايميل" />
+        <MenuItem onClick={handleMenuClose} className="gap-2">
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+              margin: "6px 0",
+            }}
+          >
+            ارسال للمورد عن طريق الايميل
+          </Typography>
         </MenuItem>
-        <MenuItem onClick={() => console.log("Create price offer")}>
-          <ListItemText primary="إنشاء عرض سعر" />
+        <MenuItem onClick={handleMenuClose} className="gap-2">
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+              margin: "6px 0",
+            }}
+          >
+            إنشاء عرض سعر
+          </Typography>
         </MenuItem>
-        <MenuItem onClick={handleSubMenuOpen}>
-          <ListItemText primary="مقارنة عروض الأسعار" />
+        <hr />
+        <MenuItem
+          onClick={handleSubMenuOpen} 
+          className="gap-2"
+        >
+          <div className="flex items-center justify-center gap-2">
+            <GoBackArow />
+            <Typography
+              style={{
+                fontFamily: "Somar-Medium",
+                fontSize: "14px",
+                margin: "6px 0",
+              }}
+            >
+              مقارنة عروض الأسعار
+            </Typography>
+          </div>
         </MenuItem>
       </Menu>
 
@@ -65,13 +97,32 @@ function SettingBar() {
         onClose={handleSubMenuClose}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
-        style={{ marginTop: "-36px" }} // Adjust positioning if needed
+        sx={{ marginTop: "-8px" }} // Adjust positioning if needed
       >
-        <MenuItem onClick={() => console.log("Manual comparison")}>
-          <ListItemText primary="مقارنة يدوية" />
+        <MenuItem onClick={handleMenuClose} className="gap-2">
+          <IoSettingsOutline className="text-gray-500" />
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+              margin: "6px 0",
+            }}
+          >
+            مقارنة يدوية
+          </Typography>
         </MenuItem>
-        <MenuItem onClick={() => console.log("Automatic comparison")}>
-          <ListItemText primary="مقارنة آلية" />
+
+        <MenuItem onClick={handleMenuClose} className="gap-2">
+          <IoSettingsOutline className="text-gray-500" />
+          <Typography
+            style={{
+              fontFamily: "Somar-Medium",
+              fontSize: "14px",
+              margin: "6px 0",
+            }}
+          >
+            مقارنة آلية
+          </Typography>
         </MenuItem>
       </Menu>
     </div>
