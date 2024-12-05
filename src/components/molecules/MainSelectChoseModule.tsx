@@ -7,12 +7,12 @@ import BaseInputField from '../atoms/formik/BaseInputField'
 import { v4 } from 'uuid'
 
 type MainSelectChoseModule_TP = {
-  setRows: any
-  rows: any[]
+  moduleName: string
+
 }
 type values_TP = {
-  num_item_id: string | number
   items_type: 'purchase_order' | 'purchase_request'
+  num_item_id:string
 }
 function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
   const { values , setFieldValue } = useFormikContext<values_TP>()
