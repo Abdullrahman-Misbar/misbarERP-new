@@ -3,7 +3,9 @@ import List from "@mui/material/List";
 import * as React from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import { CloseIcon } from "yet-another-react-lightbox";
+import ScheduledActivitiesCard from "./ScheduledActivitiesCard";
+import { useFetch } from "../../../hooks";
+import CloseIcon from "../../../assets/icon/CloseIcon";
 interface ScheduledActivitiesDrawerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +18,12 @@ const ScheduledActivitiesDrawer: React.FC<ScheduledActivitiesDrawerProps> = ({
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
   };
+  const endpoint = "api/PurchasRequest?Take=50";
+  const { data } = useFetch<any>({
+    queryKey: [endpoint],
+    endpoint: endpoint,
+    Module: "PURCHASE",
+  });
 
   const DrawerList = (
     <Box
@@ -25,90 +33,19 @@ const ScheduledActivitiesDrawer: React.FC<ScheduledActivitiesDrawerProps> = ({
         padding: 2,
         height: "100%",
       }}
-      // role="presentation"
     >
       <List>
-        <div className="py-12 px-6">
-          <div className="w-full flex items-center justify-between mb-6">
-            <p className="text-2xl font-somarBold  ">سجل العمليات</p>
-            <span className="text-[#D32F2F] ">
-              <CloseIcon />
-            </span>
-          </div>
-          <hr className="w-full h-px bg-light" />
-          <div className="flex items-center justify-between p-3 ">
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2">
-                <img src="/src/assets/AnynmosPerson.png" alt="personName" />
-                <span className="text-primary text-xl font-somarBold ">
-                  مدير النظام
-                </span>
-              </div>
-              <p className="mt-6 pt-4">تم اعتماد طلب الشراء</p>
-            </div>
-
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2 justify-center">
-                <img src="/src/assets/DateRangeFilled.png" alt="personName" />
-                <span className="text-[#00000099]  font-somarBold ">
-                  13/07/2024
-                </span>
-              </div>
-              <span className="text-[#00000099] w-full text-center mt-5 ">
-                01:2:01:00 AM
-              </span>
-            </div>
-          </div>
-          <hr className="w-full h-px bg-light" />
-          <div className="flex items-center justify-between p-3 ">
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2">
-                <img src="/src/assets/AnynmosPerson.png" alt="personName" />
-                <span className="text-primary text-xl font-somarBold ">
-                  مدير النظام
-                </span>
-              </div>
-              <p className="mt-6 pt-4">تم اعتماد طلب الشراء</p>
-            </div>
-
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2 justify-center">
-                <img src="/src/assets/DateRangeFilled.png" alt="personName" />
-                <span className="text-[#00000099]  font-somarBold ">
-                  13/07/2024
-                </span>
-              </div>
-              <span className="text-[#00000099] w-full text-center mt-5 ">
-                01:2:01:00 AM
-              </span>
-            </div>
-          </div>
-          <hr className="w-full h-px bg-light" />
-          <div className="flex items-center justify-between p-3 ">
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2">
-                <img src="/src/assets/AnynmosPerson.png" alt="personName" />
-                <span className="text-primary text-xl font-somarBold ">
-                  مدير النظام
-                </span>
-              </div>
-              <p className="mt-6 pt-4">تم اعتماد طلب الشراء</p>
-            </div>
-
-            <div className="flex flex-col items-start justify-between ">
-              <div className="flex items-center gap-2 justify-center">
-                <img src="/src/assets/DateRangeFilled.png" alt="personName" />
-                <span className="text-[#00000099]  font-somarBold ">
-                  13/07/2024
-                </span>
-              </div>
-              <span className="text-[#00000099] w-full text-center mt-5 ">
-                01:2:01:00 AM
-              </span>
-            </div>
-          </div>
-          <hr className="w-full h-px bg-light" />
+        <div className="w-full flex items-center justify-between mb-6">
+          <p className="text-2xl font-somarBold  ">سجل العمليات</p>
+          <span className="text-[#D32F2F] ">
+            <CloseIcon />
+          </span>
         </div>
+        {data?.data?.data?.map((item) => (
+          item?.isApproved &&
+          <ScheduledActivitiesCard item={item} />
+          
+        ))}
       </List>
     </Box>
   );

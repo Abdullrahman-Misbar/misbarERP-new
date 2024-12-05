@@ -209,3 +209,20 @@ export function formateTime(dateTimeString: string): string {
 
   return ` ${formattedTime} ${period} `;
 }
+
+export function formatTime(timeString) {
+  const time = new Date("1970-01-01T" + timeString + "Z");
+
+  let hours = time.getUTCHours();
+  let minutes = time.getUTCMinutes();
+  let seconds = time.getUTCSeconds();
+
+  const period = hours >= 12 ? t('PM'): t("AM");
+  hours = hours % 12 || 12;
+
+  const formattedTime = `${hours}:${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${period}`;
+
+  return formattedTime;
+}

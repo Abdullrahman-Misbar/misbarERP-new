@@ -4,7 +4,7 @@ import FileIcon from "../../assets/icon/FileIcon";
 import PersonIcon from "../../assets/icon/personIcon";
 import PhoneIcon from "../../assets/icon/PhoneIcon";
 
-function HistoricalDrawerCard() {
+function HistoricalDrawerCard({item}) {
   return (
     <div className="flex items-start  my-4  border-b-2 pb-1">
       <div className=" border-l border-gray-300 min-h-[150px] px-2">
@@ -32,7 +32,7 @@ function HistoricalDrawerCard() {
             <DateIcon />
           </span>
           <span className="text-light text-[14px]">في تاريخ :</span>
-          <span className="text-primary text-[14px]"> 13/07/2024 </span>
+          <span className="text-primary text-[14px]"> {item?.activityDate?.slice(0,10)} </span>
         </div>
 
         <div className="flex items-center justify-start gap-2 1">
@@ -49,7 +49,7 @@ function HistoricalDrawerCard() {
           <span className="text-light text-[14px]"> الوصف :</span>
           <span className="text-primary text-[14px]">
             {" "}
-            يتم الاتصال بالمورد للتذكير بإرسال عرض السعر{" "}
+            {item?.note}
           </span>
         </div>
       </div>

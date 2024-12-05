@@ -78,6 +78,8 @@
   "Are you sure Approved this order?":"هل انت متاكد من اعتماد هذا الطلب",
   "Are you sure cancel Approved this order?":"هل انت متاكد من الغاء اعتماد هذا الطلب",
   "Are you sure cancel Request?":"هل انت متاكد من الغاء الطلب",
-  "After canceling the order, it cannot be restored again.":"بعد الغاء الطلب لا يمكن استعادته مره اخرى"
+  "After canceling the order, it cannot be restored again.":"بعد الغاء الطلب لا يمكن استعادته مره اخرى",
+  "PM":"مساء",
+  "AM":"صباحا"
 
 }

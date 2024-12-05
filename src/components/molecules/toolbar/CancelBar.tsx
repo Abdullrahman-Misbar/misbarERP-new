@@ -44,7 +44,7 @@ function CancelBar() {
     <div>
       <Tooltip title="الغاء الطلب">
         <div
-          className="flex items-center p-3 cursor-pointer"
+          className="flex items-center  cursor-pointer"
           onClick={handelApproved}
         >
           <FileNotSaveIcon disabled={!values?.editable} />

@@ -10,6 +10,7 @@ function OperationLogsBar() {
     setOpenDrawer(true);
   };
 
+
   return (
     <div>
       <Tooltip title="سجل العمليات">
@@ -17,11 +18,8 @@ function OperationLogsBar() {
           <FileClock action={handleFileClock} />
         </div>
       </Tooltip>
-
-      <ScheduledActivitiesDrawer
-        open={openDrawer}
-        setOpen={setOpenDrawer}
-      />
+        <ScheduledActivitiesDrawer open={openDrawer} setOpen={setOpenDrawer} />
+  
     </div>
   );
 }

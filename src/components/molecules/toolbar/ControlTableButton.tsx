@@ -9,6 +9,7 @@ import SecondControlPrevIcon from "../../../assets/icon/controlInputIcon/SecondC
 import ThirdControlNextIcon from "../../../assets/icon/controlInputIcon/ThirdControlNextIcon";
 import ThirdControlPrevIcon from "../../../assets/icon/controlInputIcon/ThirdControlPrevIcon";
 import { useFetch } from "../../../hooks";
+import { useFormikContext } from "formik";
 
 interface ControlButtonState {
   nextType: number;
@@ -26,7 +27,7 @@ interface DataResponse {
 function ControlTableButton() {
   const { id } = useParams<{ id: any }>();
   const navigate = useNavigate();
-
+const {values} = useFormikContext()
   const [controlInput, setControlInput] = useState<number>(parseInt(id, 10));
   const [controlButton, setControlButton] = useState<ControlButtonState>({
     nextType: 0,
@@ -75,12 +76,13 @@ function ControlTableButton() {
   );
 
   return (
+    values?.editable &&
     <div>
       <div className="flex items-center justify-center gap-3">
         <div className="flex items-center gap-2">
           {renderControlButton("الاول", <ThirdControlNextIcon />, 1)}
           {/* Go to first */}
-          {renderControlButton("10 سجلات للخلف", <SecondControlNextIcon />, 7)}
+          {renderControlButton("10 سجلات للخلف", <SecondControlNextIcon />, 6)}
           {/* Go back 10 records */}
           {renderControlButton("السابق", <FirstControlNextIcon />, 4)}
           {/* Go to previous */}
@@ -97,7 +99,7 @@ function ControlTableButton() {
           {renderControlButton("اعادة تعيين", <RedoIcon />, 1)} {/* Reset */}
           {renderControlButton("التالي", <FirstControlPrevIcon />, 3)}
           {/* Go to next */}
-          {renderControlButton("10 سجلات للامام", <SecondControlPrevIcon />, 8)}
+          {renderControlButton("10 سجلات للامام", <SecondControlPrevIcon />,5)}
           {/* Go forward 10 records */}
           {renderControlButton("الاخير", <ThirdControlPrevIcon />, 2)}
           {/* Go to last */}
