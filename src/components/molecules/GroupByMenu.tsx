@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { AiOutlineClose } from "react-icons/ai";
-import GroupByIcon from "../../assets/icon/GroupByIcon";
+import GroupByIcon from "../atoms/icons/GroupByIcon";
 import { FiSave } from "react-icons/fi";
 
 type GroupByMenuProps = {

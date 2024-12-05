@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import ExportIcon from "../../../assets/icon/ExportIcon";
+import ExportIcon from "../../atoms/icons/ExportIcon";
 import ImportReadyFile from "./ImportReadyFile";
 
 // TabPanel component
@@ -58,8 +58,16 @@ export default function ImportExcelModal() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab className="!font-somar " label="تحميل القالب" {...a11yProps(0)} />
-          <Tab className="!font-somar "  label="استيراد ملف جاهز" {...a11yProps(1)} />
+          <Tab
+            className="!font-somar "
+            label="تحميل القالب"
+            {...a11yProps(0)}
+          />
+          <Tab
+            className="!font-somar "
+            label="استيراد ملف جاهز"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </Box>
 

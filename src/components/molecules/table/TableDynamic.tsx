@@ -17,6 +17,8 @@ interface TableDynamicProps {
   actions?: (originalIndex: number, remove: () => void) => React.ReactNode;
   moduleName: string;
   remove: () => void;
+  handleTabPress:()=>void
+  push:()=>void
 }
 
 const TableDynamic: React.FC<TableDynamicProps> = ({
@@ -24,6 +26,8 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   actions,
   moduleName,
   remove,
+  handleTabPress, 
+  push
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
 
@@ -34,7 +38,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
     },
     []
   );
-
   return (
     <div className="overflow-x-scroll">
       <table className="w-full text-right border-collapse">
@@ -54,7 +57,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           </tr>
         </thead>
         <tbody>
-          {filteredItems?.map((item:any, index:number) => (
+          {filteredItems?.map((item: any, index: number) => (
             <tr key={index}>
               {headers.map((header) => (
                 <td
@@ -68,25 +71,23 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                       header?.value
                     }
                     type={header?.type}
+                    index={item.originalIndex}
                     placeholder={header?.placeholder}
                     moduleName={moduleName}
-                    index={item.originalIndex} // Use the original index here
-                    onChange={
-                      header?.onChange
-                        ? header?.onChange
-                        : (e: { target: { value: any } }) =>
-                            setFieldValue(
-                              `${moduleName}[${item.originalIndex}].${header.name}`,
-                              header?.type === "number"
-                                ? +e?.target?.value
-                                : e?.target?.value
-                            )
-                    }
+                    //@ts-ignore
+                    index={item.originalIndex} 
+                    onChange={header?.onChange ? header?.onChange : (e: { target: { value: any } }) => setFieldValue(
+                      `${moduleName}[${item.originalIndex}].${header.name}`,
+                      e.target.value
+                    )}
+                    // onKeyDown={(e: React.KeyboardEvent) => {
+                    //   handleTabPress(e, item.originalIndex, push);
+                    // }}
                   />
                 </td>
               ))}
-              <td className="p-3 text-center border-b border-gray-200">
-                {actions && actions(item.originalIndex, remove)}
+              <td className="p-3 text-center">
+              {actions && actions(item.originalIndex, remove)}
               </td>
             </tr>
           ))}
@@ -95,5 +96,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
     </div>
   );
 };
+
 
 export default TableDynamic;

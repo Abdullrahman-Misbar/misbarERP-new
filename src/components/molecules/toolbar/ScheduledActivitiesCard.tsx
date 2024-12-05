@@ -1,8 +1,6 @@
-import CloseIcon from "../../../assets/icon/CloseIcon";
 import { formatTime } from "../../../utils/helpers";
 
 function ScheduledActivitiesCard({ item }) {
-  console.log("🚀 ~ ScheduledActivitiesCard ~ item:", item);
   return (
     <div className=" px-6">
       <div className="flex items-center justify-between p-3 ">

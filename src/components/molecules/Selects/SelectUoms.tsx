@@ -32,7 +32,6 @@ const SelectUoms = ({
         label: item?.uomName || item?.uom?.uomName,
       })
     ) || [];
-  console.log("🚀 ~ SelectUoms ~ options:", options);
   const selectedValue = options?.find(
     (item) => item?.value == (value || values[name])
   );

@@ -2,7 +2,7 @@ import { Tooltip } from "@mui/material";
 import { useFormikContext } from "formik";
 import { t } from "i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import DeleteIcon from "../../../assets/icon/DeleteIcon";
+import DeleteIcon from "../../atoms/icons/DeleteIcon";
 import { useMutate } from "../../../hooks";
 import { notify } from "../../../utils/toast";
 import showAlert from "../ShowAlert";

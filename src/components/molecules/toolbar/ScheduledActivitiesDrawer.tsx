@@ -5,9 +5,9 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import ScheduledActivitiesCard from "./ScheduledActivitiesCard";
 import { useFetch } from "../../../hooks";
-import CloseIcon from "../../../assets/icon/CloseIcon";
 
 import 'react-modern-drawer/dist/index.css';
+import CloseIcon from "../../atoms/icons/CloseIcon";
 interface ScheduledActivitiesDrawerProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -10,9 +10,9 @@ import {
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiSave } from "react-icons/fi";
-import CoordinationIcon from "../../assets/icon/CoordinationIcon";
-import DeleteIcon from "../../assets/icon/DeleteIcon";
-import AddIcon from "../../assets/icon/AddIcon";
+import CoordinationIcon from "../atoms/icons/CoordinationIcon";
+import DeleteIcon from "../atoms/icons/DeleteIcon";
+import AddIcon from "../atoms/icons/AddIcon";
 import RadioButtons from "../atoms/formik/RadioComp";
 
 type CoordinationMenuProps = {

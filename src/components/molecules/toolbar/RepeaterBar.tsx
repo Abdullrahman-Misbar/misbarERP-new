@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import React, { useState } from "react";
-import CopyIcon from "../../../assets/icon/CopyIcon";
+import CopyIcon from "../../atoms/icons/CopyIcon";
 import ModalComp from "../ModalComp";
 import { useFormikContext } from "formik";
 

@@ -1,5 +1,5 @@
 import { Tooltip } from "@mui/material";
-import AttachmentIcon from "../../../assets/icon/AttachmentIcon";
+import AttachmentIcon from "../../atoms/icons/AttachmentIcon";
 
 function UploadFileBar() {
   const handleAttachFile = () => {

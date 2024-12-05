@@ -1,5 +1,5 @@
 import { FieldArray, useFormikContext } from "formik";
-import DeleteIcon from "../../../assets/icon/DeleteIcon";
+import DeleteIcon from "../../atoms/icons/DeleteIcon";
 import BaseInputRepeater from "../../atoms/formik/BaseInputRepeater";
 import SelectItem from "../Selects/SelectItem";
 import SelectUoms from "../Selects/SelectUoms";
@@ -83,7 +83,6 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
         setFieldValue(`${moduleName}[${rowIndex}].total`, total);
       },
     },
-
     {
       name: "total",
       label: "المجموع",
@@ -99,7 +98,32 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       type: "text",
     },
   ];
-
+  const handleTabPress = (e: React.KeyboardEvent, index: number, push: Function) => {
+    console.log("🚀 ~ handleTabPress ~ index:", index)
+    if (e.key === "Tab") {
+      const lastIndex = values[moduleName]?.length - 1;
+      console.log("🚀 ~ handleTabPress ~ lastIndex:", lastIndex)
+      const currentRow = values[moduleName]?.[index];  
+  
+      if (index === lastIndex && currentRow?.note !== undefined) {
+        push({
+          itemId: "",
+          description: "",
+          quantity: 0,
+          uomId: "",
+          price: 0,
+          total: 0,
+          id: 0,
+          warehouseId: "",
+          note: "",
+          isDeleted: false,
+        });
+      }
+    }
+  };
+  
+  
+  
   return (
     <div>
       <FieldArray name={moduleName}>
@@ -133,20 +157,17 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
                 headers={headers}
                 moduleName={moduleName}
                 //@ts-ignore
-
                 remove={remove}
                 actions={(index: number) => (
                   <button
                     type="button"
                     onClick={() => {
                       setFieldValue(`${moduleName}[${index}].isDeleted`, true);
-                      // remove(index);
                     }}
                     className=""
                   >
                     <DeleteIcon
                       action={() => {
-                        // remove(index);
                         setFieldValue(
                           `${moduleName}[${index}].isDeleted`,
                           true
@@ -156,6 +177,11 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
                     />
                   </button>
                 )}
+                //@ts-ignore
+                handleTabPress={handleTabPress}
+                //@ts-ignore
+
+                push={push}
               />
             </div>
           </div>

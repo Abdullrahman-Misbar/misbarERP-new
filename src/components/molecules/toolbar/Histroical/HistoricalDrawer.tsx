@@ -13,6 +13,7 @@ import HistoricalDrawerCard from "../../HistoricalDrawerCard";
 import Button from "../../../atoms/button/Button";
 import { useParams } from "react-router-dom";
 import { useFormikContext } from "formik";
+import Main from "./Add/Main";
 
 interface HistoricalDrawerProps {
   open: boolean;
@@ -24,8 +25,8 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
   setOpen,
 }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const {id} = useParams()
-  const {values} = useFormikContext<any>()
+  const { id } = useParams();
+  const { values } = useFormikContext<any>();
 
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
@@ -37,16 +38,17 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
   const queryParams = {
     // page: page,
     // term: word,
-    SourceId:id,
-    SourceType:values?.SourceActivityType,
-    Take: 50 ,
+    SourceId: id,
+    SourceType: values?.SourceActivityType,
+    Take: 50,
   };
   const searchParams = new URLSearchParams(queryParams as any);
   const endpoint = `api/PurchasActivites?${searchParams.toString()}`;
-  const { data } = useFetch<any>({
+  const { data, refetch } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
+    enabled: !!values?.SourceActivityType && !!id,
   });
 
   const DrawerList = (
@@ -81,7 +83,6 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
             ))
           ) : (
             <div className="w-full h-full flex item-enter justify-center mt-[40%] ">
-            
               <DataNotFoundDrawer text="سجل العمليات" />
             </div>
           )}
@@ -106,8 +107,9 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
         open={isModalOpen}
         setOpen={setIsModalOpen}
         header="إنشاء نشاط"
+        hiddenFooter
       >
-        <HistoricalModelForm />
+        <Main setOpen={setIsModalOpen} refetch={refetch} />
       </ModalComp>
     </div>
   );

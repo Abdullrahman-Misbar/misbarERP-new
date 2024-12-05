@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import FilterIcon from "../../assets/icon/FilterIcon";
-import GroupByIcon from "../../assets/icon/GroupByIcon";
-import CoordinationIcon from "../../assets/icon/CoordinationIcon";
-import QrcodeIcon from "../../assets/icon/QrcodeIcon";
-import VerticalLinesIcon from "../../assets/icon/VerticalLinesIcon";
+import FilterIcon from "../atoms/icons/FilterIcon";
+import GroupByIcon from "../atoms/icons/GroupByIcon";
+import CoordinationIcon from "../atoms/icons/CoordinationIcon";
+import QrcodeIcon from "../atoms/icons/QrcodeIcon";
+import VerticalLinesIcon from "../atoms/icons/VerticalLinesIcon";
 import FilterMenu from "./FilterMenu";
 import GroupByMenu from "./GroupByMenu";
 import CoordinationMenu from "./CoordinationMenu"; // Import the CoordinationMenu component

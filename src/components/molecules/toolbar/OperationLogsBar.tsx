@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
+import FileClock from "../../atoms/icons/FileClock";
 import { useState } from "react";
-import FileClock from "../../../assets/icon/FileClock";
 import ScheduledActivitiesDrawer from "./ScheduledActivitiesDrawer";
 
 function OperationLogsBar() {

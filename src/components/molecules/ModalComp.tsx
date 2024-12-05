@@ -25,8 +25,9 @@ type ModalComp_Tp = {
   AgreeTextButton?: string;
   CancelTextButton?: string;
   header: string;
-  ActionAgreeButton?:()=>void
-  disabledButtonAgree?:boolean
+  ActionAgreeButton?: () => void;
+  disabledButtonAgree?: boolean;
+  hiddenFooter?:boolean
 };
 export default function ModalComp({
   open,
@@ -36,7 +37,8 @@ export default function ModalComp({
   CancelTextButton = "الغاء",
   header,
   ActionAgreeButton,
-  disabledButtonAgree
+  disabledButtonAgree,
+  hiddenFooter,
 }: ModalComp_Tp) {
   return (
     <div>
@@ -55,23 +57,27 @@ export default function ModalComp({
               </span>
             </div>
             <div className="mt-5 overflow-scroll max-h-[600px]">{children}</div>
-            <div className="flex  justify-end gap-3">
-              <Button
-                text={`${AgreeTextButton}`}
-                type="button"
-                className="min-w-[90px]"
-                variant="primary"
-                action={ActionAgreeButton}
-                disabled={disabledButtonAgree}
-              />
-              <Button
-                text={`${CancelTextButton}`}
-                type="button"
-                className="min-w-[90px] "
-                variant="outline"
-                action={() => setOpen(false)}
-              />
-            </div>
+            {hiddenFooter ? (
+              ""
+            ) : (
+              <div className="flex  justify-end gap-3">
+                <Button
+                  text={`${AgreeTextButton}`}
+                  type="button"
+                  className="min-w-[90px]"
+                  variant="primary"
+                  action={ActionAgreeButton}
+                  disabled={disabledButtonAgree}
+                />
+                <Button
+                  text={`${CancelTextButton}`}
+                  type="button"
+                  className="min-w-[90px] "
+                  variant="outline"
+                  action={() => setOpen(false)}
+                />
+              </div>
+            )}
           </div>
         </Box>
       </Modal>

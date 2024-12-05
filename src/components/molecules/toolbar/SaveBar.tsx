@@ -1,6 +1,6 @@
 import { Tooltip } from "@mui/material";
 import { useFormikContext } from "formik";
-import SaveIcon from "../../../assets/icon/SaveIcon";
+import SaveIcon from "../../atoms/icons/SaveIcon";
 
 function SaveBar() {
   const { handleSubmit } = useFormikContext<any>();

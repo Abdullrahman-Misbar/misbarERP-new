@@ -1,13 +1,7 @@
 import { Tooltip } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import FirstControlNextIcon from "../../../assets/icon/controlInputIcon/FirstControlNextIcon";
-import FirstControlPrevIcon from "../../../assets/icon/controlInputIcon/FirstControlPrevIcon";
-import RedoIcon from "../../../assets/icon/controlInputIcon/RedoIcon";
-import SecondControlNextIcon from "../../../assets/icon/controlInputIcon/SecondControlNextIcon";
-import SecondControlPrevIcon from "../../../assets/icon/controlInputIcon/SecondControlPrevIcon";
-import ThirdControlNextIcon from "../../../assets/icon/controlInputIcon/ThirdControlNextIcon";
-import ThirdControlPrevIcon from "../../../assets/icon/controlInputIcon/ThirdControlPrevIcon";
+
 import { useFetch } from "../../../hooks";
 import { useFormikContext } from "formik";
 
@@ -23,6 +17,14 @@ interface DataResponse {
     prevId: number | null;
   } | null;
 }
+
+import FirstControlNextIcon from "../../atoms/icons/controlInputIcon/FirstControlNextIcon";
+import FirstControlPrevIcon from "../../atoms/icons/controlInputIcon/FirstControlPrevIcon";
+import RedoIcon from "../../atoms/icons/controlInputIcon/RedoIcon";
+import SecondControlNextIcon from "../../atoms/icons/controlInputIcon/SecondControlNextIcon";
+import SecondControlPrevIcon from "../../atoms/icons/controlInputIcon/SecondControlPrevIcon";
+import ThirdControlNextIcon from "../../atoms/icons/controlInputIcon/ThirdControlNextIcon";
+import ThirdControlPrevIcon from "../../atoms/icons/controlInputIcon/ThirdControlPrevIcon";
 
 function ControlTableButton() {
   const { id } = useParams<{ id: any }>();
@@ -40,7 +42,7 @@ const {values} = useFormikContext()
     queryKey: [endpoint],
     endpoint,
     Module: "PURCHASE",
-    enabled: controlButton?.nextType !== 0 && controlButton?.id !== 0,
+    enabled: controlButton?.nextType !== (0 || undefined)  && controlButton?.id !== (0 || undefined) ,
   });
   //@ts-ignore
   const response = data?.data;
@@ -99,7 +101,7 @@ const {values} = useFormikContext()
           {renderControlButton("اعادة تعيين", <RedoIcon />, 1)} {/* Reset */}
           {renderControlButton("التالي", <FirstControlPrevIcon />, 3)}
           {/* Go to next */}
-          {renderControlButton("10 سجلات للامام", <SecondControlPrevIcon />,5)}
+          {renderControlButton("10 سجلات للامام", <SecondControlPrevIcon />, 5)}
           {/* Go forward 10 records */}
           {renderControlButton("الاخير", <ThirdControlPrevIcon />, 2)}
           {/* Go to last */}
