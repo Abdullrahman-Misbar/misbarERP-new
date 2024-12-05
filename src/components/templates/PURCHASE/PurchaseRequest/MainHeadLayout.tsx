@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BreadcrumbComponent from "../../../Breadcrumb";
+import BreadcrumbComponent from "../../../molecules/Breadcrumb";
 import Button from "../../../atoms/button/Button";
 import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
 import ExportExcel from "../../../molecules/exel/ExportExcel";

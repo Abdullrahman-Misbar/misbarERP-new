@@ -4,8 +4,8 @@ import { FaUserAlt } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { useAuth } from "../context/auth-and-perm/AuthProvider";
-import { useFetch } from "../hooks";
+import { useAuth } from "../../context/auth-and-perm/AuthProvider";
+import { useFetch } from "../../hooks";
 
 const MenuAccount = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

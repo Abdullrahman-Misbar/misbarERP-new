@@ -1,4 +1,4 @@
-import MenuAccount from "../MenuAccount";
+import MenuAccount from "../molecules/MenuAccount";
 
 const NavBar = () => {
   return (
