@@ -26,8 +26,8 @@ function UploadFileBar() {
       </Tooltip>
 
       <ModalComp header="ارفاق ملف " open={open} setOpen={setOpen}>
-        <div className="flex  gap-4">
-          <div className="w-[45%] flex items-start flex-col justify-start gap-2">
+        <div className="grid grid-cols-12 gap-5 ">
+          <div className="col-span-7 flex items-start flex-col justify-start gap-2">
             <div className="w-full">
               <BaseInputField
                 type="text"
@@ -45,6 +45,7 @@ function UploadFileBar() {
                 type="text"
                 placeholder="نوع الملف"
                 name="name13"
+                disabled
               />
             </div>
             <div className="w-full">
@@ -53,16 +54,10 @@ function UploadFileBar() {
                 type="text"
                 placeholder="حجم الملف"
                 name="name14"
+                disabled
               />
             </div>
-            <div className="w-full">
-              {" "}
-              <BaseInputField
-                type="text"
-                placeholder="حجم الملف"
-                name="name15"
-              />{" "}
-            </div>
+           
             <div className="w-full">
               <BaseInputField
                 type="text"
@@ -71,8 +66,8 @@ function UploadFileBar() {
               />
             </div>
           </div>
-          <div className="w-[45%] border border-light rounded-[4px] relative">
-            <span className="text-[12px] font-somarLight absolute top-[-11px] right-20 p-2 bg-white">
+          <div className="col-span-5 border border-light rounded-[4px] relative">
+            <span className="text-[12px] font-somarLight absolute top-[-12px] right-20 p-2 bg-white">
               معاينة المرفق
             </span>
           </div>
