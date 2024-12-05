@@ -58,11 +58,13 @@ function UploadFileBar() {
               />
             </div>
            
-            <div className="w-full">
+            <div className="w-full relative  ">
+              <span className="absolute top-5 left-3 "><AttachmentIcon disabled /></span>
               <BaseInputField
                 type="text"
                 placeholder="مسار الملف"
                 name="name16"
+                className="px-3"
               />
             </div>
           </div>
