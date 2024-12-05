@@ -3,8 +3,7 @@ import React from "react";
 
 function SecondControlPrevIcon() {
   return (
-    <Tooltip  title="10 سجلات للخلف">
-      <button>
+  
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="15"
@@ -26,8 +25,7 @@ function SecondControlPrevIcon() {
             </clipPath>
           </defs>
         </svg>
-      </button>
-    </Tooltip>
+ 
   );
 }
 

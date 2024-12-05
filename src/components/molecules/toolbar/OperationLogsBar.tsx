@@ -1,13 +1,13 @@
 import { Tooltip } from "@mui/material";
-import FileClock from "../../../assets/icon/FileClock";
 import { useState } from "react";
-import HistoricalDrawer from "../HistoricalDrawer";
+import FileClock from "../../../assets/icon/FileClock";
+import ScheduledActivitiesDrawer from "./ScheduledActivitiesDrawer";
 
 function OperationLogsBar() {
-  const [openHistoricalDrawer, setOpenHistoricalDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleFileClock = () => {
-    setOpenHistoricalDrawer(true);
+    setOpenDrawer(true);
   };
 
   return (
@@ -17,9 +17,10 @@ function OperationLogsBar() {
           <FileClock action={handleFileClock} />
         </div>
       </Tooltip>
-      <HistoricalDrawer
-        open={openHistoricalDrawer}
-        setOpen={setOpenHistoricalDrawer}
+
+      <ScheduledActivitiesDrawer
+        open={openDrawer}
+        setOpen={setOpenDrawer}
       />
     </div>
   );

@@ -4,8 +4,7 @@ import React from "react";
 function SecondControlNextIcon() {
   return (
     <>
-      <Tooltip title=" 10 سجلات للامام ">
-        <button>
+     
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="15"
@@ -27,8 +26,7 @@ function SecondControlNextIcon() {
               </clipPath>
             </defs>
           </svg>
-        </button>
-      </Tooltip>
+  
     </>
   );
 }

@@ -64,7 +64,7 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
           onChange={(e) => setFieldValue(name, type == "number" ? +e.target.value : e.target.value)}
           sx={{
             "& .MuiInputLabel-root": {
-              fontFamily: "Somar-Bold, sans-serif", // Apply somarBold font to the label
+              fontFamily: "Somar-Bold, sans-serif", 
               fontWeight: "bold",
             },
             "& input[type='date']::-webkit-calendar-picker-indicator": {
@@ -73,15 +73,14 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
             "& input[type='date']": {
               "-webkit-appearance": "textfield",
             },
-            // Add styles when the input is disabled
             ...(disabled && {
-              backgroundColor: "#00000011", // Light gray background when disabled
-              borderColor: "rgba(0, 0, 0, 0.2)", // Light gray border when disabled
+              backgroundColor: "#00000011", 
+              borderColor: "rgba(0, 0, 0, 0.2)", 
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#00000011", // Ensure border is also light gray
+                borderColor: "#00000011", 
               },
               "& input": {
-                color: "rgba(0, 0, 0, 0.5)", // Dark gray text when disabled
+                color: "rgba(0, 0, 0, 0.5)", 
               },
             }),
             ...sx,

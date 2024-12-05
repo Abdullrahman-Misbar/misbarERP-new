@@ -1,35 +1,35 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { notify } from "../utils/toast";
 import { useNavigate } from "react-router-dom";
+import { notify } from "../utils/toast";
 import { useIsRTL } from "./useIsRTL";
-import { useAuth } from "../context/auth-and-perm/AuthProvider";
 
-type useFetchPops_TP = {
+type UseFetchProps<T> = {
   queryKey: [string];
   endpoint: string;
   enabled?: boolean;
-  select?: ((data: any) => any) | undefined;
+  select?: (data: T) => any;
   onError?: (err: any) => void;
-  onSuccess?: (err: any) => void;
+  onSuccess?: (data: T) => void;
   localization?: boolean;
   Module?: "PURCHASE";
 };
-function useFetch<T>({
+
+function useFetch<T extends { data: any }>({
   endpoint,
-  enabled,
+  enabled = true,
   select,
   queryKey,
   onError,
   onSuccess,
   Module,
-}: useFetchPops_TP) {
+}: UseFetchProps<T>) {
   const user_token = Cookies.get("token");
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
-
+  
   const isRTL = useIsRTL();
   const config = {
     headers: {
@@ -37,21 +37,20 @@ function useFetch<T>({
       "Accept-Language": isRTL ? "ar" : "en",
     },
   };
+
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const customEndPoint =
-    Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  
   const query = useQuery<T>({
     queryKey,
-
-    queryFn: () =>
-      axios
-        .get(`${customEndPoint}/${endpoint}`, config)
-        .then((res) => res.data),
+    queryFn: () => 
+      axios.get(`${customEndPoint}/${endpoint}`, config).then((res) => res.data),
     enabled,
     select,
+    //@ts-ignore
     onError: (error) => {
       notify("error", error?.response?.data?.message);
-      if (error?.response?.data?.message == "Unauthenticated.") {
+      if (error?.response?.data?.message === "Unauthenticated.") {
         localStorage.removeItem("user");
         navigate("/login");
         Cookies.remove("token");
@@ -62,6 +61,7 @@ function useFetch<T>({
     },
     onSuccess,
   });
+
   return query;
 }
 

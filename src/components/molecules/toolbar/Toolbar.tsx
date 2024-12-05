@@ -38,6 +38,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
         <ControlTableButton />
         <div className="flex items-center justify-start ">
           <OperationLogsBar />
+          
           <ScheduledActivities />
         </div>
       </div>

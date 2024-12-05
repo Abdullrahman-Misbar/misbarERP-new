@@ -2,8 +2,7 @@ import { Tooltip } from "@mui/material";
 
 function ThirdControlPrevIcon() {
   return (
-    <Tooltip title="الاخير">
-      <button type="button">
+ 
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -16,8 +15,7 @@ function ThirdControlPrevIcon() {
             fill="#3F51B5"
           />
         </svg>
-      </button>
-    </Tooltip>
+
   );
 }
 

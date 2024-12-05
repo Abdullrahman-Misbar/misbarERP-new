@@ -1,7 +1,7 @@
 import { Tooltip } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import CalenderIcon from "../../../assets/icon/CalenderIcon";
-import ScheduledActivitiesDrawer from "./ScheduledActivitiesDrawer";
+import HistoricalDrawer from "../HistoricalDrawer";
 
 function ScheduledActivities() {
   const [openHistoricalDrawer, setOpenHistoricalDrawer] = useState(false);
@@ -15,7 +15,8 @@ function ScheduledActivities() {
           <CalenderIcon action={handleCalendar} />
         </div>
       </Tooltip>
-      <ScheduledActivitiesDrawer
+    
+        <HistoricalDrawer
         open={openHistoricalDrawer}
         setOpen={setOpenHistoricalDrawer}
       />
