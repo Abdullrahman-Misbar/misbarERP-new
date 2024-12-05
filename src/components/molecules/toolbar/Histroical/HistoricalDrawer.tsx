@@ -48,7 +48,7 @@ const HistoricalDrawer: React.FC<HistoricalDrawerProps> = ({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
-    enabled: !!values?.SourceActivityType && !!id,
+    enabled: !!(values?.SourceActivityType && id),
   });
 
   const DrawerList = (
