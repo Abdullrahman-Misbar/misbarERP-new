@@ -1,82 +1,94 @@
 import { Tooltip } from "@mui/material";
+import { useState } from "react";
+import UploadFileBseInput from "../../atoms/formik/UploadFileBseInput";
 import AttachmentIcon from "../../atoms/icons/AttachmentIcon";
 import ModalComp from "../ModalComp";
-import { useState } from "react";
-import BaseInputField from "../../atoms/formik/BaseInputField";
+import { Form, Formik } from "formik";
+import { notify } from "../../../utils/toast";
+import { useMutate } from "../../../hooks";
+import { useParams } from "react-router-dom";
 
 function UploadFileBar() {
   const [open, setOpen] = useState(false);
+  const { id } = useParams();
+  const [file, setFile] = useState<File | null>(null); // State to hold the file
 
-  // Open the dialog
   const handleUploadFileBar = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const { mutate } = useMutate({
+    mutationKey: ["api/Attachment/Create"],
+    endpoint: `api/Attachment/Create`,
+    onSuccess: () => {
+      notify("success");
+      setOpen(false);
+    },
+    Module: "PURCHASE",
+    onError: (err) => {
+      notify("error", err?.response?.data?.message);
+    },
+    formData: true,
+  });
+
+  const initialValues = {
+    sourceId: id,
+    attchmentTitle: "",
+    description: "",
+    fileType: "",
+    fileSize: "",
+    filePath: "",
+    sourceTypeId: 1,
   };
+
+  const handleSubmit = (values: any) => {
+    if (!file) {
+      notify("error", "يرجى اختيار ملف أولاً");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("file", file); 
+    formData.append("attchmentTitle", values.attchmentTitle);
+    formData.append("description", values.description);
+    formData.append("sourceId", values.sourceId);
+    formData.append("sourceTypeId", values.sourceTypeId.toString());
+  
+    mutate(formData); 
+  };
+  
 
   return (
     <div>
       <Tooltip title="إرفاق ملف">
-        <div className="flex items-center ">
+        <div className="flex items-center">
           <AttachmentIcon disabled={false} action={handleUploadFileBar} />
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </div>
       </Tooltip>
 
-      <ModalComp header="ارفاق ملف " open={open} setOpen={setOpen}>
-        <div className="grid grid-cols-12 gap-5 ">
-          <div className="col-span-7 flex items-start flex-col justify-start gap-2">
-            <div className="w-full">
-              <BaseInputField
-                type="text"
-                placeholder="عنوان المرفق"
-                name="name1"
-              />
-            </div>
-            <div className="w-full">
-              {" "}
-              <BaseInputField type="text" placeholder="الوصف" name="name12" />
-            </div>
-            <div className="w-full">
-              {" "}
-              <BaseInputField
-                type="text"
-                placeholder="نوع الملف"
-                name="name13"
-                disabled
-              />
-            </div>
-            <div className="w-full">
-              {" "}
-              <BaseInputField
-                type="text"
-                placeholder="حجم الملف"
-                name="name14"
-                disabled
-              />
-            </div>
-
-            <div className="w-full relative  ">
-              <span className="absolute top-5 left-3 ">
-                <AttachmentIcon disabled />
-              </span>
-              <BaseInputField
-                type="text"
-                placeholder="مسار الملف"
-                name="name16"
-                className="px-3"
-              />
-            </div>
-          </div>
-          <div className="col-span-5 border border-light rounded-[4px] relative">
-            <span className="text-[12px] font-somarLight absolute top-[-12px] right-20 p-2 bg-white">
-              معاينة المرفق
-            </span>
-          </div>
-        </div>
-      </ModalComp>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values) => handleSubmit(values)} // Use handleSubmit for form submission
+        enableReinitialize
+      >
+        {({ submitForm }) => (
+          <Form>
+            <ModalComp
+              header="ارفاق ملف"
+              open={open}
+              setOpen={setOpen}
+              ActionAgreeButton={() => {
+                submitForm(); 
+              }}
+            >
+              <div>
+                <UploadFileBseInput setFile={setFile} /> {/* Pass setFile */}
+              </div>
+            </ModalComp>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 }
