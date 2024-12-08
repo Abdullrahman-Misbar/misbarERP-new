@@ -9,7 +9,7 @@ function ScheduledActivities() {
   const handleCalendar = () => {
     setOpenHistoricalDrawer(true);
   };
-  const {values} = useFormikContext()
+  const { values } = useFormikContext();
   return (
     <div>
       <Tooltip title="الانشطة المجدولة">
@@ -17,8 +17,8 @@ function ScheduledActivities() {
           <CalenderIcon action={handleCalendar} disabled={!values?.editable} />
         </div>
       </Tooltip>
-    
-        <HistoricalDrawer
+
+      <HistoricalDrawer
         open={openHistoricalDrawer}
         setOpen={setOpenHistoricalDrawer}
       />
