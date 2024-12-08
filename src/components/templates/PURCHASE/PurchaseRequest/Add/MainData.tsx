@@ -14,6 +14,7 @@ import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -186,6 +187,7 @@ function MainData() {
           </Grid>
         </Grid>
         <Grid item xs={12} mt={5}>
+          <MainSelectChoseModule moduleName="purchaseRequestDetailsDto" />
           <ItemsTable moduleName="purchaseRequestDetailsDto" />
         </Grid>
       </div>
