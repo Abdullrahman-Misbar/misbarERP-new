@@ -9,6 +9,7 @@ import { Form, Formik } from "formik";
 import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
+import { generateColumns } from "./generateColumns";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
@@ -62,7 +63,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
             setOpen={setExportExcelModal}
             AgreeTextButton="تصدير"
           >
-            <ExportExcel />
+            <ExportExcel  generateColumns={generateColumns}/>
           </ModalComp>
         </Form>
       </Formik>
