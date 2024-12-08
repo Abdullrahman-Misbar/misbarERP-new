@@ -46,6 +46,7 @@ function MainData() {
       newValues={newValues}
       deleteEndPoint="api/PurchasRequest"
     >
+
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
@@ -57,6 +58,7 @@ function MainData() {
               label="الرقم المرجعي"
             />
           </Grid>
+          
 
           <Grid item xs={12} sm={6}>
             <SelectPurchaseAgreement name="purchaseAgreementId" />
@@ -159,6 +161,8 @@ function MainData() {
                 checked={values?.priceIncludeTax == false}
                 onChange={() => setFieldValue("priceIncludeTax", false)}
               />
+
+
               <RadioButtons
                 name="priceIncludeTax"
                 label="شاملة الضريبة"
@@ -168,6 +172,7 @@ function MainData() {
             </div>
           </Grid>
 
+
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="referenceDocument"
@@ -176,6 +181,7 @@ function MainData() {
               label="المستند المرجعي"
             />
           </Grid>
+
 
           <Grid item xs={6}>
             <BaseInputField

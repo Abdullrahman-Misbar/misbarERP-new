@@ -6,13 +6,14 @@ import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import CancelApproved from "./CancelApproved";
+import { NavigateFunction } from "react-router-dom";
 
 type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
-  navigate: any
+  navigate: NavigateFunction
 ): ColumnDef<RowData>[] => {
   return [
     {
@@ -26,55 +27,51 @@ export const generateColumns = (
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("vendor Name")}`,
-      accessorKey: "partnerName",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("reference Document")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("request Date")}`,
-      accessorKey: "requestDate",
+      header: `${t("createDate")}`,
+      accessorKey: "createDate",
       cell: (info) => (
-        <div>{info?.row?.original?.requestDate?.slice(0, 10)}</div>
+        <div>{info?.row?.original?.createDate?.slice(0, 10)}</div>
       ),
     },
     {
-      header: `${t("request End Date")}`,
-      accessorKey: "requestEndDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.requestEndDate?.slice(0, 10)}</div>
-      ),
+      header: `${t("vendorId")}`,
+      accessorKey: "vendorId",
+      cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("approval Date")}`,
+      header: `${t("purchaseRepresentativeId")}`,
+      accessorKey: "purchaseRepresentativeId",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("approvalDate")}`,
       accessorKey: "approvalDate",
       cell: (info) => (
         <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
       ),
     },
     {
-      header: `${t("status approved")}`,
-      accessorKey: "isApproved",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
+      header: `${t("expectedReceiptDate")}`,
+      accessorKey: "expectedReceiptDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
+      ),
     },
     {
-      header: `${t("status Canceled Request")}`,
-      accessorKey: "isCanceled",
-      cell: (info) => <div>{info?.row?.original?.isCanceled ? <p>تم الالغاء</p> : <p> غير ملغاة </p>}</div>,
-    },
-    {
-      header: `${t("Number of offers")}`,
-      accessorKey: "totalQutotaionCount",
+      header: `${t("referenceDocument")}`,
+      accessorKey: "referenceDocument",
       cell: (info) => info.renderValue(),
     },
 
     {
-      header: `${t("total")}`,
-      accessorKey: "total",
+      header: `${t("status approved")}`,
+      accessorKey: "status",
+      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
+    },
+    // هل هي حاله الاستلام
+    {
+      header: `${t("purchaseAgreementId")}`,
+      accessorKey: "purchaseAgreementId",
       cell: (info) => info.renderValue(),
     },
 
@@ -95,7 +92,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchaseRequest/edit/${info?.row?.original?.id}`
+                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

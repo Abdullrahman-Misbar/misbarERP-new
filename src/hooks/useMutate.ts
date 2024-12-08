@@ -13,8 +13,8 @@ type useMutateProps_TP<response_T> = {
   onError?: (err: CError_TP) => void
   formData?: boolean
   onMutate?: (err?: unknown) => void
-  method?: "post" | "delete"
-  Module?: "PURCHASE"
+  method?: "post" | "delete" | 'PUT'
+  Module?: "PURCHASE" 
 }
 
 export function useMutate<response_T>({
@@ -24,7 +24,7 @@ export function useMutate<response_T>({
   onSuccess,
   formData,
   onMutate,
-  method = "post",
+  method = "post" ,
   Module,
 }: useMutateProps_TP<response_T>) {
   const [uploadProgress, setUploadProgress] = useState(0)
