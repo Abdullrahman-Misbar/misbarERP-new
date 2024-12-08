@@ -166,8 +166,8 @@ export const sideBarItems: MenuItem_TP[] = [
       },
       {
         id: crypto.randomUUID(),
-        label: "offer price",
-        link: "",
+        label: "Purchase quotes",
+        link: "/purchase/PurchasQutations",
         icon: OfferPriceIcon,
       },
       {
@@ -178,8 +178,8 @@ export const sideBarItems: MenuItem_TP[] = [
       },
       {
         id: crypto.randomUUID(),
-        label: "Receipt order",
-        link: "",
+        label: "Purchase receipt",
+        link: "/purchase/PurchasReceipt",
         icon: ReceiptOrderIcon,
       },
     ],
