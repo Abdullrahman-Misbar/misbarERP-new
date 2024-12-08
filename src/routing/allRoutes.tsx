@@ -7,6 +7,9 @@ import AddPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Add";
 import EditPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Edit";
 import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
+import PurchaseOrder from "../pages/PURCHASE/PurchaseOrder";
+import AddPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Add";
+import EditPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -30,6 +33,22 @@ export const AllRoutesProvider = () => {
           path="/purchase/PurchaseRequest/edit/:id"
           element={<EditPurchaseRequest title={t("Edit Purchase request")} />}
         />
+        {/* ----------------------------------------- */}
+        <Route
+          path="/purchase/PurchasOrder"
+          element={<PurchaseOrder title={t("Purchase order")} />
+          
+        }
+        />
+        <Route
+          path="/purchase/PurchasOrder/add"
+          element={<AddPurchaseOrder title={t("Add Purchase order")} />}
+        />
+        <Route
+          path="/purchase/PurchasOrder/edit/:id"
+          element={<EditPurchaseOrder title={t("Edit Purchase order")} />}
+        />
+
       </Route>
 
       <Route

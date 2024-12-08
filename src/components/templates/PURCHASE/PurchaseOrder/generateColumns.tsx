@@ -64,7 +64,15 @@ export const generateColumns = (
     {
       header: `${t("status Canceled Request")}`,
       accessorKey: "isCanceled",
-      cell: (info) => <div>{info?.row?.original?.isCanceled ? <p>تم الالغاء</p> : <p> غير ملغاة </p>}</div>,
+      cell: (info) => (
+        <div>
+          {info?.row?.original?.isCanceled ? (
+            <p>تم الالغاء</p>
+          ) : (
+            <p> غير ملغاة </p>
+          )}
+        </div>
+      ),
     },
     {
       header: `${t("Number of offers")}`,
@@ -95,7 +103,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchaseRequest/edit/${info?.row?.original?.id}`
+                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

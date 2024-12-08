@@ -80,6 +80,8 @@
   "Are you sure cancel Request?":"هل انت متاكد من الغاء الطلب",
   "After canceling the order, it cannot be restored again.":"بعد الغاء الطلب لا يمكن استعادته مره اخرى",
   "PM":"مساء",
-  "AM":"صباحا"
+  "AM":"صباحا",
+  "status Canceled Request":"حالة الغاء الطلب",
+  "status approved":"حالة الاعتماد"
 
 }
