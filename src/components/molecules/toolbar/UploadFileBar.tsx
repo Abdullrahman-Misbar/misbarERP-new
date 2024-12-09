@@ -69,7 +69,7 @@ function UploadFileBar() {
 
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => handleSubmit(values)} // Use handleSubmit for form submission
+        onSubmit={(values) => handleSubmit(values)} 
         enableReinitialize
       >
         {({ submitForm }) => (
@@ -83,7 +83,7 @@ function UploadFileBar() {
               }}
             >
               <div>
-                <UploadFileBseInput setFile={setFile} /> {/* Pass setFile */}
+                <UploadFileBseInput setFile={setFile} /> 
               </div>
             </ModalComp>
           </Form>

@@ -94,6 +94,7 @@ function Main({ editable }: Main_TP) {
       warehouseId: "",
       purchaseRepresentativeId: "",
       currencyId: "",
+      purchaseRequestDetailsDto:[]
     },
   };
   if (editable && isLoading)

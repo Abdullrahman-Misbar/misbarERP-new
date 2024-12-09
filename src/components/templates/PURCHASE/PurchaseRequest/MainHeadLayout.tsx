@@ -13,9 +13,10 @@ import { generateColumns } from "./generateColumns";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
+  data: string[];
 };
 
-function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
+function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -55,18 +56,15 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
           </span>
         </div>
       </div>
-      <Formik initialValues={{}} onSubmit={() => {}}>
-        <Form>
-          <ModalComp
-            header="الموردين - التصدير الى اكسل"
-            open={exportExcelModal}
-            setOpen={setExportExcelModal}
-            AgreeTextButton="تصدير"
-          >
-            <ExportExcel  generateColumns={generateColumns}/>
-          </ModalComp>
-        </Form>
-      </Formik>
+      {/* <Formik initialValues={{}} onSubmit={() => {}}>
+        <Form> */}
+          
+            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
+            setExportExcelModal={setExportExcelModal}
+            />
+         
+        {/* </Form>
+      </Formik> */}
 
       <ModalComp
         header=" الموردين - الاستيراد من اكسل "

@@ -1,104 +1,152 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
+import { TextField } from "@mui/material";
+import { Dispatch, SetStateAction, useState } from "react";
+import { GrAdd, GrSubtract } from "react-icons/gr";
 import * as XLSX from "xlsx";
-import { writeFile } from "xlsx"; // استيراد الوظيفة الخاصة بكتابة ملف Excel
-import BaseInputField from "../../atoms/formik/BaseInputField";
-import { Checkbox } from "@mui/material";
-import { GrAdd } from "react-icons/gr";
+import { writeFile } from "xlsx";
+import ModalComp from "../ModalComp";
 
-function ExportExcel({ generateColumns, data }) {
-  const [selectedColumns, setSelectedColumns] = useState({});
-  const [selectedFields, setSelectedFields] = useState([]);
+interface Column {
+  accessorKey: string;
+  header: string;
+}
 
-  // دالة لتصدير البيانات إلى Excel
+interface ExportExcelProps {
+  generateColumns: () => Column[];
+  data: Record<string, any>[];
+  exportExcelModal: boolean;
+  setExportExcelModal: Dispatch<SetStateAction<boolean>>;
+}
+
+const ExportExcel: React.FC<ExportExcelProps> = ({
+  generateColumns,
+  data,
+  exportExcelModal,
+  setExportExcelModal,
+}) => {
+  const [selectedColumns, setSelectedColumns] = useState<Record<string, boolean>>({});
+  const [selectedFields, setSelectedFields] = useState<Column[]>([]);
+  const [exportPath, setExportPath] = useState<string>("");
+
   const exportToExcel = () => {
-    // الحصول على الأعمدة المحددة فقط
-    const selectedData = data.map((row) => {
-      const selectedRow = {};
+    const selectedData = generateSelectedData();
+    const workbook = createExcelWorkbook(selectedData);
+    
+    const fileName = "exported_data.xlsx"; 
+    
+    writeFile(workbook, fileName);
+  };
+
+  const generateSelectedData = () => {
+    return data.map((row) => {
+      const selectedRow: Record<string, any> = {};
       selectedFields.forEach((field) => {
         selectedRow[field.header] = row[field.accessorKey];
       });
       return selectedRow;
     });
+  };
 
-    // تحويل البيانات إلى Excel
+  const createExcelWorkbook = (selectedData: Record<string, any>[]) => {
     const sheet = XLSX.utils.json_to_sheet(selectedData);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, sheet, "SelectedData");
-    writeFile(workbook, "selected_data.xlsx");
+    return workbook;
+  };
+
+  const handleColumnChange = (columnKey: string, columnHeader: string) => {
+    setSelectedColumns((prevState) => {
+      const updatedColumns = { ...prevState };
+      const isColumnSelected = updatedColumns[columnKey];
+
+      if (isColumnSelected) {
+        delete updatedColumns[columnKey];
+        removeField(columnKey);
+      } else {
+        updatedColumns[columnKey] = true;
+        addField(columnKey, columnHeader);
+      }
+
+      return updatedColumns;
+    });
+  };
+
+  const addField = (columnKey: string, columnHeader: string) => {
+    setSelectedFields((prevFields) => {
+      const isFieldAlreadySelected = prevFields.some(
+        (field) => field.accessorKey === columnKey
+      );
+      if (!isFieldAlreadySelected) {
+        return [
+          ...prevFields,
+          { accessorKey: columnKey, header: columnHeader },
+        ];
+      }
+      return prevFields;
+    });
+  };
+
+  const removeField = (columnKey: string) => {
+    setSelectedFields((prevFields) =>
+      prevFields.filter((field) => field.accessorKey !== columnKey)
+    );
+  };
+
+  const handleRemoveField = (columnKey: string) => {
+    setSelectedColumns((prevState) => {
+      const updatedColumns = { ...prevState };
+      delete updatedColumns[columnKey];
+      return updatedColumns;
+    });
+    removeField(columnKey);
   };
 
   const columns = generateColumns();
 
-  // دالة لتحديد الأعمدة
-  const handleColumnChange = (columnKey, columnHeader) => {
-    setSelectedColumns((prevState) => {
-      const newSelectedColumns = { ...prevState };
-      if (newSelectedColumns[columnKey]) {
-        // إذا كان العمود محددًا مسبقًا، ألغِ تحديده
-        delete newSelectedColumns[columnKey];
-        setSelectedFields((prevFields) =>
-          prevFields.filter((field) => field.accessorKey !== columnKey)
-        );
-      } else {
-        // إذا لم يكن العمود محددًا، أضفه إلى الحقول المحددة
-        newSelectedColumns[columnKey] = true;
-        setSelectedFields((prevFields) => [
-          ...prevFields,
-          { accessorKey: columnKey, header: columnHeader },
-        ]);
-      }
-      return newSelectedColumns;
-    });
-  };
-
-  // دالة لحذف عمود من الحقول المحددة
-  const handleRemoveField = (columnKey) => {
-    setSelectedFields((prevFields) =>
-      prevFields.filter((field) => field.accessorKey !== columnKey)
-    );
-    setSelectedColumns((prevState) => {
-      const newSelectedColumns = { ...prevState };
-      delete newSelectedColumns[columnKey];
-      return newSelectedColumns;
-    });
-  };
-
   return (
-    <>
+    <ModalComp
+      header="الموردين - التصدير الى اكسل"
+      open={exportExcelModal}
+      setOpen={setExportExcelModal}
+      AgreeTextButton="تصدير"
+      ActionAgreeButton={exportToExcel}
+      disabledButtonAgree={!selectedFields?.length}
+    >
       <div className="px-4">
         <div className="grid grid-cols-2 gap-4">
-          {/* الحقول المتوفرة */}
           <div className="flex items-start flex-col gap">
             <span className="font-somarLight text-[#4D4D4D] gap-2 my-1">
               الحقول المتوفرة
             </span>
-            <div className="w-full border p-2 border-mainBorder rounded-[8px] h-[472px] flex items-start justify-start flex-col overflow-y-hidden">
+            <div className="w-full border p-2 border-mainBorder rounded-[8px] h-[472px] flex items-start justify-start flex-col overflow-y-scroll">
               {columns.map((column) => (
                 <div
                   key={column.accessorKey}
                   className="w-full flex item-center justify-between py-2 px-3"
                 >
-                  {/* <Checkbox
-                    checked={selectedColumns[column.accessorKey] || false}
-                    onChange={() => handleColumnChange(column.accessorKey, column.header)}
-                  /> */}
-
                   <span>{column.header}</span>
-                  <p
-                    className="cursor-pointer"
-                    onChange={() =>
-                      handleColumnChange(column.accessorKey, column.header)
-                    }
-                  >
-                    <GrAdd />
-                  </p>
+                  {!selectedColumns[column.accessorKey] ? (
+                    <span
+                      className="cursor-pointer"
+                      onClick={() =>
+                        handleColumnChange(column.accessorKey, column.header)
+                      }
+                    >
+                      <GrAdd />
+                    </span>
+                  ) : (
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => handleRemoveField(column.accessorKey)}
+                    >
+                      <GrSubtract />
+                    </span>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* الحقول المحددة */}
           <div className="flex items-start flex-col gap">
             <span className="font-somarLight text-[#4D4D4D] gap-2 my-1">
               الحقول المحددة
@@ -124,34 +172,25 @@ function ExportExcel({ generateColumns, data }) {
           </div>
         </div>
 
-        {/* مسار التصدير */}
         <div className="flex flex-col items-start gap-2">
           <div className="px-3 my-2 w-full flex item-center justify-between">
-            <span>مسار التصدير </span>
+            <span>مسار التصدير</span>
             <span>Export to</span>
           </div>
           <div className="w-full" dir="ltr">
-            <BaseInputField
+            <TextField
               className="w-full"
-              name="name"
+              name="exportPath"
               placeholder="C:\Users\Shaker Ali Farhan\Documents"
               type="text"
+              value={exportPath}
+              onChange={(e) => setExportPath(e.target.value)}
             />
           </div>
         </div>
-
-        {/* زر تصدير */}
-        <div className="flex justify-end mt-4">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded"
-            onClick={exportToExcel}
-          >
-            تصدير إلى Excel
-          </button>
-        </div>
       </div>
-    </>
+    </ModalComp>
   );
-}
+};
 
 export default ExportExcel;
