@@ -15,9 +15,11 @@ import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
+import { useEffect } from "react";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
+  console.log("🚀 ~ MainData ~ values:", values)
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -39,6 +41,7 @@ function MainData() {
     deliverdConfirmation: values?.copValue?.deliverdConfirmation || null,
     purchaseRequestDetailsDto: values?.copValue?.purchaseRequestDetailsDto || [],
   };
+
 
   return (
     <LayoutMainData

@@ -1,40 +1,28 @@
 import { useMemo, useState } from "react";
 
+import { useFetch } from "../../../../../../../hooks";
+import useDebounce from "../../../../../../../hooks/useDebounce";
+import BaseInputSearch from "../../../../../../atoms/formik/BaseInputSearch";
+import { Table } from "../../../../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import { useFormikContext } from "formik";
-import useDebounce from "../../../hooks/useDebounce";
-import { useFetch } from "../../../hooks";
-import BaseInputSearch from "../../atoms/formik/BaseInputSearch";
-import { Table } from "../tantable/Table";
 
-function MainDropItemsComp() {
+function MainCopyComp() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
-  // const debouncedWord = useDebounce(word, 3000);
-  // const queryParams = {
-  //   // page: page,
-  //   // term: word,
-  // };
-  const { values } = useFormikContext<any>();
-  const endpoint =
-    values.items_type == "purchase_order"
-      ? `api/PurchasOrder?Take=10000`
-      : values.items_type == "purchase_request"
-      ? `api/PurchasRequest?Take=10000`
-      : values.items_type == "purchase_quotes"
-      ? `api/PurchasQutations?Take=10000`
-      : "";
-  const {
-    data: rowData,
-    refetch,
-    isSuccess,
-    isFetching,
-    isLoading,
-  } = useFetch<any>({
-    queryKey: [endpoint],
+  const debouncedWord = useDebounce(word, 3000);
+  const queryParams = {
+    // page: page,
+    // term: word,
+  };
+  const searchParams = new URLSearchParams(queryParams as any);
+  const { values } = useFormikContext();
+  const endpoint = `api/PurchasOrder?Take=1000${searchParams.toString()}`;
+
+  const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
+    queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled: !!values.items_type,
   });
 
   const columns = useMemo(
@@ -52,13 +40,13 @@ function MainDropItemsComp() {
 
       <div className="p-3 bg-white rounded-md">
         <Table
-          data={rowData?.data?.data || []}
+          data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-          pageSize={rowData?.data?.totalCount}
+          pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
@@ -77,4 +65,4 @@ function MainDropItemsComp() {
   );
 }
 
-export default MainDropItemsComp;
+export default MainCopyComp;

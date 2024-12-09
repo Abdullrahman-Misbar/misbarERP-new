@@ -26,23 +26,22 @@ const CostCenter: React.FC<CostCenterProps> = ({
   disabled,
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
-
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const endpoint = "api/Branch/CostCenter/Lookup";
-  const { data, isLoading } = useFetch<any>({
+  const { data, isLoading} = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
-    Module: "PURCHASE",
+    Module:"PURCHASE"
   });
 
   const options: Option[] =
     //@ts-ignore
     data?.data?.map((item: { id: string; lookupName: string }) => ({
-      value: item.id,
-      label: item.lookupName,
+      value: item?.id,
+      label: item?.lookupName,
     })) || [];
   const selectedValue = options?.find((item) => item?.value == values[name]);
 

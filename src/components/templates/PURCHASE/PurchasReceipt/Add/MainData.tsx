@@ -17,6 +17,8 @@ import { Values_TP } from "./Types&Validation";
 import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import SelectAccount from "../../../../molecules/Selects/SelectAccount";
 import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
+import SelectEmployee from "../../../../molecules/Selects/SelectEmployee";
+import SelectPartner from "../../../../molecules/Selects/SelectPartner";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -25,6 +27,8 @@ function MainData() {
     purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
     currencyId: values?.copValue?.currencyId || 0,
     vendorId: values?.copValue?.vendorId || 0,
+    partnerId: 8,
+
     warehouseId: values?.copValue?.warehouseId || 0,
     convertionRate: values?.copValue?.convertionRate || 0,
     inDate: values?.copValue?.inDate || "",
@@ -57,12 +61,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="purchaseRepresentativeId"
-              placeholder=" مندوب المشتريات"
-              type="text"
-              label=" مندوب المشتريات"
-            />
+            <SelectEmployee name="purchaseRepresentativeId" />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -124,7 +123,9 @@ function MainData() {
             <SelectCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
           </Grid>
 
-          <Grid item xs={4}>
+         
+
+          <Grid item xs={6}>
             <BaseInputField
               name="note"
               placeholder="ملاحظات"

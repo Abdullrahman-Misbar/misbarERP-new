@@ -24,6 +24,7 @@ export type Values_TP = {
   editable: boolean;
   total: string;
   priceIncludeTax: boolean;
+  cancelRequestEndPoint:string
   creationDate: string;
   referenceDocument: string;
   currency: string;

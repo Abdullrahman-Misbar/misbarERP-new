@@ -1,47 +1,45 @@
 import { useMemo, useState } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
-import { useFetch } from "../../../../../../hooks";
-import useDebounce from "../../../../../../hooks/useDebounce";
-import BaseInputSearch from "../../../../../atoms/formik/BaseInputSearch";
-import { Table } from "../../../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
-import { useFormikContext } from "formik";
+import MainHeadLayout from "./MainHeadLayout";
+import useDebounce from "../../../../../hooks/useDebounce";
+import { useFetch } from "../../../../../hooks";
+import { Table } from "../../../../molecules/tantable/Table";
+import Paginate from "../../../../molecules/table/Paginate";
 
-function MainCopyComp() {
+function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
+  const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
     // page: page,
     // term: word,
+    Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-const {values} = useFormikContext()
-  const endpoint = `api/PurchasReceipt?Take=1000${searchParams.toString()}`;
 
+  const endpoint = `api/PurchasInvoice?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    onSuccess: () => {},
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch),
-    [page, refetch , values]
+    () => generateColumns(page, refetch, navigate),
+    [page, refetch]
   );
 
+  const handlePageChange = (selectedPage: number) => {
+    setPage(selectedPage);
+  };
 
   return (
     <div>
-     
-      <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
-        <div className="col-span-12">
-          <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
-        </div>
-      </div>
-
-      
+      <MainHeadLayout setWord={setWord} />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}
@@ -56,17 +54,17 @@ const {values} = useFormikContext()
           showStatusFilter
         />
       </div>
-      {/* <div className="flex justify-end mt-3">
+      <div className="flex justify-end mt-3">
         <Paginate
-          pagesCount={data?.data?.totalCount}
-          previousLabel={">>"}
-          nextLabel={"<<"}
+          pagesCount={data?.data?.totalCount / 10}
+          previousLabel={<IoIosArrowBack />}
+          nextLabel={<IoIosArrowForward />}
           onPageChange={handlePageChange}
           initialPage={page}
         />
-      </div> */}
+      </div>
     </div>
   );
 }
 
-export default MainCopyComp;
+export default Main;

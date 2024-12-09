@@ -17,14 +17,14 @@ export const generateColumns = (
       header: "#",
       accessorKey: "id",
       cell: (info) => {
-        const isChecked = values?.copValue?.id === info?.row?.original?.id;  
+        const isChecked = values?.item_id=== info?.row?.original?.id;  
         return (
           <span>
             <RadioButtons
               label=""
               name="copValue"
               checked={isChecked}  
-              onChange={() => setFieldValue("copValue", info?.row?.original)} 
+              onChange={() => setFieldValue("item_id", info?.row?.original?.id)} 
             />
           </span>
         );

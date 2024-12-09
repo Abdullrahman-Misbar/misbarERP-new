@@ -95,17 +95,29 @@ function MainData() {
             <SelectVendor name="vendorId" />
           </Grid>
 
-         
           <Grid item xs={12} sm={4}>
             <SelectPurchaseAgreement name="purchaseAgreementId" />
           </Grid>
 
-
           <Grid item xs={12} sm={4} mt={4}>
             <div className="flex items-center gap-5">
               <Label htmlFor="">الحالة</Label>
+              <div>
+                <span className="status-text">
+                  {(() => {
+                    switch (values?.status) {
+                      case 0:
+                        return "لم يتم الاستلام";
+                      case 1:
+                        return "استلام جزئي";
+                      case 2:
+                        return "استلام كلي";
+                    }
+                  })()}
 
-              <ApprovedStatus  />
+                  
+                </span>
+              </div>
             </div>
           </Grid>
 

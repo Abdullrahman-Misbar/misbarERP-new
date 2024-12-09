@@ -31,21 +31,8 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
-  costCenterId: number;
-  status: any;
-  accountId: number;
-  billingStatus: any;
-  inDate: string;
-  convertionRate: number;
-  receiptDetailsModal: string[];
+  orderDetailsModal: string[];
   copValue: {
-    editable: boolean;
-    costCenterId: number;
-    status: any;
-    accountId: number;
-    billingStatus: any;
-    inDate: string;
-    convertionRate: number;
     code: string;
     expectedReceiptDate: string;
     total: string;
@@ -55,11 +42,11 @@ export type Values_TP = {
     supplier: string;
     purchaseAgreement: string;
     notes: string;
-    receiptDetailsModal: string[];
+    orderDetailsModal: string[];
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
-    deliverdConfirmation: boolean;
+    deliverdConfirmation:boolean
     note: string;
     approvalDate: string;
     confirmationDayes: string;
@@ -72,7 +59,7 @@ export type Values_TP = {
     priceIncludeTax: string;
     isApproved: string;
   };
-  uoms: string;
+  uoms:string
 };
 
 export type PurchaseOrderData = {
@@ -93,7 +80,7 @@ export type PurchaseOrderData = {
   priceIncludeTax: string;
   isApproved: string;
   note: string;
-  purchaseRequestDetailsDto: Array<{
+  orderDetailsModal: Array<{
     itemId: string;
     description: string;
     quantity: string;
@@ -125,17 +112,18 @@ export type FetchResponse<T> = {
   error?: string;
 };
 
-export type Item_TP = {
+
+export type Item_TP ={
   itemId: string;
   note: string;
-  id: string;
+  id:string
   price: number;
   quantity: number;
   total: number;
   uomId: string;
   warehouseId: string;
-  description: string;
-  product: {
-    uoms: string;
-  };
-};
+  description:string
+  product:{
+    uoms:string
+  }
+}

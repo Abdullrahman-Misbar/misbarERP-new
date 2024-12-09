@@ -61,6 +61,7 @@ function Main({ editable }: Main_TP) {
     status: response?.status || 0,
     costCenterId: response?.costCenterId || 0,
     note: response?.note || "",
+    partnerId: 8,
     editable: editable ? true : false,
     SourceActivityType: 1,
     receiptDetailsModal: response?.receiptDetailsModal?.length
@@ -76,6 +77,7 @@ function Main({ editable }: Main_TP) {
           isDeleted: false,
           description: item?.description,
           uoms: item?.product?.uoms,
+          product: item?.product,
         }))
       : [],
     copValue: {
@@ -88,6 +90,7 @@ function Main({ editable }: Main_TP) {
       inDate: "",
       billingStatus: "",
       accountId: 0,
+      partnerId: 8,
       referenceDocument: "",
       status: 0,
       costCenterId: 0,

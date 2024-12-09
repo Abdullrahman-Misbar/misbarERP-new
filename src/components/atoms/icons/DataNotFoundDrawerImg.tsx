@@ -1,4 +1,4 @@
-function DataNotFoundDrawarImg() {
+function DataNotFoundDrawerImg() {
   return (
     <svg
       width="300"
@@ -677,4 +677,4 @@ function DataNotFoundDrawarImg() {
   );
 }
 
-export default DataNotFoundDrawarImg;
+export default DataNotFoundDrawerImg;

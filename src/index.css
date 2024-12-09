@@ -49,7 +49,7 @@ body {
   color: #fff;
 }
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
 }
 *::-webkit-scrollbar-track {
   background-color: var(--dark-color);
@@ -84,54 +84,12 @@ body {
     @apply relative active:top-[1px] md:w-[100px] cutsom-button-sub hover:cursor-pointer py-2 px-4 font-bold rounded-md w-full bg-main dark:bg-dark-tertiary dark:!border-dark-borderDark text-white border border-lightBlack   flex items-center justify-center gap-2;
   }
 }
-/* .MuiButtonBase-root {
-  justify-content: space-between !important;
-} */
+.ps-menu-label{
+  @apply font-somarBold
 
-/* .icon-with-line {
-  position: relative;
 }
+.css-1ip1oky >.ps-menu-button {
 
-.icon-with-line::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 1px;
-  height: 37px;
-  background-color: #e1e1e1;
-  transform: translateX(-30%);
-  -webkit-transform: translateX(-30%);
-  -moz-transform: translateX(-30%);
-  -ms-transform: translateX(-30%);
-  -o-transform: translateX(-30%);
-} */
-/* إضافة الخط الرأسي بين المجموعات */
-ul > li {
-  border-right: 1px solid #ccc; /* الخط الرأسي بين العناصر */
-  padding: 0 20px; /* لتوفير مساحة بين الخط والنص */
-  margin: 0 !important;
-}
-ul div {
-}
-/* إخفاء الخط من آخر عنصر */
+  height: 40px !important;
 
-/* تخصيص الخط داخل العناصر */
-.icon-with-line {
-  position: relative; /* لجعل العنصر مرجعيًا للخط */
 }
-
-.icon-with-line::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 1px;
-  height: 67px; /* طول الخط */
-  background-color: #e1e1e1; /* لون الخط */
-  transform: translateX(-50%); /* لتوسيط الخط تمامًا */
-}
-
-/* 
-ul > li:last-child {
-  border-right: none; /* إزالة الخط من آخر عنصر */

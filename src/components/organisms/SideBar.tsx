@@ -90,11 +90,11 @@ export const SideBar = () => {
         defaultOpen={isOpen(Item.id)}
         className={`text-[14px] font-somarLight my-1 ${
           location.pathname === Item.link
-            ? "bg-LightGreen font-somarBold"
-            : "text-mainBlack"
-        } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
+            ? "bg-LightGreen !font-somarBold "
+            : "text-mainBlack "
+        } `} 
         key={Item.id}
-        label={t(Item.label)}
+        label={<p className="!font-somarBold">{t(Item.label)}</p>}
         icon={
           <div>
             {/* 1 */}
@@ -112,14 +112,14 @@ export const SideBar = () => {
       <MenuItem
         className={`text-[14px]  transition duration-200 ${
           location.pathname === Item.link
-            ? "text-black font-somarBold bg-gray-100 hover:bg-gray-200 hover:text-primary"
+            ? "text-black !font-somarBold bg-gray-100 hover:bg-gray-200 hover:text-primary"
             : "text-mainBlack hover:bg-gray-100 hover:text-primary"
-        } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
+        } `} 
         key={Item.id}
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-
+        icon={<Item.icon className="text-gray-300"  />}
         active={location.pathname === Item.link}
       >
         {t(Item.label)}
@@ -147,7 +147,7 @@ export const SideBar = () => {
             return (
               <div
                 key={index}
-                className="px-6 py-2 text-xs font-bold text-gray-400  font-somarLight"
+                className="px-6 py-2 text-xs font-bold text-gray-400  font-somarLight "
               >
                 {(Item as any).header}
               </div>
@@ -158,9 +158,9 @@ export const SideBar = () => {
               defaultOpen={isOpen(Item.id)}
               className={`${
                 location.pathname === Item.link
-                  ? "bg-LightGreen font-somarBold"
-                  : " text-mainBlack"
-              } border-r-[1px] border-gray-200`} // إضافة الخط الرأسي
+                  ? "bg-LightGreen font-somarBold "
+                  : " text-mainBlack "
+              } `} // إضافة الخط الرأسي
               key={Item.id}
               label={t(Item.label)}
               icon={<Item.icon size={20} />}

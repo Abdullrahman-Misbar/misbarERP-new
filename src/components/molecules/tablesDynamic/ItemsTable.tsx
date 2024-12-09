@@ -99,10 +99,8 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
     },
   ];
   const handleTabPress = (e: React.KeyboardEvent, index: number, push: Function) => {
-    console.log("🚀 ~ handleTabPress ~ index:", index)
     if (e.key === "Tab") {
       const lastIndex = values[moduleName]?.length - 1;
-      console.log("🚀 ~ handleTabPress ~ lastIndex:", lastIndex)
       const currentRow = values[moduleName]?.[index];  
   
       if (index === lastIndex && currentRow?.note !== undefined) {

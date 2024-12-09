@@ -32,7 +32,7 @@ export const generateColumns = (
     },
     {
       header: `${t("user")}`,
-      accessorKey: "user", // No direct API field; leave blank or add logic if necessary
+      accessorKey: "user", 
       cell: (info) => info.renderValue() || <span>غير متوفر</span>,
     },
     {

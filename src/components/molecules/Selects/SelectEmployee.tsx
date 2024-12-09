@@ -1,11 +1,10 @@
 /* eslint-disable import/named */
-import React from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
+import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
 
-type SelectCurrencyProps = {
+type SelectEmployeeProps = {
   name: string;
 };
 
@@ -18,33 +17,34 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
+const SelectEmployee: React.FC<SelectEmployeeProps> = ({
+  name,
+}) => {
   const { setFieldValue } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.target.value);
+  const handleChange = (event: {value:string}) => {
+    setFieldValue(name, event.value);
   };
 
-  const endpoint = "api/Partner/GetAllPartnersList";
+  const endpoint = "api/Hr/GetAllLookupEmployee";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
-  console.log(data);
 
   const options: Option[] =
-    //@ts-ignore
-    data?.map((item: { id: string; partnerName: string }) => ({
+  //@ts-ignore
+    data?.map((item: { id: string; name: string }) => ({
       value: item.id,
-      label: item.partnerName,
+      label: item.name,
     })) || [];
 
   return (
     <SelectComp
       name={name}
-      label=" الشريك"
-      placeholder=" اختر شريك"
+      label=" مندوب المشتريات"
+      placeholder=" مندوب المشتريات"
       options={options}
       isLoading={isLoading}
       onChange={handleChange}
@@ -52,4 +52,4 @@ const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
   );
 };
 
-export default SelectPartner;
+export default SelectEmployee;
