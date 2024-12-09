@@ -1,3 +1,4 @@
+import { FaRegCircle } from "react-icons/fa";
 import { GrGroup } from "react-icons/gr";
 import { IconType } from "react-icons/lib";
 import { TbSmartHome } from "react-icons/tb";
@@ -28,7 +29,8 @@ import SupplierMovingIcon from "../components/atoms/icons/SupplierMovingIcon";
 import TagsIcon from "../components/atoms/icons/TagsIcon";
 import TimeIcon from "../components/atoms/icons/TimeIcon";
 import TrueIcon from "../components/atoms/icons/TrueIcon";
-
+import HomeIcon from "../components/atoms/icons/HomeIcon";
+import { FaRegCircle } from "react-icons/fa";
 export type MenuItem_TP = {
   id: string;
   icon: IconType;
@@ -47,7 +49,7 @@ export type MenuItem_TP = {
 export const sideBarItems: MenuItem_TP[] = [
   {
     id: crypto.randomUUID(),
-    icon: TbSmartHome,
+    icon: HomeIcon,
     label: "home",
     link: "/",
   },
@@ -61,32 +63,31 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "setting",
-
         icon: Setting,
         items: [
           {
             id: crypto.randomUUID(),
             label: "Order settings",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Billing settings",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Logistics preparations",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Setting up the information window",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
         ],
       },
@@ -116,40 +117,42 @@ export const sideBarItems: MenuItem_TP[] = [
         label: "Types of purchase agreements",
       },
       // inputs select
+    ],
+  },
+
+  {
+    id: crypto.randomUUID(),
+    label: "Inputs",
+
+    icon: InputsIcon,
+    items: [
       {
         id: crypto.randomUUID(),
-        label: "Inputs",
-
-        icon: InputsIcon,
-        items: [
-          {
-            id: crypto.randomUUID(),
-            label: "Purchasing representatives",
-            link: "",
-            icon: GrGroup,
-          },
-          {
-            id: crypto.randomUUID(),
-            label: "Items",
-            link: "",
-            icon: GrGroup,
-          },
-          {
-            id: crypto.randomUUID(),
-            label: "Suppliers",
-            link: "",
-            icon: GrGroup,
-          },
-          {
-            id: crypto.randomUUID(),
-            label: "Class variables",
-            link: "",
-            icon: GrGroup,
-          },
-        ],
+        label: "Purchasing representatives",
+        link: "",
+        icon: FaRegCircle,
+      },
+      {
+        id: crypto.randomUUID(),
+        label: "Items",
+        link: "",
+        icon: FaRegCircle,
+      },
+      {
+        id: crypto.randomUUID(),
+        label: "Suppliers",
+        link: "",
+        icon: FaRegCircle,
+      },
+      {
+        id: crypto.randomUUID(),
+        label: "Class variables",
+        link: "",
+        icon: FaRegCircle,
       },
     ],
   },
+
   // Ordering and purchasing processes
   { header: " عمليات الطلب والمشتريات" },
   {
@@ -182,78 +185,79 @@ export const sideBarItems: MenuItem_TP[] = [
         link: "",
         icon: ReceiptOrderIcon,
       },
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    label: "Purchase invoice",
+      {
+        id: crypto.randomUUID(),
+        label: "Purchase invoice",
 
-    icon: InvoicesIcon,
-    items: [
-      {
-        id: crypto.randomUUID(),
-        label: "Local purchase invoices",
-        link: "",
-        icon: LocalInvoicesIcon,
-      },
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    label: "External purchases",
+        icon: InvoicesIcon,
+        items: [
+          {
+            id: crypto.randomUUID(),
+            label: "Local purchase invoices",
+            link: "",
+            icon: LocalInvoicesIcon,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "External purchases",
 
-    icon: DollarIcon,
-    items: [
-      {
-        id: crypto.randomUUID(),
-        label: "Documentary credit cards",
-        link: "",
-        icon: GrGroup,
+            icon: DollarIcon,
+            items: [
+              {
+                id: crypto.randomUUID(),
+                label: "Documentary credit cards",
+                link: "",
+                icon: FaRegCircle,
+              },
+              {
+                id: crypto.randomUUID(),
+                label: "Types of expenses for documentary credits",
+                link: "",
+                icon: FaRegCircle,
+              },
+              {
+                id: crypto.randomUUID(),
+                label: "Documentary credits",
+                link: "",
+                icon: FaRegCircle,
+              },
+              {
+                id: crypto.randomUUID(),
+                label: "External purchase invoices",
+                link: "",
+                icon: FaRegCircle,
+              },
+            ],
+          },
+        ],
       },
       {
         id: crypto.randomUUID(),
-        label: "Types of expenses for documentary credits",
-        link: "",
-        icon: GrGroup,
-      },
-      {
-        id: crypto.randomUUID(),
-        label: "Documentary credits",
-        link: "",
-        icon: GrGroup,
-      },
-      {
-        id: crypto.randomUUID(),
-        label: "External purchase invoices",
-        link: "",
-        icon: GrGroup,
-      },
-    ],
-  },
-  {
-    id: crypto.randomUUID(),
-    label: "Purchase return",
+        label: "Purchase return",
 
-    icon: LeftArowIcon,
-  },
-  // select notification
-  {
-    id: crypto.randomUUID(),
-    label: "Notifications",
-
-    icon: NotificationIcon,
-    items: [
-      {
-        id: crypto.randomUUID(),
-        label: "City notices",
-        link: "",
-        icon: GrGroup,
+        icon: LeftArowIcon,
       },
+      
       {
         id: crypto.randomUUID(),
-        label: "Credit notes",
-        link: "",
-        icon: GrGroup,
+        label: "Notifications",
+    
+        icon: NotificationIcon,
+        items: [
+          {
+            id: crypto.randomUUID(),
+            label: "City notices",
+            link: "",
+            icon: FaRegCircle,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "Credit notes",
+            link: "",
+            icon: FaRegCircle,
+          },
+         
+        ],
       },
       {
         id: crypto.randomUUID(),
@@ -267,34 +271,40 @@ export const sideBarItems: MenuItem_TP[] = [
         link: "",
         icon: TimeIcon,
       },
+      {
+        id: crypto.randomUUID(),
+        label: "Bonds",
+    
+        icon: BondsIcon,
+        items: [
+          {
+            id: crypto.randomUUID(),
+            label: "Exchange bonds",
+            link: "",
+            icon: FaRegCircle,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "Receipt bonds",
+            link: "",
+            icon: FaRegCircle,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "Transfer bonds",
+            link: "",
+            icon: FaRegCircle,
+          },
+        ],
+      },
     ],
+    
   },
-  {
-    id: crypto.randomUUID(),
-    label: "Bonds",
 
-    icon: BondsIcon,
-    items: [
-      {
-        id: crypto.randomUUID(),
-        label: "Exchange bonds",
-        link: "",
-        icon: GrGroup,
-      },
-      {
-        id: crypto.randomUUID(),
-        label: "Receipt bonds",
-        link: "",
-        icon: GrGroup,
-      },
-      {
-        id: crypto.randomUUID(),
-        label: "Transfer bonds",
-        link: "",
-        icon: GrGroup,
-      },
-    ],
-  },
+ 
+  // select notification
+ 
+ 
   {
     id: crypto.randomUUID(),
     label: "Reports",
@@ -310,13 +320,13 @@ export const sideBarItems: MenuItem_TP[] = [
             id: crypto.randomUUID(),
             label: "Bills",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Varieties",
             link: "",
-            icon: GrGroup,
+            icon: FaRegCircle,
           },
         ],
       },
