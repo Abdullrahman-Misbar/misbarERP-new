@@ -3,15 +3,18 @@ import { useFormikContext } from "formik";
 import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
+import RadioButtons from "../../../../atoms/formik/RadioComp";
+import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
+import ApprovedStatus from "../../../../molecules/ApprovedStatus";
+import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -28,7 +31,6 @@ function MainData() {
     purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
     warehouseId: values?.copValue?.warehouseId || "",
     approvalDate: values?.copValue?.approvalDate || "",
-    status: values?.copValue?.status || "",
   };
 
   return (
@@ -42,7 +44,7 @@ function MainData() {
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={4}>
             <BaseInputField
-              name="code"
+              name="noticeCode"
               placeholder="الرقم المرجعي"
               type="text"
               disabled
@@ -53,7 +55,7 @@ function MainData() {
           {/* 1 */}
           <Grid item xs={12} sm={4}>
             <BaseInputField
-              name="total"
+              name="tax"
               placeholder=" الأجمالى"
               type="number"
               label=" الأجمالى"
@@ -102,20 +104,16 @@ function MainData() {
               <Label htmlFor="">الحالة</Label>
               <div>
                 <span className="status-text">
-                  {/* {values?.status === 0
-                    ? "لم يتم الاستلام"
-                    : values?.status === 1
-                    ? "استلام جزئي"
-                    : values?.status === 2
-                    ? "استلام كلي"
-                    : ""} */}
-                  {values?.status == 1 ? (
-                    <p className="">استلام جزئي</p>
-                  ) : values?.status == 2 ? (
-                    <p className="">استلم كلي</p>
-                  ) : (
-                    "لم يتم الاستلام"
-                  )}
+                  {(() => {
+                    switch (values?.status) {
+                      case 0:
+                        return "لم يتم الاستلام";
+                      case 1:
+                        return "استلام جزئي";
+                      case 2:
+                        return "استلام كلي";
+                    }
+                  })()}
                 </span>
               </div>
             </div>

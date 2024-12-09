@@ -1,8 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
-import { indexTable } from "../../../../utils/helpers";
-import { Edit } from "../../../atoms/icons/Edit";
-import ActionMenu from "../../../molecules/ActionMenu";
+import { indexTable } from "../../../../../utils/helpers";
+import { Edit } from "../../../../atoms/icons/Edit";
+import ActionMenu from "../../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import CancelApproved from "./CancelApproved";
@@ -72,19 +72,20 @@ export const generateColumns = (
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",
       cell: (info) => {
-        const status = info?.row?.original?.status;
+        const getStatusText = (status) => {
+          switch (status) {
+            case 0:
+              return "لم يتم الاستلام";
+            case 1:
+              return "استلام جزئي";
+            case 2:
+              return "استلام كلي";
+          }
+        };
 
         return (
-          <span >
-            {status == 1 ? (
-              <p className="text-orange-500">استلام جزئي</p>
-            ) : status == 2 ? (
-              <p className="text-green-400">استلم كلي</p>
-            ) : (
-
-              <p className="text-black">لم يتم الاستلام </p>
-
-            )}
+          <span style={{ fontWeight: "bold" }}>
+            {getStatusText(info?.row?.original?.status)}
           </span>
         );
       },

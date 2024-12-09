@@ -1,25 +1,36 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
-import { indexTable } from "../../../../utils/helpers";
-import { Edit } from "../../../atoms/icons/Edit";
-import ActionMenu from "../../../molecules/ActionMenu";
-import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
-import CancelApproved from "./CancelApproved";
-import { NavigateFunction } from "react-router-dom";
+import { useFormikContext } from "formik";
+import RadioButtons from "../../../../../atoms/formik/RadioComp";
+import CancelApproved from "../../CancelApproved";
 
 type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
-  refetch: RefetchFunction,
-  navigate: NavigateFunction
+  refetch: RefetchFunction
 ): ColumnDef<RowData>[] => {
+  const { setFieldValue, values } = useFormikContext();
+  console.log("🚀 ~ values:", values);
+
   return [
     {
       header: "#",
       accessorKey: "id",
-      cell: (info) => <span>{indexTable(info.row.index, page)}</span>,
+      cell: (info) => {
+        const isChecked = values?.copValue?.id === info?.row?.original?.id;
+        return (
+          <span>
+            <RadioButtons
+              label=""
+              name="copValue"
+              checked={isChecked}
+              onChange={() => setFieldValue("copValue", info?.row?.original)}
+            />
+          </span>
+        );
+      },
     },
     {
       header: `${t("Reference number")}`,
@@ -71,23 +82,7 @@ export const generateColumns = (
     {
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",
-      cell: (info) => {
-        const status = info?.row?.original?.status;
-
-        return (
-          <span >
-            {status == 1 ? (
-              <p className="text-orange-500">استلام جزئي</p>
-            ) : status == 2 ? (
-              <p className="text-green-400">استلم كلي</p>
-            ) : (
-
-              <p className="text-black">لم يتم الاستلام </p>
-
-            )}
-          </span>
-        );
-      },
+      cell: (info) => info.renderValue(),
     },
 
     {
@@ -95,26 +90,18 @@ export const generateColumns = (
       accessorKey: "note",
       cell: (info) => info.renderValue(),
     },
-
     {
-      header: `${t("Actions")}`,
-      accessorKey: "actions",
+      header: `${t("status")}`,
+      accessorKey: "status",
       cell: (info) => (
-        <div className="flex justify-center">
-          <ActionMenu>
-            <div>
-              <span>
-                <Edit
-                  action={() => {
-                    navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
-                    );
-                  }}
-                />
-              </span>
-            </div>
-            <DeleteMain refetch={refetch} info={info} />
-          </ActionMenu>
+        <div
+          className="w-[100px] rounded-md p-2 text-white"
+          style={{
+            backgroundColor:
+              info?.row?.original?.status === 1 ? "green" : "red",
+          }}
+        >
+          {info?.row?.original?.status === 1 ? t("Active") : t("Not active")}
         </div>
       ),
     },

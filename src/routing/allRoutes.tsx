@@ -17,6 +17,8 @@ import PurchasReceipt from "../pages/PURCHASE/PurchasReceipt";
 import AddPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Add";
 import EditPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Edit";
 import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
+import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
+import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -83,6 +85,15 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
+        />
+        {/* ------------------------------------------ */}
+        <Route
+          path="/purchase/notification/debit"
+          element={<NotificationDebit title={t("Notification Debit")} />}
+        />
+          <Route
+          path="/purchase/notification/credit"
+          element={<NotificationCredit title={t("Notification Credit")} />}
         />
       </Route>
 
