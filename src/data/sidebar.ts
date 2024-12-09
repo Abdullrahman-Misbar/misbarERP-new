@@ -49,8 +49,8 @@ export type MenuItem_TP = {
 export const sideBarItems: MenuItem_TP[] = [
   {
     id: crypto.randomUUID(),
-    icon: HomeIcon,
     label: "home",
+    icon: HomeIcon,
     link: "/",
   },
   { header: "القائمة الرئيسية" },
@@ -93,27 +93,27 @@ export const sideBarItems: MenuItem_TP[] = [
       },
       {
         id: crypto.randomUUID(),
-        icon: ScreenIcon,
+        icon: FaRegCircle,
         label: "Home screen",
       },
       {
         id: crypto.randomUUID(),
-        icon: SupplierIcon,
+        icon: FaRegCircle,
         label: "Supplier groups",
       },
       {
         id: crypto.randomUUID(),
-        icon: TagsIcon,
+        icon: FaRegCircle,
         label: "Tags",
       },
       {
         id: crypto.randomUUID(),
-        icon: PaymentTermsIcon,
+        icon: FaRegCircle,
         label: "Payment terms",
       },
       {
         id: crypto.randomUUID(),
-        icon: TrueIcon,
+        icon: FaRegCircle,
         label: "Types of purchase agreements",
       },
       // inputs select
@@ -165,43 +165,43 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         label: "Purchase Request",
         link: "/purchase/PurchaseRequest",
-        icon: RequestOrderIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Purchase quotes",
         link: "/purchase/PurchasQutations",
-        icon: OfferPriceIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "purchase order",
         link: "/purchase/PurchasOrder",
-        icon: PurchaseOrder,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Purchase receipt",
         link: "/purchase/PurchasReceipt",
-        icon: ReceiptOrderIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Purchase invoice",
 
-        icon: InvoicesIcon,
+        icon: FaRegCircle,
         items: [
           {
             id: crypto.randomUUID(),
             label: "Local purchase invoices",
             link: "/purchase/invoices/local",
-            icon: LocalInvoicesIcon,
+            icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "External purchases",
 
-            icon: DollarIcon,
+            icon: FaRegCircle,
             items: [
               {
                 id: crypto.randomUUID(),
@@ -235,14 +235,14 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         label: "Purchase return",
 
-        icon: LeftArowIcon,
+        icon: FaRegCircle,
       },
-      
+
       {
         id: crypto.randomUUID(),
         label: "Notifications",
-    
-        icon: NotificationIcon,
+
+        icon: FaRegCircle,
         items: [
           {
             id: crypto.randomUUID(),
@@ -256,25 +256,24 @@ export const sideBarItems: MenuItem_TP[] = [
             link: "",
             icon: FaRegCircle,
           },
-         
         ],
       },
       {
         id: crypto.randomUUID(),
         label: "Purchase agreements",
         link: "",
-        icon: AgreementIcons,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Processing free quantities",
         link: "",
-        icon: TimeIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Bonds",
-    
+
         icon: BondsIcon,
         items: [
           {
@@ -298,13 +297,10 @@ export const sideBarItems: MenuItem_TP[] = [
         ],
       },
     ],
-    
   },
 
- 
   // select notification
- 
- 
+
   {
     id: crypto.randomUUID(),
     label: "Reports",
@@ -314,7 +310,7 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         label: "Purchases",
         link: "",
-        icon: PurcheseIcon,
+        icon: FaRegCircle,
         items: [
           {
             id: crypto.randomUUID(),
@@ -333,22 +329,22 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Suppliers",
-        icon: SupliersIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "The most mobile suppliers",
-        icon: SupplierMovingIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Receivables maturity summary",
-        icon: SummaryIcon,
+        icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Receivables reconstruction",
-        icon: Reconstruction,
+        icon: FaRegCircle,
       },
     ],
   },

@@ -119,7 +119,7 @@ export const SideBar = () => {
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-        icon={<Item.icon size={10} />}
+        icon={<Item.icon className="text-gray-300"  />}
         active={location.pathname === Item.link}
       >
         {t(Item.label)}
