@@ -79,7 +79,6 @@ export const generateColumns = (
       accessorKey: "status",
       cell: (info) => <CancelApproved info={info} refetch={refetch} />,
     },
-    // هل هي حاله الاستلام
     {
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",

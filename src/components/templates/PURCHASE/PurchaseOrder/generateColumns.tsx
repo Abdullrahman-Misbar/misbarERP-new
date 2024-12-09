@@ -68,11 +68,27 @@ export const generateColumns = (
       accessorKey: "status",
       cell: (info) => <CancelApproved info={info} refetch={refetch} />,
     },
-    // هل هي حاله الاستلام
     {
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",
-      cell: (info) => info.renderValue(),
+      cell: (info) => {
+        const getStatusText = (status) => {
+          switch (status) {
+            case 0:
+              return "لم يتم الاستلام";
+            case 1:
+              return "استلام جزئي";
+            case 2:
+              return "استلام كلي";
+          }
+        };
+
+        return (
+          <span style={{ fontWeight: "bold" }}>
+            {getStatusText(info?.row?.original?.status)}
+          </span>
+        );
+      },
     },
 
     {
