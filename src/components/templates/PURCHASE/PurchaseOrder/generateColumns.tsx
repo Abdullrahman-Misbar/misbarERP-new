@@ -72,20 +72,17 @@ export const generateColumns = (
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",
       cell: (info) => {
-        const getStatusText = (status) => {
-          switch (status) {
-            case 0:
-              return "لم يتم الاستلام";
-            case 1:
-              return "استلام جزئي";
-            case 2:
-              return "استلام كلي";
-          }
-        };
+        const status = info?.row?.original?.status;
 
         return (
-          <span style={{ fontWeight: "bold" }}>
-            {getStatusText(info?.row?.original?.status)}
+          <span style={{ fontWeight: "bold", color: "red" }}>
+            {status === 1
+              ? "لم يتم الاستلام"
+              : status === 2
+              ? "استلام جزئي"
+              : status === 3
+              ? "استلام كلي"
+              : "غير معروف"}
           </span>
         );
       },
