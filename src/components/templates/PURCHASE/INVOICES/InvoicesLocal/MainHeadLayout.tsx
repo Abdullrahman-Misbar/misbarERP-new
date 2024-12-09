@@ -23,8 +23,9 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
 
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
-    { label: "العمليات" },
-    { label: "امر شراء" },
+    { label: "فواتير الشراء" },
+    { label: "فواتير مشتريات محلية" },
+
   ];
 
   return (
@@ -44,7 +45,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/PurchasOrder/add")}
+            action={() => navigate("/purchase/invoices/local/add")}
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">

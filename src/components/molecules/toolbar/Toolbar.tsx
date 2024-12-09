@@ -31,7 +31,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
           <PrintBar />
           <UploadFileBar />
           <ApprovedBar />
-          <CancelBar />
+          <CancelBar  />
           <SettingBar />
           <CloseBar />
         </div>

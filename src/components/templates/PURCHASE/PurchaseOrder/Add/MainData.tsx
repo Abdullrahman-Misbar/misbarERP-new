@@ -114,6 +114,8 @@ function MainData() {
                         return "استلام كلي";
                     }
                   })()}
+
+                  
                 </span>
               </div>
             </div>

@@ -24,7 +24,7 @@ const SelectBranch: React.FC<SelectBranchProps> = ({ name }) => {
     setFieldValue(name, event.value)
   }
 
-  const endpoint = 'Branch/Lookup'
+  const endpoint = 'api/Branch/Lookup'
   const { data, isLoading} = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,

@@ -58,7 +58,8 @@ function Main({ editable }: Main_TP) {
     purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
     warehouseId: response?.warehouseId || "",
     approvalDate: response?.approvalDate || "",
-
+    cancelRequestEndPoint: "api/PurchasOrder/CancleRequest",
+    status: response?.status || "",
     orderDetailsModal: response?.orderDetailsModal?.length
       ? response?.orderDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,

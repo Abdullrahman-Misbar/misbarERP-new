@@ -21,7 +21,7 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `api/PurchasOrder?${searchParams.toString()}`;
+  const endpoint = `api/PurchasInvoice?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

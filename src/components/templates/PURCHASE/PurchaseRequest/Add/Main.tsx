@@ -17,7 +17,7 @@ function Main({ editable }: Main_TP) {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled:  !!id && !!editable ,
+    enabled: !!id && !!editable,
   });
   const postEndPoint = id
     ? `api/PurchasRequest/UpdateRequest/${id}`
@@ -36,7 +36,13 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
+    const {
+      copValue,
+      uoms,
+      editable,
+      cancelRequestEndPoint,
+      ...valuesWithoutCopValue
+    } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -64,18 +70,19 @@ function Main({ editable }: Main_TP) {
     priceIncludeTax: response?.priceIncludeTax || false,
     isApproved: response?.isApproved || false,
     note: response?.note || "",
-    SourceActivityType:1,
+    cancelRequestEndPoint: "api/PurchasRequest/CancleRequest",
+    SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
           itemId: item?.itemId,
-          id:item?.id,
+          id: item?.id,
           note: item?.note,
           price: item?.price,
           quantity: item?.quantity,
           total: item?.total,
           uomId: item?.uomId,
           warehouseId: item?.warehouseId,
-          isDeleted: false, 
+          isDeleted: false,
           description: item?.description,
           uoms: item?.product?.uoms,
         }))
@@ -94,7 +101,7 @@ function Main({ editable }: Main_TP) {
       warehouseId: "",
       purchaseRepresentativeId: "",
       currencyId: "",
-      purchaseRequestDetailsDto:[]
+      purchaseRequestDetailsDto: [],
     },
   };
   if (editable && isLoading)

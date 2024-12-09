@@ -4,10 +4,8 @@ import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
 
-type SelectCostCenterProps = {
+type SelectEmployeeProps = {
   name: string;
-  labelName?: string;
-  disabled?: boolean;
 };
 
 interface Option {
@@ -19,42 +17,39 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectCostCenter: React.FC<SelectCostCenterProps> = ({
-  disabled,
-  labelName,
+const SelectEmployee: React.FC<SelectEmployeeProps> = ({
   name,
 }) => {
   const { setFieldValue } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: { value: string }) => {
+  const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "api/Branch/CostCenter/Lookup";
-  const { data, isLoading} = useFetch<any>({
+  const endpoint = "api/Hr/GetAllLookupEmployee";
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
-    Module:"PURCHASE"
+    Module: "PURCHASE",
   });
 
   const options: Option[] =
   //@ts-ignore
-    data?.data?.map((item: { id: string; lookupName: string }) => ({
-      value: item?.id,
-      label: item?.lookupName,
+    data?.map((item: { id: string; name: string }) => ({
+      value: item.id,
+      label: item.name,
     })) || [];
 
   return (
     <SelectComp
       name={name}
-      label={labelName ? labelName : "مركز التكلفه"}
-      placeholder="مركز التكلفة"
+      label=" مندوب المشتريات"
+      placeholder=" مندوب المشتريات"
       options={options}
       isLoading={isLoading}
       onChange={handleChange}
-      disabled={disabled}
     />
   );
 };
 
-export default SelectCostCenter;
+export default SelectEmployee;
