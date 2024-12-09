@@ -44,7 +44,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/PurchasOrder/add")}
+            action={() => navigate("/purchase/notification/debit/add")}
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">

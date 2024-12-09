@@ -1,20 +1,18 @@
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
-import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
-import BaseInputField from "../../../../atoms/formik/BaseInputField";
-import { Label } from "../../../../atoms/formik/Label";
-import RadioButtons from "../../../../atoms/formik/RadioComp";
-import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
-import ApprovedStatus from "../../../../molecules/ApprovedStatus";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
-import LayoutMainData from "../../../../molecules/LayoutMainData";
-import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
-import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
-import SelectVendor from "../../../../molecules/Selects/SelectVendor";
-import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
+import BaseInputField from "../../../../../atoms/formik/BaseInputField";
+import { Label } from "../../../../../atoms/formik/Label";
+import LayoutMainData from "../../../../../molecules/LayoutMainData";
+import MainSelectChoseModule from "../../../../../molecules/MainSelectChoseModule";
+import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
+import SelectPurchaseAgreement from "../../../../../molecules/Selects/SelectPurchasAgreement";
+import SelectVendor from "../../../../../molecules/Selects/SelectVendor";
+import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
+import ItemsTable from "../../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
+import SelectAccount from "../../../../../molecules/Selects/SelectAccount";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -52,30 +50,31 @@ function MainData() {
             />
           </Grid>
 
-          {/* 1 */}
-          <Grid item xs={12} sm={4}>
+            {/* 1 */}
+            <Grid item xs={12} sm={4}>
             <BaseInputField
               name="tax"
-              placeholder=" الأجمالى"
+              placeholder=" الضريبة"
               type="number"
-              label=" الأجمالى"
+              label=" الضريبة"
             />
           </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="expectedReceiptDate"
-              placeholder=" تاريخ الاستلام المتوقع"
-              label=" تاريخ الاستلام المتوقع"
-            />
-          </Grid>
+
+
 
           <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
-              name="createDate"
-              placeholder="تاريخ انشاء الامر"
-              label="تاريخ انشاء الامر"
+              name="noticeDate"
+              placeholder=" التاريخ  "
+              label="   التاريخ"
             />
+          </Grid>
+
+   
+
+          <Grid item xs={12} sm={4}>
+            <SelectAccount name="ddd" labelName="noticeDate"/>
           </Grid>
 
           <Grid item xs={12} sm={4}>

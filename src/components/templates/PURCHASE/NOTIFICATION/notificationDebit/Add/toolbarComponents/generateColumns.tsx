@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
 import { RowData } from "./Types&Validation";
 import { useFormikContext } from "formik";
-import RadioButtons from "../../../../../atoms/formik/RadioComp";
+import RadioButtons from "../../../../../../atoms/formik/RadioComp";
 import CancelApproved from "../../CancelApproved";
 
 type RefetchFunction = () => void;

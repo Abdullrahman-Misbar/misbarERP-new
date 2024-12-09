@@ -73,7 +73,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchaseRequest/edit/${info?.row?.original?.id}`
+                      `/purchase/notification/debit/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />
