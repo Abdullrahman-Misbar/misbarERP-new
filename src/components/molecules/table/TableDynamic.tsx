@@ -1,5 +1,7 @@
 import { useFormikContext } from "formik";
 import React from "react";
+import NotFound from "../../../pages/404";
+import DataNotFoundDrawer from "../DataNotFoundDrawer";
 
 export interface HeaderType {
   name: string;
@@ -17,8 +19,8 @@ interface TableDynamicProps {
   actions?: (originalIndex: number, remove: () => void) => React.ReactNode;
   moduleName: string;
   remove: () => void;
-  handleTabPress:()=>void
-  push:()=>void
+  handleTabPress: () => void;
+  push: () => void;
 }
 
 const TableDynamic: React.FC<TableDynamicProps> = ({
@@ -26,14 +28,14 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   actions,
   moduleName,
   remove,
-  handleTabPress, 
-  push
+  handleTabPress,
+  push,
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
 
   const filteredItems = values[moduleName]?.reduce(
     (acc: any[], item: any, index: number) => {
-      if (!item.isDeleted) acc.push({ ...item, originalIndex: index }); 
+      if (!item.isDeleted) acc.push({ ...item, originalIndex: index });
       return acc;
     },
     []
@@ -57,45 +59,59 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           </tr>
         </thead>
         <tbody>
-          {filteredItems?.map((item: any, index: number) => (
-            <tr key={index}>
-              {headers.map((header) => (
-                <td
-                  key={header.name}
-                  className="p-3 border-b border-gray-200 min-w-[200px]"
-                >
-                  <header.component
-                    name={`${moduleName}[${item.originalIndex}].${header.name}`}
-                    value={
-                      values[moduleName][item.originalIndex][header.name] ||
-                      header?.value
-                    }
-                    type={header?.type}
-                    index={item.originalIndex}
-                    placeholder={header?.placeholder}
-                    moduleName={moduleName}
-                    //@ts-ignore
-                    index={item.originalIndex} 
-                    onChange={header?.onChange ? header?.onChange : (e: { target: { value: any } }) => setFieldValue(
-                      `${moduleName}[${item.originalIndex}].${header.name}`,
-                      e.target.value
-                    )}
-                    // onKeyDown={(e: React.KeyboardEvent) => {
-                    //   handleTabPress(e, item.originalIndex, push);
-                    // }}
-                  />
+          {filteredItems?.length ? (
+            filteredItems?.map((item: any, index: number) => (
+              <tr key={index}>
+                {headers.map((header) => (
+                  <td
+                    key={header.name}
+                    className="p-3 border-b border-gray-200 min-w-[200px]"
+                  >
+                    <header.component
+                      name={`${moduleName}[${item.originalIndex}].${header.name}`}
+                      value={
+                        values[moduleName][item.originalIndex][header.name] ||
+                        header?.value
+                      }
+                      type={header?.type}
+                      index={item.originalIndex}
+                      placeholder={header?.placeholder}
+                      moduleName={moduleName}
+                      //@ts-ignore
+                      index={item.originalIndex}
+                      onChange={
+                        header?.onChange
+                          ? header?.onChange
+                          : (e: { target: { value: any } }) =>
+                              setFieldValue(
+                                `${moduleName}[${item.originalIndex}].${header.name}`,
+                                e.target.value
+                              )
+                      }
+                      // onKeyDown={(e: React.KeyboardEvent) => {
+                      //   handleTabPress(e, item.originalIndex, push);
+                      // }}
+                    />
+                  </td>
+                ))}
+                <td className="p-3 text-center">
+                  {actions && actions(item.originalIndex, remove)}
                 </td>
-              ))}
-              <td className="p-3 text-center">
-              {actions && actions(item.originalIndex, remove)}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={9}>
+                <div className="flex justify-center mt-10 h-[250px] overflow-hidden ">
+                  <DataNotFoundDrawer text="لايوجد عناصر" />
+                </div>
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
 };
-
 
 export default TableDynamic;

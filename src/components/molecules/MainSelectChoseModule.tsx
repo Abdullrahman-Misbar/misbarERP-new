@@ -15,9 +15,11 @@ type values_TP = {
   items_type: "purchase_order" | "purchase_request";
   num_item_id: string;
 };
+
 function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
   const { values, setFieldValue } = useFormikContext<values_TP>();
   const [open, setOpen] = useState(false);
+
   const endpoint =
     values.items_type == "purchase_order"
       ? `api/PurchasOrder/GetAllItemsFormOrder/${values.num_item_id}`
@@ -26,6 +28,7 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
       : values.items_type == "purchase_quotes"
       ? `api/PurchasQutations/GetAllItemsForQutation/${values.num_item_id}`
       : "";
+
   const { data: rowData } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
@@ -35,7 +38,7 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
 
   useEffect(() => {
     if (rowData?.data) {
-      const newDataWithId = rowData?.data?.map((item: any) => ({
+      const newDataWithId = rowData.data.map((item: any) => ({
         ...item,
         uid: v4(),
       }));
@@ -43,9 +46,27 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
         (existingItem: any) => existingItem.id !== 0
       );
       const mergedData = [...persistentData, ...newDataWithId];
-      setFieldValue(moduleName, mergedData);
+      const updatedData = mergedData.map((item: any) => {
+        if (item?.product?.uoms) {
+          return {
+            ...item,
+            uoms: [...item.product.uoms],
+          };
+        }
+        return { ...item };
+      });
+
+      setFieldValue(moduleName, [...updatedData]);
+    } else {
+      // تفريغ القيم عند عدم وجود بيانات
+      setFieldValue(moduleName, []);
     }
   }, [rowData]);
+
+  const handleAgreeAction = () => {
+    setFieldValue("num_item_id", values?.item_id); // تحديث `num_item_id`
+    setOpen(false); // إغلاق النافذة
+  };
 
   return (
     <Grid container rowSpacing={4} columnSpacing={4}>
@@ -64,7 +85,7 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
         header="انزل من"
         open={open}
         setOpen={() => setOpen(false)}
-        ActionAgreeButton={() => setFieldValue(moduleName, values?.copValue[moduleName])}
+        ActionAgreeButton={handleAgreeAction}
       >
         <MainDropItemsComp />
       </ModalComp>

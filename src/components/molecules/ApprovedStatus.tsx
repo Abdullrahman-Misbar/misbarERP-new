@@ -2,7 +2,6 @@ import { useFormikContext } from "formik";
 
 function ApprovedStatus() {
   const { values } = useFormikContext();
-  console.log("🚀 ~ ApprovedStatus ~ values:", values)
   return (
     <div>
       {values?.isApproved == true ? (

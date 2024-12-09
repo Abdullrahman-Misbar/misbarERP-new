@@ -233,7 +233,7 @@ export const sideBarItems: MenuItem_TP[] = [
   {
     id: crypto.randomUUID(),
     label: "Purchase return",
-
+    link:"/",
     icon: LeftArowIcon,
   },
   // select notification

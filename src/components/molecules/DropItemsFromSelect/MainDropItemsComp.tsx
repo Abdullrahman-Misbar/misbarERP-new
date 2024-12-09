@@ -10,11 +10,11 @@ import { Table } from "../tantable/Table";
 function MainDropItemsComp() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
-  const debouncedWord = useDebounce(word, 3000);
-  const queryParams = {
-    // page: page,
-    // term: word,
-  };
+  // const debouncedWord = useDebounce(word, 3000);
+  // const queryParams = {
+  //   // page: page,
+  //   // term: word,
+  // };
   const { values } = useFormikContext<any>();
   const endpoint =
     values.items_type == "purchase_order"
@@ -34,8 +34,9 @@ function MainDropItemsComp() {
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
-    enabled: !!( values.items_type),
+    enabled: !!values.items_type,
   });
+
   const columns = useMemo(
     () => generateColumns(page, refetch),
     [page, refetch, values]
