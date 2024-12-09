@@ -237,11 +237,11 @@ export const sideBarItems: MenuItem_TP[] = [
 
         icon: LeftArowIcon,
       },
-      
+
       {
         id: crypto.randomUUID(),
         label: "Notifications",
-    
+
         icon: NotificationIcon,
         items: [
           {
@@ -256,7 +256,6 @@ export const sideBarItems: MenuItem_TP[] = [
             link: "",
             icon: FaRegCircle,
           },
-         
         ],
       },
       {
@@ -274,7 +273,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Bonds",
-    
+
         icon: BondsIcon,
         items: [
           {
@@ -298,13 +297,10 @@ export const sideBarItems: MenuItem_TP[] = [
         ],
       },
     ],
-    
   },
 
- 
   // select notification
- 
- 
+
   {
     id: crypto.randomUUID(),
     label: "Reports",
