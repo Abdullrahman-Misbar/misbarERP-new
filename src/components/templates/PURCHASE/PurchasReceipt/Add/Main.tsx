@@ -12,18 +12,20 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasRequest/Get/${id}`;
+  const endpoint = `api/PurchasReceipt/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled:  !!id && !!editable ,
+    enabled: !!id && !!editable,
   });
   const postEndPoint = id
-    ? `api/PurchasRequest/UpdateRequest/${id}`
-    : `api/PurchasRequest`;
+    ? `api/PurchasReceipt/Update/${id}`
+    : `api/PurchasReceipt`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
+    method: id ? "PUT" : "post",
+
     endpoint: postEndPoint,
     onSuccess: () => {
       // refetch();
@@ -47,54 +49,50 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     code: response?.code || "",
-    vendorId: response?.vendorId || "",
-    editable: editable ? true : false,
-    requestDate: response?.requestDate || "",
-    requestEndDate: response?.requestEndDate || "",
-    approvalDate: response?.approvalDate || "",
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    deliverdDate: response?.deliverdDate || "",
+    purchaseRepresentativeId: response?.purchaseRepresentativeId || 0,
+    currencyId: response?.currencyId || 0,
+    vendorId: response?.vendorId || 0,
+    warehouseId: response?.warehouseId || 0,
+    convertionRate: response?.convertionRate || 0,
+    inDate: response?.inDate || "",
+    billingStatus: response?.billingStatus || "",
+    accountId: response?.accountId || 0,
     referenceDocument: response?.referenceDocument || "",
-    deliverdConfirmation: response?.deliverdConfirmation || false,
-    purchaseAgreementId: response?.purchaseAgreementId || "",
-    confirmationDayes: response?.confirmationDayes || 0,
-    currencyId: response?.currencyId || "",
-    warehouseId: response?.warehouseId || "",
-    total: response?.total || "",
-    priceIncludeTax: response?.priceIncludeTax || false,
-    isApproved: response?.isApproved || false,
+    status: response?.status || 0,
+    costCenterId: response?.costCenterId || 0,
     note: response?.note || "",
-    SourceActivityType:1,
-    purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
-      ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
+    editable: editable ? true : false,
+    SourceActivityType: 1,
+    receiptDetailsModal: response?.receiptDetailsModal?.length
+      ? response?.receiptDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,
-          id:item?.id,
+          id: item?.id,
           note: item?.note,
           price: item?.price,
           quantity: item?.quantity,
           total: item?.total,
           uomId: item?.uomId,
           warehouseId: item?.warehouseId,
-          isDeleted: false, 
+          isDeleted: false,
           description: item?.description,
           uoms: item?.product?.uoms,
         }))
       : [],
     copValue: {
       code: "",
-      purchaseAgreementId: "",
-      vendorId: "",
-      createDate: "",
-      expectedReceiptDate: "",
-      total: "",
+      purchaseRepresentativeId: 0,
+      currencyId: 0,
+      vendorId: 0,
+      warehouseId: 0,
+      convertionRate: 0,
+      inDate: "",
+      billingStatus: "",
+      accountId: 0,
       referenceDocument: "",
+      status: 0,
+      costCenterId: 0,
       note: "",
-      approvalDate: "",
-      confirmationDayes: 0,
-      warehouseId: "",
-      purchaseRepresentativeId: "",
-      currencyId: "",
-      purchaseRequestDetailsDto:[]
+      receiptDetailsModal: [],
     },
   };
   if (editable && isLoading)
