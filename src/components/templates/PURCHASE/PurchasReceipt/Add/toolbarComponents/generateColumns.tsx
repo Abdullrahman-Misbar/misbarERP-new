@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
 import { RowData } from "./Types&Validation";
 import { useFormikContext } from "formik";
-import RadioButtons from "../../atoms/formik/RadioComp";
+import RadioButtons from "../../../../../atoms/formik/RadioComp";
 
 type RefetchFunction = () => void;
 
@@ -17,14 +17,14 @@ export const generateColumns = (
       header: "#",
       accessorKey: "id",
       cell: (info) => {
-        const isChecked = values?.item_id=== info?.row?.original?.id;  
+        const isChecked = values?.copValue?.id === info?.row?.original?.id;  
         return (
           <span>
             <RadioButtons
               label=""
               name="copValue"
               checked={isChecked}  
-              onChange={() => setFieldValue("item_id", info?.row?.original?.id)} 
+              onChange={() => setFieldValue("copValue", info?.row?.original)} 
             />
           </span>
         );
