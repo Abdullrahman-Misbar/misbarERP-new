@@ -31,6 +31,8 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
+  cancelRequestEndPoint: string;
+  deleteEndPoint: string;
   orderDetailsModal: string[];
   copValue: {
     code: string;
@@ -46,7 +48,7 @@ export type Values_TP = {
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
-    deliverdConfirmation:boolean
+    deliverdConfirmation: boolean;
     note: string;
     approvalDate: string;
     confirmationDayes: string;
@@ -59,7 +61,7 @@ export type Values_TP = {
     priceIncludeTax: string;
     isApproved: string;
   };
-  uoms:string
+  uoms: string;
 };
 
 export type PurchaseOrderData = {
@@ -112,18 +114,17 @@ export type FetchResponse<T> = {
   error?: string;
 };
 
-
-export type Item_TP ={
+export type Item_TP = {
   itemId: string;
   note: string;
-  id:string
+  id: string;
   price: number;
   quantity: number;
   total: number;
   uomId: string;
   warehouseId: string;
-  description:string
-  product:{
-    uoms:string
-  }
-}
+  description: string;
+  product: {
+    uoms: string;
+  };
+};

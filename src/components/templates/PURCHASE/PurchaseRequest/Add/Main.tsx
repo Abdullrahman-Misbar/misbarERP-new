@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
+import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 
@@ -12,21 +13,28 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasRequest/Get/${id}`;
-  const { data, refetch, isLoading } = useFetch({
+
+
+
+  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
+
+
+
+
+
   const postEndPoint = id
-    ? `api/PurchasRequest/UpdateRequest/${id}`
-    : `api/PurchasRequest`;
+    ? `${mainENdPoint}/UpdateRequest/${id}`
+    : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
     onSuccess: () => {
-      // refetch();
       notify("success");
     },
     Module: "PURCHASE",
@@ -41,6 +49,7 @@ function Main({ editable }: Main_TP) {
       uoms,
       editable,
       cancelRequestEndPoint,
+      deleteEndPoint,
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
@@ -70,7 +79,8 @@ function Main({ editable }: Main_TP) {
     priceIncludeTax: response?.priceIncludeTax || false,
     isApproved: response?.isApproved || false,
     note: response?.note || "",
-    cancelRequestEndPoint: "api/PurchasRequest/CancleRequest",
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
     SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
@@ -104,6 +114,7 @@ function Main({ editable }: Main_TP) {
       purchaseRequestDetailsDto: [],
     },
   };
+
   if (editable && isLoading)
     return (
       <>

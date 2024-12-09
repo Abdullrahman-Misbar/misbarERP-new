@@ -1,4 +1,3 @@
-import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import Main from '../../../../components/templates/PURCHASE/INVOICES/InvoicesLocal/Main'
 

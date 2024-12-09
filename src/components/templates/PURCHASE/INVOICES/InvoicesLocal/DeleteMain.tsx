@@ -4,6 +4,7 @@ import { useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import { Delete } from "../../../../atoms/icons/Delete";
 import showAlert from "../../../../molecules/ShowAlert";
+import { deleteEndPoint } from "./const";
 
 
 type DeleteMain_TP = {
@@ -13,8 +14,8 @@ type DeleteMain_TP = {
 function DeleteMain({ refetch, info }: DeleteMain_TP) {
   const [id, setID] = useState("");
   const { mutate } = useMutate({
-    mutationKey: ["api/PurchasOrder"],
-    endpoint: `api/PurchasOrder/${id}`,
+    mutationKey: [deleteEndPoint],
+    endpoint: `${deleteEndPoint}/${id}`,
     onSuccess: () => {
       refetch();
       notify("success");

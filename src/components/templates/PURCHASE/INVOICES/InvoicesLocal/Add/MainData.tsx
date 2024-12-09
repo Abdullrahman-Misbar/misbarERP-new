@@ -17,6 +17,7 @@ import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
 import ItemsTable from "../../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -210,13 +211,14 @@ function MainData() {
         </Grid>
         <Grid item xs={12} mt={5}>
           <MainSelectChoseModule moduleName="orderDetailsModal" />
-          <ItemsTable moduleName="orderDetailsModal" />
+          {/* <ItemsTable moduleName="orderDetailsModal" /> */}
+          <TabsInvoicesItem/>
         </Grid>
         <hr />
         <Grid container rowSpacing={4} columnSpacing={4} mt={3}>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="referenceDocument"
+              name="total"
               placeholder="0.00"
               type="number"
               label="إجمالي قيمة الفاتورة"

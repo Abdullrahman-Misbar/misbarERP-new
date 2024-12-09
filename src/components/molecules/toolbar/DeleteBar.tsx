@@ -7,18 +7,16 @@ import { useMutate } from "../../../hooks";
 import { notify } from "../../../utils/toast";
 import showAlert from "../ShowAlert";
 
-type DeleteBar_TP = {
-  deleteEndPoint?: string;
-};
 
-function DeleteBar({ deleteEndPoint }: DeleteBar_TP) {
+
+function DeleteBar() {
   const { values } = useFormikContext<any>();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const { mutate } = useMutate({
-    mutationKey: [`${deleteEndPoint}`],
-    endpoint: `${deleteEndPoint}/${id}`,
+    mutationKey: [`${values?.deleteEndPoint}`],
+    endpoint: `${values?.deleteEndPoint}/${id}`,
     onSuccess: () => {
       // refetch();
       notify("success");

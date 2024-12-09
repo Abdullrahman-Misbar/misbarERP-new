@@ -85,7 +85,7 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
         />
-            <Route
+        <Route
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
         />

@@ -6,20 +6,19 @@ import { Label } from "../../../../atoms/formik/Label";
 import RadioButtons from "../../../../atoms/formik/RadioComp";
 import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import ApprovedStatus from "../../../../molecules/ApprovedStatus";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
+import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
-import { useEffect } from "react";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
-  console.log("🚀 ~ MainData ~ values:", values)
+
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -39,16 +38,15 @@ function MainData() {
     priceIncludeTax: values?.copValue?.priceIncludeTax || null,
     isApproved: values?.copValue?.isApproved || null,
     deliverdConfirmation: values?.copValue?.deliverdConfirmation || null,
-    purchaseRequestDetailsDto: values?.copValue?.purchaseRequestDetailsDto || [],
+    purchaseRequestDetailsDto:
+      values?.copValue?.purchaseRequestDetailsDto || [],
   };
-
 
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasRequest"
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -124,7 +122,6 @@ function MainData() {
           <Grid item xs={12} sm={6} mt={4}>
             <div className="flex items-center gap-5">
               <Label htmlFor="">الحالة</Label>
-
               <ApprovedStatus />
             </div>
           </Grid>
@@ -163,7 +160,6 @@ function MainData() {
                 checked={values?.priceIncludeTax == false}
                 onChange={() => setFieldValue("priceIncludeTax", false)}
               />
-
               <RadioButtons
                 name="priceIncludeTax"
                 label="شاملة الضريبة"
@@ -193,7 +189,9 @@ function MainData() {
         </Grid>
         <Grid item xs={12} mt={5}>
           <MainSelectChoseModule moduleName="purchaseRequestDetailsDto" />
+
           <ItemsTable moduleName="purchaseRequestDetailsDto" />
+          
         </Grid>
       </div>
     </LayoutMainData>

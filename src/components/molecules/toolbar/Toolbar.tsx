@@ -16,9 +16,8 @@ import UploadFileBar from "./UploadFileBar";
 type Toolbar_TP = {
   componentCopy: React.ReactNode;
   newValues?: { [key: string]: string };
-  deleteEndPoint?: string;
 };
-const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
+const Toolbar = ({ componentCopy, newValues, }: Toolbar_TP) => {
   return (
     <>
       <div className="flex items-center justify-between p-4">
@@ -26,7 +25,7 @@ const Toolbar = ({ componentCopy, newValues, deleteEndPoint }: Toolbar_TP) => {
           <RepeaterBar componentCopy={componentCopy} newValues={newValues} />
           <AddBar />
           <UndoBar />
-          <DeleteBar deleteEndPoint={deleteEndPoint} />
+          <DeleteBar />
           <SaveBar />
           <PrintBar />
           <UploadFileBar />

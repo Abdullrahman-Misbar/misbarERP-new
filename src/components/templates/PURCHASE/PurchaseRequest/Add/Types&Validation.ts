@@ -26,6 +26,7 @@ export type Values_TP = {
   priceIncludeTax: boolean;
   cancelRequestEndPoint:string
   creationDate: string;
+  deleteEndPoint:string
   referenceDocument: string;
   currency: string;
   supplier: string;
