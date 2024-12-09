@@ -194,7 +194,7 @@ export const sideBarItems: MenuItem_TP[] = [
           {
             id: crypto.randomUUID(),
             label: "Local purchase invoices",
-            link: "",
+            link: "/purchase/invoices/local",
             icon: LocalInvoicesIcon,
           },
           {
