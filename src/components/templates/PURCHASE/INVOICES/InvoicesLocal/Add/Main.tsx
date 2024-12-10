@@ -69,7 +69,6 @@ function Main({ editable }: Main_TP) {
     net: response?.net || 0,
     paid: response?.paid || 0,
     remaining: response?.remaining || 0,
-    // letterOfCredtId: response?.letterOfCredtId || null,
     classification: response?.classification || 0,
     paymentTemplateId: response?.paymentTemplateId || 1,
     invoiceStatus: response?.invoiceStatus || 0,
