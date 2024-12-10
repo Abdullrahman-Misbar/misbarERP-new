@@ -233,6 +233,32 @@ export const sideBarItems: MenuItem_TP[] = [
       },
       {
         id: crypto.randomUUID(),
+        label: "Receipts",
+
+        icon: FaRegCircle,
+        items: [
+          {
+            id: crypto.randomUUID(),
+            label: "Cash Receipts",
+            link: "/receipts?type=cash-receipts",
+            icon: FaRegCircle,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "Cash Payments",
+            link: "/receipts?type=cash-payments",
+            icon: FaRegCircle,
+          },
+          {
+            id: crypto.randomUUID(),
+            label: "Transfer Receipts",
+            link: "/receipts?type=transfer-receipts",
+            icon: FaRegCircle,
+          },
+        ],
+      },
+      {
+        id: crypto.randomUUID(),
         label: "Purchase return",
 
         icon: FaRegCircle,

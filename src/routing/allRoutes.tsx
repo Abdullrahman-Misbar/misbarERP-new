@@ -18,6 +18,9 @@ import AddPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Add";
 import EditPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Edit";
 import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
 import AddInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Add";
+import Receipts from "../pages/PURCHASE/Receipts";
+import AddReceipt from "../pages/PURCHASE/Receipts/Add";
+import EditReceipt from "../pages/PURCHASE/Receipts/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -85,9 +88,20 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
         />
-            <Route
+        <Route
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
+        />
+
+        {/* ------------------------------------------ */}
+        <Route path="/receipts" element={<Receipts title={t("Receipts")} />} />
+        <Route
+          path="/receipts/add"
+          element={<AddReceipt title={t("Add Receipt")} />}
+        />
+        <Route
+          path="/receipts/edit/:id"
+          element={<EditReceipt title={t("Edit Receipt")} />}
         />
       </Route>
 
