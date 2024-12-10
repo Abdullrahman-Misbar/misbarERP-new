@@ -25,8 +25,8 @@ const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
     setFieldValue(name, event.target.value);
   };
 
-  const endpoint = "Partner/GetAllPartnersList";
-  const { data, isLoading} = useFetch<any>({
+  const endpoint = "api/Partner/GetAllPartnersList";
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
@@ -34,7 +34,7 @@ const SelectPartner: React.FC<SelectCurrencyProps> = ({ name }) => {
   console.log(data);
 
   const options: Option[] =
-  //@ts-ignore
+    //@ts-ignore
     data?.map((item: { id: string; partnerName: string }) => ({
       value: item.id,
       label: item.partnerName,

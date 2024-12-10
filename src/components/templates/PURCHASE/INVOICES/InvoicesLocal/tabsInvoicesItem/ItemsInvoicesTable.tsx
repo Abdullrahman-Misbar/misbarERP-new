@@ -33,9 +33,11 @@ export default function ItemsInvoicesTable({ moduleName , headers }: ItemsTableP
     return {
       ...defaultRow,
       isDeleted: false,
+      id: 0,
+      tempId: `${Date.now()}-${Math.random()}`,
     };
   };
-
+  
   return (
     <div>
       <FieldArray name={moduleName}>

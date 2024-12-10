@@ -17,7 +17,7 @@ const SelectPurchasePaymentTemplate = ({
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "PurchasePaymentTemplate/Lookup";
+  const endpoint = "api/PurchasePaymentTemplate/Lookup";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,

@@ -1,5 +1,6 @@
+import React from "react";
 import { TextField } from "@mui/material";
-import { useFormikContext } from "formik";
+import { useFormikContext, FastField } from "formik";
 
 type BaseInputRepeater_TP = {
   name: string;
@@ -7,59 +8,60 @@ type BaseInputRepeater_TP = {
   id?: string;
   placeholder: string;
   label?: string;
-  value?: string;
   required?: boolean;
   disabled?: boolean;
   error?: string | string[];
-  onChange?: (e: { target: { value: string } }) => void;
 };
-function BaseInputRepeater({
-  name,
-  type,
-  id,
-  placeholder,
-  label,
-  required,
-  value,
-  disabled,
-  onChange,
-  error,
-  ...props
-}: BaseInputRepeater_TP) {
-  const { setFieldTouched, values } = useFormikContext<{
-    [key: string]: any;
-  }>();
 
-  return (
-    <div className="col-span-1 mt-[2px]">
-      {/* <Label htmlFor={id} required={required} className={`mb-3 text-sm flex justify-start`}>
-        {label}
-      </Label> */}
-      <div className="">
-        <TextField
-          type={type}
-          id={id}
-          label={label}
-          variant="outlined"
-          fullWidth
-          value={value || values[name]}
-          style={{
-            borderColor: "#0000003B",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderRadius: "4px",
-          }}
-          // error={!!errors[name] && touched[name]}
-          // helperText={touched[name] && errors[name] ? errors[name] : ''}
-          placeholder={placeholder}
-          onChange={onChange}
-          onBlur={() => setFieldTouched(name, true)}
-          disabled={disabled}
-          {...props}
-        />
-      </div>
-    </div>
-  );
-}
+const BaseInputRepeater = React.memo(
+  ({
+    name,
+    type,
+    id,
+    placeholder,
+    label,
+    required,
+    disabled,
+    error,
+    ...props
+  }: BaseInputRepeater_TP) => {
+    const { setFieldValue, setFieldTouched, values } = useFormikContext<{
+      [key: string]: any;
+    }>();
+
+    return (
+      <FastField name={name}>
+        {({ field }: any) => (
+          <div className="col-span-1 mt-[2px]">
+            <TextField
+              type={type}
+              id={id}
+              label={label}
+              variant="outlined"
+              fullWidth
+              value={field.value || values[name]} // التأكد من استخدام القيمة الصحيحة
+              placeholder={placeholder}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                const newValue = e.target.value;
+                setFieldValue(name, newValue); // تحديث القيمة باستخدام Formik
+              }}
+              onBlur={() => setFieldTouched(name, true)} // تعيين الحقل كـ "تم لمسه"
+              disabled={disabled}
+              error={!!error} // عرض الخطأ إذا وجد
+              helperText={error || ""} // عرض رسالة الخطأ إذا وجدت
+              style={{
+                borderColor: "#0000003B",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderRadius: "4px",
+              }}
+              {...props}
+            />
+          </div>
+        )}
+      </FastField>
+    );
+  }
+);
 
 export default BaseInputRepeater;

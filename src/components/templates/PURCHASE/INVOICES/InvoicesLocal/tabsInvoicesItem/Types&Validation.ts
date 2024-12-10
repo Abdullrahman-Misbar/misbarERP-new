@@ -8,6 +8,36 @@ export interface ItemRow {
   total: number;
   warehouseId: string;
   note: string;
+  discountRate:string
+  discountValue:string
+  totalAfterDiscount:string
+  extraRate:string
+  extraValue:string
+  totalAfterExtra:string
+  taxRate:string
+  vat:string
+  totalAfterTax:string
+  freeQuantities:string
+  accountId?:string
+  influencingOnCost?:string
+  additionRate:number
+  additionValue:number
+  currencyId?:string
+  equivalent:number
+  convertionRate:number
+  paymentDate:string
+  paymentAmount:number
+  paymentMethod:number
+  paymentTermId:number
+  invoicePortion:number
+  dueAmount:number
+  creditDays:number
+  dueDate:string
+  hasDiscount:string
+  discountAmount:number
+  dueAmountAfterDiscount:number
+  discountDueDate:string
+  status:string
 }
 
 export interface FormValues {

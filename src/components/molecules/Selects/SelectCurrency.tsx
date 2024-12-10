@@ -7,7 +7,7 @@ import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectCurrencyProps = {
   name: string;
-  labelName?: string;
+  labelName: string;
   disabled?: boolean;
 };
 
@@ -49,7 +49,7 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
   return (
     <SelectComp
       name={name}
-      label={labelName ? labelName : "العمله"}
+      label={labelName}
       placeholder="اختر العملة"
       options={options}
       value={selectedValue}

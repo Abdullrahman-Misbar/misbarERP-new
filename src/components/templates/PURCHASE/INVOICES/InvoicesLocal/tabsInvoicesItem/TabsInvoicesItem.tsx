@@ -1,7 +1,14 @@
 import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ItemsInvoicesTable from "./ItemsInvoicesTable";
-import { headers, headersDetailsInvoice } from "./headers";
+import {
+  headerInvoicePaymentsRequest,
+  headerInvoicesPaymentsSchedulingRequest,
+  headers,
+  headersDetailsInvoice,
+  headersDiscountsAndExtras,
+} from "./headers";
+import SelectPurchasePaymentTemplate from "../../../../../molecules/Selects/SelectPurchasePaymentTemplate";
 
 function TabsInvoicesItem() {
   const [value, setValue] = useState(0);
@@ -48,18 +55,10 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
-                <Typography
-                  sx={{
-                    color: "#333",
-                    fontSize: "20px",
-                    fontWeight: 300,
-                    textTransform: "uppercase",
-                    marginBottom: "32px",
-                  }}
-                  variant="h6"
-                >
-                  قائمة الاصناف
-                </Typography>
+                <ItemsInvoicesTable
+                  moduleName="invoiceDiscountsAndAdditionsRequest"
+                  headers={headersDiscountsAndExtras}
+                />
               </Box>
             </Grid>
           </Box>
@@ -75,22 +74,11 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
-                <Typography
-                  sx={{
-                    color: "#333",
-                    fontSize: "20px",
-                    fontWeight: 300,
-                    textTransform: "uppercase",
-                    marginBottom: "32px",
-                  }}
-                  variant="h6"
-                >
-                  قائمة الاصناف
-                </Typography>
-                {/* <MainSelectChoseModule
-                setRows={setInvoicesPaymentsSchedulingRequest}
-                rows={invoicesPaymentsSchedulingRequest}
-              /> */}
+                <SelectPurchasePaymentTemplate name="invoiceType" />
+                <ItemsInvoicesTable
+                  moduleName="invoicesPaymentsSchedulingRequest"
+                  headers={headerInvoicesPaymentsSchedulingRequest}
+                />
               </Box>
             </Grid>
           </Box>
@@ -106,18 +94,10 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
-                <Typography
-                  sx={{
-                    color: "#333",
-                    fontSize: "20px",
-                    fontWeight: 300,
-                    textTransform: "uppercase",
-                    marginBottom: "32px",
-                  }}
-                  variant="h6"
-                >
-                  قائمة الاصناف
-                </Typography>
+              <ItemsInvoicesTable
+                  moduleName="invoicePaymentsRequest"
+                  headers={headerInvoicePaymentsRequest}
+                />
               </Box>
             </Grid>
           </Box>

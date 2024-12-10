@@ -25,9 +25,12 @@ const BaseInputDatepicker: React.FC<BaseInputDatepickerProps> = ({
 
   return (
     <>
+    {
+      label &&
       <Label htmlFor={name} className="mb-1">
         {label}
       </Label>
+    }
       <div className="rtl:text-right relative mt-1 w-full" dir="rtl">
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
           <DatePicker

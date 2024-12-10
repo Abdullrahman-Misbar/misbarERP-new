@@ -98,8 +98,11 @@
   "Class": "الصنف",
   "invoice Date": "تاريخ الفاتورة",
   "invoice Status": "حالة الفاتورة",
-  "Nature of prices":"طبيعة الاسعار",
-  "currancy Name":"العملة",
-  "payment Status":"حالة الدفع"
-  
+  "Nature of prices": "طبيعة الاسعار",
+  "currancy Name": "العملة",
+  "payment Status": "حالة الدفع",
+  "Receipts": "السندات",
+  "Transfer Receipts": "سندات التحويل",
+  "Cash Payments": "سندات الصرف",
+  "Cash Receipts": "سندات القبض"
 }

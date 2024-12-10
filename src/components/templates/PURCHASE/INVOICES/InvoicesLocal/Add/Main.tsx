@@ -21,9 +21,7 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id
-    ? `${mainENdPoint}/Update/${id}`
-    : `${mainENdPoint}`;
+  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -38,8 +36,18 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable,cancelRequestEndPoint  ,deleteEndPoint ,  ...valuesWithoutCopValue } = values;
+    console.log("🚀 ~ handleSubmit ~ values:", values)
+    const {
+      copValue,
+      uoms,
+      editable,
+      cancelRequestEndPoint,
+      deleteEndPoint,
+      ...valuesWithoutCopValue
+    } = values;
+      console.log("🚀 ~ handleSubmit ~ valuesWithoutCopValue:", valuesWithoutCopValue)
     const jsonData = JSON.stringify(valuesWithoutCopValue);
+    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData)
     mutate(jsonData);
   };
   //@ts-ignore
@@ -82,7 +90,7 @@ function Main({ editable }: Main_TP) {
           itemId: item?.itemId,
           invoiceId: item?.invoiceId,
 
-          id: item?.id,
+          id: item?.id || 0,
           quantity: item?.quantity,
           uomId: item?.uomId,
           cost: item?.cost,
@@ -106,7 +114,7 @@ function Main({ editable }: Main_TP) {
       ?.invoiceDiscountsAndAdditionsRequest?.length
       ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({
           invoiceId: item?.invoiceId,
-          id: item?.id,
+          id: item?.id || 0,
           accountId: item?.accountId,
           influencingOnCost: item?.influencingOnCost,
           discountRate: item?.discountRate,
@@ -126,7 +134,7 @@ function Main({ editable }: Main_TP) {
     invoicesPaymentsSchedulingRequest: response
       ?.invoicesPaymentsSchedulingRequest?.length
       ? response?.invoicesPaymentsSchedulingRequest?.map((item: Item_TP) => ({
-          id: item?.id,
+          id: item?.id || 0,
           invoiceType: item?.invoiceType,
           invoiceId: item?.invoiceId,
           paymentTermId: item?.paymentTermId,
@@ -146,7 +154,7 @@ function Main({ editable }: Main_TP) {
       : [],
     invoicePaymentsRequest: response?.invoicePaymentsRequest?.length
       ? response?.invoicePaymentsRequest?.map((item: Item_TP) => ({
-          id: item?.id,
+          id: item?.id || 0,
           paymentAmount: item?.paymentAmount,
           paymentMethod: item?.paymentMethod,
           invoiceId: item?.invoiceId,
