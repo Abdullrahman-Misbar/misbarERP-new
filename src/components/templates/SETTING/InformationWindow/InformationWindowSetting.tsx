@@ -1,4 +1,5 @@
 import { SwitchComp } from "../../../atoms/formik/SwitchComp";
+import InformationFrom from "./InformationFrom";
 import ShownInformation from "./ShownInformation";
 
 function InformationWindowSetting() {
@@ -12,6 +13,7 @@ function InformationWindowSetting() {
         </div>
       </div>
       <ShownInformation />
+      <InformationFrom/>
      
     </>
   );
