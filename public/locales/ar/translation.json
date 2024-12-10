@@ -24,7 +24,6 @@
   "Purchase quotes": "عروض الاسعار",
   "Purchase receipt": "امر استلام",
   "Receipt order": "امر استلام",
-  "expected Receipt Date": "تاريخ الاستلام",
   "billing Status": "حالة الفاتورة",
   "Purchase invoice": "فاتورة شراء",
   "Local purchase invoices": "فواتير شراء محلية",
@@ -107,5 +106,10 @@
   "": "",
   "": "",
   "": "",
-  "": ""
+  "": "",
+  "invoice Date": "تاريخ الفاتورة",
+  "invoice Status": "حالة الفاتورة",
+  "Nature of prices":"طبيعة الاسعار",
+  "currancy Name":"العملة",
+  "payment Status":"حالة الدفع"
 }

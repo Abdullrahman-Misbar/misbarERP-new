@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 
-import { useFetch } from "../../../../../../hooks";
-import useDebounce from "../../../../../../hooks/useDebounce";
-import BaseInputSearch from "../../../../../atoms/formik/BaseInputSearch";
-import { Table } from "../../../../../molecules/tantable/Table";
+import { useFetch } from "../../../../../../../hooks";
+import useDebounce from "../../../../../../../hooks/useDebounce";
+import BaseInputSearch from "../../../../../../atoms/formik/BaseInputSearch";
+import { Table } from "../../../../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import { useFormikContext } from "formik";
 

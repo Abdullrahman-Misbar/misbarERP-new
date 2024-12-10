@@ -12,7 +12,7 @@ function CancelBar() {
   const { values } = useFormikContext<any>();
   const { id } = useParams();
   const queryClient = useQueryClient();
-  const postEndPoint = `api/PurchasRequest/CancleRequest/${id}`;
+  const postEndPoint = `${values?.cancelRequestEndPoint}/${id}`;
   const { mutate: updateApproved } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,

@@ -5,7 +5,6 @@ import { notify } from "../../../../../utils/toast";
 import { Delete } from "../../../../atoms/icons/Delete";
 import showAlert from "../../../../molecules/ShowAlert";
 
-
 type DeleteMain_TP = {
   refetch: () => void;
   info: any;
@@ -13,13 +12,13 @@ type DeleteMain_TP = {
 function DeleteMain({ refetch, info }: DeleteMain_TP) {
   const [id, setID] = useState("");
   const { mutate } = useMutate({
-    mutationKey: ["api/PurchasOrder"],
-    endpoint: `api/PurchasOrder/${id}`,
+    mutationKey: ["api/Notics/Delete"],
+    endpoint: `api/Notics/Delete/${id}`,
     onSuccess: () => {
       refetch();
       notify("success");
     },
-    Module:"PURCHASE",
+    Module: "PURCHASE",
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },

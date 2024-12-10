@@ -23,19 +23,41 @@ export const generateColumns = (
     },
     {
       header: `${t("Reference number")}`,
-      accessorKey: "code",
+      accessorKey: "invoiceCode",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("createDate")}`,
-      accessorKey: "createDate",
+      header: `${t("vendor Name")}`,
+      accessorKey: "parterName",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("invoice Date")}`,
+      accessorKey: "invoiceDate",
       cell: (info) => (
-        <div>{info?.row?.original?.createDate?.slice(0, 10)}</div>
+        <div>{info?.row?.original?.invoiceDate?.slice(0, 10)}</div>
       ),
     },
     {
-      header: `${t("vendorId")}`,
-      accessorKey: "vendorId",
+      header: `${t("user")}`,
+      accessorKey: "user",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("invoice Status")}`,
+      accessorKey: "invoiceStatus",
+      cell: (info) =>   <div
+      className="w-[100px] rounded-md p-2 text-white"
+      style={{
+        backgroundColor: info?.row?.original?.invoiceStatus ? "green" : "red",
+      }}
+    >
+      {info?.row?.original?.invoiceStatus ? t("Approved") : t("Not Approved")}
+    </div>,
+    },
+    {
+      header: `${t("referenceDocument")}`,
+      accessorKey: "referenceDocument",
       cell: (info) => info.renderValue(),
     },
     {
@@ -44,52 +66,27 @@ export const generateColumns = (
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("approvalDate")}`,
-      accessorKey: "approvalDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
+      header: `${t("Nature of prices")}`,
+      accessorKey: "price",
+      cell: (info) => info.renderValue() || "-",
     },
     {
-      header: `${t("expectedReceiptDate")}`,
-      accessorKey: "expectedReceiptDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
+      header: `${t("currancy Name")}`,
+      accessorKey: "currancyName",
+      cell: (info) => info.renderValue() || "-",
     },
     {
-      header: `${t("referenceDocument")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
+      header: `${t("invoice Status")}`,
+      accessorKey: "invoiceStatus",
+      cell: (info) => info.renderValue() || "-",
     },
-
+   
     {
-      header: `${t("status approved")}`,
-      accessorKey: "status",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
+      header: `${t("payment Status")}`,
+      accessorKey: "paymentStatus",
+      cell: (info) => info.renderValue() || "-",
     },
-    {
-      header: `${t("purchaseAgreementId")}`,
-      accessorKey: "purchaseAgreementId",
-      cell: (info) => {
-        const getStatusText = (status) => {
-          switch (status) {
-            case 0:
-              return "لم يتم الاستلام";
-            case 1:
-              return "استلام جزئي";
-            case 2:
-              return "استلام كلي";
-          }
-        };
-
-        return (
-          <span style={{ fontWeight: "bold" }}>
-            {getStatusText(info?.row?.original?.status)}
-          </span>
-        );
-      },
-    },
+   
 
     {
       header: `${t("note")}`,

@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 
-import { useFetch } from "../../../../../../hooks";
-import useDebounce from "../../../../../../hooks/useDebounce";
-import BaseInputSearch from "../../../../../atoms/formik/BaseInputSearch";
-import { Table } from "../../../../../molecules/tantable/Table";
+import { useFetch } from "../../../../../../../hooks";
+import useDebounce from "../../../../../../../hooks/useDebounce";
+import BaseInputSearch from "../../../../../../atoms/formik/BaseInputSearch";
+import { Table } from "../../../../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import { useFormikContext } from "formik";
 
@@ -17,7 +17,7 @@ function MainCopyComp() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
   const { values } = useFormikContext();
-  const endpoint = `api/PurchasOrder?Take=1000${searchParams.toString()}`;
+  const endpoint = `api/Notics/GetAll?Take=1000${searchParams.toString()}`;
 
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,

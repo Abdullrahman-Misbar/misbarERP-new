@@ -1,35 +1,35 @@
-import { SelectChangeEvent } from "@mui/material"
-import { useFormikContext } from "formik"
-import React from "react"
-import { useFetch } from "../../../hooks"
-import SelectComp from "../../atoms/formik/SelectComp"
+import { SelectChangeEvent } from "@mui/material";
+import { useFormikContext } from "formik";
+import React from "react";
+import { useFetch } from "../../../hooks";
+import SelectComp from "../../atoms/formik/SelectComp";
 
 interface Option {
-  value: string | number
-  label: string
+  value: string | number;
+  label: string;
 }
 
 interface SelectAccountProps {
-  name: string
-  onChange?: (event: SelectChangeEvent<string | number>) => void
-  value?: string | number
-  labelName: string
-  disabled?: boolean
+  name: string;
+  onChange?: (event: SelectChangeEvent<string | number>) => void;
+  value?: string | number;
+  labelName: string;
+  disabled?: boolean;
 }
 
 interface AccountLookupResponse {
-  id: string
-  lookupName: string
+  id: string;
+  lookupName: string;
 }
 
 interface FormikValues {
-  [key: string]: string
+  [key: string]: string;
 }
 interface FetchResponse<T> {
-  data: T
-  error?: string
-  isLoading?: boolean
-  isSuccess?: boolean
+  data: T;
+  error?: string;
+  isLoading?: boolean;
+  isSuccess?: boolean;
 }
 
 const SelectAccount: React.FC<SelectAccountProps> = ({
@@ -39,26 +39,27 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
   value,
   labelName,
 }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>()
+  const { setFieldValue, values } = useFormikContext<FormikValues>();
 
   const handleChange = (event: SelectChangeEvent<string | number>) => {
-    setFieldValue(name, event.value)
-    console.log(event.target.value) 
-  }
+    setFieldValue(name, event.value);
+    console.log(event.value);
+  };
 
-  const endpoint = "api/Account/Lookup"
+  const endpoint = "api/Account/Lookup";
 
   const { data } = useFetch<FetchResponse<AccountLookupResponse[]>>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
-  })
+  });
 
   const options: Option[] =
-    data.data?.map((item: AccountLookupResponse) => ({
+    data?.data?.map((item: AccountLookupResponse) => ({
       value: item.id,
       label: item.lookupName,
-    })) || []
+    })) || [];
+  const selectedValue = options?.find((item) => item?.value == values[name]);
 
   return (
     <SelectComp
@@ -66,11 +67,11 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
       label={labelName}
       placeholder={labelName}
       options={options}
-
+      value={selectedValue}
       onChange={onChange || handleChange}
       disabled={disabled}
     />
-  )
-}
+  );
+};
 
-export default SelectAccount
+export default SelectAccount;

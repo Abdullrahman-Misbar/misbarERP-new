@@ -30,17 +30,18 @@ const SelectCostCenter: React.FC<SelectCostCenterProps> = ({
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "Branch/CostCenter/Lookup";
+  const endpoint = "api/Branch/CostCenter/Lookup";
   const { data, isLoading} = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
+    Module:"PURCHASE"
   });
 
   const options: Option[] =
   //@ts-ignore
     data?.data?.map((item: { id: string; lookupName: string }) => ({
-      value: item.id,
-      label: item.lookupName,
+      value: item?.id,
+      label: item?.lookupName,
     })) || [];
 
   return (

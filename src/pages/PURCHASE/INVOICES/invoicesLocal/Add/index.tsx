@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet-async"
-import Main from "../../../../components/templates/PURCHASE/PurchaseRequest/Add/Main"
+import Main from "../../../../../components/templates/PURCHASE/INVOICES/InvoicesLocal/Add/Main"
 
-type AddPurchaseRequest_TP = {
+type AddInvoiceLocal_TP = {
   title: string
 }
-export default function AddPurchaseRequest({ title }: AddPurchaseRequest_TP) {
+export default function AddInvoiceLocal({ title }: AddInvoiceLocal_TP) {
   return (
     <>
       <Helmet>

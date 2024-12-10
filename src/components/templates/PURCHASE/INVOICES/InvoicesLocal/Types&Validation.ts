@@ -4,7 +4,9 @@ import * as Yup from "yup";
 export type RowData = {
   id: string
   code: string
+  invoiceDate:string
   referenceDocument: string
+  
   approvalDate: string
   confirmationDayes: string
   vendorName: string
@@ -15,6 +17,7 @@ export type RowData = {
   actions?: unknown 
   requestEndDate:string
   isCanceled?:boolean
+  invoiceStatus?:number
 }
 export const validationSchema = () =>
   Yup.object({

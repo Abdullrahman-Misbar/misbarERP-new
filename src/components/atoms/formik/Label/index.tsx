@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { tv } from "tailwind-variants";
 
 const label = tv({
-  base: "inline-block capitalize !text-black  text-[14px] font-somarBold",
+  base: "inline-block capitalize !text-black  text-[14px] !font-somarBold ",
   variants: {
     color: {
       primary: "text-black",

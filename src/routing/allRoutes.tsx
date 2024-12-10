@@ -20,6 +20,13 @@ import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
 import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
 import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
 import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
+import AddInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Add";
+import EditNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Edit";
+import AddNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Add";
+import EditNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Edit";
+import OrderSetting from "../pages/SETTING/orderSetting";
+import Setting from "../pages/SETTING";
+import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 
 export const AllRoutesProvider = () => {
   return (
@@ -27,7 +34,6 @@ export const AllRoutesProvider = () => {
       <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route path="*" element={<ErrorPage />} />
         <Route index element={<Home title={t("Home")} />} />
-
         {/* PURCHASE */}
         <Route
           path="/purchase/PurchaseRequest"
@@ -54,7 +60,6 @@ export const AllRoutesProvider = () => {
           path="/purchase/PurchasOrder/edit/:id"
           element={<EditPurchaseOrder title={t("Edit Purchase order")} />}
         />
-
         {/* ----------------------------------------- */}
         <Route
           path="/purchase/PurchasQutations"
@@ -68,7 +73,6 @@ export const AllRoutesProvider = () => {
           path="/purchase/PurchasQutations/edit/:id"
           element={<EditPurchasQutations title={t("Edit Purchase quotes")} />}
         />
-
         {/* ----------------------------------------- */}
         <Route
           path="/purchase/PurchasReceipt"
@@ -92,19 +96,64 @@ export const AllRoutesProvider = () => {
           path="/purchase/notification/debit"
           element={<NotificationDebit title={t("Notification Debit")} />}
         />
-          <Route
+        <Route
           path="/purchase/notification/debit/add"
           element={<AddNotificationDebit title={t("Add Notification Debit")} />}
         />
-           <Route
-          path="/purchase/notification/debit/edit"
-          element={<NotificationDebit title={t("Edit Notification Debit")} />}
+        <Route
+          path="/purchase/notification/debit/edit/:id"
+          element={
+            <EditNotificationDebit title={t("Edit Notification Debit")} />
+          }
         />
-          <Route
+        <Route
           path="/purchase/notification/credit"
           element={<NotificationCredit title={t("Notification Credit")} />}
         />
-        
+        <Route
+          path="/purchase/notification/credit/add"
+          element={
+            <AddNotificationCredit title={t("Add Notification Credit")} />
+          }
+        />
+
+        <Route
+          path="/purchase/notification/credit/edit/:id"
+          element={
+            <EditNotificationCredit title={t("Edit Notification Credit")} />
+          }
+        />
+
+        <Route
+          path="/purchase/invoices/local/add"
+          element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
+        />
+        {/* SETTING */}
+        {/* <Route
+          path="/setting/orders"
+          element={<OrderSetting title={t("Order Setting")} />}
+        /> */}
+        <Route
+          path="/setting"
+          element={<Setting/>}
+        >
+          <Route
+            path="/setting/orders"
+            element={<OrderSetting title={t("Order Setting")} />}
+          />
+          <Route
+            path="/setting/invoices"
+            element={<InvoiceSetting title={t("invoices Setting")} />}
+          />
+          <Route
+            path="/setting/logistic"
+            element={<OrderSetting title={t("logistic Setting")} />}
+          />
+          <Route
+            path="/setting/information"
+            element={<OrderSetting title={t("logistic Setting")} />}
+          />
+        </Route>
       </Route>
 
       <Route
