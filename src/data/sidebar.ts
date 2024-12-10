@@ -95,6 +95,7 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Home screen",
+        link: "/mainScreen",
       },
       {
         id: crypto.randomUUID(),

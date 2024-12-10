@@ -1,5 +1,4 @@
 import RadioButtons from "../../../atoms/formik/RadioComp";
-
 function InformationFrom() {
   return (
     <div className="bg-white w-full rounded-lg p-6 pb-16 my-4">
