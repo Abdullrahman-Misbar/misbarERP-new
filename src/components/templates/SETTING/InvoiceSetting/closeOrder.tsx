@@ -1,37 +1,52 @@
+import { Grid } from "@mui/material";
 import { SwitchComp } from "../../../atoms/formik/SwitchComp";
+import RadioButtons from "../../../atoms/formik/RadioComp";
 
 function CloseOrder() {
   return (
-    <>
-      <div className="bg-white rounded-lg p-6 shadow-sm">
-        <span className="text-xl font-bold block mb-4">إقفال الأوامر</span>
-        <div className="flex items-center justify-between gap-12 w-full">
-          {/* Approved Section */}
-          <div className="flex items-center justify-start gap-4">
-            <SwitchComp name="approved" />
-            <div className="text-right">
-              <p className="font-semibold mb-1">المعتمدة</p>
-              <p className="text-gray-500 text-sm font-somarLight">
-                بعد اعتماد طلب الشراء والعرض وإرسال أمر الشراء، يمنع التعديل
-                عليه في حال كان الأمر غير مكتمل
-              </p>
-            </div>
-          </div>
-
-          {/* Completed Section */}
-          <div className="flex items-center justify-start gap-4">
-            <SwitchComp name="completed" />
-            <div className="text-right">
-              <p className="font-semibold mb-1">المكتملة</p>
-              <p className="text-gray-500 text-sm font-somarLight">
-                منع التعديل على طلب الشراء أو أمر الشراء بعد التحقق واستلام
-                البضاعة نهائيًا للتعديل عن طريق الخطأ
-              </p>
-            </div>
-          </div>
-        </div>
+    <div className="bg-white rounded-lg p-6 my-4">
+      <span className="text-xl font-semibold">الخصم المكتسب</span>
+      <div className="mt-6">
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={6}>
+            <RadioButtons
+              name="earnedDiscount"
+              label="يوزع على الأصناف يدوياً"
+              onChange={() => {}}
+              checked={true} // Add checked attribute for default selection
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <RadioButtons
+              name="earnedDiscount"
+              label="يوزع على الأصناف نسبة وتناسب حسب الخصم المكتسب قيمة"
+              onChange={() => {}}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <RadioButtons
+              name="earnedDiscount"
+              label="لا يؤثر على التكلفة"
+              onChange={() => {}}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <RadioButtons
+              name="earnedDiscount"
+              label="     يوزع على الأصناف بالتساوي "
+              onChange={() => {}}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <RadioButtons
+              name="earnedDiscount"
+              label="  يوزع على الأصناف نسبة وتناسب حسب الكمية   "
+              onChange={() => {}}
+            />
+          </Grid>
+        </Grid>
       </div>
-    </>
+    </div>
   );
 }
 
