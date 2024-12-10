@@ -27,6 +27,8 @@ import EditNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationC
 import OrderSetting from "../pages/SETTING/orderSetting";
 import Setting from "../pages/SETTING";
 import InvoiceSetting from "../pages/SETTING/invoiceSetting";
+import LogisticSetting from "../pages/SETTING/Logistic";
+import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
 
 export const AllRoutesProvider = () => {
   return (
@@ -133,10 +135,7 @@ export const AllRoutesProvider = () => {
           path="/setting/orders"
           element={<OrderSetting title={t("Order Setting")} />}
         /> */}
-        <Route
-          path="/setting"
-          element={<Setting/>}
-        >
+        <Route path="/setting" element={<Setting />}>
           <Route
             path="/setting/orders"
             element={<OrderSetting title={t("Order Setting")} />}
@@ -147,11 +146,11 @@ export const AllRoutesProvider = () => {
           />
           <Route
             path="/setting/logistic"
-            element={<OrderSetting title={t("logistic Setting")} />}
+            element={<LogisticSetting title={t("logistic Setting")} />}
           />
           <Route
             path="/setting/information"
-            element={<OrderSetting title={t("logistic Setting")} />}
+            element={<InformationWindowSetting title={t("Information  Setting")} />}
           />
         </Route>
       </Route>

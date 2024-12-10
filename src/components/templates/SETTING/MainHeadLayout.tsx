@@ -12,8 +12,9 @@ function MainHeadLayout() {
       <p className=" bg-white rounded-lg mb-2">
         <BreadcrumbComponent items={breadcrumbItems} />
       </p>
-
-      <MainTabs />
+      <div className=" rounded-lg  !mt-5 p-5">
+        <MainTabs />
+      </div>
     </div>
   );
 }
