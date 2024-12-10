@@ -1,5 +1,4 @@
-/* eslint-disable import/named */
-import { SelectChangeEvent } from "@mui/material";
+
 import { useFormikContext } from "formik";
 import SelectComp from "../../atoms/formik/SelectComp";
 

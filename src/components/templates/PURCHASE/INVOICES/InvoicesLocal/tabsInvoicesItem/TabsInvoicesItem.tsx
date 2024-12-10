@@ -1,5 +1,5 @@
 import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ItemsInvoicesTable from "./ItemsInvoicesTable";
 import {
   headerInvoicePaymentsRequest,
@@ -9,13 +9,34 @@ import {
   headersDiscountsAndExtras,
 } from "./headers";
 import SelectPurchasePaymentTemplate from "../../../../../molecules/Selects/SelectPurchasePaymentTemplate";
+import { useFormikContext } from "formik";
 
 function TabsInvoicesItem() {
   const [value, setValue] = useState(0);
-
+  const { values, setFieldValue } = useFormikContext();
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [globalInvoiceType, setGlobalInvoiceType] = useState("");
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+  // تحديث جميع العناصر عند تغيير القيمة
+  const updateAllInvoiceTypes = (selectedValue: string) => {
+    const updatedArray = values.invoicesPaymentsSchedulingRequest.map(
+      (item) => ({
+        ...item,
+        invoiceType: selectedValue,
+      })
+    );
+    setFieldValue("invoicesPaymentsSchedulingRequest", updatedArray);
+  };
+
+  // تحديث القيمة لجميع العناصر عند تغيير القيمة العامة
+  useEffect(() => {
+    if (globalInvoiceType) {
+      updateAllInvoiceTypes(globalInvoiceType);
+    }
+  }, [globalInvoiceType]);
+
   return (
     <div>
       <Box sx={{ width: "100%", padding: 3 }}>
@@ -74,10 +95,20 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
-                <SelectPurchasePaymentTemplate name="invoiceType" />
+                <div className="w-1/4 mb-4">
+                  <SelectPurchasePaymentTemplate
+                    name={`invoicesPaymentsSchedulingRequest[${selectedIndex}].invoiceType`}
+                    onChange={(e) => setGlobalInvoiceType(e.value)}
+
+                  />
+                </div>
+
                 <ItemsInvoicesTable
                   moduleName="invoicesPaymentsSchedulingRequest"
                   headers={headerInvoicesPaymentsSchedulingRequest}
+                  newItem={{
+                    invoiceType: globalInvoiceType,
+                  }}
                 />
               </Box>
             </Grid>
@@ -94,7 +125,7 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
-              <ItemsInvoicesTable
+                <ItemsInvoicesTable
                   moduleName="invoicePaymentsRequest"
                   headers={headerInvoicePaymentsRequest}
                 />

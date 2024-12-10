@@ -1,11 +1,11 @@
 import React from 'react';
 
-function InvoicesLocalCopy() {
+function NotificationDebitCopy() {
   return (
     <div>
-      InvoicesLocalCopy
+      NotificationDebitCopy
     </div>
   );
 }
 
-export default InvoicesLocalCopy;
+export default NotificationDebitCopy;

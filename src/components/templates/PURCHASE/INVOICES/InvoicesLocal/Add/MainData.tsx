@@ -5,7 +5,6 @@ import BaseInputField from "../../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../../atoms/formik/Label";
 import RadioButtons from "../../../../../atoms/formik/RadioComp";
 import LayoutMainData from "../../../../../molecules/LayoutMainData";
-import MainSelectChoseModule from "../../../../../molecules/MainSelectChoseModule";
 import SelectBranch from "../../../../../molecules/Selects/SelectBranch";
 import SelectCostCenter from "../../../../../molecules/Selects/SelectCostCenter";
 import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
@@ -14,10 +13,9 @@ import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentM
 import SelectPaymentStatus from "../../../../../molecules/Selects/SelectPaymentStatus";
 import SelectVendor from "../../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
-import ItemsTable from "../../../../../molecules/tablesDynamic/ItemsTable";
+import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -41,10 +39,10 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasOrder"
+      className="p-0"
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
+        <Grid container rowSpacing={4} columnSpacing={4} p={3}>
           <Grid item xs={12} sm={4}>
             <BaseInputField
               name="invoiceCode"
@@ -123,8 +121,7 @@ function MainData() {
             <div className="flex items-center gap-5">
               <Label htmlFor=""> حالة الفوترة</Label>
               {values?.invoiceStatus == 0 && (
-
-              <p className="bg-gray-300 rounded-full p-3">مسودة</p>
+                <p className="bg-gray-300 rounded-full p-3">مسودة</p>
               )}
             </div>
           </Grid>
@@ -139,7 +136,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId"  labelName="العملة"/>
+            <SelectCurrency name="currencyId" labelName="العملة" />
           </Grid>
           <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
@@ -209,13 +206,14 @@ function MainData() {
             </div>
           </Grid>
         </Grid>
-        <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="orderDetailsModal" />
+        <div className="bg-[#f6f8ff] w-100 h-10"></div>
+        <Grid item xs={12} mt={1}>
+          {/* <MainSelectChoseModule moduleName="orderDetailsModal" /> */}
           {/* <ItemsTable moduleName="orderDetailsModal" /> */}
-          <TabsInvoicesItem/>
+          <TabsInvoicesItem />
         </Grid>
         <hr />
-        <Grid container rowSpacing={4} columnSpacing={4} mt={3}>
+        <Grid container rowSpacing={4} columnSpacing={4} mt={3} p={3}>
           <Grid item xs={12} sm={3}>
             <BaseInputField
               name="total"

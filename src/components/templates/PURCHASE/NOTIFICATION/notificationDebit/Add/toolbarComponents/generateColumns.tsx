@@ -34,76 +34,51 @@ export const generateColumns = (
     },
     {
       header: `${t("Reference number")}`,
-      accessorKey: "code",
+      accessorKey: "noticeCode",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("createDate")}`,
-      accessorKey: "createDate",
+      header: `${t("noticeDate")}`,
+      accessorKey: "noticeDate",
       cell: (info) => (
-        <div>{info?.row?.original?.createDate?.slice(0, 10)}</div>
+        <div>{info?.row?.original?.noticeDate?.slice(0, 10)}</div>
       ),
     },
+
     {
-      header: `${t("vendorId")}`,
-      accessorKey: "vendorId",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("purchaseRepresentativeId")}`,
-      accessorKey: "purchaseRepresentativeId",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("approvalDate")}`,
-      accessorKey: "approvalDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("expectedReceiptDate")}`,
-      accessorKey: "expectedReceiptDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("referenceDocument")}`,
-      accessorKey: "referenceDocument",
+      header: `${t("Reason for notice")}`,
+      accessorKey: "Reason for notice",
       cell: (info) => info.renderValue(),
     },
 
     {
-      header: `${t("status approved")}`,
-      accessorKey: "status",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
-    },
-    {
-      header: `${t("purchaseAgreementId")}`,
-      accessorKey: "purchaseAgreementId",
+      header: `${t("tax")}`,
+      accessorKey: "tax",
       cell: (info) => info.renderValue(),
     },
 
     {
-      header: `${t("note")}`,
-      accessorKey: "note",
+      header: `${t("reference Document")}`,
+      accessorKey: "sourceDocument",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("status")}`,
-      accessorKey: "status",
+      header: `${t("sourceDocumentDate")}`,
+      accessorKey: "sourceDocumentDate",
       cell: (info) => (
-        <div
-          className="w-[100px] rounded-md p-2 text-white"
-          style={{
-            backgroundColor:
-              info?.row?.original?.status === 1 ? "green" : "red",
-          }}
-        >
-          {info?.row?.original?.status === 1 ? t("Active") : t("Not active")}
-        </div>
+        <div>{info?.row?.original?.sourceDocumentDate?.slice(0, 10)}</div>
       ),
+    },
+
+    {
+      header: `${t("User")}`,
+      accessorKey: "accountId",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("Statement")}`,
+      accessorKey: "description",
+      cell: (info) => info.renderValue(),
     },
   ];
 };

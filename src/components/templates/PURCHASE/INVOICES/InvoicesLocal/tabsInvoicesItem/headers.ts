@@ -7,6 +7,7 @@ import SelectAccount from "../../../../../molecules/Selects/SelectAccount";
 import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
 import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
 import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentMethod";
+import SelectPurchasePaymentTerm from "../../../../../molecules/Selects/SelectPurchasePaymentTerm";
 export const headersDetailsInvoice: Header[] = [
   {
     name: "itemId",
@@ -252,8 +253,8 @@ export const headersDiscountsAndExtras: Header[] = [
 export const headerInvoicesPaymentsSchedulingRequest: Header[] = [
   {
     name: "paymentTermId",
-    label: "شرط السداد",
-    component: SelectAccount,
+    // label: "شرط السداد",
+    component: SelectPurchasePaymentTerm,
     type: "number",
     //@ts-ignore
 

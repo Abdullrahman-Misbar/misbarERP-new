@@ -4,12 +4,14 @@ import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectPurchasePaymentTemplate_TP = {
   name: string;
+  onChange?:()=>void
 };
 type Formik_Values = {
   name: string;
 };
 const SelectPurchasePaymentTemplate = ({
   name,
+  onChange
 }: SelectPurchasePaymentTemplate_TP) => {
   const { setFieldValue } = useFormikContext<Formik_Values>();
 
@@ -35,7 +37,7 @@ const SelectPurchasePaymentTemplate = ({
       label="قالب شروط السداد"
       placeholder="قالب شروط السداد"
       options={options}
-      onChange={handleChange}
+      onChange={onChange || handleChange}
       isLoading={isLoading}
     />
   );

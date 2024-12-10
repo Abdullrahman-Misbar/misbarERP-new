@@ -1,11 +1,18 @@
-import React from 'react';
+import { Helmet } from "react-helmet-async"
+import Main from "../../../../../components/templates/PURCHASE/NOTIFICATION/notificationDebit/Add/Main"
 
-function Edit() {
-  return (
-    <div>
-      Edit
-    </div>
-  );
+type EditNotificationDebit_TP = {
+  title: string
 }
-
-export default Edit;
+export default function EditNotificationDebit({ title }: EditNotificationDebit_TP) {
+  return (
+    <>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <div>
+        <Main editable={true} />
+      </div>
+    </>
+  )
+}

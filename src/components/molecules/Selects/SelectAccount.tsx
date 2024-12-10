@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
-import React from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
+import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
 

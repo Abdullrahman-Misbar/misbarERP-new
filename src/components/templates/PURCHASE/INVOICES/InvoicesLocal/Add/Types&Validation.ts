@@ -30,6 +30,9 @@ export type Values_TP = {
   supplier: string;
   purchaseAgreement: string;
   notes: string;
+  withTax:number
+  paymentStatus:number
+  invoiceStatus:number
   deliverdConfirmation: boolean;
   cancelRequestEndPoint: string;
   deleteEndPoint: string;

@@ -3,7 +3,7 @@ import DeleteIcon from "../../../../../atoms/icons/DeleteIcon";
 import TableDynamic from "../../../../../molecules/table/TableDynamic";
 import { FormValues, ItemsTableProps } from "./Types&Validation";
 
-export default function ItemsInvoicesTable({ moduleName , headers }: ItemsTableProps) {
+export default function ItemsInvoicesTable({ moduleName , headers , newItem }: ItemsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
   console.log("🚀 ~ ItemsInvoicesTable ~ values:", values)
 
@@ -35,6 +35,7 @@ export default function ItemsInvoicesTable({ moduleName , headers }: ItemsTableP
       isDeleted: false,
       id: 0,
       tempId: `${Date.now()}-${Math.random()}`,
+      ...newItem
     };
   };
   

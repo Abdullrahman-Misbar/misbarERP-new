@@ -12,7 +12,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasOrder/Get/${id}`;
+  const endpoint = `api/Notics/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -20,9 +20,7 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id
-    ? `api/PurchasOrder/Update/${id}`
-    : `api/PurchasOrder`;
+  const postEndPoint = id ? `api/Notics/Update/${id}` : `api/Notics/Create`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -46,21 +44,17 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    code: response?.code || "",
-    total: response?.total || "",
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    createDate: response?.createDate || "",
-    referenceDocument: response?.referenceDocument || "",
-    currencyId: response?.currencyId || "",
-    vendorId: response?.vendorId || "",
-    purchaseAgreementId: response?.purchaseAgreementId || "",
+    noticeCode: response?.noticeCode || "",
+    tax: response?.tax || "",
+    noticeDate: response?.noticeDate || "",
+    sourceDocument: response?.sourceDocument || "",
     note: response?.note || "",
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
-    warehouseId: response?.warehouseId || "",
-    approvalDate: response?.approvalDate || "",
-
-    orderDetailsModal: response?.orderDetailsModal?.length
-      ? response?.orderDetailsModal?.map((item: Item_TP) => ({
+    accountId: response?.accountId || "",
+    sourceDocumentDate: response?.sourceDocumentDate || "",
+    description: response?.description || "",
+    displayMethod: response?.displayMethod || 0,
+    noticDetailsModal: response?.noticDetailsModal?.length
+      ? response?.noticDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,
           id: item?.id,
           note: item?.note,
@@ -75,19 +69,15 @@ function Main({ editable }: Main_TP) {
         }))
       : [],
     copValue: {
-      code: "",
-      total: "",
-      expectedReceiptDate: "",
-      createDate: "",
-      referenceDocument: "",
-      currencyId: "",
-      vendorId: "",
-      purchaseAgreementId: "",
+      noticeCode: "",
+      tax: "",
+      noticeDate: "",
+      sourceDocument: "",
       note: "",
-      purchaseRepresentativeId: "",
-      warehouseId: "",
-      
-      approvalDate: "",
+      accountId: "",
+      sourceDocumentDate: "",
+      description: "",
+      displayMethod: "",
     },
   };
 
