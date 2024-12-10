@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import { SwitchComp } from "../../../atoms/formik/SwitchComp";
 import RadioButtons from "../../../atoms/formik/RadioComp";
 
 function CloseOrder() {

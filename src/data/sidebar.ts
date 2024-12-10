@@ -49,19 +49,19 @@ export const sideBarItems: MenuItem_TP[] = [
           {
             id: crypto.randomUUID(),
             label: "Billing settings",
-            link: "",
+            link: "/setting/invoices",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Logistics preparations",
-            link: "",
+            link: "/setting/logistic",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Setting up the information window",
-            link: "",
+            link: "/setting/information",
             icon: FaRegCircle,
           },
         ],

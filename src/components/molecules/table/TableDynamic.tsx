@@ -42,6 +42,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   handleTabPress,
   push,
 }) => {
+  console.log("🚀 ~ headers:", headers)
   const { values, setFieldValue } = useFormikContext<any>();
   useEffect(() => {
     const updatedValues = values[moduleName]?.filter(
@@ -72,8 +73,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
     },
     []
   );
-
-  console.log("🚀 ~ filteredItems:", filteredItems);
 
   return (
     <div className="overflow-x-scroll">

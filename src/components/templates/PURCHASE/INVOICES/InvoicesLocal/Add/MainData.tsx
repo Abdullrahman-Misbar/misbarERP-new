@@ -16,6 +16,7 @@ import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
 import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import { useEffect } from "react";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -33,7 +34,26 @@ function MainData() {
     warehouseId: values?.copValue?.warehouseId || "",
     approvalDate: values?.copValue?.approvalDate || "",
   };
+  useEffect(() => {
+    if (values.invoiceDetailsRequest) {
+      const totalInvoiceValue = values.invoiceDetailsRequest.reduce(
+        (sum, item) => sum + (+item.total || 0), 
+        0
+      );
+      const totalDiscountValue = values.invoiceDetailsRequest.reduce(
+        (sum, item) => sum + (+item.discountValue || 0), // إجمالي الخصم
+        0
+      );
+      const totalAdditionalValue = values.invoiceDetailsRequest.reduce(
+        (sum, item) => sum + (+item.extraValue || 0), // إجمالي الخصم
+        0
+      );
+      setFieldValue("total", totalInvoiceValue, false);
+      setFieldValue("totalDiscount", totalDiscountValue, false)
+      setFieldValue("totalAdditionalValue", totalAdditionalValue, false)
 
+    }
+  }, [values.invoiceDetailsRequest, setFieldValue]);
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
@@ -224,7 +244,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="referenceDocument"
+              name="totalDiscount"
               placeholder="0.00"
               type="number"
               label="الخصم"
@@ -232,7 +252,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="referenceDocument"
+              name="totalAdditionalValue"
               placeholder="0.00"
               type="number"
               label="الاضافة"
@@ -240,7 +260,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="total"
+              name="totalAfterDecountAndAdditional"
               placeholder="0.00"
               type="number"
               label="الإجمالي بعد الخصم والاضافة"

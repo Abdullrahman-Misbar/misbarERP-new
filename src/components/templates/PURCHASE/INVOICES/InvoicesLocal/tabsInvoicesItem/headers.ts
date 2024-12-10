@@ -8,7 +8,9 @@ import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
 import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
 import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentMethod";
 import SelectPurchasePaymentTerm from "../../../../../molecules/Selects/SelectPurchasePaymentTerm";
-export const headersDetailsInvoice: Header[] = [
+
+
+export const headersDetailsInvoice = (handleFieldChange , values) =>[
   {
     name: "itemId",
     label: "الصنف",
@@ -29,15 +31,10 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الكمية",
     component: BaseInputRepeater,
     type: "number",
-    //@ts-ignore
-
-    onChange: (e, setFieldValue, values, moduleName  ,rowIndex) => {
-      // const rowIndex = values[moduleName]?.length - 1;
-      const quantity = +e.target.value;
-      const price = values[moduleName]?.[rowIndex]?.price || 0;
-      const total = price * quantity;
-      setFieldValue(`${moduleName}[${rowIndex}].quantity`, quantity);
-      setFieldValue(`${moduleName}[${rowIndex}].total`, total);
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("quantity", value, moduleIndex);
     },
   },
   {
@@ -62,14 +59,10 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "التكلفة",
     component: BaseInputRepeater,
     type: "number",
-    //@ts-ignore
-    onChange: (e, setFieldValue, values, moduleName) => {
-      const rowIndex = values[moduleName]?.length - 1;
-      const price = +e.target.value;
-      const quantity = values[moduleName]?.[rowIndex]?.quantity || 0;
-      const total = price * quantity;
-      setFieldValue(`${moduleName}[${rowIndex}].price`, price);
-      setFieldValue(`${moduleName}[${rowIndex}].total`, total);
+    onChange: (e,  setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("price", value, moduleIndex);
     },
   },
   {
@@ -78,6 +71,7 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الاجمالي",
     component: BaseInputRepeater,
     type: "number",
+    // value:+values?.price * +values?.quantity
   },
   {
     name: "discountRate",
@@ -85,6 +79,12 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الخصم%",
     component: BaseInputRepeater,
     type: "number",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+
+      const value = +e.target.value || 0;
+      handleFieldChange("discountRate", value, moduleIndex);
+    },
   },
   {
     name: "discountValue",
@@ -92,6 +92,11 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الخصم",
     component: BaseInputRepeater,
     type: "number",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("discountValue", value, moduleIndex);
+    },
   },
   {
     name: "totalAfterDiscount",
@@ -107,6 +112,11 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الاضافة%",
     component: BaseInputRepeater,
     type: "number",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("extraRate", value, moduleIndex);
+    },
   },
   {
     name: "extraValue",
@@ -114,6 +124,11 @@ export const headersDetailsInvoice: Header[] = [
     placeholder: "الاضافة",
     component: BaseInputRepeater,
     type: "number",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("extraValue", value, moduleIndex);
+    },
   },
   {
     name: "totalAfterExtra",
@@ -130,6 +145,12 @@ export const headersDetailsInvoice: Header[] = [
     component: BaseInputRepeater,
     type: "number",
     width: "130px",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("taxRate", value, moduleIndex);
+    },
+    value:15
   },
   {
     name: "vat",
@@ -138,6 +159,11 @@ export const headersDetailsInvoice: Header[] = [
     component: BaseInputRepeater,
     type: "number",
     width: "190px",
+    onChange: (e, setFieldValue, values, moduleNam) => {
+      const moduleIndex = values[moduleNam]?.length - 1;
+      const value = +e.target.value || 0;
+      handleFieldChange("vat", value, moduleIndex);
+    },
   },
   {
     name: "totalAfterTax",

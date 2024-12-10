@@ -71,7 +71,7 @@ function Main({ editable }: Main_TP) {
     currencyId: response?.currencyId || "",
     convertionRate: response?.convertionRate || "",
     referenceDocument: response?.referenceDocument || "",
-    withTax: response?.withTax || "",
+    withTax: response?.withTax || 0,
     withoutTax: response?.withoutTax || 0,
     total: response?.total || "",
     net: response?.net || 0,

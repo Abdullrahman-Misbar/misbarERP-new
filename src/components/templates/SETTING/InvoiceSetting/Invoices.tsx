@@ -10,7 +10,6 @@ function Invoices() {
           <SwitchComp name="" />
           <div className="text-right">
             <p className="m-1">
-              {" "}
               انشاء فاتورة شراء مباشرة في حال كانت قيمتها دون{" "}
             </p>
             <p className="font-[12px] text-light font-somarLight my-1">
