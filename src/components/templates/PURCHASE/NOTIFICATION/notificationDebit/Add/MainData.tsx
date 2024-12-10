@@ -1,17 +1,18 @@
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
-import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
-import BaseInputField from "../../../../atoms/formik/BaseInputField";
-import { Label } from "../../../../atoms/formik/Label";
-import LayoutMainData from "../../../../molecules/LayoutMainData";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
-import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
-import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
-import SelectVendor from "../../../../molecules/Selects/SelectVendor";
-import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
+import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
+import BaseInputField from "../../../../../atoms/formik/BaseInputField";
+import { Label } from "../../../../../atoms/formik/Label";
+import LayoutMainData from "../../../../../molecules/LayoutMainData";
+import MainSelectChoseModule from "../../../../../molecules/MainSelectChoseModule";
+import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
+import SelectPurchaseAgreement from "../../../../../molecules/Selects/SelectPurchasAgreement";
+import SelectVendor from "../../../../../molecules/Selects/SelectVendor";
+import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
+import ItemsTable from "../../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import SelectAccount from "../../../../../molecules/Selects/SelectAccount";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -28,7 +29,6 @@ function MainData() {
     purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
     warehouseId: values?.copValue?.warehouseId || "",
     approvalDate: values?.copValue?.approvalDate || "",
-    status: values?.copValue?.status || "",
   };
 
   return (
@@ -42,7 +42,7 @@ function MainData() {
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={4}>
             <BaseInputField
-              name="code"
+              name="noticeCode"
               placeholder="الرقم المرجعي"
               type="text"
               disabled
@@ -50,30 +50,31 @@ function MainData() {
             />
           </Grid>
 
-          {/* 1 */}
-          <Grid item xs={12} sm={4}>
+            {/* 1 */}
+            <Grid item xs={12} sm={4}>
             <BaseInputField
-              name="total"
-              placeholder=" الأجمالى"
+              name="tax"
+              placeholder=" الضريبة"
               type="number"
-              label=" الأجمالى"
+              label=" الضريبة"
             />
           </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="expectedReceiptDate"
-              placeholder=" تاريخ الاستلام المتوقع"
-              label=" تاريخ الاستلام المتوقع"
-            />
-          </Grid>
+
+
 
           <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
-              name="createDate"
-              placeholder="تاريخ انشاء الامر"
-              label="تاريخ انشاء الامر"
+              name="noticeDate"
+              placeholder=" التاريخ  "
+              label="   التاريخ"
             />
+          </Grid>
+
+   
+
+          <Grid item xs={12} sm={4}>
+            <SelectAccount name="ddd" labelName="noticeDate"/>
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -102,20 +103,16 @@ function MainData() {
               <Label htmlFor="">الحالة</Label>
               <div>
                 <span className="status-text">
-                  {/* {values?.status === 0
-                    ? "لم يتم الاستلام"
-                    : values?.status === 1
-                    ? "استلام جزئي"
-                    : values?.status === 2
-                    ? "استلام كلي"
-                    : ""} */}
-                  {values?.status == 1 ? (
-                    <p className="">استلام جزئي</p>
-                  ) : values?.status == 2 ? (
-                    <p className="">استلم كلي</p>
-                  ) : (
-                    "لم يتم الاستلام"
-                  )}
+                  {(() => {
+                    switch (values?.status) {
+                      case 0:
+                        return "لم يتم الاستلام";
+                      case 1:
+                        return "استلام جزئي";
+                      case 2:
+                        return "استلام كلي";
+                    }
+                  })()}
                 </span>
               </div>
             </div>

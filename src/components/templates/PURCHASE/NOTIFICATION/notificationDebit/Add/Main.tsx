@@ -1,8 +1,8 @@
 import { Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
-import { useFetch, useMutate } from "../../../../../hooks";
-import { notify } from "../../../../../utils/toast";
-import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
+import { useFetch, useMutate } from "../../../../../../hooks";
+import { notify } from "../../../../../../utils/toast";
+import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 
@@ -58,8 +58,6 @@ function Main({ editable }: Main_TP) {
     purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
     warehouseId: response?.warehouseId || "",
     approvalDate: response?.approvalDate || "",
-    cancelRequestEndPoint: "api/PurchasOrder/CancleRequest",
-    status: response?.status || "",
 
     orderDetailsModal: response?.orderDetailsModal?.length
       ? response?.orderDetailsModal?.map((item: Item_TP) => ({
@@ -88,7 +86,7 @@ function Main({ editable }: Main_TP) {
       note: "",
       purchaseRepresentativeId: "",
       warehouseId: "",
-      status: "",
+      
       approvalDate: "",
     },
   };

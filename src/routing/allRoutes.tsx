@@ -21,6 +21,9 @@ import AddInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Add";
 import Receipts from "../pages/PURCHASE/Receipts";
 import AddReceipt from "../pages/PURCHASE/Receipts/Add";
 import EditReceipt from "../pages/PURCHASE/Receipts/Edit";
+import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
+import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
+import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
 
 export const AllRoutesProvider = () => {
   return (
@@ -102,6 +105,24 @@ export const AllRoutesProvider = () => {
         <Route
           path="/receipts/edit/:id"
           element={<EditReceipt title={t("Edit Receipt")} />}
+        />
+
+        {/* ------------------------------------------ */}
+        <Route
+          path="/purchase/notification/debit"
+          element={<NotificationDebit title={t("Notification Debit")} />}
+        />
+        <Route
+          path="/purchase/notification/debit/add"
+          element={<AddNotificationDebit title={t("Add Notification Debit")} />}
+        />
+        <Route
+          path="/purchase/notification/debit/edit"
+          element={<NotificationDebit title={t("Edit Notification Debit")} />}
+        />
+        <Route
+          path="/purchase/notification/credit"
+          element={<NotificationCredit title={t("Notification Credit")} />}
         />
       </Route>
 

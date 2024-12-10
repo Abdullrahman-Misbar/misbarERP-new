@@ -14,7 +14,10 @@ export type RowData = {
   actions?: unknown;
   requestEndDate: string;
   isCanceled?: boolean;
-  status?: string;
+  quotationDate?: string;
+  quotationDeadLine?: string;
+  status?: any;
+  total?: number;
 };
 export const validationSchema = () =>
   Yup.object({

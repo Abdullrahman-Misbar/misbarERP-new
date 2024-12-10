@@ -12,25 +12,24 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasOrder/Get/${id}`;
-  const { data, isLoading } = useFetch({
+  const endpoint = `api/PurchasRequest/Get/${id}`;
+  const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled: !!id && !!editable,
+    enabled:  !!id && !!editable ,
   });
-
   const postEndPoint = id
-    ? `api/PurchasOrder/Update/${id}`
-    : `api/PurchasOrder`;
+    ? `api/PurchasRequest/UpdateRequest/${id}`
+    : `api/PurchasRequest`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
     onSuccess: () => {
+      // refetch();
       notify("success");
     },
     Module: "PURCHASE",
-    method: id ? "PUT" : "post",
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },
@@ -39,6 +38,7 @@ function Main({ editable }: Main_TP) {
   const handleSubmit = (values: Values_TP) => {
     const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
+
     mutate(jsonData);
   };
   //@ts-ignore
@@ -47,52 +47,56 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     code: response?.code || "",
-    total: response?.total || "",
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    createDate: response?.createDate || "",
-    referenceDocument: response?.referenceDocument || "",
-    currencyId: response?.currencyId || "",
     vendorId: response?.vendorId || "",
-    purchaseAgreementId: response?.purchaseAgreementId || "",
-    note: response?.note || "",
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
-    warehouseId: response?.warehouseId || "",
+    editable: editable ? true : false,
+    requestDate: response?.requestDate || "",
+    requestEndDate: response?.requestEndDate || "",
     approvalDate: response?.approvalDate || "",
-    cancelRequestEndPoint: "api/PurchasOrder/CancleRequest",
-    status: response?.status || "",
-
-    orderDetailsModal: response?.orderDetailsModal?.length
-      ? response?.orderDetailsModal?.map((item: Item_TP) => ({
+    expectedReceiptDate: response?.expectedReceiptDate || "",
+    deliverdDate: response?.deliverdDate || "",
+    referenceDocument: response?.referenceDocument || "",
+    deliverdConfirmation: response?.deliverdConfirmation || false,
+    purchaseAgreementId: response?.purchaseAgreementId || "",
+    confirmationDayes: response?.confirmationDayes || 0,
+    currencyId: response?.currencyId || "",
+    warehouseId: response?.warehouseId || "",
+    total: response?.total || "",
+    priceIncludeTax: response?.priceIncludeTax || false,
+    isApproved: response?.isApproved || false,
+    note: response?.note || "",
+    SourceActivityType:1,
+    purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
+      ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
           itemId: item?.itemId,
-          id: item?.id,
+          id:item?.id,
           note: item?.note,
           price: item?.price,
           quantity: item?.quantity,
           total: item?.total,
           uomId: item?.uomId,
           warehouseId: item?.warehouseId,
-          isDeleted: false,
+          isDeleted: false, 
           description: item?.description,
           uoms: item?.product?.uoms,
         }))
       : [],
     copValue: {
       code: "",
-      total: "",
-      expectedReceiptDate: "",
-      createDate: "",
-      referenceDocument: "",
-      currencyId: "",
-      vendorId: "",
       purchaseAgreementId: "",
+      vendorId: "",
+      createDate: "",
+      expectedReceiptDate: "",
+      total: "",
+      referenceDocument: "",
       note: "",
-      purchaseRepresentativeId: "",
-      warehouseId: "",
-      status: "",
       approvalDate: "",
+      confirmationDayes: 0,
+      warehouseId: "",
+      purchaseRepresentativeId: "",
+      currencyId: "",
+      purchaseRequestDetailsDto:[]
     },
   };
-
   if (editable && isLoading)
     return (
       <>

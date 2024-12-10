@@ -222,14 +222,14 @@ export const sideBarItems: MenuItem_TP[] = [
         items: [
           {
             id: crypto.randomUUID(),
-            label: "City notices",
-            link: "",
+            label: "debit notification",
+            link: "/purchase/notification/debit",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
-            label: "Credit notes",
-            link: "",
+            label: "Credit notification",
+            link: "/purchase/notification/credit",
             icon: FaRegCircle,
           },
         ],

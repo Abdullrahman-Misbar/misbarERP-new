@@ -34,8 +34,8 @@
   "External purchase invoices": "فواتير شراء خارجية",
   "Purchase return": "مرتجع شراء",
   "Notifications": "الاشعارات",
-  "City notices": "الاشعارات المدينة",
-  "Credit notes": "الاشعارات الدائنة",
+  "debit notification": "الاشعارات المدينة",
+  "Credit notification": "الاشعارات الدائنة",
   "Processing free quantities": " معالجة الكميات المجانية",
   "Purchase agreements": "اتفاقيات الشراء",
   "Bonds": "السندات",
@@ -104,5 +104,18 @@
   "Receipts": "السندات",
   "Transfer Receipts": "سندات التحويل",
   "Cash Payments": "سندات الصرف",
-  "Cash Receipts": "سندات القبض"
+  "Cash Receipts": "سندات القبض",
+
+
+  "noticeDate": "التاريخ",
+  "Reason for notice": "سبب الاشعار",
+  "noticeAmount": "قيمة الاشعار",
+  "tax": "الضريبة",
+  "sourceDocumentDate": "تاريخ المستند المرجعي",
+  "User": "المستخدم",
+  "Statement": "البيان",
+  "": "",
+  "": "",
+  "": "",
+  "": ""
 }
