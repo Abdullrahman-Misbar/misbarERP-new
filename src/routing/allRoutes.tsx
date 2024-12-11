@@ -34,6 +34,7 @@ import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 import LogisticSetting from "../pages/SETTING/Logistic";
 import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
 import MainScreen from "../pages/MainScreen";
+import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
 
 export const AllRoutesProvider = () => {
   return (
@@ -191,7 +192,14 @@ export const AllRoutesProvider = () => {
               <InformationWindowSetting title={t("Information  Setting")} />
             }
           />
+          {/* ------------------------------------------ */}
+        <Route
+          path="/purchase/reports/purchaseInvoiceReport"
+          element={<PurchaseInvoiceReport title={t("Purchase Invoice Report")} />}
+        />
+
         </Route>
+        
       </Route>
 
       <Route
