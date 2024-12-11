@@ -173,6 +173,13 @@ export const AllRoutesProvider = () => {
           element={<MainScreen title={t("MainScreen")} />}
         />
 
+
+           {/* ------------------Reports ------------------------ */}
+           <Route
+          path="/purchase/reports/purchaseInvoiceReport"
+          element={<PurchaseInvoiceReport title={t("invoices Setting")} />}
+        />
+
         <Route path="/setting" element={<Setting />}>
           <Route
             path="/setting/orders"
@@ -192,11 +199,7 @@ export const AllRoutesProvider = () => {
               <InformationWindowSetting title={t("Information  Setting")} />
             }
           />
-          {/* ------------------------------------------ */}
-        <Route
-          path="/purchase/reports/purchaseInvoiceReport"
-          element={<PurchaseInvoiceReport title={t("Purchase Invoice Report")} />}
-        />
+       
 
         </Route>
         

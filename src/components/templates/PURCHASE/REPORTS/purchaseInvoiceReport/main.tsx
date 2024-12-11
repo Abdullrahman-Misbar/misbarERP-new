@@ -1,20 +1,17 @@
-import ReportOptions from "./reportOptions";
-
+import { Form, Formik } from "formik";
+import MainHeadLayout from "./MainHeadLayout";
+ 
+ 
 function Main() {
-    return (
-        <>
-        <div className="bg-white rounded-lg p-6 ">
-          <span className="text-xl font-somarBold">تفعيل نافذة المعلومات</span>
-          <div className="mt-4 flex items-center justify-start gap-3">
-             
-            <span className="text-lg"> تفعيل نافذة المعلومات</span>
-          </div>
-        </div>
-        <ReportOptions/>
-         
-       
-      </>
-    );
+  return (
+    <div>
+      <Formik initialValues={{}} onSubmit={() => {}}>
+        <Form>
+          <MainHeadLayout />
+        </Form>
+      </Formik>
+    </div>
+  );
   }
   
   export default Main;
