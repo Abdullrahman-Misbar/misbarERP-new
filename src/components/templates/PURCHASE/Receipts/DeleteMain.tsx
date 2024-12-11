@@ -13,8 +13,8 @@ type DeleteMain_TP = {
 function DeleteMain({ refetch, info }: DeleteMain_TP) {
   const [id, setID] = useState("");
   const { mutate } = useMutate({
-    mutationKey: ["api/PurchasReceipt"],
-    endpoint: `api/PurchasReceipt/${id}`,
+    mutationKey: ["api/Accounting/DeleteExpensessAndCreditById?Id="],
+    endpoint: `api/Accounting/DeleteExpensessAndCreditById?Id=${id}`,
     onSuccess: () => {
       refetch();
       notify("success");

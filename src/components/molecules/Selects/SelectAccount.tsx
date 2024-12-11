@@ -23,6 +23,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
   name,
   labelName,
   disabled,
+  value
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
 
@@ -43,7 +44,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
       value: item.id,
       label: item.lookupName,
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp

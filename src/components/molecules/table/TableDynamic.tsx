@@ -42,7 +42,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   handleTabPress,
   push,
 }) => {
-  console.log("🚀 ~ headers:", headers)
   const { values, setFieldValue } = useFormikContext<any>();
   useEffect(() => {
     const updatedValues = values[moduleName]?.filter(

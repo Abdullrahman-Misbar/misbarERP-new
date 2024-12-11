@@ -24,11 +24,10 @@ function Main({ type }: Main_TP) {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const VoucherType = `${
-    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2
-  }`;
+  const VoucherType =
+    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2;
 
-  const endpoint = `api/Accounting/GetAllExpensessAndCredit?Take=100&voucherType=${VoucherType}`; // Dynamically pass the type in the API request
+  const endpoint = `api/Accounting/GetAllExpensessAndCredit?Take=100&voucherType=${VoucherType}&${searchParams.toString()}`; // Dynamically pass the type in the API request
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -37,8 +36,8 @@ function Main({ type }: Main_TP) {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    () => generateColumns(VoucherType, type, page, refetch, navigate),
+    [VoucherType, type, page, refetch, navigate]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -47,7 +46,12 @@ function Main({ type }: Main_TP) {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
+      <MainHeadLayout
+        setWord={setWord}
+        data={data?.data?.data || []}
+        VoucherType={VoucherType}
+        type={type}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}

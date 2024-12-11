@@ -105,13 +105,16 @@ export const AllRoutesProvider = () => {
         />
 
         {/* ------------------------------------------ */}
-        <Route path="/receipts" element={<Receipts title={t("Receipts")} />} />
         <Route
-          path="/receipts/add"
+          path="purchase/receipts"
+          element={<Receipts title={t("Receipts")} />}
+        />
+        <Route
+          path="purchase/receipts/add"
           element={<AddReceipt title={t("Add Receipt")} />}
         />
         <Route
-          path="/receipts/edit/:id"
+          path="purchase/receipts/edit/:id"
           element={<EditReceipt title={t("Edit Receipt")} />}
         />
 

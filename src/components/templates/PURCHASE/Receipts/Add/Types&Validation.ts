@@ -37,7 +37,12 @@ export type Values_TP = {
   billingStatus: any;
   inDate: string;
   convertionRate: number;
-  receiptDetailsModal: string[];
+  sourceDocument: string;
+  voucherDate: string;
+  otherAccountId: number;
+  voucherCode: number;
+
+  voucherDetailsRequest: string[];
   copValue: {
     editable: boolean;
     costCenterId: number;
@@ -46,6 +51,10 @@ export type Values_TP = {
     billingStatus: any;
     inDate: string;
     convertionRate: number;
+    sourceDocument: string;
+    voucherDate: string;
+    otherAccountId: number;
+    voucherCode: number;
     code: string;
     expectedReceiptDate: string;
     total: string;
@@ -55,7 +64,7 @@ export type Values_TP = {
     supplier: string;
     purchaseAgreement: string;
     notes: string;
-    receiptDetailsModal: string[];
+    voucherDetailsRequest: string[];
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
@@ -138,4 +147,15 @@ export type Item_TP = {
   product: {
     uoms: string;
   };
+  vatValue: any;
+  vatAccountId: number;
+
+  costCenterId: number;
+  equivalent: any;
+  convertionRate: any;
+  currencyId: number;
+  creditAmount: number;
+  accountId: number;
+  debitAmount: number;
+  voutcherId: number;
 };
