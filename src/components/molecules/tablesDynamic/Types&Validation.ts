@@ -27,3 +27,7 @@ export interface Header {
 export interface ItemsTableProps {
   moduleName: string;
 }
+
+export interface recieptTableProps {
+  moduleName: string;
+}

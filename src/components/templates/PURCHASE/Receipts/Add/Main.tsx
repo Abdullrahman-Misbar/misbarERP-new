@@ -8,11 +8,12 @@ import { Item_TP, Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
+  VoucherType: number;
 };
-function Main({ editable }: Main_TP) {
+function Main({ VoucherType, editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasReceipt/Get/${id}`;
+  const endpoint = `api/Accounting/GetExpensessAndCreditById?Id=${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -20,8 +21,8 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
   const postEndPoint = id
-    ? `api/PurchasReceipt/Update/${id}`
-    : `api/PurchasReceipt`;
+    ? `api/Accounting/UdpateExpensessAndCreditById?Id=${id}`
+    : `api/Accounting/Create`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     method: id ? "PUT" : "post",
@@ -48,54 +49,46 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    code: response?.code || "",
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || 0,
+    voucherType: response?.voucherType || VoucherType,
+    voucherCode: response?.voucherCode || "",
+    voucherDate: response?.voucherDate || "",
     currencyId: response?.currencyId || 0,
-    vendorId: response?.vendorId || 0,
-    warehouseId: response?.warehouseId || 0,
+    otherAccountId: response?.otherAccountId || 0,
     convertionRate: response?.convertionRate || 0,
-    inDate: response?.inDate || "",
-    billingStatus: response?.billingStatus || "",
-    accountId: response?.accountId || 0,
-    referenceDocument: response?.referenceDocument || "",
-    status: response?.status || 0,
     costCenterId: response?.costCenterId || 0,
+    sourceDocument: response?.sourceDocument || "",
     note: response?.note || "",
-    partnerId: 8,
+
     editable: editable ? true : false,
     SourceActivityType: 1,
-    receiptDetailsModal: response?.receiptDetailsModal?.length
-      ? response?.receiptDetailsModal?.map((item: Item_TP) => ({
-          itemId: item?.itemId,
-          id: item?.id,
-          note: item?.note,
-          price: item?.price,
-          quantity: item?.quantity,
-          total: item?.total,
-          uomId: item?.uomId,
-          warehouseId: item?.warehouseId,
-          isDeleted: false,
-          description: item?.description,
-          uoms: item?.product?.uoms,
-          product: item?.product,
+    voucherDetailsRequest: response?.voucherDetailsRequest?.length
+      ? response?.voucherDetailsRequest?.map((item: Item_TP) => ({
+          voutcherId: item.voutcherId,
+          id: item.id,
+          debitAmount: item.debitAmount,
+          accountId: item.accountId,
+          creditAmount: item.creditAmount,
+          currencyId: item.currencyId,
+          convertionRate: item.convertionRate,
+          equivalent: item.equivalent,
+          costCenterId: item.costCenterId,
+          vatAccountId: item.vatAccountId,
+          vatValue: item.vatValue,
+          note: item.note,
         }))
       : [],
     copValue: {
-      code: "",
-      purchaseRepresentativeId: 0,
+      voucherType: VoucherType,
+      voucherCode: "",
+      voucherDate: "",
       currencyId: 0,
-      vendorId: 0,
-      warehouseId: 0,
+      otherAccountId: 0,
       convertionRate: 0,
-      inDate: "",
-      billingStatus: "",
-      accountId: 0,
-      partnerId: 8,
-      referenceDocument: "",
-      status: 0,
       costCenterId: 0,
+      sourceDocument: "",
       note: "",
-      receiptDetailsModal: [],
+
+      voucherDetailsRequest: [],
     },
   };
   if (editable && isLoading)
@@ -112,7 +105,7 @@ function Main({ editable }: Main_TP) {
         enableReinitialize
       >
         <Form>
-          <MainData />
+          <MainData VoucherType={VoucherType} />
         </Form>
       </Formik>
     </div>

@@ -10,6 +10,8 @@ import CancelApproved from "./CancelApproved";
 type RefetchFunction = () => void;
 
 export const generateColumns = (
+  VoucherType: number, // Number-based logic
+  type: string, // String-based routing or labels
   page: number,
   refetch: RefetchFunction,
   navigate: any
@@ -22,71 +24,74 @@ export const generateColumns = (
     },
     {
       header: `${t("Reference number")}`,
-      accessorKey: "code",
+      accessorKey: "voucherCode",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("vendor Name")}`,
-      accessorKey: "parterName",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("expected Receipt Date")}`,
-      accessorKey: "inDate",
-      cell: (info) => <div>{info?.row?.original?.inDate?.slice(0, 10)}</div>,
-    },
-    {
-      header: `${t("billing Status")}`,
-      accessorKey: "billingStatus",
-      cell: (info) => (
-        <div>
-          {info?.row?.original?.billingStatus === null ? (
-            <p>غير مفوتر</p>
-          ) : (
-            <p>مفوتر</p>
-          )}
-        </div>
-      ),
-    },
-    {
-      header: `${t("reference Document")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("Purchasing representatives")}`,
-      accessorKey: "purchaseRepresentativeId",
+      header: `${t("Date")}`,
+      accessorKey: "voucherDate",
       cell: (info) =>
-        info?.row?.original?.purchaseRepresentativeId ? (
-          info.renderValue()
+        info?.row?.original?.voucherDate ? (
+          <div>{info?.row?.original?.voucherDate?.slice(0, 10)}</div>
         ) : (
           <span>غير متوفر</span>
         ),
     },
     {
-      header: `${t("warehouse Keeper")}`,
-      accessorKey: "responsibleId",
+      header: `${
+        VoucherType === 0
+          ? t("Receipt Account")
+          : VoucherType === 1
+          ? t("Payment Account")
+          : t("Account Transferred From")
+      }`,
+      accessorKey: "otherAccountId",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${
+        VoucherType === 0
+          ? t("Received Amount")
+          : VoucherType === 1
+          ? t("Disbursed Amount")
+          : t("Transferred Amount")
+      }`,
+      accessorKey: "amount",
       cell: (info) =>
-        info?.row?.original?.responsibleId ? (
-          info.renderValue()
+        info?.row?.original?.amount ? (
+          <div>{info?.row?.original?.amount}</div>
         ) : (
           <span>غير متوفر</span>
         ),
     },
-    {
-      header: `${t("status")}`,
-      accessorKey: "status",
-      cell: (info) => (
-        <div>
-          {info?.row?.original?.status === 1 ? <p>نشط</p> : <p>غير نشط</p>}
-        </div>
-      ),
-    },
+
     {
       header: `${t("note")}`,
       accessorKey: "note",
       cell: (info) => info.renderValue(),
     },
+
+    {
+      header: `${t("currancy Name")}`,
+      accessorKey: "currencyId",
+      cell: (info) =>
+        info?.row?.original?.currencyId ? (
+          <div>{info?.row?.original?.currencyId === 1 ? "ريال" : "دولار"}</div>
+        ) : (
+          <span>غير متوفر</span>
+        ),
+    },
+    {
+      header: `${t("user")}`,
+      accessorKey: "user",
+      cell: (info) =>
+        info?.row?.original?.user ? (
+          <div>{info?.row?.original?.user}</div>
+        ) : (
+          <span>غير متوفر</span>
+        ),
+    },
+
     {
       header: `${t("Actions")}`,
       accessorKey: "actions",
@@ -98,7 +103,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchasReceipt/edit/${info?.row?.original?.id}`
+                      `/purchase/receipts/edit/${info?.row?.original?.id}?type=${type}`
                     );
                   }}
                 />

@@ -19,6 +19,10 @@ export type RowData = {
   status?: any;
   responsibleId?: number;
   purchaseRepresentativeId: any;
+  currencyId?: number;
+  voucherDate?: string;
+  user?: any;
+  amount?: any;
 };
 export const validationSchema = () =>
   Yup.object({

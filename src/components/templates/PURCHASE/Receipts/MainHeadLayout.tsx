@@ -14,9 +14,16 @@ import { generateColumns } from "./generateColumns";
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
+  VoucherType?: number;
+  type?: string;
 };
 
-function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
+function MainHeadLayout({
+  VoucherType,
+  type,
+  setWord,
+  data,
+}: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -24,7 +31,14 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
     { label: "العمليات" },
-    { label: "امر استلام" },
+    {
+      label:
+        VoucherType === 0
+          ? "سندات قبض"
+          : VoucherType === 1
+          ? "سندات صرف"
+          : "سندات تحويل",
+    },
   ];
 
   return (
@@ -44,7 +58,7 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/PurchasReceipt/add")}
+            action={() => navigate(`/purchase/receipts/add?type=${type}`)}
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
@@ -58,12 +72,15 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
       </div>
       {/* <Formik initialValues={{}} onSubmit={() => {}}>
         <Form> */}
-          
-            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
-            setExportExcelModal={setExportExcelModal}
-            />
-         
-        {/* </Form>
+
+      <ExportExcel
+        generateColumns={generateColumns}
+        data={data}
+        exportExcelModal={exportExcelModal}
+        setExportExcelModal={setExportExcelModal}
+      />
+
+      {/* </Form>
       </Formik> */}
 
       <ModalComp

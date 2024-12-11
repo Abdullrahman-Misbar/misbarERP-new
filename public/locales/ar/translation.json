@@ -104,5 +104,14 @@
   "Receipts": "السندات",
   "Transfer Receipts": "سندات التحويل",
   "Cash Payments": "سندات الصرف",
-  "Cash Receipts": "سندات القبض"
+  "Cash Receipts": "سندات القبض",
+  "Date" : "التاريخ" ,
+  "Payment Account": "حساب الدفع",
+  "Disbursed Amount": "المبلغ المصروف",
+  
+  "Receipt Account": "حساب القبض",
+  "Received Amount": "المبلغ المقبوض",
+  
+  "Account Transferred From": "الحساب المحول منه",
+  "Transferred Amount": "المبلغ المحول"
 }
