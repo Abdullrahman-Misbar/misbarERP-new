@@ -17,6 +17,9 @@ import PurchasReceipt from "../pages/PURCHASE/PurchasReceipt";
 import AddPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Add";
 import EditPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Edit";
 import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
+import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
+import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
+import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -84,7 +87,23 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
         />
+
+        {/* ----------------------------------------- */}
+       <Route
+          path="/purchase/PurchaseSupplier"
+          element={<PurchaseSupplier title={t("Suppliers")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplier/add"
+          element={<AddPurchaseSupplier title={t("Add Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplier/edit/:id"
+          element={<EditPurchaseSupplier title={t("Edit Purchase request")} />}
+        />
       </Route>
+
+       
 
       <Route
         errorElement={<ErrorPage />}
