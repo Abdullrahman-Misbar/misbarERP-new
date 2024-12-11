@@ -98,11 +98,15 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       type: "text",
     },
   ];
-  const handleTabPress = (e: React.KeyboardEvent, index: number, push: Function) => {
+  const handleTabPress = (
+    e: React.KeyboardEvent,
+    index: number,
+    push: Function
+  ) => {
     if (e.key === "Tab") {
       const lastIndex = values[moduleName]?.length - 1;
-      const currentRow = values[moduleName]?.[index];  
-  
+      const currentRow = values[moduleName]?.[index];
+
       if (index === lastIndex && currentRow?.note !== undefined) {
         push({
           itemId: "",
@@ -119,9 +123,7 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       }
     }
   };
-  
-  
-  
+
   return (
     <div>
       <FieldArray name={moduleName}>

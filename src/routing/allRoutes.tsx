@@ -33,6 +33,7 @@ import Setting from "../pages/SETTING";
 import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 import LogisticSetting from "../pages/SETTING/Logistic";
 import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
+import MainScreen from "../pages/MainScreen";
 
 export const AllRoutesProvider = () => {
   return (
@@ -97,6 +98,7 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
         />
+
         <Route
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
@@ -150,6 +152,8 @@ export const AllRoutesProvider = () => {
           }
         />
 
+
+
         <Route
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
@@ -159,6 +163,12 @@ export const AllRoutesProvider = () => {
           path="/setting/orders"
           element={<OrderSetting title={t("Order Setting")} />}
         /> */}
+
+        <Route
+          path="/MainScreen"
+          element={<MainScreen title={t("MainScreen")} />}
+        />
+
         <Route path="/setting" element={<Setting />}>
           <Route
             path="/setting/orders"
@@ -174,7 +184,9 @@ export const AllRoutesProvider = () => {
           />
           <Route
             path="/setting/information"
-            element={<InformationWindowSetting title={t("Information  Setting")} />}
+            element={
+              <InformationWindowSetting title={t("Information  Setting")} />
+            }
           />
         </Route>
       </Route>

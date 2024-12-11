@@ -96,7 +96,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <SelectCurrency name="currencyId" />
+            <SelectCurrency name="currencyId"  labelName="العملة"/>
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -188,7 +188,7 @@ function MainData() {
           </Grid>
         </Grid>
         <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="purchaseRequestDetailsDto" />
+          {/* <MainSelectChoseModule moduleName="purchaseRequestDetailsDto" /> */}
 
           <ItemsTable moduleName="purchaseRequestDetailsDto" />
           
