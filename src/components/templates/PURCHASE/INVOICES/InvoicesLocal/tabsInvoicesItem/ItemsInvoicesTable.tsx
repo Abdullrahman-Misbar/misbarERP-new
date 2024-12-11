@@ -1,11 +1,66 @@
 import { FieldArray, useFormikContext } from "formik";
+import React from "react";
 import DeleteIcon from "../../../../../atoms/icons/DeleteIcon";
 import TableDynamic from "../../../../../molecules/table/TableDynamic";
 import { FormValues, ItemsTableProps } from "./Types&Validation";
 
-export default function ItemsInvoicesTable({ moduleName , headers , newItem }: ItemsTableProps) {
+export default function ItemsInvoicesTable({
+  moduleName,
+  headers,
+  children,
+}: ItemsTableProps & { children?: React.ReactNode }) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
-  console.log("🚀 ~ ItemsInvoicesTable ~ values:", values)
+  console.log("🚀 ~ values:", values);
+  // const headers = [
+  //   {
+  //     label: " الصنف",
+  //   },
+  //   {
+  //     label: " الكمية",
+  //   },
+  //   {
+  //     label: " الوحدة",
+  //   },
+  //   {
+  //     label: " التكلفة",
+  //   },
+  //   {
+  //     label: " الاجمالي",
+  //   },
+  //   {
+  //     label: " الخصم%",
+  //   },
+  //   {
+  //     label: " الخصم",
+  //   },
+  //   {
+  //     label: "الإجمالي بعد الخصم",
+  //   },
+  //   {
+  //     label: "الاضافة%",
+  //   },
+  //   {
+  //     label: "الاضافة",
+  //   },
+  //   {
+  //     label: "الإجمالي بعد الاضافة",
+  //   },
+  //   {
+  //     label: "معدل الضريبة",
+  //   },
+  //   {
+  //     label: " ضريبة القيمة المضافة",
+  //   },
+  //   {
+  //     label: "الإجمالي بعد الضريبة",
+  //   },
+  //   {
+  //     label: "الكميات المجانية",
+  //   },
+  //   {
+  //     label: "ملاحظات",
+  //   },
+  // ];
 
   const handleTabPress = (
     e: React.KeyboardEvent,
@@ -23,7 +78,7 @@ export default function ItemsInvoicesTable({ moduleName , headers , newItem }: I
   };
   const generateDefaultRow = () => {
     const defaultRow: { [key: string]: any } = {};
-    headers.forEach((header) => {
+    headers?.forEach((header) => {
       if (header.type == "number") {
         defaultRow[header.name] = 0;
       } else {
@@ -35,10 +90,10 @@ export default function ItemsInvoicesTable({ moduleName , headers , newItem }: I
       isDeleted: false,
       id: 0,
       tempId: `${Date.now()}-${Math.random()}`,
-      ...newItem
+      // ...newItem,
     };
   };
-  
+
   return (
     <div>
       <FieldArray name={moduleName}>
@@ -54,7 +109,7 @@ export default function ItemsInvoicesTable({ moduleName , headers , newItem }: I
               </button>
             </div>
             <div className="relative">
-              <TableDynamic
+              {/* <TableDynamic
                 //@ts-ignore
                 headers={headers}
                 moduleName={moduleName}
@@ -84,7 +139,27 @@ export default function ItemsInvoicesTable({ moduleName , headers , newItem }: I
                 //@ts-ignore
 
                 push={push}
-              />
+              /> */}
+              <TableDynamic
+                moduleName={moduleName}
+                remove={remove}
+                actions={(index) => (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFieldValue(`${moduleName}[${index}].isDeleted`, true);
+                    }}
+                  >
+                    <DeleteIcon fillCustom="red" />
+                  </button>
+                )}
+                handleTabPress={handleTabPress}
+                push={push}
+                headers={headers}
+              >
+                {/* <DetailsInvoiceItem moduleName={moduleName} /> */}
+                {children}
+              </TableDynamic>
             </div>
           </div>
         )}

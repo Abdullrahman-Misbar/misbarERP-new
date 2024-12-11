@@ -37,7 +37,7 @@ function MainData() {
   useEffect(() => {
     if (values.invoiceDetailsRequest) {
       const totalInvoiceValue = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.total || 0), 
+        (sum, item) => sum + (+item.total || 0),
         0
       );
       const totalDiscountValue = values.invoiceDetailsRequest.reduce(
@@ -48,9 +48,32 @@ function MainData() {
         (sum, item) => sum + (+item.extraValue || 0), // إجمالي الخصم
         0
       );
+      const totalAfterDiscountAndAdditional =
+        values.invoiceDetailsRequest.reduce(
+          (sum, item) => sum + (+item.totalAfterExtra || 0), // الإجمالي بعد الخصم والاضافة
+
+          0
+        );
+      const TaxAdditionalValue = values.invoiceDetailsRequest.reduce(
+        (sum, item) => sum + (+item.vat || 0), // الإجمالي بعد الخصم والاضافة
+
+        0
+      );
+      const TotalInvoicesValueByTax = values.invoiceDetailsRequest.reduce(
+        (sum, item) => sum + (+item.totalAfterTax || 0), // الإجمالي بعد الخصم والاضافة
+
+        0
+      );
       setFieldValue("total", totalInvoiceValue, false);
-      setFieldValue("totalDiscount", totalDiscountValue, false)
-      setFieldValue("totalAdditionalValue", totalAdditionalValue, false)
+      setFieldValue("totalDiscount", totalDiscountValue, false);
+      setFieldValue("totalAdditionalValue", totalAdditionalValue, false);
+      setFieldValue(
+        "totalAfterDiscountAndAdditional",
+        totalAfterDiscountAndAdditional,
+        false
+      );
+      setFieldValue("TaxAdditionalValue", TaxAdditionalValue, false);
+      setFieldValue("TotalInvoicesValueByTax", TotalInvoicesValueByTax, false);
 
     }
   }, [values.invoiceDetailsRequest, setFieldValue]);
@@ -260,7 +283,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="totalAfterDecountAndAdditional"
+              name="totalAfterDiscountAndAdditional"
               placeholder="0.00"
               type="number"
               label="الإجمالي بعد الخصم والاضافة"
@@ -268,7 +291,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="referenceDocument"
+              name="TaxAdditionalValue"
               placeholder="0.00"
               type="number"
               label="ضريبة القيمة المضافة"
@@ -276,7 +299,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={3}>
             <BaseInputField
-              name="referenceDocument"
+              name="TotalInvoicesValueByTax"
               placeholder="0.00"
               type="number"
               label="اجمالي قيمة الفاتورة شامل للضريبة"

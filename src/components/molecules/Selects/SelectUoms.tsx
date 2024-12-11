@@ -6,7 +6,7 @@ type SelectUoms_TP = {
   disabled?: boolean;
   value?: string;
   moduleName?: string;
-  index: String;
+  index: string | number;
 };
 type Formik_Values = {
   name: string;

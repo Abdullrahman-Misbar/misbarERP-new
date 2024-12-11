@@ -9,6 +9,9 @@ import {
   headersDetailsInvoice,
   headersDiscountsAndExtras,
 } from "./headers";
+import DetailsInvoiceItem from "./DetailsInvoiceItem";
+import InvoiceDiscountsAndAdditionsRequest from "./InvoiceDiscountsAndAdditionsRequest";
+import InvoicesPaymentsSchedulingRequest from "./InvoicesPaymentsSchedulingRequest";
 
 function TabsInvoicesItem() {
   const [value, setValue] = useState(0);
@@ -85,15 +88,16 @@ function TabsInvoicesItem() {
     const quantity = +values.invoiceDetailsRequest[index]?.quantity || 0;
     const price = +values.invoiceDetailsRequest[index]?.price || 0;
     const total = quantity * price;
-  
+
     let discountRate = +values.invoiceDetailsRequest[index]?.discountRate || 0;
-    let discountValue = +values.invoiceDetailsRequest[index]?.discountValue || 0;
+    let discountValue =
+      +values.invoiceDetailsRequest[index]?.discountValue || 0;
     let extraRate = +values.invoiceDetailsRequest[index]?.extraRate || 0;
     let extraValue = +values.invoiceDetailsRequest[index]?.extraValue || 0;
-  
+
     // تحديث الحقل المدخل
     setFieldValue(`invoiceDetailsRequest[${index}].${fieldName}`, value, false);
-  
+
     // حساب الخصم
     if (fieldName === "discountRate") {
       discountValue = (value * total) / 100;
@@ -110,7 +114,7 @@ function TabsInvoicesItem() {
         false
       );
     }
-  
+
     // حساب الإضافات
     if (fieldName === "extraRate") {
       extraValue = (value * total) / 100;
@@ -127,16 +131,16 @@ function TabsInvoicesItem() {
         false
       );
     }
-  
+
     // حساب الإجماليات
     const totalAfterDiscount = total - discountValue;
     const totalAfterExtra = totalAfterDiscount + extraValue;
-  
+
     // حساب الضريبة
     const vatRate = 15;
     let vat = 0;
     let totalAfterTax = 0;
-  
+
     if (+values.withTax === 1) {
       vat = (totalAfterExtra * vatRate) / 100;
       totalAfterTax = totalAfterExtra + vat;
@@ -144,7 +148,7 @@ function TabsInvoicesItem() {
       vat = (totalAfterExtra * vatRate) / 100 + vatRate;
       totalAfterTax = totalAfterExtra;
     }
-  
+
     // تحديث القيم المحسوبة
     setFieldValue(`invoiceDetailsRequest[${index}].total`, total, false);
     setFieldValue(
@@ -164,66 +168,64 @@ function TabsInvoicesItem() {
       false
     );
   };
-  
 
-  useEffect(() => {
-    const updatedValues = values.invoiceDetailsRequest.map((item) => {
-      const quantity = +item.quantity || 0;
-      const price = +item.price || 0;
-      const total = quantity * price;
-  
-      let discountValue = item.discountValue || 0;
-      let discountRate = item.discountRate || 0;
-  
-      if (item.discountRate > 0) {
-        discountValue = (item.discountRate * total) / 100;
-      } else if (item.discountValue > 0) {
-        discountRate = (item.discountValue / total) * 100;
-      }
-  
-      const extraValue =
-        item.extraRate > 0 ? (item.extraRate * total) / 100 : item.extraValue || 0;
-      const extraRate =
-        item.extraValue > 0 ? (item.extraValue * 100) / total : item.extraRate || 0;
-  
-      const totalAfterDiscount = total - discountValue;
-      const totalAfterExtra = totalAfterDiscount + extraValue;
-  
-      const vatRate = 15;
-      let vat = 0;
-      let totalAfterTax = 0;
-  
-      if (+values.withTax === 1) {
-        vat = (totalAfterExtra * vatRate) / 100;
-        totalAfterTax = totalAfterExtra + vat;
-      } else if (+values.withTax === 0) {
-        vat = (totalAfterExtra * vatRate) / (100 + vatRate);
-        totalAfterTax = totalAfterExtra;
-      }
-  
-      return {
-        ...item,
-        total,
-        discountValue,
-        discountRate,
-        extraValue,
-        extraRate,
-        totalAfterDiscount,
-        totalAfterExtra,
-        vat,
-        totalAfterTax,
-      };
-    });
-  
-    const isChanged =
-      JSON.stringify(updatedValues) !== JSON.stringify(values.invoiceDetailsRequest);
-  
-    if (isChanged) {
-      setFieldValue("invoiceDetailsRequest", updatedValues, false);
-    }
-  }, [values.invoiceDetailsRequest, values.withTax, setFieldValue]);
-  
-     
+  // useEffect(() => {
+  //   const updatedValues = values.invoiceDetailsRequest.map((item) => {
+  //     const quantity = +item.quantity || 0;
+  //     const price = +item.price || 0;
+  //     const total = quantity * price;
+
+  //     let discountValue = item.discountValue || 0;
+  //     let discountRate = item.discountRate || 0;
+
+  //     if (item.discountRate > 0) {
+  //       discountValue = (item.discountRate * total) / 100;
+  //     } else if (item.discountValue > 0) {
+  //       discountRate = (item.discountValue / total) * 100;
+  //     }
+
+  //     const extraValue =
+  //       item.extraRate > 0 ? (item.extraRate * total) / 100 : item.extraValue || 0;
+  //     const extraRate =
+  //       item.extraValue > 0 ? (item.extraValue * 100) / total : item.extraRate || 0;
+
+  //     const totalAfterDiscount = total - discountValue;
+  //     const totalAfterExtra = totalAfterDiscount + extraValue;
+
+  //     const vatRate = 15;
+  //     let vat = 0;
+  //     let totalAfterTax = 0;
+
+  //     if (+values.withTax === 1) {
+  //       vat = (totalAfterExtra * vatRate) / 100;
+  //       totalAfterTax = totalAfterExtra + vat;
+  //     } else if (+values.withTax === 0) {
+  //       vat = (totalAfterExtra * vatRate) / (100 + vatRate);
+  //       totalAfterTax = totalAfterExtra;
+  //     }
+
+  //     return {
+  //       ...item,
+  //       total,
+  //       discountValue,
+  //       discountRate,
+  //       extraValue,
+  //       extraRate,
+  //       totalAfterDiscount,
+  //       totalAfterExtra,
+  //       vat,
+  //       totalAfterTax,
+  //     };
+  //   });
+
+  //   const isChanged =
+  //     JSON.stringify(updatedValues) !== JSON.stringify(values.invoiceDetailsRequest);
+
+  //   if (isChanged) {
+  //     setFieldValue("invoiceDetailsRequest", updatedValues, false);
+  //   }
+  // }, [values.invoiceDetailsRequest, values.withTax, setFieldValue]);
+
   return (
     <div>
       <Box sx={{ width: "100%", padding: 3 }}>
@@ -244,10 +246,16 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
+                {/* <ItemsInvoicesTable
+                  moduleName="invoiceDetailsRequest"
+                  // headers={headersDetailsInvoice(handleFieldChange )}
+                /> */}
                 <ItemsInvoicesTable
                   moduleName="invoiceDetailsRequest"
-                  headers={headersDetailsInvoice(handleFieldChange )}
-                />
+                  headers={headersDetailsInvoice}
+                >
+                  <DetailsInvoiceItem moduleName="invoiceDetailsRequest" />
+                </ItemsInvoicesTable>
               </Box>
             </Grid>
           </Box>
@@ -263,10 +271,16 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
+                {/* <ItemsInvoicesTable
+                  moduleName="invoiceDiscountsAndAdditionsRequest"
+                  headers={headersDiscountsAndExtras}
+                /> */}
                 <ItemsInvoicesTable
                   moduleName="invoiceDiscountsAndAdditionsRequest"
                   headers={headersDiscountsAndExtras}
-                />
+                >
+                  <InvoiceDiscountsAndAdditionsRequest moduleName="invoiceDiscountsAndAdditionsRequest" />
+                </ItemsInvoicesTable>
               </Box>
             </Grid>
           </Box>
@@ -289,13 +303,19 @@ function TabsInvoicesItem() {
                   />
                 </div>
 
-                <ItemsInvoicesTable
+                {/* <ItemsInvoicesTable
                   moduleName="invoicesPaymentsSchedulingRequest"
                   headers={headerInvoicesPaymentsSchedulingRequest}
                   newItem={{
                     invoiceType: globalInvoiceType,
                   }}
-                />
+                /> */}
+                <ItemsInvoicesTable
+                  moduleName="invoicesPaymentsSchedulingRequest"
+                  headers={headerInvoicesPaymentsSchedulingRequest}
+                >
+                  <InvoicesPaymentsSchedulingRequest moduleName="invoicesPaymentsSchedulingRequest" />
+                </ItemsInvoicesTable>
               </Box>
             </Grid>
           </Box>

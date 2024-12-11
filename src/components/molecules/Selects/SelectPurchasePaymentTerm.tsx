@@ -17,7 +17,8 @@ const SelectPurchasePaymentTerm = ({
   name,
   moduleName,
   index,
-  label
+  label,
+  onChange
 }: SelectPurchasePaymentTerm_TP) => {
   const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
@@ -36,6 +37,8 @@ const SelectPurchasePaymentTerm = ({
   const options = data?.data?.paymentTermses?.map((item: any) => ({
     value: item?.paymentTemplateId,
     label: item?.paymentTermName,
+    data: item,
+
   }));
 
   return (
@@ -44,7 +47,7 @@ const SelectPurchasePaymentTerm = ({
       label={label}
       placeholder="شرط السداد"
       options={options}
-      onChange={handleChange}
+      onChange={onChange || handleChange}
       isLoading={isLoading}
     />
   );

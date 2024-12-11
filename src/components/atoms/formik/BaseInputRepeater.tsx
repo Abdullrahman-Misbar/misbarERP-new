@@ -30,8 +30,8 @@ const BaseInputRepeater = React.memo(
     }>();
 
     return (
-      <FastField name={name}>
-        {({ field }: any) => (
+      // <FastField name={name}>
+      //   {({ field }: any) => (
           <div className="col-span-1 mt-[2px]">
             <TextField
               type={type}
@@ -39,7 +39,7 @@ const BaseInputRepeater = React.memo(
               label={label}
               variant="outlined"
               fullWidth
-              value={field.value || values[name]} // التأكد من استخدام القيمة الصحيحة
+              // value={field.value || values[name]} // التأكد من استخدام القيمة الصحيحة
               placeholder={placeholder}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 const newValue = e.target.value;
@@ -56,10 +56,11 @@ const BaseInputRepeater = React.memo(
                 borderRadius: "4px",
               }}
               {...props}
+          
             />
           </div>
-        )}
-      </FastField>
+      //   )}
+      // </FastField>
     );
   }
 );

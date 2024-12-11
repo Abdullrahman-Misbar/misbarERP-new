@@ -109,7 +109,22 @@ function Main({ editable }: Main_TP) {
           isDeleted: false,
           uoms: item?.product?.uoms,
         }))
-      : [],
+      : [
+        {
+          quantity: 0,
+          price: 0,
+          total: 0,
+          discountRate: 0,
+          discountValue: 0,
+          totalAfterDiscount: 0,
+          extraRate: 0,
+          extraValue: 0,
+          totalAfterExtra: 0,
+          taxRate: 0,
+          vat: 0,
+          totalAfterTax: 0,
+        },
+      ],
     invoiceDiscountsAndAdditionsRequest: response
       ?.invoiceDiscountsAndAdditionsRequest?.length
       ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({

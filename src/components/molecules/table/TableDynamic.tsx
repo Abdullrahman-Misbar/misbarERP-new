@@ -32,6 +32,7 @@ interface TableDynamicProps {
     push: Function
   ) => void;
   push: () => void;
+  children:any
 }
 
 const TableDynamic: React.FC<TableDynamicProps> = ({
@@ -41,11 +42,12 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   remove,
   handleTabPress,
   push,
+  children
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
   useEffect(() => {
     const updatedValues = values[moduleName]?.filter(
-      (item: any) => !(item.isDeleted && item.id === 0)
+      (item: any) => !(item?.isDeleted && item.id === 0)
     );
 
     if (updatedValues?.length !== values[moduleName]?.length) {
@@ -55,18 +57,18 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
 
   const filteredItems = values[moduleName]?.reduce(
     (acc: any[], item: any, index: number) => {
-      if (item.isDeleted && item.id === 0) {
+      if (item?.isDeleted && item.id === 0) {
         return acc;
       }
 
-      if (item.isDeleted && item.id !== 0) {
+      if (item?.isDeleted && item.id !== 0) {
         return acc;
       }
 
       acc.push({
         ...item,
         originalIndex: index,
-        tempKey: item.id === 0 ? `temp-${index}` : item.id,
+        tempKey: item?.id === 0 ? `temp-${index}` : item?.id,
       });
       return acc;
     },
@@ -80,13 +82,13 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           <tr className="bg-gray-100">
             {headers?.map((header) => (
               <th
-                key={header.name}
+                key={header?.name}
                 className={`p-3 border-b-2 border-gray-300 text-center text-[16px]`}
                 style={{
                   width: header?.width,
                 }}
               >
-                {header.label}
+                {header?.label}
               </th>
             ))}
             <th className="p-3 border-b-2 border-gray-300 text-center text-[16px]">
@@ -95,7 +97,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           </tr>
         </thead>
         <tbody>
-          {filteredItems?.length ? (
+          {/* {filteredItems?.length ? (
             filteredItems?.map((item: any) => (
               <tr key={item.tempKey}>
                 {headers.map((header) => (
@@ -129,12 +131,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                                 `${moduleName}[${item.originalIndex}].${header.name}`,
                                 e.target.value
                               );
-
-                              console.log(
-                                "a7aaaaaaaaaaaaaa",
-                                `${moduleName}[${item.originalIndex}].${header.name}`,
-                                e.target.value
-                              );
                             }
                       }
                     />
@@ -142,7 +138,6 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                 ))}
                 <td className="p-3 text-center">
                   {actions && actions(item.originalIndex, remove)}{" "}
-                  {/* استخدم originalIndex */}
                 </td>
               </tr>
             ))
@@ -154,7 +149,8 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                 </div>
               </td>
             </tr>
-          )}
+          )} */}
+          {children }
         </tbody>
       </table>
     </div>

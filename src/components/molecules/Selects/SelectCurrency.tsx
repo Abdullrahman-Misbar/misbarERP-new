@@ -24,6 +24,8 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
   name,
   labelName,
   disabled,
+  onChange,
+  value
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
 
@@ -40,11 +42,13 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
 
   const options: Option[] =
     //@ts-ignore
-    data?.data?.map((item: { id: string; currencyName: string }) => ({
+    data?.data?.map((item: { id: string; currencyName: string , convertionFactor:number }) => ({
       value: item.id,
       label: item.currencyName,
+      convertionFactor: item.convertionFactor,
+
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -53,7 +57,7 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
       placeholder="اختر العملة"
       options={options}
       value={selectedValue}
-      onChange={handleChange}
+      onChange={onChange || handleChange}
       isLoading={isLoading}
       disabled={disabled}
     />
