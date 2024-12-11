@@ -10,8 +10,9 @@ export interface HeaderType {
   component: React.ComponentType<any>;
   size?: number;
   placeholder?: string;
-  onChange?: () => void;
-  value: number;
+  onChange?: (e: React.ChangeEvent<any>, setFieldValue: Function, values: any, moduleName: string, index: number) => void;
+  value?: any;  // Default value if necessary
+  width?: string;
 }
 
 interface TableDynamicProps {
@@ -19,7 +20,7 @@ interface TableDynamicProps {
   actions?: (originalIndex: number, remove: () => void) => React.ReactNode;
   moduleName: string;
   remove: () => void;
-  handleTabPress: () => void;
+  handleTabPress: (e: React.KeyboardEvent, index: number, push: Function) => void;
   push: () => void;
 }
 
@@ -40,6 +41,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
     },
     []
   );
+
   return (
     <div className="overflow-x-scroll">
       <table className="w-full text-right border-collapse">
@@ -48,7 +50,10 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
             {headers?.map((header) => (
               <th
                 key={header.name}
-                className="p-3 border-b-2 border-gray-300 text-center text-[16px]"
+                className={`p-3 border-b-2 border-gray-300 text-center text-[16px]`}
+                style={{
+                  width: header?.width,
+                }}
               >
                 {header.label}
               </th>
@@ -77,20 +82,18 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                       index={item.originalIndex}
                       placeholder={header?.placeholder}
                       moduleName={moduleName}
-                      //@ts-ignore
-                      index={item.originalIndex}
                       onChange={
                         header?.onChange
-                          ? header?.onChange
+                          ? (e) => header.onChange(e, setFieldValue, values, moduleName, item.originalIndex)
                           : (e: { target: { value: any } }) =>
                               setFieldValue(
                                 `${moduleName}[${item.originalIndex}].${header.name}`,
                                 e.target.value
                               )
                       }
-                      // onKeyDown={(e: React.KeyboardEvent) => {
-                      //   handleTabPress(e, item.originalIndex, push);
-                      // }}
+                      onKeyDown={(e: React.KeyboardEvent) => {
+                        handleTabPress(e, item.originalIndex, push);
+                      }}
                     />
                   </td>
                 ))}
@@ -101,7 +104,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
             ))
           ) : (
             <tr>
-              <td colSpan={9}>
+              <td colSpan={headers?.length}>
                 <div className="flex justify-center mt-10 h-[250px] overflow-hidden ">
                   <DataNotFoundDrawer text="لايوجد عناصر" />
                 </div>

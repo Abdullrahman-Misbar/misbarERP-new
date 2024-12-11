@@ -5,6 +5,7 @@ import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
+import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
 
 type Main_TP = {
   editable?: boolean;
@@ -12,7 +13,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasInvoice/Get/${id}`;
+  const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -21,8 +22,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `api/PurchasInvoice/Update/${id}`
-    : `api/PurchasInvoice`;
+    ? `${mainENdPoint}/Update/${id}`
+    : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -37,7 +38,7 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
+    const { copValue, uoms, editable,cancelRequestEndPoint  ,deleteEndPoint ,  ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
     mutate(jsonData);
   };
@@ -51,11 +52,11 @@ function Main({ editable }: Main_TP) {
     vendorId: response?.vendorId || "",
     vendorInvoiceCode: response?.vendorInvoiceCode || "",
     vendorTaxNumber: response?.vendorTaxNumber || "",
-    vendorAccountId: response?.vendorAccountId || "",
+    vendorAccountId: response?.vendorAccountId || 1,
     costCenterId: response?.costCenterId || "",
     paymentMethod: response?.paymentMethod || "",
     paymentAccountId: response?.paymentAccountId || "",
-    paymentStatus: response?.paymentStatus || "",
+    paymentStatus: response?.paymentStatus || 0,
     purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
     branchId: response?.branchId || "",
     warehouseId: response?.warehouseId || "",
@@ -63,17 +64,19 @@ function Main({ editable }: Main_TP) {
     convertionRate: response?.convertionRate || "",
     referenceDocument: response?.referenceDocument || "",
     withTax: response?.withTax || "",
-    withoutTax: response?.withoutTax || "",
+    withoutTax: response?.withoutTax || 0,
     total: response?.total || "",
-    net: response?.net || "",
-    paid: response?.paid || "",
-    remaining: response?.remaining || "",
-    letterOfCredtId: response?.letterOfCredtId || "",
-    classification: response?.classification || "",
-    paymentTemplateId: response?.paymentTemplateId || "",
-    invoiceStatus: response?.invoiceStatus || "",
+    net: response?.net || 0,
+    paid: response?.paid || 0,
+    remaining: response?.remaining || 0,
+    // letterOfCredtId: response?.letterOfCredtId || null,
+    classification: response?.classification || 0,
+    paymentTemplateId: response?.paymentTemplateId || 1,
+    invoiceStatus: response?.invoiceStatus || 0,
     approvalDate: response?.approvalDate || "",
     note: response?.note || "",
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
 
     invoiceDetailsRequest: response?.invoiceDetailsRequest?.length
       ? response?.invoiceDetailsRequest?.map((item: Item_TP) => ({

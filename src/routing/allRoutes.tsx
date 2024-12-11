@@ -127,6 +127,7 @@ export const AllRoutesProvider = () => {
           }
         />
 
+
         <Route
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}

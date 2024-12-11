@@ -64,8 +64,8 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
   }, [rowData]);
 
   const handleAgreeAction = () => {
-    setFieldValue("num_item_id", values?.item_id); // تحديث `num_item_id`
-    setOpen(false); // إغلاق النافذة
+    setFieldValue("num_item_id", values?.item_id);
+    setOpen(false);
   };
 
   return (
