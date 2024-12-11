@@ -31,10 +31,10 @@ const CostCenter: React.FC<CostCenterProps> = ({
   };
 
   const endpoint = "api/Branch/CostCenter/Lookup";
-  const { data, isLoading} = useFetch<any>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
-    Module:"PURCHASE"
+    Module: "PURCHASE",
   });
 
   const options: Option[] =
@@ -48,7 +48,7 @@ const CostCenter: React.FC<CostCenterProps> = ({
   return (
     <SelectComp
       name={name}
-      label={labelName ? labelName : "مركز التلفه"}
+      label={labelName ? labelName : ""}
       placeholder="مركز التكلفه"
       options={options}
       value={selectedValue}

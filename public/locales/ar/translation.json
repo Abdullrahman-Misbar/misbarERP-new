@@ -113,5 +113,10 @@
   "Received Amount": "المبلغ المقبوض",
   
   "Account Transferred From": "الحساب المحول منه",
-  "Transferred Amount": "المبلغ المحول"
+  "Transferred Amount": "المبلغ المحول",
+  "account"  : "الحساب",
+  "convertionRate" : "التعادل",
+  "cost center" : "مركز التكلفه",
+  "voucher code" : "الرقم المرجعي"
+
 }

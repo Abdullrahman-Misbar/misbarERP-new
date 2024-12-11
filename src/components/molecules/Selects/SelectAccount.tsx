@@ -49,7 +49,7 @@ const SelectAccount: React.FC<SelectAccountProps> = ({
   return (
     <SelectComp
       name={name}
-      label={labelName ? labelName : "الحساب"}
+      label={labelName ? labelName : ""}
       placeholder="اختر الحساب"
       options={options}
       value={selectedValue}

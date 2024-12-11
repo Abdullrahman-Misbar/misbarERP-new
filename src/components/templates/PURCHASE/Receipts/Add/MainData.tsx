@@ -11,13 +11,12 @@ import { Values_TP } from "./Types&Validation";
 import SelectAccount from "../../../../molecules/Selects/SelectAccount";
 import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
 import RecieptTable from "../../../../molecules/tablesDynamic/recieptTable";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 
 type Main_TP = {
   VoucherType: number;
 };
 function MainData({ VoucherType }: Main_TP) {
-  const { values, setFieldValue } = useFormikContext<Values_TP>();
+  const { values } = useFormikContext<Values_TP>();
   const newValues = {
     voucherCode: values?.copValue?.voucherCode || "",
     currencyId: values?.copValue?.currencyId || 0,
@@ -36,7 +35,7 @@ function MainData({ VoucherType }: Main_TP) {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasRequest"
+      deleteEndPoint="api/Accounting/DeleteExpensessAndCreditById?Id="
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -97,7 +96,6 @@ function MainData({ VoucherType }: Main_TP) {
           </Grid>
         </Grid>
         <Grid item xs={12} mt={5}>
-
           <RecieptTable moduleName="voucherDetailsRequest" />
         </Grid>
       </div>

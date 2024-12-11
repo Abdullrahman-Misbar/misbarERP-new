@@ -17,67 +17,59 @@ export const generateColumns = (
       header: "#",
       accessorKey: "id",
       cell: (info) => {
-        const isChecked = values?.copValue?.id === info?.row?.original?.id;  
+        const isChecked = values?.copValue?.id === info?.row?.original?.id;
         return (
           <span>
             <RadioButtons
               label=""
               name="copValue"
-              checked={isChecked}  
-              onChange={() => setFieldValue("copValue", info?.row?.original)} 
+              checked={isChecked}
+              onChange={() => setFieldValue("copValue", info?.row?.original)}
             />
           </span>
         );
       },
     },
+  
     {
-      header: `${t("code")}`,
-      accessorKey: "code",
+      header: `${t("voucher code")}`,
+      accessorKey: "voucherCode",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("Date")}`,
+      accessorKey: "voucherDate",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("currancy Name")}`,
+      accessorKey: "currencyId",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("account")}`,
+      accessorKey: "otherAccountId",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("convertionRate")}`,
+      accessorKey: "convertionRate",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("cost center")}`,
+      accessorKey: "costCenterId",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("reference Document")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("approval Date")}`,
-      accessorKey: "approvalDate",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("confirmation Dyes")}`,
-      accessorKey: "confirmationDayes",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("vendor Name")}`,
-      accessorKey: "vendorName",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("expected Receipt Date")}`,
-      accessorKey: "expectedReceiptDate",
+      accessorKey: "sourceDocument",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("note")}`,
       accessorKey: "note",
       cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("status")}`,
-      accessorKey: "status",
-      cell: (info) => (
-        <div
-          className="w-[100px] rounded-md p-2 text-white"
-          style={{
-            backgroundColor: info?.row?.original?.status === 1 ? "green" : "red",
-          }}
-        >
-          {info?.row?.original?.status === 1 ? t("Active") : t("Not active")}
-        </div>
-      ),
     },
   ];
 };

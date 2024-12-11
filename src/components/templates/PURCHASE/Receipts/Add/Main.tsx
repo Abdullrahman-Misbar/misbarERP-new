@@ -62,21 +62,36 @@ function Main({ VoucherType, editable }: Main_TP) {
     editable: editable ? true : false,
     SourceActivityType: 1,
     voucherDetailsRequest: response?.voucherDetailsRequest?.length
-      ? response?.voucherDetailsRequest?.map((item: Item_TP) => ({
-          voutcherId: item.voutcherId,
-          id: item.id,
-          debitAmount: item.debitAmount,
-          accountId: item.accountId,
-          creditAmount: item.creditAmount,
-          currencyId: item.currencyId,
-          convertionRate: item.convertionRate,
-          equivalent: item.equivalent,
-          costCenterId: item.costCenterId,
-          vatAccountId: item.vatAccountId,
-          vatValue: item.vatValue,
-          note: item.note,
-        }))
+      ? response?.voucherDetailsRequest
+          .filter((item: Item_TP) => {
+            if (response.voucherType === 0) {
+              // cash-receipts
+              return item.debitAmount !== 0;
+            } else if (
+              response.voucherType === 1 ||
+              response.voucherType === 2
+            ) {
+              // cash-payments or transfer-receipts
+              return item.creditAmount !== 0;
+            }
+            return item;
+          })
+          .map((item: Item_TP) => ({
+            voutcherId: item.voutcherId,
+            id: item.id,
+            debitAmount: item.debitAmount,
+            accountId: item.accountId,
+            creditAmount: item.creditAmount,
+            currencyId: item.currencyId,
+            convertionRate: item.convertionRate,
+            equivalent: item.equivalent,
+            costCenterId: item.costCenterId,
+            vatAccountId: item.vatAccountId,
+            vatValue: item.vatValue,
+            note: item.note,
+          }))
       : [],
+
     copValue: {
       voucherType: VoucherType,
       voucherCode: "",

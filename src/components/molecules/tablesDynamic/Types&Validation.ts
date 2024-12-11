@@ -31,3 +31,25 @@ export interface ItemsTableProps {
 export interface recieptTableProps {
   moduleName: string;
 }
+
+export interface RecieptItems {
+  debitAmount: number;
+  accountId: number;
+  note: string;
+  currencyId: number;
+  convertionRate: number;
+  equivalent: number;
+  costCenterId: number;
+  vatAccountId: number;
+  vatValue: number;
+}
+
+export interface RecieptHeader {
+  name: keyof RecieptItems;
+  label: string;
+  component: React.ElementType;
+  type: string;
+  placeholder?: string;
+  value?: any;
+  onChange?: (e: any) => void;
+}

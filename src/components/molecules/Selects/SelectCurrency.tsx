@@ -49,7 +49,7 @@ const SelectCurrency: React.FC<SelectCurrencyProps> = ({
   return (
     <SelectComp
       name={name}
-      label={labelName ? labelName : "العمله"}
+      label={labelName ? labelName : ""}
       placeholder="اختر العملة"
       options={options}
       value={selectedValue}
