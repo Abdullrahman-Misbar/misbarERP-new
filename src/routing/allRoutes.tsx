@@ -42,6 +42,7 @@ import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 
 import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
 import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
+import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
 
 export const AllRoutesProvider = () => {
   return (
@@ -127,6 +128,10 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/invoices/InvoicesReturns/add"
           element={<AddInvoiceReturn title={t("Add Invoices External")} />}
+        />
+           <Route
+          path="/purchase/invoices/DocumentaryCreditCards"
+          element={<DocumentaryCreditCards title={t("Document Credit Cards")} />}
         />
 
         {/* ------------------------------------------ */}
