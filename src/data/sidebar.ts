@@ -123,7 +123,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Suppliers",
-        link: "",
+        link: "/purchase/PurchaseSupplier",
         icon: FaRegCircle,
       },
       {

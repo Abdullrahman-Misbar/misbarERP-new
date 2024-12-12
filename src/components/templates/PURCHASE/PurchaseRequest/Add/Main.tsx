@@ -90,7 +90,6 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
-
     SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({

@@ -20,7 +20,6 @@ import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
 import Receipts from "../pages/PURCHASE/Receipts";
 import AddReceipt from "../pages/PURCHASE/Receipts/Add";
 import EditReceipt from "../pages/PURCHASE/Receipts/Edit";
-
 import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
 import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
 import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
@@ -37,6 +36,9 @@ import MainScreen from "../pages/MainScreen";
 import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
 import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
 import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
+import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
+import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
+import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -106,11 +108,11 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
         />
-           <Route
+        <Route
           path="/purchase/invoices/external"
           element={<InvoicesExternal title={t("Invoices External")} />}
         />
-          <Route
+        <Route
           path="/purchase/invoices/external/add"
           element={<AddInvoiceExternal title={t("Add Invoices External")} />}
         />
@@ -166,8 +168,6 @@ export const AllRoutesProvider = () => {
           }
         />
 
-     
-       
         {/* SETTING */}
         {/* <Route
           path="/setting/orders"
@@ -206,6 +206,19 @@ export const AllRoutesProvider = () => {
             }
           />
         </Route>
+        {/* ----------------------------------------- */}
+        <Route
+          path="/purchase/PurchaseSupplier"
+          element={<PurchaseSupplier title={t("Suppliers")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplier/add"
+          element={<AddPurchaseSupplier title={t("Add Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplier/edit/:id"
+          element={<EditPurchaseSupplier title={t("Edit Purchase request")} />}
+        />
       </Route>
 
       <Route
