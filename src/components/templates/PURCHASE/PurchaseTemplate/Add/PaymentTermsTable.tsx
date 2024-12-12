@@ -48,7 +48,12 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
         label: "لدية خصم",
         component: SwitchComp,
         type: "text",
-      },
+        onChange: (e: any) => {
+            const index = e.target?.dataset?.index;
+            setFieldValue(`${moduleName}[${index}].hasDiscount`, e.target.checked); 
+          },
+        },
+    
       {
         name: "isDiscountValueOrRatio",
         label: "نوع الخصم",
@@ -77,12 +82,19 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
 
       if (index === lastIndex && currentRow?.note !== undefined) {
         push({
-          bankName: "",
-          accountNumber: "",
-          partnerId: 0,
-          note: "",
+          paymentTermName: "",
+          foreignPaymentTermName: "",
+          invoicePortion: 0,
+          dueDateBasedOn: 0,
+          creditDays: 0,
+          hasDiscount: false,
+          isDiscountValueOrRatio: 0,
+          discount: 0,
+          discountIfPaidWithIn: 0,
+          paymentTemplateId: 0,
+
           isDeleted: false,
-          id: 0,
+          
         });
       }
     }
@@ -98,12 +110,18 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
                 type="button"
                 onClick={() =>
                   push({
-                    bankName: "",
-                    accountNumber: "",
-                    partnerId: 0,
-                    note: "",
+                    paymentTermName: "",
+                    foreignPaymentTermName: "",
+                    invoicePortion: 0,
+                    dueDateBasedOn: 0,
+                    creditDays: 0,
+                    hasDiscount: false,
+                    isDiscountValueOrRatio: 0,
+                    discount: 0,
+                    discountIfPaidWithIn: 0,
+                    paymentTemplateId: 0,
+          
                     isDeleted: false,
-                    id: 0,
                   })
                 }
                 className="px-4 py-2 mt-4 mb-2 text-white bg-blue-500 rounded"
