@@ -119,7 +119,7 @@ const ExportExcel: React.FC<ExportExcelProps> = ({
               الحقول المتوفرة
             </span>
             <div className="w-full border p-2 border-mainBorder rounded-[8px] h-[472px] flex items-start justify-start flex-col overflow-y-scroll">
-              {columns.map((column) => (
+              {columns?.map((column) => (
                 <div
                   key={column.accessorKey}
                   className="w-full flex item-center justify-between py-2 px-3"

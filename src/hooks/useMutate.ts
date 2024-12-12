@@ -36,6 +36,8 @@ export function useMutate<response_T>({
   const baseURL = import.meta.env.VITE_BASE_URL
   const customEndPoint =
     Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL
+    // const customEndPoint =
+    // Module == "PURCHASE" ? "http://localhost:5057" : baseURL
 
   const { data, isPending, isSuccess, mutate, failureReason, isError, error } =
     useMutation({

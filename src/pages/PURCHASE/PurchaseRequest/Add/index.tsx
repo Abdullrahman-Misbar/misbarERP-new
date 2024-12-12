@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet-async"
-import Main from "../../../../components/templates/PURCHASE/PurchaseRequest/Add/Main"
+import { Helmet } from "react-helmet-async";
+import Main from "../../../../components/templates/PURCHASE/PurchaseRequest/Add/Main";
 
 type AddPurchaseRequest_TP = {
-  title: string
-}
+  title: string;
+};
 export default function AddPurchaseRequest({ title }: AddPurchaseRequest_TP) {
   return (
     <>
@@ -14,5 +14,5 @@ export default function AddPurchaseRequest({ title }: AddPurchaseRequest_TP) {
         <Main />
       </div>
     </>
-  )
+  );
 }

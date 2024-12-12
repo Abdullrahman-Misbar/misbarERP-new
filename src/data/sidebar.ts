@@ -1,42 +1,17 @@
 import { FaRegCircle } from "react-icons/fa";
-import { GrGroup } from "react-icons/gr";
 import { IconType } from "react-icons/lib";
-import { TbSmartHome } from "react-icons/tb";
-import AgreementIcons from "../components/atoms/icons/AgreementIcons";
 import Arrows from "../components/atoms/icons/arrowsIcon";
-import BondsIcon from "../components/atoms/icons/BondsIcon";
-import DollarIcon from "../components/atoms/icons/DollarIcon";
-import InputsIcon from "../components/atoms/icons/InputsIcon";
-import InvoicesIcon from "../components/atoms/icons/InvoicesIcon";
-import LeftArowIcon from "../components/atoms/icons/LeftArowIcon";
-import LocalInvoicesIcon from "../components/atoms/icons/LocalInvoicesIcon";
-import NotificationIcon from "../components/atoms/icons/NotificationIcon";
-import OfferPriceIcon from "../components/atoms/icons/OfferPriceIcon";
-import OprationsIcon from "../components/atoms/icons/OprationsIcon";
-import PaymentTermsIcon from "../components/atoms/icons/PaymentTermsIcon";
-import PurchaseOrder from "../components/atoms/icons/PurchaseOrderIcon";
-import PurcheseIcon from "../components/atoms/icons/PurcheseIcon";
-import ReceiptOrderIcon from "../components/atoms/icons/ReceiptOrderIcon";
-import Reconstruction from "../components/atoms/icons/Reconstruction";
-import ReportsIcon from "../components/atoms/icons/ReportsIcon";
-import RequestOrderIcon from "../components/atoms/icons/RequestOrderIcon";
-import ScreenIcon from "../components/atoms/icons/ScreenIcon";
-import Setting from "../components/atoms/icons/SettingIcon";
-import SummaryIcon from "../components/atoms/icons/SummaryIcon";
-import SupliersIcon from "../components/atoms/icons/SupliersIcon";
-import SupplierIcon from "../components/atoms/icons/SupplierIcon";
-import SupplierMovingIcon from "../components/atoms/icons/SupplierMovingIcon";
-import TagsIcon from "../components/atoms/icons/TagsIcon";
-import TimeIcon from "../components/atoms/icons/TimeIcon";
-import TrueIcon from "../components/atoms/icons/TrueIcon";
 import HomeIcon from "../components/atoms/icons/HomeIcon";
-import { FaRegCircle } from "react-icons/fa";
+import InputsIcon from "../components/atoms/icons/InputsIcon";
+import OprationsIcon from "../components/atoms/icons/OprationsIcon";
+import ReportsIcon from "../components/atoms/icons/ReportsIcon";
+import Setting from "../components/atoms/icons/SettingIcon";
 export type MenuItem_TP = {
   id: string;
   icon: IconType;
   label: string;
   link?: string;
-
+  header?: string;
   items?: {
     id: string;
     icon: IconType;
@@ -53,7 +28,12 @@ export const sideBarItems: MenuItem_TP[] = [
     icon: HomeIcon,
     link: "/",
   },
-  { header: "القائمة الرئيسية" },
+  {
+    header: "القائمة الرئيسية",
+    // id: crypto.randomUUID(),
+    // label: "Configuration and settings",
+    // icon: HomeIcon,
+  },
   {
     id: crypto.randomUUID(),
     label: "Configuration and settings",
@@ -68,25 +48,25 @@ export const sideBarItems: MenuItem_TP[] = [
           {
             id: crypto.randomUUID(),
             label: "Order settings",
-            link: "",
+            link: "/setting/orders",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Billing settings",
-            link: "",
+            link: "/setting/invoices",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Logistics preparations",
-            link: "",
+            link: "/setting/logistic",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
             label: "Setting up the information window",
-            link: "",
+            link: "/setting/information",
             icon: FaRegCircle,
           },
         ],
@@ -95,11 +75,13 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Home screen",
+        link: "/mainScreen",
       },
       {
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Supplier groups",
+        link: "/purchase/PurchaseSupplierGroup"
       },
       {
         id: crypto.randomUUID(),
@@ -110,6 +92,7 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Payment terms",
+        link: "/purchase/PurchaseTemplate"
       },
       {
         id: crypto.randomUUID(),
@@ -154,7 +137,7 @@ export const sideBarItems: MenuItem_TP[] = [
   },
 
   // Ordering and purchasing processes
-  { header: " عمليات الطلب والمشتريات" },
+  { header: " عمليات الطلب والمشتريات", id: crypto.randomUUID() },
   {
     id: crypto.randomUUID(),
     label: "Operations",
@@ -224,17 +207,18 @@ export const sideBarItems: MenuItem_TP[] = [
               {
                 id: crypto.randomUUID(),
                 label: "External purchase invoices",
-                link: "",
+                link: "/purchase/invoices/external",
                 icon: FaRegCircle,
               },
             ],
           },
         ],
       },
+
       {
         id: crypto.randomUUID(),
         label: "Purchase return",
-
+        link: "purchase/invoices/InvoicesReturns",
         icon: FaRegCircle,
       },
 
@@ -246,14 +230,14 @@ export const sideBarItems: MenuItem_TP[] = [
         items: [
           {
             id: crypto.randomUUID(),
-            label: "City notices",
-            link: "",
+            label: "debit notification",
+            link: "/purchase/notification/debit",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
-            label: "Credit notes",
-            link: "",
+            label: "Credit notification",
+            link: "/purchase/notification/credit",
             icon: FaRegCircle,
           },
         ],
@@ -272,26 +256,26 @@ export const sideBarItems: MenuItem_TP[] = [
       },
       {
         id: crypto.randomUUID(),
-        label: "Bonds",
+        label: "Receipts",
 
-        icon: BondsIcon,
+        icon: FaRegCircle,
         items: [
           {
             id: crypto.randomUUID(),
-            label: "Exchange bonds",
-            link: "",
+            label: "Cash Receipts",
+            link: "purchase/receipts?type=cash-receipts",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
-            label: "Receipt bonds",
-            link: "",
+            label: "Cash Payments",
+            link: "purchase/receipts?type=cash-payments",
             icon: FaRegCircle,
           },
           {
             id: crypto.randomUUID(),
-            label: "Transfer bonds",
-            link: "",
+            label: "Transfer Receipts",
+            link: "purchase/receipts?type=transfer-receipts",
             icon: FaRegCircle,
           },
         ],
@@ -309,22 +293,23 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchases",
-        link: "",
+
+        link: "/purchase/reports/purchaseInvoiceReport",
         icon: FaRegCircle,
-        items: [
-          {
-            id: crypto.randomUUID(),
-            label: "Bills",
-            link: "",
-            icon: FaRegCircle,
-          },
-          {
-            id: crypto.randomUUID(),
-            label: "Varieties",
-            link: "",
-            icon: FaRegCircle,
-          },
-        ],
+        // items: [
+        //   {
+        //     id: crypto.randomUUID(),
+        //     label: "Bills",
+        //     link: "",
+        //     icon: FaRegCircle,
+        //   },
+        //   {
+        //     id: crypto.randomUUID(),
+        //     label: "Varieties",
+        //     link: "",
+        //     icon: FaRegCircle,
+        //   },
+        // ],
       },
       {
         id: crypto.randomUUID(),

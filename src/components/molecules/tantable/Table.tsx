@@ -15,6 +15,7 @@ import React, { useEffect, useState } from "react";
 import { Loading } from "../../molecules/Loading/Loading";
 import { ReactTableProps } from "./tableTypes";
 import TableSkeleton from "../Skeleton/TableSkeleton";
+import DataNotFoundDrawer from "../DataNotFoundDrawer";
 
 export const Table = <T extends object>({
   data,
@@ -121,8 +122,7 @@ export const Table = <T extends object>({
       <div className="flex flex-col w-full gap-4 overflow-x-scroll GlobalTable ">
         {isLoading ? (
           <div className="flex items-center justify-center h-[78vh]">
-            {/* <Loading subTitle="جاري التحميل" /> */}
-            <TableSkeleton/>
+            <TableSkeleton />
           </div>
         ) : (
           <table id="print-table" className="min-w-full text-center">
@@ -178,9 +178,9 @@ export const Table = <T extends object>({
                         }}
                       >
                         {flexRender(
-                          cell?.column?.columnDef.cell ,
-                          cell.getContext()  
-                        )} 
+                          cell?.column?.columnDef.cell,
+                          cell.getContext()
+                        )}
                       </td>
                     ))}
                   </tr>
@@ -200,6 +200,7 @@ export const Table = <T extends object>({
                 header={t("nothing")}
                 className="text-2xl font-bold text-center dark:text-white"
               /> */}
+              <DataNotFoundDrawer text="لايوجد بيانات" />
             </div>
           )}
       </div>

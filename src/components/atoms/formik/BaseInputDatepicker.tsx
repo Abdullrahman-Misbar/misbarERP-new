@@ -5,19 +5,24 @@ import dayjs from "dayjs";
 import { useFormikContext } from "formik";
 import React from "react";
 import { Label } from "./Label";
+import { FormikError } from "./FormikError";
 
 interface BaseInputDatepickerProps {
   name: string;
-  placeholder: string;
-  label: string;
+  placeholder?: string;
+  label?: string;
+  value?:string
+  disabled?:boolean
 }
 
 const BaseInputDatepicker: React.FC<BaseInputDatepickerProps> = ({
   name,
   label,
+  value,
+  disabled
 }) => {
   const { setFieldValue, values } = useFormikContext<any>();
-  const currentValue = values[name] ? dayjs(values[name]) : null;
+  const currentValue = values[name] ? dayjs((value ||values[name])) : null;
   const handleDateChange = (newDate: dayjs.Dayjs | null) => {
     const formattedDate = newDate ? newDate.format("YYYY-MM-DD") : "";
     setFieldValue(name, formattedDate);
@@ -25,9 +30,12 @@ const BaseInputDatepicker: React.FC<BaseInputDatepickerProps> = ({
 
   return (
     <>
+    {
+      label &&
       <Label htmlFor={name} className="mb-1">
         {label}
       </Label>
+    }
       <div className="rtl:text-right relative mt-1 w-full" dir="rtl">
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
           <DatePicker
@@ -35,8 +43,10 @@ const BaseInputDatepicker: React.FC<BaseInputDatepickerProps> = ({
             value={currentValue}
             onChange={handleDateChange}
             name={name}
+            disabled={disabled}
           />
         </LocalizationProvider>
+        <FormikError name={name} />
       </div>
     </>
   );

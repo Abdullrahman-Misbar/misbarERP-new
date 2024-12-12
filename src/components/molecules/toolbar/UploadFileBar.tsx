@@ -3,7 +3,7 @@ import { useState } from "react";
 import UploadFileBseInput from "../../atoms/formik/UploadFileBseInput";
 import AttachmentIcon from "../../atoms/icons/AttachmentIcon";
 import ModalComp from "../ModalComp";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 import { notify } from "../../../utils/toast";
 import { useMutate } from "../../../hooks";
 import { useParams } from "react-router-dom";
@@ -11,8 +11,8 @@ import { useParams } from "react-router-dom";
 function UploadFileBar() {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
-  const [file, setFile] = useState<File | null>(null); // State to hold the file
-
+  const [file, setFile] = useState<File | null>(null); 
+  const { values } = useFormikContext<any>();
   const handleUploadFileBar = () => {
     setOpen(true);
   };
@@ -46,30 +46,32 @@ function UploadFileBar() {
       notify("error", "يرجى اختيار ملف أولاً");
       return;
     }
-  
+
     const formData = new FormData();
-    formData.append("file", file); 
+    formData.append("file", file);
     formData.append("attchmentTitle", values.attchmentTitle);
     formData.append("description", values.description);
     formData.append("sourceId", values.sourceId);
     formData.append("sourceTypeId", values.sourceTypeId.toString());
-  
-    mutate(formData); 
+
+    mutate(formData);
   };
-  
 
   return (
     <div>
       <Tooltip title="إرفاق ملف">
         <div className="flex items-center">
-          <AttachmentIcon disabled={false} action={handleUploadFileBar} />
+          <AttachmentIcon
+            disabled={!values?.editable}
+            action={handleUploadFileBar}
+          />
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </div>
       </Tooltip>
 
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => handleSubmit(values)} 
+        onSubmit={(values) => handleSubmit(values)}
         enableReinitialize
       >
         {({ submitForm }) => (
@@ -79,11 +81,11 @@ function UploadFileBar() {
               open={open}
               setOpen={setOpen}
               ActionAgreeButton={() => {
-                submitForm(); 
+                submitForm();
               }}
             >
               <div>
-                <UploadFileBseInput setFile={setFile} /> 
+                <UploadFileBseInput setFile={setFile} />
               </div>
             </ModalComp>
           </Form>

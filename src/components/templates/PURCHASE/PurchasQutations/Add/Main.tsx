@@ -12,18 +12,19 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasRequest/Get/${id}`;
+  const endpoint = `api/PurchasQutations/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled:  !!id && !!editable ,
+    enabled: !!id && !!editable,
   });
   const postEndPoint = id
-    ? `api/PurchasRequest/UpdateRequest/${id}`
-    : `api/PurchasRequest`;
+    ? `api/PurchasQutations/Update/${id}`
+    : `api/PurchasQutations`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
+    method: id ? "PUT" : "post",
     endpoint: postEndPoint,
     onSuccess: () => {
       // refetch();
@@ -46,55 +47,60 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    code: response?.code || "",
-    vendorId: response?.vendorId || "",
-    editable: editable ? true : false,
-    requestDate: response?.requestDate || "",
-    requestEndDate: response?.requestEndDate || "",
+    qCode: response?.qCode || "",
+    purchaseRequestId: response?.purchaseRequestId || null,
+    vendorId: response?.vendorId || 0,
+    vendorName: response?.vendorName || "",
+    quotationDate: response?.quotationDate || "",
+    quotationDeadLine: response?.quotationDeadLine || "",
+    duration: response?.duration || 0,
     approvalDate: response?.approvalDate || "",
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    deliverdDate: response?.deliverdDate || "",
     referenceDocument: response?.referenceDocument || "",
-    deliverdConfirmation: response?.deliverdConfirmation || false,
-    purchaseAgreementId: response?.purchaseAgreementId || "",
-    confirmationDayes: response?.confirmationDayes || 0,
-    currencyId: response?.currencyId || "",
-    warehouseId: response?.warehouseId || "",
-    total: response?.total || "",
-    priceIncludeTax: response?.priceIncludeTax || false,
-    isApproved: response?.isApproved || false,
+    status: response?.status || 0,
+    currencyId: response?.currencyId || 0,
+    total: response?.total || 0.0,
     note: response?.note || "",
-    SourceActivityType:1,
-    purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
-      ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
-          itemId: item?.itemId,
-          id:item?.id,
-          note: item?.note,
-          price: item?.price,
-          quantity: item?.quantity,
-          total: item?.total,
-          uomId: item?.uomId,
-          warehouseId: item?.warehouseId,
-          isDeleted: false, 
-          description: item?.description,
+    purchaseRequestDetailstId: response?.purchaseRequestDetailstId || null,
+    quotationDetailsId: response?.quotationDetailsId || 0,
+    editable: editable ? true : false,
+
+    SourceActivityType: 1,
+    qutationDetailsModal: response?.qutationDetailsResponse?.length
+      ? response?.qutationDetailsResponse?.map((item: Item_TP) => ({
+          id: item?.id || 0,
+          itemId: item?.itemId || 0,
+          barcode: item?.barcode || "string",
+          description: item?.description || "string",
+          quantity: item?.quantity || 0,
+          uomId: item?.uomId || 0,
+          price: item?.price || 0,
+          total: item?.total || 0,
+          warehouseId: item?.warehouseId || 0,
+          note: item?.note || "string",
+          purchaseRequestId: item?.purchaseRequestId || 0,
+          isDeleted: item?.isDeleted || false,
+          itemName: item?.itemName || "string",
+          isChoosen: item?.isChoosen || false,
           uoms: item?.product?.uoms,
         }))
       : [],
     copValue: {
-      code: "",
-      purchaseAgreementId: "",
-      vendorId: "",
-      createDate: "",
-      expectedReceiptDate: "",
-      total: "",
-      referenceDocument: "",
-      note: "",
+      qCode: "",
+      purchaseRequestId: null,
+      vendorId: 0,
+      vendorName: "",
+      quotationDate: "",
+      quotationDeadLine: "",
+      duration: 0,
       approvalDate: "",
-      confirmationDayes: 0,
-      warehouseId: "",
-      purchaseRepresentativeId: "",
-      currencyId: "",
-      purchaseRequestDetailsDto:[]
+      referenceDocument: "",
+      status: 0,
+      currencyId: 0,
+      total: 0,
+      note: "",
+      purchaseRequestDetailstId: null,
+      quotationDetailsId: 0,
+      qutationDetailsModal: [],
     },
   };
   if (editable && isLoading)

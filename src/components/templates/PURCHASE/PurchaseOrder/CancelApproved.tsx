@@ -8,14 +8,14 @@ type CancelApproved_TP = {
   refetch: () => void;
   info: any;
 };
-function CancelApproved({ refetch, info }: CancelApproved_TP) {
+function CancelApproved({ refetch, info  }: CancelApproved_TP) {
   const [id, setID] = useState("");
   const statusApproved = info?.row?.original?.isApproved ? false : true;
   const { mutate } = useMutate({
     mutationKey: [
-      `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+      `api/PurchasOrder/ApproveOrDisApprove/${id}?value=${statusApproved}`,
     ],
-    endpoint: `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+    endpoint: `api/PurchasOrder/ApproveOrDisApprove/${id}?value=${statusApproved}`,
     onSuccess: () => {
       refetch();
       notify(

@@ -7,6 +7,8 @@ import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectCurrencyProps = {
   name: string;
+  labelName?: string;
+  disabled?: boolean;
 };
 
 interface Option {
@@ -18,17 +20,20 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({ name }) => {
+const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({
+   name,
+  labelName,
+  disabled,
+ }) => {
   const { setFieldValue } = useFormikContext<FormikValues>();
 
   const handleChange = (selectedOption: Option | null) => {
     if (selectedOption) {
       setFieldValue(name, selectedOption.value);
     } else {
-      setFieldValue(name, null); 
+      setFieldValue(name, null);
     }
   };
-  
 
   const endpoint = "api/PartnerGroups/Lookup";
   const { data: fetchedData, isLoading } = useFetch<any>({
@@ -37,23 +42,20 @@ const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({ name }) => {
     Module: "PURCHASE",
   });
 
-  console.log("Raw fetched data:", fetchedData);
 
-  
-  const options: Option[] =
-    Array.isArray(fetchedData?.data) 
-      ? fetchedData.data.map((item: { id: string | number; lookupName: string }) => ({
+  const options: Option[] = Array.isArray(fetchedData?.data)
+    ? fetchedData.data.map(
+        (item: { id: string | number; lookupName: string }) => ({
           value: item.id,
           label: item.lookupName,
-        }))
-      : []; 
-
-  console.log("Options for SelectComp:", options);
+        })
+      )
+    : [];
 
   return (
     <SelectComp
       name={name}
-      label="مجموعة المورد"
+      label={labelName ? labelName : "مجموعة المورد"}
       placeholder={isLoading ? "جاري التحميل..." : "اختر مجموعة المورد"}
       options={options}
       isLoading={isLoading}

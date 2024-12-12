@@ -29,20 +29,20 @@ import ThirdControlPrevIcon from "../../atoms/icons/controlInputIcon/ThirdContro
 function ControlTableButton() {
   const { id } = useParams<{ id: any }>();
   const navigate = useNavigate();
-const {values} = useFormikContext()
+  const { values } = useFormikContext<any>();
   const [controlInput, setControlInput] = useState<number>(parseInt(id, 10));
   const [controlButton, setControlButton] = useState<ControlButtonState>({
     nextType: 0,
     id: parseInt(id, 10),
   });
 
-  const endpoint = `api/PurchasRequest/GetRow/${controlButton.nextType}/${controlButton.id}`;
+  const endpoint = `${values?.controlButtonEndPoint}/${controlButton.nextType}/${controlButton.id}`;
 
   const { data } = useFetch<DataResponse>({
     queryKey: [endpoint],
     endpoint,
     Module: "PURCHASE",
-    enabled: controlButton?.nextType !== (0 || undefined)  && controlButton?.id !== (0 || undefined) ,
+    enabled:!!controlButton?.id,
   });
   //@ts-ignore
   const response = data?.data;
@@ -78,36 +78,45 @@ const {values} = useFormikContext()
   );
 
   return (
-    values?.editable &&
-    <div>
-      <div className="flex items-center justify-center gap-3">
-        <div className="flex items-center gap-2">
-          {renderControlButton("الاول", <ThirdControlNextIcon />, 1)}
-          {/* Go to first */}
-          {renderControlButton("10 سجلات للخلف", <SecondControlNextIcon />, 6)}
-          {/* Go back 10 records */}
-          {renderControlButton("السابق", <FirstControlNextIcon />, 4)}
-          {/* Go to previous */}
-        </div>
+    values?.editable && (
+      <div>
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center gap-2">
+            {renderControlButton("الاول", <ThirdControlNextIcon />, 1)}
+            {/* Go to first */}
+            {renderControlButton(
+              "10 سجلات للخلف",
+              <SecondControlNextIcon />,
+              6
+            )}
+            {/* Go back 10 records */}
+            {renderControlButton("السابق", <FirstControlNextIcon />, 4)}
+            {/* Go to previous */}
+          </div>
 
-        <input
-          placeholder="0"
-          type="text"
-          value={controlInput}
-          className="rounded-[4px] border w-10 px-2 py-1 border-[#0000003B] text-center focus:outline-none"
-        />
+          <input
+            placeholder="0"
+            type="text"
+            value={controlInput}
+            className="rounded-[4px] border w-10 px-2 py-1 border-[#0000003B] text-center focus:outline-none"
+          />
 
-        <div className="flex items-center gap-2">
-          {renderControlButton("اعادة تعيين", <RedoIcon />, 1)} {/* Reset */}
-          {renderControlButton("التالي", <FirstControlPrevIcon />, 3)}
-          {/* Go to next */}
-          {renderControlButton("10 سجلات للامام", <SecondControlPrevIcon />, 5)}
-          {/* Go forward 10 records */}
-          {renderControlButton("الاخير", <ThirdControlPrevIcon />, 2)}
-          {/* Go to last */}
+          <div className="flex items-center gap-2">
+            {renderControlButton("اعادة تعيين", <RedoIcon />, 1)} {/* Reset */}
+            {renderControlButton("التالي", <FirstControlPrevIcon />, 3)}
+            {/* Go to next */}
+            {renderControlButton(
+              "10 سجلات للامام",
+              <SecondControlPrevIcon />,
+              5
+            )}
+            {/* Go forward 10 records */}
+            {renderControlButton("الاخير", <ThirdControlPrevIcon />, 2)}
+            {/* Go to last */}
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 }
 

@@ -6,7 +6,7 @@ type SelectUoms_TP = {
   disabled?: boolean;
   value?: string;
   moduleName?: string;
-  index: String;
+  index: string | number;
 };
 type Formik_Values = {
   name: string;
@@ -20,18 +20,18 @@ const SelectUoms = ({
   index,
 }: SelectUoms_TP) => {
   const { setFieldValue, values } = useFormikContext<Formik_Values>();
-
+  
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
   const options =
-    values[moduleName][index]?.uoms?.map(
-      (item: { id: number; companyCode: string; uomName: string }) => ({
-        value:item?.uom?.uomName ? item?.uom?.id :  item?.id,
-        label: item?.uomName || item?.uom?.uomName,
-      })
-    ) || [];
+  values[moduleName][index]?.uoms?.map(
+    (item: { id: number; companyCode: string; uomName: string }) => ({
+      value:item?.uom?.uomName ? item?.uom?.id :  item?.id,
+      label: item?.uomName || item?.uom?.uomName,
+    })
+  ) || [];
   const selectedValue = options?.find(
     (item) => item?.value == (value || values[name])
   );

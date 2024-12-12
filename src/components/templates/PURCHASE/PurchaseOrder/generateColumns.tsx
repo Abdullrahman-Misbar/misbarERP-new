@@ -35,7 +35,7 @@ export const generateColumns = (
     },
     {
       header: `${t("vendorId")}`,
-      accessorKey: "vendorId",
+      accessorKey: "vendorName",
       cell: (info) => info.renderValue(),
     },
     {
@@ -72,20 +72,17 @@ export const generateColumns = (
       header: `${t("purchaseAgreementId")}`,
       accessorKey: "purchaseAgreementId",
       cell: (info) => {
-        const getStatusText = (status) => {
-          switch (status) {
-            case 0:
-              return "لم يتم الاستلام";
-            case 1:
-              return "استلام جزئي";
-            case 2:
-              return "استلام كلي";
-          }
-        };
+        const status = info?.row?.original?.status;
 
         return (
-          <span style={{ fontWeight: "bold" }}>
-            {getStatusText(info?.row?.original?.status)}
+          <span>
+            {status == 1 ? (
+              <p className="text-orange-500">استلام جزئي</p>
+            ) : status == 2 ? (
+              <p className="text-green-400">استلم كلي</p>
+            ) : (
+              <p className="text-black">لم يتم الاستلام </p>
+            )}
           </span>
         );
       },

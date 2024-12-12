@@ -3,18 +3,16 @@ import { useFormikContext } from "formik";
 import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
-import RadioButtons from "../../../../atoms/formik/RadioComp";
-import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
-import ApprovedStatus from "../../../../molecules/ApprovedStatus";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
+import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
+import SelectEmployee from "../../../../molecules/Selects/SelectEmployee";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -31,6 +29,7 @@ function MainData() {
     purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
     warehouseId: values?.copValue?.warehouseId || "",
     approvalDate: values?.copValue?.approvalDate || "",
+    status: values?.copValue?.status || "",
   };
 
   return (
@@ -38,7 +37,6 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasOrder"
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -88,7 +86,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId" />
+            <SelectCurrency name="currencyId" labelName="العملة" />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -104,28 +102,33 @@ function MainData() {
               <Label htmlFor="">الحالة</Label>
               <div>
                 <span className="status-text">
-                  {(() => {
-                    switch (values?.status) {
-                      case 0:
-                        return "لم يتم الاستلام";
-                      case 1:
-                        return "استلام جزئي";
-                      case 2:
-                        return "استلام كلي";
-                    }
-                  })()}
+                  {/* {values?.status === 0
+                    ? "لم يتم الاستلام"
+                    : values?.status === 1
+                    ? "استلام جزئي"
+                    : values?.status === 2
+                    ? "استلام كلي"
+                    : ""} */}
+                  {values?.status == 1 ? (
+                    <p className="text-orange-500">استلام جزئي</p>
+                  ) : values?.status == 2 ? (
+                    <p className="text-green-400">استلم كلي</p>
+                  ) : (
+                    <p className="text-black">لم يتم الاستلام </p>
+                  )}
                 </span>
               </div>
             </div>
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <BaseInputField
+            {/* <BaseInputField
               name="purchaseRepresentativeId"
               placeholder=" مندوب المشتريات"
               type="text"
               label=" مندوب المشتريات"
-            />
+            /> */}
+            <SelectEmployee name="purchaseRepresentativeId" />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -140,7 +143,7 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={8}>
             <BaseInputField
               name="note"
               placeholder="ملاحظات"
