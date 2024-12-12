@@ -55,7 +55,7 @@ export const generateColumns = (
     },
     {
       header: `${t("Purchasing representatives")}`,
-      accessorKey: "purchaseRepresentativeId",
+      accessorKey: "repersentiveName",
       cell: (info) =>
         info?.row?.original?.purchaseRepresentativeId ? (
           info.renderValue()

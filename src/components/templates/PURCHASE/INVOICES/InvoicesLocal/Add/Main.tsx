@@ -6,6 +6,7 @@ import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkelet
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 
 type Main_TP = {
   editable?: boolean;
@@ -57,9 +58,7 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     invoiceCode: response?.invoiceCode || "",
-
-    invoiceType: 0,
-
+    invoiceType: InvoiceLocalType,
     invoiceDate: response?.invoiceDate || "",
     vendorId: response?.vendorId || "",
     vendorInvoiceCode: response?.vendorInvoiceCode || "",
@@ -85,7 +84,7 @@ function Main({ editable }: Main_TP) {
     paymentTemplateId: response?.paymentTemplateId || 1,
     invoiceStatus: response?.invoiceStatus || 0,
     approvalDate: response?.approvalDate || "",
-    note: response?.note || "",
+    notes: response?.notes || "",
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
 
