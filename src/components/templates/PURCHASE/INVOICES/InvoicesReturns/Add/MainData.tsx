@@ -17,6 +17,7 @@ import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import { useEffect } from "react";
+import PaymentAccount from "../../../../../molecules/Selects/PaymentAccount";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -37,35 +38,30 @@ function MainData() {
   useEffect(() => {
     if (values.invoiceDetailsRequest) {
       const totalInvoiceValue = values.invoiceDetailsRequest.reduce(
-        (sum: number, item: { total: string | number }) =>
-          sum + (+item.total || 0),
+        (sum, item) => sum + (+item.total || 0),
         0
       );
       const totalDiscountValue = values.invoiceDetailsRequest.reduce(
-        (sum: number, item: { discountValue: string | number }) =>
-          sum + (+item.discountValue || 0),
+        (sum, item) => sum + (+item.discountValue || 0), // إجمالي الخصم
         0
       );
       const totalAdditionalValue = values.invoiceDetailsRequest.reduce(
-        (sum: number, item: { extraValue: string | number }) =>
-          sum + (+item.extraValue || 0),
+        (sum, item) => sum + (+item.extraValue || 0), // إجمالي الخصم
         0
       );
       const totalAfterDiscountAndAdditional =
         values.invoiceDetailsRequest.reduce(
-          (sum: number, item: { totalAfterExtra: string | number }) =>
-            sum + (+item.totalAfterExtra || 0),
+          (sum, item) => sum + (+item.totalAfterExtra || 0), // الإجمالي بعد الخصم والاضافة
 
           0
         );
       const TaxAdditionalValue = values.invoiceDetailsRequest.reduce(
-        (sum: number, item: { vat: string | number }) => sum + (+item.vat || 0),
+        (sum, item) => sum + (+item.vat || 0), // الإجمالي بعد الخصم والاضافة
 
         0
       );
       const TotalInvoicesValueByTax = values.invoiceDetailsRequest.reduce(
-        (sum: number, item: { totalAfterTax: string | number }) =>
-          sum + (+item.totalAfterTax || 0),
+        (sum, item) => sum + (+item.totalAfterTax || 0), // الإجمالي بعد الخصم والاضافة
 
         0
       );
@@ -108,7 +104,7 @@ function MainData() {
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-            <SelectPaymentStatus name="paymentAccountId" />
+            <PaymentAccount name="paymentAccountId" />
           </Grid>
           <Grid item xs={12} sm={4}>
             <SelectVendor name="vendorId" />
@@ -230,7 +226,7 @@ function MainData() {
 
           <Grid item xs={12} sm={6}>
             <Label htmlFor=""> آلية معالجة الكميات المجانية</Label>
-            <div className="flex items-center gap-4">
+            <div className="flex items-start flex-col gap-4">
               <RadioButtons
                 name="priceIncludeTax"
                 label="اعتبارها ايراد للشركة"
@@ -247,6 +243,24 @@ function MainData() {
               <RadioButtons
                 name="priceIncludeTax"
                 label="معلقة (غير معالجة)"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+            </div>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Label htmlFor=""> سعر المرتجع</Label>
+            <div className="flex items-start flex-col gap-4 gap-4">
+              <RadioButtons
+                name="priceIncludeTax"
+                label=" متوسط أسعار الشراء من المورد"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+              <RadioButtons
+                name="priceIncludeTax"
+                label=" متوسط آخر سعر شراء من المورد"
                 checked={values?.priceIncludeTax == true}
                 onChange={() => setFieldValue("priceIncludeTax", true)}
               />

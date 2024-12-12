@@ -11,7 +11,7 @@ export type MenuItem_TP = {
   icon: IconType;
   label: string;
   link?: string;
-  header?:string
+  header?: string;
   items?: {
     id: string;
     icon: IconType;
@@ -33,7 +33,6 @@ export const sideBarItems: MenuItem_TP[] = [
     // id: crypto.randomUUID(),
     // label: "Configuration and settings",
     // icon: HomeIcon,
-
   },
   {
     id: crypto.randomUUID(),
@@ -217,7 +216,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchase return",
-
+        link: "purchase/invoices/InvoicesReturns",
         icon: FaRegCircle,
       },
 

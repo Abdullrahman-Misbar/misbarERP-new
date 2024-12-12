@@ -3,6 +3,7 @@ import { useFormikContext } from "formik";
 import React from "react";
 import Select from "react-select";
 import { Label } from "./Label";
+import { FormikError } from "./FormikError";
 
 interface Option {
   label: string;
@@ -42,15 +43,11 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
 
   return (
     <Grid item xs={12} sm={12}>
-      {
-        label &&
-      <Label
-        htmlFor={`${id}`}
-        className=" "
-      >
-        {label}
-      </Label>
-      }
+      {label && (
+        <Label htmlFor={`${id}`} className=" ">
+          {label}
+        </Label>
+      )}
       <Select
         name={name}
         options={options}
@@ -82,7 +79,7 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
         }}
         {...props}
       />
-      {hasError && <FormHelperText>{""}</FormHelperText>}
+      <FormikError name={name} />
     </Grid>
   );
 };
