@@ -97,7 +97,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           </tr>
         </thead>
         <tbody>
-          {/* {filteredItems?.length ? (
+          {filteredItems?.length ? (
             filteredItems?.map((item: any) => (
               <tr key={item.tempKey}>
                 {headers.map((header) => (
@@ -116,6 +116,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                       placeholder={header?.placeholder}
                       moduleName={moduleName}
                       index={item.originalIndex}
+                      disabled={header?.disabled}
                       onChange={
                         header?.onChange
                           ? (e: React.ChangeEvent<any>) =>
@@ -149,8 +150,8 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
                 </div>
               </td>
             </tr>
-          )} */}
-          {children }
+          )}
+          {/* {children } */}
         </tbody>
       </table>
     </div>

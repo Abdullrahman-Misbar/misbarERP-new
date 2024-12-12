@@ -65,8 +65,8 @@ function Main({ editable }: Main_TP) {
     editable: editable ? true : false,
 
     SourceActivityType: 1,
-    qutationDetailsModal: response?.qutationDetailsModal?.length
-      ? response?.qutationDetailsModal?.map((item: Item_TP) => ({
+    qutationDetailsModal: response?.qutationDetailsResponse?.length
+      ? response?.qutationDetailsResponse?.map((item: Item_TP) => ({
           id: item?.id || 0,
           itemId: item?.itemId || 0,
           barcode: item?.barcode || "string",
@@ -81,6 +81,7 @@ function Main({ editable }: Main_TP) {
           isDeleted: item?.isDeleted || false,
           itemName: item?.itemName || "string",
           isChoosen: item?.isChoosen || false,
+          uoms: item?.product?.uoms,
         }))
       : [],
     copValue: {

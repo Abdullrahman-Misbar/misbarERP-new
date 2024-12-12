@@ -3,6 +3,7 @@ import React from "react";
 import DeleteIcon from "../../../../../atoms/icons/DeleteIcon";
 import TableDynamic from "../../../../../molecules/table/TableDynamic";
 import { FormValues, ItemsTableProps } from "./Types&Validation";
+import TableDynamicInvoices from "../../../../../molecules/table/TableDynamicInvoices";
 
 export default function ItemsInvoicesTable({
   moduleName,
@@ -109,40 +110,9 @@ export default function ItemsInvoicesTable({
               </button>
             </div>
             <div className="relative">
-              {/* <TableDynamic
-                //@ts-ignore
-                headers={headers}
+             
+              <TableDynamicInvoices
                 moduleName={moduleName}
-                //@ts-ignore
-                remove={remove}
-                actions={(index: number) => (
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFieldValue(`${moduleName}[${index}].isDeleted`, true);
-                    }}
-                    className=""
-                  >
-                    <DeleteIcon
-                      action={() => {
-                        setFieldValue(
-                          `${moduleName}[${index}].isDeleted`,
-                          true
-                        );
-                      }}
-                      fillCustom="red"
-                    />
-                  </button>
-                )}
-                //@ts-ignore
-                handleTabPress={handleTabPress}
-                //@ts-ignore
-
-                push={push}
-              /> */}
-              <TableDynamic
-                moduleName={moduleName}
-                remove={remove}
                 actions={(index) => (
                   <button
                     type="button"
@@ -150,16 +120,15 @@ export default function ItemsInvoicesTable({
                       setFieldValue(`${moduleName}[${index}].isDeleted`, true);
                     }}
                   >
-                    <DeleteIcon fillCustom="red" />
+                    <DeleteIcon fillCustom="red"  action={()=>{}}/>
                   </button>
                 )}
                 handleTabPress={handleTabPress}
-                push={push}
                 headers={headers}
               >
                 {/* <DetailsInvoiceItem moduleName={moduleName} /> */}
                 {children}
-              </TableDynamic>
+              </TableDynamicInvoices>
             </div>
           </div>
         )}

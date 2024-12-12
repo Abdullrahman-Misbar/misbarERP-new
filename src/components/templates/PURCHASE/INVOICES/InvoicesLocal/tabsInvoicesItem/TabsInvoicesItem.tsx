@@ -12,6 +12,7 @@ import {
 import DetailsInvoiceItem from "./DetailsInvoiceItem";
 import InvoiceDiscountsAndAdditionsRequest from "./InvoiceDiscountsAndAdditionsRequest";
 import InvoicesPaymentsSchedulingRequest from "./InvoicesPaymentsSchedulingRequest";
+import InvoicePaymentsRequest from "./InvoicePaymentsRequest";
 
 function TabsInvoicesItem() {
   const [value, setValue] = useState(0);
@@ -331,10 +332,16 @@ function TabsInvoicesItem() {
                   //   py: "16px",
                 }}
               >
+                {/* <ItemsInvoicesTable
+                  moduleName="invoicePaymentsRequest"
+                  headers={headerInvoicePaymentsRequest}
+                /> */}
                 <ItemsInvoicesTable
                   moduleName="invoicePaymentsRequest"
                   headers={headerInvoicePaymentsRequest}
-                />
+                >
+                  <InvoicePaymentsRequest moduleName="invoicePaymentsRequest" />
+                </ItemsInvoicesTable>
               </Box>
             </Grid>
           </Box>

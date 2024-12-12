@@ -14,7 +14,7 @@ function ApprovedBar() {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const statusApproved = values.isApproved ? false : true;
-  const postEndPoint = `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`;
+  const postEndPoint = `${values?.ApproveOrDisApproveEndPoint}/${id}?value=${statusApproved}`;
   const { mutate: updateApproved } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,

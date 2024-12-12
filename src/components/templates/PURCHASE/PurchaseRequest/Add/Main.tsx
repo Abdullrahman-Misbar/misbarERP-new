@@ -3,7 +3,14 @@ import { useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
-import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+} from "../const";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 
@@ -13,9 +20,6 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-
-
-
   const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
@@ -23,10 +27,6 @@ function Main({ editable }: Main_TP) {
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
-
-
-
-
 
   const postEndPoint = id
     ? `${mainENdPoint}/UpdateRequest/${id}`
@@ -50,6 +50,10 @@ function Main({ editable }: Main_TP) {
       editable,
       cancelRequestEndPoint,
       deleteEndPoint,
+      controlButtonEndPoint,
+      IndexMainPath,
+      mainENdPoint,
+      ApproveOrDisApproveEndPoint,
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
@@ -75,12 +79,18 @@ function Main({ editable }: Main_TP) {
     confirmationDayes: response?.confirmationDayes || 0,
     currencyId: response?.currencyId || "",
     warehouseId: response?.warehouseId || "",
-    total: response?.total || "",
+    total: response?.total || 0,
     priceIncludeTax: response?.priceIncludeTax || false,
     isApproved: response?.isApproved || false,
     note: response?.note || "",
+
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+
     SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({

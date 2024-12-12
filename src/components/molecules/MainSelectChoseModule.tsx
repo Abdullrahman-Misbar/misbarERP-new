@@ -37,6 +37,7 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
   });
 
   useEffect(() => {
+    if(values.items_type)
     if (rowData?.data) {
       const newDataWithId = rowData.data.map((item: any) => ({
         ...item,
@@ -58,10 +59,9 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
 
       setFieldValue(moduleName, [...updatedData]);
     } else {
-      // تفريغ القيم عند عدم وجود بيانات
       setFieldValue(moduleName, []);
     }
-  }, [rowData]);
+  }, [rowData ]);
 
   const handleAgreeAction = () => {
     setFieldValue("num_item_id", values?.item_id);

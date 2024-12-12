@@ -7,36 +7,10 @@ import { Item_TP } from "../Add/Types&Validation";
 function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
   const { values, setFieldValue } = useFormikContext<any>();
   const className = "min-w-[200px]";
-
-  const handleInputChange = (
-    index: string | number,
-    field: string,
-    value: number
-  ) => {
-    const currentItem = { ...values[moduleName][index] };
-    currentItem[field] = Number(value) || 0;
-    const total = values.total || 0;
-
-    if (field === "discountRate") {
-      currentItem.discountValue = currentItem.discountRate * total;
-    } else if (field === "discountValue") {
-      currentItem.discountRate =
-        total > 0 ? (currentItem.discountValue / total) * 100 : 0;
-    }
-
-    if (field === "additionRate") {
-      currentItem.additionValue = currentItem.additionRate * total;
-    } else if (field === "additionValue") {
-      currentItem.additionRate =
-        total > 0 ? (currentItem.additionValue / total) * 100 : 0;
-    }
-
-    const currencyValue = currentItem.convertionFactor || 1; // قيمة العملة الافتراضية
-    if (field === "convertionRate" || field === "currencyId") {
-      currentItem.equivalent = currentItem.convertionRate * currencyValue;
-    }
-
-    setFieldValue(`${moduleName}[${index}]`, currentItem);
+  const calculateDueDate = (invoiceDate: string, creditDays: number) => {
+    const date = new Date(invoiceDate);
+    date.setDate(date.getDate() + creditDays);
+    return date.toISOString().split("T")[0];
   };
 
   return (
@@ -55,6 +29,11 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
                   `${moduleName}[${index}].invoicePortion`,
                   e.data?.invoicePortion
                 );
+                const dueDate = calculateDueDate(
+                  values?.invoiceDate,
+                  e.data?.creditDays || 0
+                );
+                setFieldValue(`${moduleName}[${index}].dueDate`, dueDate);
                 setFieldValue(
                   `${moduleName}[${index}].creditDays`,
                   e.data?.creditDays
@@ -68,18 +47,27 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
                   e.data?.discount
                 );
                 setFieldValue(
-                    `${moduleName}[${index}].dueAmount`,
-                    e.data?.invoicePortion * values?.total / 100
-                  );
-                  setFieldValue(
-                    `${moduleName}[${index}].discountAmount`,
-                    e.data?.isDiscountValueOrRatio == 1  ?  e.data?.discount * (e.data?.invoicePortion * values?.total / 100) / 100 :  0
-                  );
-                  setFieldValue(
-                    `${moduleName}[${index}].dueAmountAfterDiscount`,
-                    // (e.data?.isDiscountValueOrRatio == 1  ?  e.data?.discount * values?.total / 100  :   values?.total) * e.data?.discount / 100
-                    (e.data?.invoicePortion * values?.total / 100) - (e.data?.isDiscountValueOrRatio == 1  ?  e.data?.discount * (e.data?.invoicePortion * values?.total / 100) / 100 :   0)
-                  );
+                  `${moduleName}[${index}].dueAmount`,
+                  (e.data?.invoicePortion * values?.total) / 100
+                );
+                setFieldValue(
+                  `${moduleName}[${index}].discountAmount`,
+                  e.data?.isDiscountValueOrRatio == 1
+                    ? (e.data?.discount *
+                        ((e.data?.invoicePortion * values?.total) / 100)) /
+                        100
+                    : 0
+                );
+                setFieldValue(
+                  `${moduleName}[${index}].dueAmountAfterDiscount`,
+                  // (e.data?.isDiscountValueOrRatio == 1  ?  e.data?.discount * values?.total / 100  :   values?.total) * e.data?.discount / 100
+                  (e.data?.invoicePortion * values?.total) / 100 -
+                    (e.data?.isDiscountValueOrRatio == 1
+                      ? (e.data?.discount *
+                          ((e.data?.invoicePortion * values?.total) / 100)) /
+                        100
+                      : 0)
+                );
               }}
             />
           </td>
@@ -101,11 +89,11 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
               name={`dueAmount`}
               type="number"
               placeholder="المبلغ المستحق"
-            //   onChange={(e) =>
-            //     handleInputChange(index, "dueAmount", +e.target.value)
-            //   }
-            value={item?.dueAmount}
-            disabled
+              //   onChange={(e) =>
+              //     handleInputChange(index, "dueAmount", +e.target.value)
+              //   }
+              value={item?.dueAmount}
+              disabled
             />
           </td>
           <td className={className}>
@@ -123,10 +111,13 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
           <td className={className}>
             <BaseInputDatepicker
               name={`dueDate`}
+              label=""
               placeholder="تاريخ الاستحقاق"
-              onChange={(e) =>
-                handleInputChange(index, "dueDate", +e.target.value)
-              }
+              value={item?.dueDate}
+              disabled
+              // onChange={(e) =>
+              //   handleInputChange(index, "dueDate", +e.target.value)
+              // }
             />
           </td>
 
@@ -135,9 +126,6 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
               name={`hasDiscount`}
               type="text"
               placeholder="لديه خصم؟"
-              // onChange={(e) =>
-              //   handleInputChange(index, "hasDiscount", +e.target.value)
-              // }
               value={item?.hasDiscount ? "نعم" : "لا"}
               disabled
             />
@@ -162,23 +150,32 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
           <td className={className}>
             <BaseInputDatepicker
               name={`discountDueDate`}
-         
               placeholder="تاريخ السداد للحصول على الخصم"
             />
           </td>
-          <td className={className}>
-            <BaseInputRepeater
+          <td className={` !min-w-[130px] ${className}`}>
+            {/* <BaseInputRepeater
               name={`status`}
               type="number"
               placeholder="الحالة"
-            />
+            /> */}
+            <p className="bg-red-500 p-1 px-5 w-fit text-center m-auto rounded-md text-white ">
+              غير مدفوع
+            </p>
           </td>
-          <td className={className}>
-            <BaseInputRepeater
+          <td className={` !min-w-[100px] ${className}`}>
+            {/* <BaseInputRepeater
               name={`additionRate`}
               type="number"
               placeholder="دفع"
-            />
+            /> */}
+
+            <button
+              type="button"
+              className="bg-[#3F51B5] p-1 px-5 w-fit text-center m-auto rounded-md text-white "
+            >
+              دفع
+            </button>
           </td>
           <td className="min-w-[200px] border-l px-1 border-b py-1">
             <BaseInputRepeater

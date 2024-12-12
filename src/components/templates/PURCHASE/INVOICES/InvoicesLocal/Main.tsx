@@ -40,7 +40,7 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} />
+      <MainHeadLayout setWord={setWord}   />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}

@@ -1,102 +1,111 @@
 import { FieldArray, useFormikContext } from "formik";
 import BaseInputRepeater from "../../atoms/formik/BaseInputRepeater";
 import DeleteIcon from "../../atoms/icons/DeleteIcon";
-import SelectCurrency from "../Selects/SelectCurrency";
-import SelectUoms from "../Selects/SelectUoms";
-import SelectWarehouse from "../Selects/SelectWarehouse";
-import TableDynamic from "../table/TableDynamic";
-import { FormValues, Header, receiptTableProps } from "./Types&Validation";
 import SelectAccount from "../Selects/SelectAccount";
+import CostCenter from "../Selects/SelectCostCenter";
+import SelectCurrency from "../Selects/SelectCurrency";
+import TableDynamic from "../table/TableDynamic";
+import {
+  FormValues,
+  receiptTableProps,
+  ReceiptHeader
+} from "./Types&Validation";
 
 export default function ReceiptTable({ moduleName }: receiptTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
 
-  const headers: Header[] = [
+  const headers: ReceiptHeader[] = [
+    {
+      name: "debitAmount",
+      label: "المبلغ",
+      placeholder: "المبلغ",
+      component: BaseInputRepeater,
+      type: "number",
+    },
     {
       name: "accountId",
-      label: "العملة",
-      component:SelectAccount,
+      label: "الحساب",
+      component: SelectAccount,
       type: "text",
-      onChange: (e) => {
-    
-        setFieldValue(`${moduleName}.accountId`, e.value);
-      },
-    },
-    {
-      name: "description",
-      label: "الوصف",
-      placeholder: "الوصف",
-      component: BaseInputRepeater,
-      type: "text",
-    },
-    {
-      name: "uomId",
-      label: "وحدة القياس",
-      component: SelectUoms,
-      type: "text",
-      onChange: (e) => {
-        setFieldValue(
-          `${moduleName}[${values[moduleName]?.length - 1}].uomId`,
-          e.value
-        );
-      },
-    },
-    {
-      name: "warehouseId",
-      label: "المخزن",
-      component: SelectWarehouse,
-      type: "text",
-      onChange: (e) => {
-        setFieldValue(
-          `${moduleName}[${values[moduleName]?.length - 1}].warehouseId`,
-          e.value
-        );
-      },
-    },
-    {
-      name: "quantity",
-      label: "الكمية",
-      placeholder: "الكمية",
-      component: BaseInputRepeater,
-      type: "number",
       onChange: (e) => {
         const rowIndex = values[moduleName]?.length - 1;
-        const quantity = +e.target.value;
-        const price = values[moduleName]?.[rowIndex]?.price || 0;
-        const total = price * quantity;
-        setFieldValue(`${moduleName}[${rowIndex}].quantity`, quantity);
-        setFieldValue(`${moduleName}[${rowIndex}].total`, total);
+
+        const accountId = e.value;
+
+        setFieldValue(`${moduleName}[${rowIndex}].accountId`, accountId);
       },
     },
-    {
-      name: "price",
-      label: "التكلفة",
-      placeholder: "التكلفة",
-      component: BaseInputRepeater,
-      type: "number",
-      onChange: (e) => {
-        const rowIndex = values[moduleName]?.length - 1;
-        const price = +e.target.value;
-        const quantity = values[moduleName]?.[rowIndex]?.quantity || 0;
-        const total = price * quantity;
-        setFieldValue(`${moduleName}[${rowIndex}].price`, price);
-        setFieldValue(`${moduleName}[${rowIndex}].total`, total);
-      },
-    },
-    {
-      name: "total",
-      label: "المجموع",
-      placeholder: "المجموع",
-      component: BaseInputRepeater,
-      type: "number",
-    },
+
     {
       name: "note",
-      label: "الملاحظات",
-      placeholder: "الملاحظات",
+      label: "البيان",
+      placeholder: "البيان",
       component: BaseInputRepeater,
       type: "text",
+    },
+
+    {
+      name: "currencyId",
+      label: "العمله",
+      component: SelectCurrency,
+      type: "text",
+      onChange: (e) => {
+        const rowIndex = values[moduleName]?.length - 1;
+
+        setFieldValue(`${moduleName}[${rowIndex}].currencyId`, e.value);
+        setFieldValue(`${moduleName}[${rowIndex}].convertionRate`, e.convertionFactor);
+
+      },
+    },
+    {
+      name: "convertionRate",
+      label: "التعادل",
+      placeholder: "التعادل",
+      component: BaseInputRepeater,
+      type: "number",
+      disabled:true
+    },
+
+    {
+      name: "equivalent",
+      label: "المكافي",
+      placeholder: "المكافي",
+      component: BaseInputRepeater,
+      type: "number",
+    },
+
+    {
+      name: "costCenterId",
+      label: "مركز التكلفه",
+      component: CostCenter,
+      type: "text",
+      onChange: (e) => {
+        const rowIndex = values[moduleName]?.length - 1;
+
+        setFieldValue(`${moduleName}[${rowIndex}].costCenterId`, e.value);
+      },
+    },
+
+    {
+      name: "vatAccountId",
+      label: "حساب الضريبه",
+      component: SelectAccount,
+      type: "text",
+      onChange: (e) => {
+        const rowIndex = values[moduleName]?.length - 1;
+
+        const accountId = e.value;
+
+        setFieldValue(`${moduleName}[${rowIndex}].vatAccountId`, accountId);
+      },
+    },
+    {
+      name: "vatValue",
+      label: "ضريبة القيمة المضافة",
+      placeholder: "ضريبة القيمة المضافة",
+      component: BaseInputRepeater,
+      type: "number",
     },
   ];
   const handleTabPress = (

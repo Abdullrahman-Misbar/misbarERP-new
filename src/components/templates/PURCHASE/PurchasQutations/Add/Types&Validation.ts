@@ -134,4 +134,5 @@ export type Item_TP = {
   isDeleted: boolean;
   itemName: string;
   isChoosen: boolean;
+  product:string
 };

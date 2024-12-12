@@ -43,62 +43,69 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
   };
 
   return (
-    <FastField name={name}>
-      {({ field, meta }: any) => (
-        <div>
-          {label && (
-            <Label htmlFor={`${id}`} className="mb-1">
-              {label}
-            </Label>
-          )}
-          <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
-            <TextField
-              {...field}
-              type={type === "password" && !showPassword ? "password" : type}
-              id={id}
-              required={required}
-              variant="outlined"
-              placeholder={placeholder}
-              disabled={disabled}
-              fullWidth
-              error={meta.touched && !!meta.error}
-              sx={{
-                "& .MuiInputLabel-root": {
-                  fontFamily: "Somar-Bold, sans-serif",
-                  fontWeight: "bold",
-                },
-                "& input[type='date']::-webkit-calendar-picker-indicator": {
-                  display: "none",
-                },
-                "& input[type='date']": {
-                  "-webkit-appearance": "textfield",
-                },
-                ...(disabled && {
-                  backgroundColor: "#00000011",
-                  borderColor: "rgba(0, 0, 0, 0.2)",
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "#00000011",
-                  },
-                  "& input": {
-                    color: "rgba(0, 0, 0, 0.5)",
-                  },
-                }),
-                ...sx,
-              }}
-              {...props}
-            />
-            {type === "password" && (
-              <div className="absolute inset-y-0 rtl:left-[10px] ltr:right-[0] top-[-0px] pr-3 flex items-center text-xl text-green leading-5">
-                <button onClick={togglePasswordVisibility} type="button">
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
-              </div>
-            )}
-            <FormikError name={name} />
-          </div>
-        </div>
+    // <FastField name={name}>
+    //   {({ field, meta }: any) => (
+    <div>
+      {label && (
+        <Label htmlFor={`${id}`} className="mb-1">
+          {label}
+        </Label>
       )}
-    </FastField>
+      <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
+        <TextField
+          // {...field}
+          type={type === "password" && !showPassword ? "password" : type}
+          id={id}
+          required={required}
+          value={values[name]}
+          variant="outlined"
+          placeholder={placeholder}
+          disabled={disabled}
+          fullWidth
+          // error={meta.touched && !!meta.error}
+          sx={{
+            "& .MuiInputLabel-root": {
+              fontFamily: "Somar-Bold, sans-serif",
+              fontWeight: "bold",
+            },
+            "& input[type='date']::-webkit-calendar-picker-indicator": {
+              display: "none",
+            },
+            "& input[type='date']": {
+              "-webkit-appearance": "textfield",
+            },
+            ...(disabled && {
+              backgroundColor: "#00000011",
+              borderColor: "rgba(0, 0, 0, 0.2)",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#00000011",
+              },
+              "& input": {
+                color: "rgba(0, 0, 0, 0.5)",
+              },
+            }),
+            ...sx,
+          }}
+          {...props}
+          onChange={(e) =>
+            setFieldValue(
+              name,
+              type == "number" ? +e.target?.value : e.target?.value
+            )
+          }
+        />
+        {type === "password" && (
+          <div className="absolute inset-y-0 rtl:left-[10px] ltr:right-[0] top-[-0px] pr-3 flex items-center text-xl text-green leading-5">
+            <button onClick={togglePasswordVisibility} type="button">
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+        )}
+        <FormikError name={name} />
+      </div>
+    </div>
+    // )}
+    // </FastField>
   );
 };
 

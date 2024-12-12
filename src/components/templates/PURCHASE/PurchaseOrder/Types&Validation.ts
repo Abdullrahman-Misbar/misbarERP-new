@@ -14,7 +14,8 @@ export type RowData = {
   actions?: unknown;
   requestEndDate: string;
   isCanceled?: boolean;
-  status?: string;
+  status?: number;
+  createDate?:string
 };
 export const validationSchema = () =>
   Yup.object({

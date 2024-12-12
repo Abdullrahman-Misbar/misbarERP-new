@@ -5,6 +5,7 @@ import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
+import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
 
 type Main_TP = {
   editable?: boolean;
@@ -12,7 +13,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasOrder/Get/${id}`;
+  const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -21,8 +22,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `api/PurchasOrder/Update/${id}`
-    : `api/PurchasOrder`;
+    ? `${mainENdPoint}/Update/${id}`
+    : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -47,21 +48,32 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     code: response?.code || "",
+    editable:editable,
     total: response?.total || "",
     expectedReceiptDate: response?.expectedReceiptDate || "",
     createDate: response?.createDate || "",
     referenceDocument: response?.referenceDocument || "",
     currencyId: response?.currencyId || "",
-    vendorId: response?.vendorId || "",
     purchaseAgreementId: response?.purchaseAgreementId || "",
     note: response?.note || "",
     purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
     warehouseId: response?.warehouseId || "",
+    vendorId: response?.vendorId || "",
+    // purchaseAgreementId: response?.purchaseAgreementId || "",
+
+
     approvalDate: response?.approvalDate || "",
-    status: response?.status || "",
-    cancelRequestEndPoint: "api/PurchasOrder/CancleRequest",
-    status: response?.status || "",
+    status: response?.status || 0,
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+
+
     orderDetailsModal: response?.orderDetailsModal?.length
+    
       ? response?.orderDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,
           id: item?.id,

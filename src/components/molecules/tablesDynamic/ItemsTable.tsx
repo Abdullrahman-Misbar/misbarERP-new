@@ -7,7 +7,7 @@ import SelectWarehouse from "../Selects/SelectWarehouse";
 import TableDynamic from "../table/TableDynamic";
 import { FormValues, Header, ItemsTableProps } from "./Types&Validation";
 
-export default function ItemsTable({ moduleName }: ItemsTableProps) {
+export default function ItemsTable({ moduleName , headerImporting  }: ItemsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
   const headers: Header[] = [
@@ -98,6 +98,7 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       type: "text",
     },
   ];
+  
   const handleTabPress = (
     e: React.KeyboardEvent,
     index: number,
@@ -154,7 +155,7 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
             <div className="relative">
               <TableDynamic
                 //@ts-ignore
-                headers={headers}
+                headers={headerImporting ? headerImporting :headers}
                 moduleName={moduleName}
                 //@ts-ignore
                 remove={remove}

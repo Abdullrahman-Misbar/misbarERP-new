@@ -16,8 +16,10 @@ function MainCopyComp() {
     // term: word,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-const {values} = useFormikContext()
-  const endpoint = `api/PurchasReceipt?Take=1000${searchParams.toString()}`;
+  const { values } = useFormikContext<any>();
+  const endpoint = `api/Accounting/GetAllExpensessAndCredit?Take=100&voucherType=${
+    values.voucherType
+  }&${searchParams.toString()}`;
 
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
@@ -28,20 +30,17 @@ const {values} = useFormikContext()
 
   const columns = useMemo(
     () => generateColumns(page, refetch),
-    [page, refetch , values]
+    [page, refetch, values]
   );
-
 
   return (
     <div>
-     
       <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
         <div className="col-span-12">
           <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
         </div>
       </div>
 
-      
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}

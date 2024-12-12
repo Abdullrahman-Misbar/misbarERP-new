@@ -93,3 +93,6 @@ body {
   height: 40px !important;
 
 }
+.swal2-container{
+  z-index: 99999 !important;
+}

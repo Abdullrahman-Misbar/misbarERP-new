@@ -35,7 +35,7 @@ export const generateColumns = (
     },
     {
       header: `${t("vendorId")}`,
-      accessorKey: "vendorId",
+      accessorKey: "vendorName",
       cell: (info) => info.renderValue(),
     },
     {
@@ -75,15 +75,13 @@ export const generateColumns = (
         const status = info?.row?.original?.status;
 
         return (
-          <span >
+          <span>
             {status == 1 ? (
               <p className="text-orange-500">استلام جزئي</p>
             ) : status == 2 ? (
               <p className="text-green-400">استلم كلي</p>
             ) : (
-
               <p className="text-black">لم يتم الاستلام </p>
-
             )}
           </span>
         );

@@ -1,8 +1,4 @@
 // headers.ts
-import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
-import BaseInputRepeater from "../../../../../atoms/formik/BaseInputRepeater";
-import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentMethod";
-import { Header } from "./Types&Validation";
 
 export const headersDetailsInvoice = [
   {
@@ -128,33 +124,15 @@ export const headerInvoicesPaymentsSchedulingRequest = [
     label: "ملاحظات",
   },
 ];
-export const headerInvoicePaymentsRequest: Header[] = [
-  {
-    name: "paymentDate",
-    label: "التاريخ ",
-    placeholder: "التاريخ ",
-    component: BaseInputDatepicker,
-    type: "Date",
-    // width: "180px",
-  },
-  {
-    name: "paymentAmount",
-    label: "المبلغ المدفوع",
-    placeholder: "المبلغ المدفوع",
-    component: BaseInputRepeater,
-    type: "text",
-  },
-  {
-    name: "paymentMethod",
-    label: "طريقة الدفع",
-    component: SelectPaymentMethod,
-    type: "number",
-    //@ts-ignore
 
-    onChange: (e, setFieldValue, values, moduleName) => {
-      const moduleIndex = values[moduleName]?.length - 1;
-      setFieldValue(`${moduleName}[${moduleIndex}].paymentMethod`, e.value);
-    },
-    // width: "100px",
+export const headerInvoicePaymentsRequest = [
+  {
+    label: "التاريخ",
+  },
+  {
+    label: "المبلغ المدفوع",
+  },
+  {
+    label: "طريقة الدفع",
   },
 ];

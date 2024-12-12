@@ -3,21 +3,17 @@ import { useFormikContext } from "formik";
 import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
-import RadioButtons from "../../../../atoms/formik/RadioComp";
-import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import ApprovedStatus from "../../../../molecules/ApprovedStatus";
-import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
+import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
-import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
-import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
+import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 
 function MainData() {
-  const { values, setFieldValue } = useFormikContext<Values_TP>();
+  const { values } = useFormikContext<Values_TP>();
   const newValues = {
     qCode: values?.copValue?.qCode || "",
     approvalDate: values?.copValue?.approvalDate || "",
@@ -94,7 +90,7 @@ function MainData() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectCurrency name="currencyId" />
+            <SelectCurrency name="currencyId" labelName="العملة" />
           </Grid>
 
           <Grid item xs={12} sm={6} className="flex items-end gap-3">

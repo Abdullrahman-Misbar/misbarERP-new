@@ -51,7 +51,7 @@ function Main({ editable }: Main_TP) {
     code: response?.code || "",
     purchaseRepresentativeId: response?.purchaseRepresentativeId || 0,
     currencyId: response?.currencyId || 0,
-    vendorId: response?.vendorId || 0,
+    vendorId: response?.partnerId || 0,
     warehouseId: response?.warehouseId || 0,
     convertionRate: response?.convertionRate || 0,
     inDate: response?.inDate || "",

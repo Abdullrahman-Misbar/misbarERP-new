@@ -61,7 +61,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId" />
+            <SelectCurrency name="currencyId"  labelName="العملة"/>
           </Grid>
 
           <Grid item xs={12} sm={4}>
