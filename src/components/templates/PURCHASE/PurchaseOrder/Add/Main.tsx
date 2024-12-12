@@ -37,6 +37,7 @@ function Main({ editable }: Main_TP) {
     },
   });
 
+
   const handleSubmit = (values: Values_TP) => {
     const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
