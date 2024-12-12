@@ -4,7 +4,7 @@ import { useFetch, useMutate } from "../../../../../../hooks";
 import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
+import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -93,6 +93,7 @@ function Main({ editable }: Main_TP) {
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
         enableReinitialize
+        validationSchema={validationSchema}
       >
         <Form>
           <MainData />

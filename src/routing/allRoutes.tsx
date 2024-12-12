@@ -39,8 +39,8 @@ import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add"
 import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
 import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
 import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
-import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
-import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
+// import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
+// import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
 
 export const AllRoutesProvider = () => {
   return (

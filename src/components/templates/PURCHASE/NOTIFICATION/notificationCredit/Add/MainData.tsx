@@ -39,123 +39,122 @@ function MainData() {
       deleteEndPoint="/api/Notics/Delete"
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="noticeCode"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
-
-          {/* 1 */}
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="tax"
-              placeholder=" الضريبة"
-              type="number"
-              label=" الضريبة"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="noticeDate"
-              placeholder=" التاريخ  "
-              label=" التاريخ"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <SelectAccount name="accountId" labelName="الحساب" />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="sourceDocument"
-              placeholder=" المستند المرجعي"
-              type="text"
-              label=" المستند المرجعي"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="accountId"
-              placeholder="  المستخدم"
-              type="text"
-              label="  المستخدم"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="sourceDocumentDate"
-              placeholder=" تاريخ المستند المرجعي  "
-              label="   تاريخ المستند المرجعي"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="description"
-              placeholder="  البيان"
-              type="text"
-              label="  البيان"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4} mt={4}>
-            <div className="flex items-center gap-5">
-              <Label htmlFor="">الحالة</Label>
-
-              <ApprovedStatus />
-            </div>
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name=" "
-              placeholder="  قيمة الاشعار"
-              type="text"
-              label="  قيمة الاشعار"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-           <SelectNotification name="d"/>
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <div className="flex items-center gap-4 mt-8">
-              <Label htmlFor=""> طريقة العرض </Label>
-              <RadioButtons
-                name="displayMethod"
-                label=" عادي"
-                checked={values?.displayMethod == 0}
-                onChange={() => setFieldValue("displayMethod", 0)}
+        <Grid container rowSpacing={4} columnSpacing={3}>
+          <Grid container item sm={10} rowSpacing={4} columnSpacing={3}>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="noticeCode"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
               />
+            </Grid>
 
-              <RadioButtons
-                name="displayMethod"
-                label=" تفصيلي"
-                checked={values?.displayMethod == 1}
-                onChange={() => setFieldValue("displayMethod", 1)}
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="tax"
+                placeholder=" الضريبة"
+                type="number"
+                label=" الضريبة"
               />
-            </div>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={12}>
-            <BaseInputField
-              name="note"
-              placeholder="تفاصيل الفاتورة"
-              type="textarea"
-              label="تفاصيل الفاتورة"
-            />
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="noticeDate"
+                placeholder=" التاريخ  "
+                label=" التاريخ"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectAccount name="accountId" labelName="الحساب" />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="sourceDocument"
+                placeholder=" المستند المرجعي"
+                type="text"
+                label=" المستند المرجعي"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="sourceDocumentDate"
+                placeholder=" تاريخ المستند المرجعي  "
+                label="   تاريخ المستند المرجعي"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="description"
+                placeholder="  البيان"
+                type="text"
+                label="  البيان"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6} mt={4}>
+              <div className="flex items-center gap-5">
+                <Label htmlFor="">الحالة</Label>
+
+                <ApprovedStatus />
+              </div>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name=" "
+                placeholder="  قيمة الاشعار"
+                type="text"
+                label="  قيمة الاشعار"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <SelectNotification name="d" />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <div className="flex items-center gap-4 mt-8">
+                <Label htmlFor=""> طريقة العرض </Label>
+                <RadioButtons
+                  name="displayMethod"
+                  label=" عادي"
+                  checked={values?.displayMethod == 0}
+                  onChange={() => setFieldValue("displayMethod", 0)}
+                />
+
+                <RadioButtons
+                  name="displayMethod"
+                  label=" تفصيلي"
+                  checked={values?.displayMethod == 1}
+                  onChange={() => setFieldValue("displayMethod", 1)}
+                />
+              </div>
+            </Grid>
+
+            <Grid item xs={12}>
+              <BaseInputField
+                name="note"
+                placeholder="تفاصيل الفاتورة"
+                type="textarea"
+                label="تفاصيل الفاتورة"
+              />
+            </Grid>
+          </Grid>
+          <Grid item sm={2}>
+            <div className="flex items-center flex-col justify-center">
+              <div className="size-[168px] bg-[#EEE] mt-8"></div>
+              <p className="my-3">QR CODE</p>
+            </div>
           </Grid>
         </Grid>
+
         <Grid item xs={12} mt={5}>
           <MainSelectChoseModule moduleName="noticDetailsModal" />
           <ItemsTable moduleName="noticDetailsModal" />

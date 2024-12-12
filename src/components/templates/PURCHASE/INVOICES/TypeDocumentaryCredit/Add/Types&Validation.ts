@@ -12,13 +12,11 @@ export type RowData = {
   status: number;
   actions?: unknown;
 };
-
-
 export const validationSchema = () =>
   Yup.object({
-    accountId: Yup.string().trim().required('اسم الحساب مطلوب'),
-
-  })
+    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
+    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+  });
 
 export type Values_TP = {
   code: string;
