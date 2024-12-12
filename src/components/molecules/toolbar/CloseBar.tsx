@@ -2,12 +2,13 @@ import { Tooltip } from "@mui/material";
 import React from "react";
 import CloseIcon from "../../atoms/icons/CloseIcon";
 import { useNavigate } from "react-router-dom";
+import { useFormikContext } from "formik";
 
 function CloseBar() {
   const navigate = useNavigate();
-
+  const { values } = useFormikContext<any>();
   const handleClose = () => {
-    navigate(-1);
+    navigate(values?.IndexMainPath);
   };
   return (
     <div>

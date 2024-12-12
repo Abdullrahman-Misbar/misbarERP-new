@@ -17,6 +17,10 @@ import PurchasReceipt from "../pages/PURCHASE/PurchasReceipt";
 import AddPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Add";
 import EditPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Edit";
 import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
+import Receipts from "../pages/PURCHASE/Receipts";
+import AddReceipt from "../pages/PURCHASE/Receipts/Add";
+import EditReceipt from "../pages/PURCHASE/Receipts/Edit";
+
 import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
 import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
 import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
@@ -30,6 +34,11 @@ import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 import LogisticSetting from "../pages/SETTING/Logistic";
 import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
 import MainScreen from "../pages/MainScreen";
+import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
+import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
+import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
+import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
+import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
 
 export const AllRoutesProvider = () => {
   return (
@@ -94,6 +103,43 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local"
           element={<InvoicesLocal title={t("Invoices Local")} />}
         />
+
+        <Route
+          path="/purchase/invoices/local/add"
+          element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
+        />
+        <Route
+          path="/purchase/invoices/external"
+          element={<InvoicesExternal title={t("Invoices External")} />}
+        />
+        <Route
+          path="/purchase/invoices/external/add"
+          element={<AddInvoiceExternal title={t("Add Invoices External")} />}
+        />
+
+        <Route
+          path="/purchase/invoices/InvoicesReturns"
+          element={<InvoicesReturns title={t("Invoices Returns")} />}
+        />
+        <Route
+          path="/purchase/invoices/InvoicesReturns/add"
+          element={<AddInvoiceReturn title={t("Add Invoices External")} />}
+        />
+
+        {/* ------------------------------------------ */}
+        <Route
+          path="purchase/receipts"
+          element={<Receipts title={t("Receipts")} />}
+        />
+        <Route
+          path="purchase/receipts/add"
+          element={<AddReceipt title={t("Add Receipt")} />}
+        />
+        <Route
+          path="purchase/receipts/edit/:id"
+          element={<EditReceipt title={t("Edit Receipt")} />}
+        />
+
         {/* ------------------------------------------ */}
         <Route
           path="/purchase/notification/debit"
@@ -102,6 +148,10 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/notification/debit/add"
           element={<AddNotificationDebit title={t("Add Notification Debit")} />}
+        />
+        <Route
+          path="/purchase/notification/debit/edit"
+          element={<NotificationDebit title={t("Edit Notification Debit")} />}
         />
         <Route
           path="/purchase/notification/debit/edit/:id"
@@ -127,11 +177,6 @@ export const AllRoutesProvider = () => {
           }
         />
 
-
-        <Route
-          path="/purchase/invoices/local/add"
-          element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
-        />
         {/* SETTING */}
         {/* <Route
           path="/setting/orders"
@@ -142,6 +187,13 @@ export const AllRoutesProvider = () => {
           path="/MainScreen"
           element={<MainScreen title={t("MainScreen")} />}
         />
+
+        {/* ------------------Reports ------------------------ */}
+        <Route
+          path="/purchase/reports/purchaseInvoiceReport"
+          element={<PurchaseInvoiceReport title={t("invoices Setting")} />}
+        />
+        {/* ------------------setting ------------------------ */}
 
         <Route path="/setting" element={<Setting />}>
           <Route

@@ -46,7 +46,7 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
         label &&
       <Label
         htmlFor={`${id}`}
-        className="m-1 !text-[14px]  !font-semibold !my-1 !text-[#000000a3] "
+        className=" "
       >
         {label}
       </Label>

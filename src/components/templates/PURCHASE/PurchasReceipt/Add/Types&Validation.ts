@@ -31,8 +31,21 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
-  purchaseRequestDetailsDto: string[];
+  costCenterId: number;
+  status: any;
+  accountId: number;
+  billingStatus: any;
+  inDate: string;
+  convertionRate: number;
+  receiptDetailsModal: string[];
   copValue: {
+    editable: boolean;
+    costCenterId: number;
+    status: any;
+    accountId: number;
+    billingStatus: any;
+    inDate: string;
+    convertionRate: number;
     code: string;
     expectedReceiptDate: string;
     total: string;
@@ -42,7 +55,7 @@ export type Values_TP = {
     supplier: string;
     purchaseAgreement: string;
     notes: string;
-    purchaseRequestDetailsDto: string[];
+    receiptDetailsModal: string[];
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;

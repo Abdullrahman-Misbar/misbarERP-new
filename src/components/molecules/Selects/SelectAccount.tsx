@@ -1,74 +1,60 @@
-import { SelectChangeEvent } from "@mui/material";
+/* eslint-disable import/named */
 import { useFormikContext } from "formik";
 import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
+
+type SelectAccountProps = {
+  name: string;
+  labelName: string;
+  disabled?: boolean;
+};
 
 interface Option {
   value: string | number;
   label: string;
 }
 
-interface SelectAccountProps {
-  name: string;
-  onChange?: (event: SelectChangeEvent<string | number>) => void;
-  value?: string | number;
-  labelName: string;
-  disabled?: boolean;
-}
-
-interface AccountLookupResponse {
-  id: string;
-  lookupName: string;
-}
-
 interface FormikValues {
-  [key: string]: string;
-}
-interface FetchResponse<T> {
-  data: T;
-  error?: string;
-  isLoading?: boolean;
-  isSuccess?: boolean;
+  [key: string]: any;
 }
 
 const SelectAccount: React.FC<SelectAccountProps> = ({
   name,
-  disabled,
-  onChange,
-  value,
   labelName,
+  disabled,
+  value
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
 
-  const handleChange = (event: SelectChangeEvent<string | number>) => {
+  const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
-    console.log(event.value);
   };
 
   const endpoint = "api/Account/Lookup";
-
-  const { data } = useFetch<FetchResponse<AccountLookupResponse[]>>({
+  const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
   const options: Option[] =
-    data?.data?.map((item: AccountLookupResponse) => ({
+    //@ts-ignore
+    data?.data?.map((item: { id: string; lookupName: string }) => ({
       value: item.id,
       label: item.lookupName,
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
       name={name}
-      label={labelName}
-      placeholder={labelName}
+      label={labelName }
+      placeholder="اختر الحساب"
       options={options}
       value={selectedValue}
-      onChange={onChange || handleChange}
+      onChange={handleChange}
+      isLoading={isLoading}
       disabled={disabled}
     />
   );

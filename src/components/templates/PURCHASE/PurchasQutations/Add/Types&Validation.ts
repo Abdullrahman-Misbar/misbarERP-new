@@ -19,9 +19,13 @@ export const validationSchema = () =>
   });
 
 export type Values_TP = {
-  code: string;
+  qCode: string;
+  quotationDate: string;
+  quotationDeadLine: string;
+  duration: number;
   expectedReceiptDate: string;
   editable: boolean;
+
   total: string;
   priceIncludeTax: boolean;
   creationDate: string;
@@ -31,18 +35,21 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
-  purchaseRequestDetailsDto: string[];
+  qutationDetailsModal: string[];
   copValue: {
-    code: string;
+    qCode: string;
     expectedReceiptDate: string;
     total: string;
     creationDate: string;
     referenceDocument: string;
+    quotationDate: string;
+    quotationDeadLine: string;
+    duration: number;
     currency: string;
     supplier: string;
     purchaseAgreement: string;
     notes: string;
-    purchaseRequestDetailsDto: string[];
+    qutationDetailsModal: string[];
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
@@ -113,16 +120,19 @@ export type FetchResponse<T> = {
 };
 
 export type Item_TP = {
-  itemId: string;
-  note: string;
-  id: string;
-  price: number;
-  quantity: number;
-  total: number;
-  uomId: string;
-  warehouseId: string;
+  id: number;
+  itemId: number;
+  barcode: string;
   description: string;
-  product: {
-    uoms: string;
-  };
+  quantity: number;
+  uomId: number;
+  price: number;
+  total: number;
+  warehouseId: number;
+  note: string;
+  purchaseRequestId: number;
+  isDeleted: boolean;
+  itemName: string;
+  isChoosen: boolean;
+  product:string
 };

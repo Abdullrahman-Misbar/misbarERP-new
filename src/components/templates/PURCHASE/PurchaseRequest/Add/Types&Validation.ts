@@ -25,6 +25,7 @@ export type Values_TP = {
   total: string;
   priceIncludeTax: boolean;
   cancelRequestEndPoint:string
+  controlButtonEndPoint:string
   creationDate: string;
   deleteEndPoint:string
   referenceDocument: string;
@@ -33,6 +34,9 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
+  IndexMainPath:string
+  mainENdPoint:string
+  ApproveOrDisApproveEndPoint:string
   purchaseRequestDetailsDto: string[];
   copValue: {
     code: string;

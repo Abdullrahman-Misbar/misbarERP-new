@@ -96,6 +96,15 @@
   "referenceDocument": "المستند المرجعي",
   "purchaseAgreementId": "حالة الاستلام",
   "Class": "الصنف",
+  "invoice Date": "تاريخ الفاتورة",
+  "invoice Status": "حالة الفاتورة",
+  "Nature of prices": "طبيعة الاسعار",
+  "currancy Name": "العملة",
+  "payment Status": "حالة الدفع",
+  "Receipts": "السندات",
+  "Transfer Receipts": "سندات التحويل",
+  "Cash Payments": "سندات الصرف",
+  "Cash Receipts": "سندات القبض",
   "noticeDate": "التاريخ",
   "Reason for notice": "سبب الاشعار",
   "noticeAmount": "قيمة الاشعار",
@@ -106,10 +115,18 @@
   "": "",
   "": "",
   "": "",
-  "": "",
-  "invoice Date": "تاريخ الفاتورة",
-  "invoice Status": "حالة الفاتورة",
-  "Nature of prices":"طبيعة الاسعار",
-  "currancy Name":"العملة",
-  "payment Status":"حالة الدفع"
+  "Date" : "التاريخ" ,
+  "Payment Account": "حساب الدفع",
+  "Disbursed Amount": "المبلغ المصروف",
+
+  "Receipt Account": "حساب القبض",
+  "Received Amount": "المبلغ المقبوض",
+
+  "Account Transferred From": "الحساب المحول منه",
+  "Transferred Amount": "المبلغ المحول",
+  "account"  : "الحساب",
+  "convertionRate" : "التعادل",
+  "cost center" : "مركز التكلفه",
+  "voucher code" : "الرقم المرجعي"
+
 }

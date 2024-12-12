@@ -7,7 +7,7 @@ import SelectWarehouse from "../Selects/SelectWarehouse";
 import TableDynamic from "../table/TableDynamic";
 import { FormValues, Header, ItemsTableProps } from "./Types&Validation";
 
-export default function ItemsTable({ moduleName }: ItemsTableProps) {
+export default function ItemsTable({ moduleName , headerImporting  }: ItemsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
   const headers: Header[] = [
@@ -98,11 +98,16 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       type: "text",
     },
   ];
-  const handleTabPress = (e: React.KeyboardEvent, index: number, push: Function) => {
+  
+  const handleTabPress = (
+    e: React.KeyboardEvent,
+    index: number,
+    push: Function
+  ) => {
     if (e.key === "Tab") {
       const lastIndex = values[moduleName]?.length - 1;
-      const currentRow = values[moduleName]?.[index];  
-  
+      const currentRow = values[moduleName]?.[index];
+
       if (index === lastIndex && currentRow?.note !== undefined) {
         push({
           itemId: "",
@@ -119,9 +124,7 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
       }
     }
   };
-  
-  
-  
+
   return (
     <div>
       <FieldArray name={moduleName}>
@@ -152,7 +155,7 @@ export default function ItemsTable({ moduleName }: ItemsTableProps) {
             <div className="relative">
               <TableDynamic
                 //@ts-ignore
-                headers={headers}
+                headers={headerImporting ? headerImporting :headers}
                 moduleName={moduleName}
                 //@ts-ignore
                 remove={remove}

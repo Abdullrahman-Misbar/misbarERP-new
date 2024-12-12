@@ -19,8 +19,9 @@ interface FormikValues {
 
 const SelectEmployee: React.FC<SelectEmployeeProps> = ({
   name,
+  value
 }) => {
-  const { setFieldValue } = useFormikContext<FormikValues>();
+  const { setFieldValue , values } = useFormikContext<FormikValues>();
 
   const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
@@ -39,6 +40,7 @@ const SelectEmployee: React.FC<SelectEmployeeProps> = ({
       value: item.id,
       label: item.name,
     })) || [];
+    const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -47,6 +49,8 @@ const SelectEmployee: React.FC<SelectEmployeeProps> = ({
       placeholder=" مندوب المشتريات"
       options={options}
       isLoading={isLoading}
+      value={selectedValue}
+
       onChange={handleChange}
     />
   );

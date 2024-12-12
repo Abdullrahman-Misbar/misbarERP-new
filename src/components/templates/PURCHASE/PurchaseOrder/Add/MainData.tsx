@@ -12,6 +12,7 @@ import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import SelectEmployee from "../../../../molecules/Selects/SelectEmployee";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -36,7 +37,6 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasOrder"
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -86,7 +86,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId" />
+            <SelectCurrency name="currencyId" labelName="العملة" />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -110,11 +110,11 @@ function MainData() {
                     ? "استلام كلي"
                     : ""} */}
                   {values?.status == 1 ? (
-                    <p className="">استلام جزئي</p>
+                    <p className="text-orange-500">استلام جزئي</p>
                   ) : values?.status == 2 ? (
-                    <p className="">استلم كلي</p>
+                    <p className="text-green-400">استلم كلي</p>
                   ) : (
-                    "لم يتم الاستلام"
+                    <p className="text-black">لم يتم الاستلام </p>
                   )}
                 </span>
               </div>
@@ -122,12 +122,13 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={4}>
-            <BaseInputField
+            {/* <BaseInputField
               name="purchaseRepresentativeId"
               placeholder=" مندوب المشتريات"
               type="text"
               label=" مندوب المشتريات"
-            />
+            /> */}
+            <SelectEmployee name="purchaseRepresentativeId" />
           </Grid>
 
           <Grid item xs={12} sm={4}>
@@ -142,7 +143,7 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={8}>
             <BaseInputField
               name="note"
               placeholder="ملاحظات"

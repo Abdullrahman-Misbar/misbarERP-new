@@ -44,12 +44,14 @@ function Main() {
       <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
+        //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
+        //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
