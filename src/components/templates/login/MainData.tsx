@@ -38,7 +38,7 @@ const LoginForm = ({ isPending }: LoginForm_TP) => {
                 name="username"
                 label="اسم المستخدم"
                 placeholder=" أدخل اسم المستخدم الخاص بك"
-                type="email"
+                type="text"
               />
             </div>
 

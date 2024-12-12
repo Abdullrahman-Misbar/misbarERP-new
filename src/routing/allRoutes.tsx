@@ -34,6 +34,9 @@ import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 import LogisticSetting from "../pages/SETTING/Logistic";
 import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
 import MainScreen from "../pages/MainScreen";
+import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
+import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
+import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
 
 export const AllRoutesProvider = () => {
   return (
@@ -103,6 +106,14 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
         />
+           <Route
+          path="/purchase/invoices/external"
+          element={<InvoicesExternal title={t("Invoices External")} />}
+        />
+          <Route
+          path="/purchase/invoices/external/add"
+          element={<AddInvoiceExternal title={t("Add Invoices External")} />}
+        />
 
         {/* ------------------------------------------ */}
         <Route
@@ -155,12 +166,8 @@ export const AllRoutesProvider = () => {
           }
         />
 
-
-
-        <Route
-          path="/purchase/invoices/local/add"
-          element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
-        />
+     
+       
         {/* SETTING */}
         {/* <Route
           path="/setting/orders"
@@ -171,6 +178,13 @@ export const AllRoutesProvider = () => {
           path="/MainScreen"
           element={<MainScreen title={t("MainScreen")} />}
         />
+
+        {/* ------------------Reports ------------------------ */}
+        <Route
+          path="/purchase/reports/purchaseInvoiceReport"
+          element={<PurchaseInvoiceReport title={t("invoices Setting")} />}
+        />
+        {/* ------------------setting ------------------------ */}
 
         <Route path="/setting" element={<Setting />}>
           <Route

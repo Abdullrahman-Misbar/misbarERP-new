@@ -11,7 +11,7 @@ export type MenuItem_TP = {
   icon: IconType;
   label: string;
   link?: string;
-
+  header?:string
   items?: {
     id: string;
     icon: IconType;
@@ -28,7 +28,13 @@ export const sideBarItems: MenuItem_TP[] = [
     icon: HomeIcon,
     link: "/",
   },
-  { header: "القائمة الرئيسية" },
+  {
+    header: "القائمة الرئيسية",
+    // id: crypto.randomUUID(),
+    // label: "Configuration and settings",
+    // icon: HomeIcon,
+
+  },
   {
     id: crypto.randomUUID(),
     label: "Configuration and settings",
@@ -130,7 +136,7 @@ export const sideBarItems: MenuItem_TP[] = [
   },
 
   // Ordering and purchasing processes
-  { header: " عمليات الطلب والمشتريات" },
+  { header: " عمليات الطلب والمشتريات", id: crypto.randomUUID() },
   {
     id: crypto.randomUUID(),
     label: "Operations",
@@ -200,14 +206,14 @@ export const sideBarItems: MenuItem_TP[] = [
               {
                 id: crypto.randomUUID(),
                 label: "External purchase invoices",
-                link: "",
+                link: "/purchase/invoices/external",
                 icon: FaRegCircle,
               },
             ],
           },
         ],
       },
-   
+
       {
         id: crypto.randomUUID(),
         label: "Purchase return",
@@ -286,22 +292,23 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchases",
-        link: "",
+
+        link: "/purchase/reports/purchaseInvoiceReport",
         icon: FaRegCircle,
-        items: [
-          {
-            id: crypto.randomUUID(),
-            label: "Bills",
-            link: "",
-            icon: FaRegCircle,
-          },
-          {
-            id: crypto.randomUUID(),
-            label: "Varieties",
-            link: "",
-            icon: FaRegCircle,
-          },
-        ],
+        // items: [
+        //   {
+        //     id: crypto.randomUUID(),
+        //     label: "Bills",
+        //     link: "",
+        //     icon: FaRegCircle,
+        //   },
+        //   {
+        //     id: crypto.randomUUID(),
+        //     label: "Varieties",
+        //     link: "",
+        //     icon: FaRegCircle,
+        //   },
+        // ],
       },
       {
         id: crypto.randomUUID(),
