@@ -201,7 +201,7 @@ export const sideBarItems: MenuItem_TP[] = [
               {
                 id: crypto.randomUUID(),
                 label: "Documentary credits",
-                link: "",
+                link: "/purchase/invoices/DocumentaryCredit",
                 icon: FaRegCircle,
               },
               {
