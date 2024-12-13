@@ -14,8 +14,13 @@ export type RowData = {
 };
 export const validationSchema = () =>
   Yup.object({
-    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
-    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+    partnerCode: Yup.string().trim().required("رمز المورد مطلوب"),
+    partnerName: Yup.string().trim().required("أسم المورد مطلوب"),
+    vendorType: Yup.string().trim().required("نوع المورد مطلوب"),
+    companyName: Yup.string().trim().required("أسم الشركة مطلوب"),
+    taxNumber: Yup.string().trim().required("الرقم الضريبي مطلوب"),
+    partnerGroupId: Yup.string().trim().required("مجموعة المورد مطلوب"),
+
   });
 
 export type Values_TP = {

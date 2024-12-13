@@ -65,7 +65,7 @@ function MainData() {
             <SelectMultiCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectPartnerGroup name="mainCategoryId" labelName={"المجموعة الرئيسية"}  />
+            <SelectPartnerGroup name="mainCategoryId" label="المجموعة الرئيسية " placeholder="أختر المجموعة الرئيسية"  />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SelectMultiTags name="tags" labelName={"الوسوم"} />
