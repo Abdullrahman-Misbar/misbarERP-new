@@ -42,6 +42,8 @@ import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 
 import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
 import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
+import ManualComparison from "../pages/PURCHASE/PurchaseRequest/ManualComparison";
+import AutoComparisonTable from "../pages/PURCHASE/PurchaseRequest/AutoComparison";
 
 export const AllRoutesProvider = () => {
   return (
@@ -230,6 +232,16 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/PurchaseSupplier/edit/:id"
           element={<EditPurchaseSupplier title={t("Edit Purchase request")} />}
+        />
+        {/* -------------------auto , manual comparison------------ */}
+
+        <Route
+          path="/purchase/PurchaseRequest/auto/:id"
+          element={<AutoComparisonTable  title={t("Auto Comparison")}  />}
+        />
+        <Route
+          path="/purchase/PurchaseRequest/manual/:id"
+          element={<ManualComparison  title={t("Manual Comparison")} />}
         />
       </Route>
 

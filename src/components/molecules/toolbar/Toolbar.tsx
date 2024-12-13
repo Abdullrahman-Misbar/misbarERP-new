@@ -17,7 +17,9 @@ type Toolbar_TP = {
   componentCopy: React.ReactNode;
   newValues?: { [key: string]: string };
 };
+
 const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
+  console.log( newValues);
   return (
     <>
       <div className="flex items-center justify-between p-4">
@@ -31,7 +33,7 @@ const Toolbar = ({ componentCopy, newValues }: Toolbar_TP) => {
           <UploadFileBar />
           <ApprovedBar />
           <CancelBar />
-          <SettingBar />
+          <SettingBar componentCopy={componentCopy} newValues={newValues} />
           <CloseBar />
         </div>
         <ControlTableButton />

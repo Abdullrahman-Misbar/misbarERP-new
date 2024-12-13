@@ -112,19 +112,17 @@
   "sourceDocumentDate": "تاريخ المستند المرجعي",
   "User": "المستخدم",
   "Statement": "البيان",
-
-  "Date" : "التاريخ" ,
+  "Date": "التاريخ",
   "Payment Account": "حساب الدفع",
   "Disbursed Amount": "المبلغ المصروف",
-
   "Receipt Account": "حساب القبض",
   "Received Amount": "المبلغ المقبوض",
-
   "Account Transferred From": "الحساب المحول منه",
   "Transferred Amount": "المبلغ المحول",
-  "account"  : "الحساب",
-  "convertionRate" : "التعادل",
-  "cost center" : "مركز التكلفه",
-  "voucher code" : "الرقم المرجعي"
-
+  "account": "الحساب",
+  "convertionRate": "التعادل",
+  "cost center": "مركز التكلفه",
+  "voucher code": "الرقم المرجعي",
+  "Auto Comparison": "المقارنه الاليه",
+  "Manual Comparison": "المقارنه اليدويه"
 }
