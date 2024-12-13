@@ -68,9 +68,9 @@ export const generateColumns = (
     {
       header: `${
         VoucherType === 0
-          ? t("Received Amount")
+          ? t("Receipt Amount")
           : VoucherType === 1
-          ? t("Disbursed Amount")
+          ? t("Payment Amount")
           : t("Transferred Amount")
       }`,
       accessorKey: "voucherType",
