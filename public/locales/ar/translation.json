@@ -29,7 +29,7 @@
   "Local purchase invoices": "فواتير شراء محلية",
   "External purchases": "مشتريات خارجية",
   "Documentary credit cards": "بطاقات الاعتمادات المستندية",
-  "Types of expenses for documentary credits": "انواع مصاريف لاعتمادات المستندية",
+  "Type Of Documentary Credit": "انواع مصاريف لاعتمادات المستندية",
   "Documentary credits": "الاعتمادات المستندية",
   "External purchase invoices": "فواتير شراء خارجية",
   "Purchase return": "مرتجع شراء",
@@ -114,19 +114,18 @@
   "Statement": "البيان",
   "Processing type": "نوع المعالجة",
   "Entry repository": "مستودع الادخال",
-  "": "",
   "Date" : "التاريخ" ,
   "Payment Account": "حساب الدفع",
   "Disbursed Amount": "المبلغ المصروف",
-
   "Receipt Account": "حساب القبض",
   "Received Amount": "المبلغ المقبوض",
-
   "Account Transferred From": "الحساب المحول منه",
   "Transferred Amount": "المبلغ المحول",
   "account"  : "الحساب",
   "convertionRate" : "التعادل",
   "cost center" : "مركز التكلفه",
-  "voucher code" : "الرقم المرجعي"
-
+  "voucher code" : "الرقم المرجعي",
+  "expense Type":"نوع المصاريف",
+  "distribution Method":"طريقة التوزيع",
+  "expense account":"حساب المصروف"
 }

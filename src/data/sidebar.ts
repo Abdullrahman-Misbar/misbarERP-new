@@ -192,8 +192,8 @@ export const sideBarItems: MenuItem_TP[] = [
               },
               {
                 id: crypto.randomUUID(),
-                label: "Types of expenses for documentary credits",
-                link: "",
+                label: "Type Of Documentary Credit",
+                link: "/purchase/invoices/TypeOfDocumentaryCredit",
                 icon: FaRegCircle,
               },
               {

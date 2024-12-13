@@ -1,23 +1,15 @@
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
+import { useEffect } from "react";
 import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../../atoms/formik/Label";
 import RadioButtons from "../../../../../atoms/formik/RadioComp";
 import LayoutMainData from "../../../../../molecules/LayoutMainData";
-import SelectBranch from "../../../../../molecules/Selects/SelectBranch";
-import SelectCostCenter from "../../../../../molecules/Selects/SelectCostCenter";
-import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
-import SelectEmployee from "../../../../../molecules/Selects/SelectEmployee";
-import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentMethod";
-import SelectPaymentStatus from "../../../../../molecules/Selects/SelectPaymentStatus";
-import SelectVendor from "../../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
 import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import { useEffect } from "react";
-import PaymentAccount from "../../../../../molecules/Selects/PaymentAccount";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();

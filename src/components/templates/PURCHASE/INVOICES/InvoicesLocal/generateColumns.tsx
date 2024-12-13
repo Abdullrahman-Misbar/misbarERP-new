@@ -111,7 +111,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
+                      `/purchase/invoices/local/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

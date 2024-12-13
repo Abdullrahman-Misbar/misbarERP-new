@@ -10,12 +10,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { t } from "i18next";
 import React, { useEffect, useState } from "react";
-import { Loading } from "../../molecules/Loading/Loading";
-import { ReactTableProps } from "./tableTypes";
-import TableSkeleton from "../Skeleton/TableSkeleton";
 import DataNotFoundDrawer from "../DataNotFoundDrawer";
+import TableSkeleton from "../Skeleton/TableSkeleton";
+import { ReactTableProps } from "./tableTypes";
+import { Checkbox } from "../Checkbox";
+import MenuShowItems from "./MenuShowItems";
 
 export const Table = <T extends object>({
   data,
@@ -130,71 +130,83 @@ export const Table = <T extends object>({
             <TableSkeleton />
           </div>
         ) : (
-          <div className="column-visibility-controls">
-          <table id="print-table" className="min-w-full text-center">
-            <thead className="border-b ">
-              {table?.getHeaderGroups()?.map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
-                    >
-                      {header.isPlaceholder ? null : (
-                        <div
-                          {...{
-                            className: header.column.getCanSort()
-                              ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
-                              : "",
-                            onClick: () => handleSorting(header),
-                          }}
-                        >
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                          {header.column?.columnDef?.filterKey && (
-                            <span className="table-sort-arrow">
-                              {{
-                                asc: " 🔼",
-                                desc: " 🔽",
-                              }[sortingState[header.id]] ?? null}
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </th>
+          <div>
+            <div className="column-visibility-controls ">
+              <table id="print-table" className="min-w-full text-center">
+                <thead className="border-b relative ">
+                  {table?.getHeaderGroups()?.map((headerGroup) => (
+                    <>
+                      <tr key={headerGroup.id}>
+                        {headerGroup.headers.map((header) => (
+                          <>
+                            <th
+                              key={header.id}
+                              className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
+                            >
+                              {header.isPlaceholder ? null : (
+                                <div
+                                  {...{
+                                    className: header.column.getCanSort()
+                                      ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
+                                      : "",
+                                    onClick: () => handleSorting(header),
+                                  }}
+                                >
+                                  {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                  )}
+                                  {header.column?.columnDef?.filterKey && (
+                                    <span className="table-sort-arrow">
+                                      {{
+                                        asc: " 🔼",
+                                        desc: " 🔽",
+                                      }[sortingState[header.id]] ?? null}
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </th>
+                          </>
+                        ))}
+                      </tr>
+                    </>
                   ))}
-                </tr>
-              ))}
-            </thead>
+                  <div className="absolute left-0 top-[5px]">
+                    <MenuShowItems
+                      setColumnVisibility={setColumnVisibility}
+                      table={table}
+                    />
+                  </div>
+                </thead>
 
-            {isSuccess && !!data.length && (
-              <tbody className="">
-                {table?.getRowModel()?.rows?.map((row) => (
-                  <tr key={row.id} className="border-b ">
-                    {row?.getVisibleCells()?.map((cell) => (
-                      <td
-                        className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
-                        key={cell.id}
-                        style={{
-                          background: row.original.is_free_session
-                            ? "#F4FFFA"
-                            : "",
-                        }}
-                      >
-                        {flexRender(
-                          cell?.column?.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
+                {isSuccess && !!data.length && (
+                  <tbody className="">
+                    {table?.getRowModel()?.rows?.map((row) => (
+                      <tr key={row.id} className="border-b ">
+                        {row?.getVisibleCells()?.map((cell) => (
+                          <td
+                            className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
+                            key={cell.id}
+                            style={{
+                              background: row.original.is_free_session
+                                ? "#F4FFFA"
+                                : "",
+                            }}
+                          >
+                            {flexRender(
+                              cell?.column?.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </td>
+                        ))}
+                      </tr>
                     ))}
-                  </tr>
-                ))}
-              </tbody>
-            )}
-            <tfoot>{generateFooters(footerData)}</tfoot>
-          </table>
+                  </tbody>
+                )}
+                <tfoot>{generateFooters(footerData)}</tfoot>
+              </table>
+            </div>
           </div>
         )}
         {isSuccess &&

@@ -38,6 +38,12 @@ export type Values_TP = {
   inDate: string;
   convertionRate: number;
   receiptDetailsModal: string[];
+  cancelRequestEndPoint: string;
+  deleteEndPoint: string;
+  controlButtonEndPoint: string;
+  IndexMainPath: string;
+  mainENdPoint: string;
+  ApproveOrDisApproveEndPoint: string;
   copValue: {
     editable: boolean;
     costCenterId: number;

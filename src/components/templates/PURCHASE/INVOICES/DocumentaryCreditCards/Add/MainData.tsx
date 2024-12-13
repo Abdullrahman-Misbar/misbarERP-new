@@ -5,15 +5,31 @@ import SelectCards from "../../../../../molecules/Selects/SelectCards";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 
 function MainData() {
-
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       className="overflow-hidden"
+      visibility={{
+        undoBar: false,
+        deleteBar: false,
+        addBar: false,
+        printBar: false,
+        uploadFileBar: false,
+        approvedBar: false,
+        cancelBar: false,
+        settingBar: false,
+        closeBar: false,
+      }}
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4} p={3} className="overflow-hidden">
+        <Grid
+          container
+          rowSpacing={4}
+          columnSpacing={4}
+          p={3}
+          className="overflow-hidden"
+        >
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="cardCode"

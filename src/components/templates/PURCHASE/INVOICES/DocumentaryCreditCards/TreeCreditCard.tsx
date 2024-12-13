@@ -59,16 +59,8 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
     status,
   } = useTreeItem2({ id, itemId, children, label, disabled, rootRef: ref });
 
-  const handleClick = (event: React.MouseEvent) => {
-    // Prevent interfering with expand/collapse by ignoring clicks on the arrow or container
-    const target = event.target as HTMLElement;
-    if (
-      target.classList.contains("MuiTreeItem-iconContainer") || // Arrow container
-      target.classList.contains("MuiTreeItem-content") // Tree item container
-    ) {
-      return;
-    }
-    setCardID(itemId); // Set the card ID when clicking a node
+  const handleClick = () => {
+    setCardID(itemId); 
   };
 
   return (
@@ -76,25 +68,29 @@ const CustomTreeItem = React.forwardRef(function CustomTreeItem(
       <TreeItem2Root {...getRootProps(other)}>
         <CustomTreeItemContent
           {...getContentProps()}
-          // onClick={handleClick} 
-          
           sx={{
             marginRight: `${level * 20}px`, 
-            cursor: "pointer", 
           }}
         >
           <TreeItem2IconContainer {...getIconContainerProps()}>
             {hasChildren && <TreeItem2Icon status={status} />}
           </TreeItem2IconContainer>
-          <TreeItem2Checkbox {...getCheckboxProps()} />
+          <TreeItem2Checkbox
+            {...getCheckboxProps()}
+            onClick={(e) => {
+              e.stopPropagation(); 
+              handleClick();
+            }}
+          />
           <Box
             sx={{ flexGrow: 1, display: "flex", gap: 1, alignItems: "center" }}
+            onClick={(e) => {
+              e.stopPropagation(); 
+              handleClick();
+            }}
           >
             {isParent ? <FolderIcon /> : <FileIcon />}
-            <TreeItem2Label
-              {...getLabelProps()}
-              className="!font-somarBold mt-2"
-            />
+            <TreeItem2Label {...getLabelProps()} className="!font-somarBold mt-2" />
           </Box>
         </CustomTreeItemContent>
         {children && (
@@ -120,9 +116,9 @@ export default function HeadlessAPI({ data, setCardID }: any) {
             isParent={isParent}
             hasChildren={hasChildren}
             level={level}
-            setCardID={setCardID} 
+            setCardID={setCardID} // Pass the setCardID function to the child
           >
-            {buildTree(nodes, node.id, level + 1)} 
+            {buildTree(nodes, node.id, level + 1)} {/* Increment level for children */}
           </CustomTreeItem>
         );
       });
