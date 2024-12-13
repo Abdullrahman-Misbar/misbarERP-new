@@ -112,6 +112,7 @@
   "sourceDocumentDate": "تاريخ المستند المرجعي",
   "User": "المستخدم",
   "Statement": "البيان",
+
   "Processing type": "نوع المعالجة",
   "Entry repository": "مستودع الادخال",
   "Date" : "التاريخ" ,
@@ -127,5 +128,7 @@
   "voucher code" : "الرقم المرجعي",
   "expense Type":"نوع المصاريف",
   "distribution Method":"طريقة التوزيع",
-  "expense account":"حساب المصروف"
+  "expense account":"حساب المصروف",
+  "Auto Comparison": "المقارنه الاليه",
+  "Manual Comparison": "المقارنه اليدويه"
 }

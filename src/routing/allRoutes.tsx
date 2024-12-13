@@ -52,6 +52,10 @@ import PurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup";
 import AddPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Add";
 import EditPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Edit";
 
+import ManualComparison from "../pages/PURCHASE/PurchaseRequest/ManualComparison";
+import AutoComparisonTable from "../pages/PURCHASE/PurchaseRequest/AutoComparison";
+import DocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit";
+
 export const AllRoutesProvider = () => {
   return (
     <Routes>
@@ -153,7 +157,12 @@ export const AllRoutesProvider = () => {
             <DocumentaryCreditCards title={t("Document Credit Cards")} />
           }
         />
-
+    <Route
+          path="/purchase/invoices/DocumentaryCredit"
+          element={
+            <DocumentaryCredit title={t("Document Credit")} />
+          }
+        />
         {/* ----------------------- */}
         {/* <Route
           path="/purchase/invoices/ProcessingFreeQuantities"
@@ -275,9 +284,8 @@ export const AllRoutesProvider = () => {
           element={<EditPurchaseSupplier title={t("Edit Purchase request")} />}
         />
 
-
-         {/* ----------------------------------------- */}
-         <Route
+        {/* ----------------------------------------- */}
+        <Route
           path="/purchase/PurchaseSupplierGroup"
           element={<PurchaseSupplierGroup title={t("Suppliers Groups")} />}
         />
@@ -287,7 +295,9 @@ export const AllRoutesProvider = () => {
         />
         <Route
           path="/purchase/PurchaseSupplierGroup/edit/:id"
-          element={<EditPurchaseSupplierGroup title={t("Edit Supplier Group")} />}
+          element={
+            <EditPurchaseSupplierGroup title={t("Edit Supplier Group")} />
+          }
         />
         {/* ----------------------------------------- */}
         <Route
@@ -301,6 +311,15 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/PurchaseTemplate/edit/:id"
           element={<EditPurchaseTemplate title={t("Edit Payment terms")} />}
+        />
+
+        <Route
+          path="/purchase/PurchaseRequest/auto/:id"
+          element={<AutoComparisonTable title={t("Auto Comparison")} />}
+        />
+        <Route
+          path="/purchase/PurchaseRequest/manual/:id"
+          element={<ManualComparison title={t("Manual Comparison")} />}
         />
       </Route>
 
