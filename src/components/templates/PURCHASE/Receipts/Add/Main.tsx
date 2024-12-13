@@ -77,7 +77,11 @@ function Main({ VoucherType, editable }: Main_TP) {
     currencyId: response?.currencyId || 0,
     otherAccountId: response?.otherAccountId || 0,
     convertionRate: response?.convertionRate || 0,
-    costCenterId: response?.costCenterId || 0,
+    otherAccountId:
+    response?.voucherDetailsRequest?.length > 0 &&
+    response?.voucherDetailsRequest[0]?.debitAmount != 0
+      ? response?.voucherDetailsRequest[0]?.accountId || ""
+      : "",
     sourceDocument: response?.sourceDocument || "",
     note: response?.note || "",
 

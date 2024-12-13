@@ -1,7 +1,6 @@
 /* eslint-disable import/named */
-import React from "react";
-import { SelectChangeEvent } from "@mui/material";
 import { useFormikContext } from "formik";
+import React from "react";
 import { useFetch } from "../../../hooks";
 import SelectComp from "../../atoms/formik/SelectComp";
 
@@ -9,6 +8,7 @@ type CostCenterProps = {
   name: string;
   labelName?: string;
   disabled?: boolean;
+  value:string
 };
 
 interface Option {
@@ -24,8 +24,9 @@ const CostCenter: React.FC<CostCenterProps> = ({
   name,
   labelName,
   disabled,
+  value
 }) => {
-  const { setFieldValue, values } = useFormikContext<FormikValues>();
+  const { setFieldValue, values ,  } = useFormikContext<FormikValues>();
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
@@ -43,7 +44,8 @@ const CostCenter: React.FC<CostCenterProps> = ({
       value: item?.id,
       label: item?.lookupName,
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
+
 
   return (
     <SelectComp

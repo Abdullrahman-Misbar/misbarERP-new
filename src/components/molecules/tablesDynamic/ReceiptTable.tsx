@@ -82,7 +82,6 @@ export default function ReceiptTable({ moduleName }: receiptTableProps) {
       type: "text",
       onChange: (e) => {
         const rowIndex = values[moduleName]?.length - 1;
-
         setFieldValue(`${moduleName}[${rowIndex}].costCenterId`, e.value);
       },
     },

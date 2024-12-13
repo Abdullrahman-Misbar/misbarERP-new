@@ -17,6 +17,7 @@ type Main_TP = {
 function MainData({ VoucherType }: Main_TP) {
   console.log(VoucherType);
   const { values } = useFormikContext<Values_TP>();
+  console.log("🚀 ~ MainData ~ values:", values)
   const newValues = {
     voucherType: values?.copValue?.voucherType || VoucherType,
     id: 0,
