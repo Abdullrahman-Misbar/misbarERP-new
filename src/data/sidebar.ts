@@ -143,6 +143,8 @@ export const sideBarItems: MenuItem_TP[] = [
 
     icon: OprationsIcon,
     items: [
+
+      
       {
         id: crypto.randomUUID(),
         label: "Purchase Request",
@@ -241,10 +243,12 @@ export const sideBarItems: MenuItem_TP[] = [
           },
         ],
       },
+
+      
       {
         id: crypto.randomUUID(),
         label: "Purchase agreements",
-        link: "",
+        link: "/purchase/PurchaseAgreement",
         icon: FaRegCircle,
       },
       {

@@ -2,6 +2,7 @@ import { t } from "i18next";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/login";
+
 import PurchaseRequest from "../pages/PURCHASE/PurchaseRequest";
 import AddPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Add";
 import EditPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Edit";
@@ -39,6 +40,9 @@ import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
 import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
 import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
 import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
+import EditPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Edit";
+import AddPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Add";
+import PurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement";
 
 export const AllRoutesProvider = () => {
   return (
@@ -46,7 +50,23 @@ export const AllRoutesProvider = () => {
       <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route path="*" element={<ErrorPage />} />
         <Route index element={<Home title={t("Home")} />} />
+
+
         {/* PURCHASE */}
+        <Route
+          path="/purchase/PurchaseAgreement"
+          element={<PurchaseAgreement title={t("Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreement/add"
+          element={<AddPurchaseAgreement title={t("Add Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreement/edit/:id"
+          element={<EditPurchaseAgreement title={t("Edit Purchase request")} />}
+        />
+        {/* ----------------------------------------- */}
+
         <Route
           path="/purchase/PurchaseRequest"
           element={<PurchaseRequest title={t("Purchase request")} />}
