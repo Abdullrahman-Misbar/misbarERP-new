@@ -36,7 +36,7 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    console.log("🚀 ~ handleSubmit ~ values:", values)
+    console.log("🚀 ~ handleSubmit ~ values:", values);
     const {
       copValue,
       uoms,
@@ -45,9 +45,12 @@ function Main({ editable }: Main_TP) {
       deleteEndPoint,
       ...valuesWithoutCopValue
     } = values;
-      console.log("🚀 ~ handleSubmit ~ valuesWithoutCopValue:", valuesWithoutCopValue)
+    console.log(
+      "🚀 ~ handleSubmit ~ valuesWithoutCopValue:",
+      valuesWithoutCopValue
+    );
     const jsonData = JSON.stringify(valuesWithoutCopValue);
-    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData)
+    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData);
     mutate(jsonData);
   };
   //@ts-ignore
@@ -55,33 +58,39 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    invoiceCode: response?.invoiceCode || "",
-    invoiceDate: response?.invoiceDate || "",
-    vendorId: response?.vendorId || "",
-    vendorInvoiceCode: response?.vendorInvoiceCode || "",
-    vendorTaxNumber: response?.vendorTaxNumber || "",
-    vendorAccountId: response?.vendorAccountId || 1,
-    costCenterId: response?.costCenterId || "",
-    paymentMethod: response?.paymentMethod || "",
-    paymentAccountId: response?.paymentAccountId || "",
-    paymentStatus: response?.paymentStatus || 0,
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
-    branchId: response?.branchId || "",
-    warehouseId: response?.warehouseId || "",
-    currencyId: response?.currencyId || "",
-    convertionRate: response?.convertionRate || "",
-    referenceDocument: response?.referenceDocument || "",
-    withTax: response?.withTax || 0,
-    withoutTax: response?.withoutTax || 0,
-    total: response?.total || "",
-    net: response?.net || 0,
-    paid: response?.paid || 0,
-    remaining: response?.remaining || 0,
-    classification: response?.classification || 0,
-    paymentTemplateId: response?.paymentTemplateId || 1,
-    invoiceStatus: response?.invoiceStatus || 0,
-    approvalDate: response?.approvalDate || "",
+    operationCode: response?.operationCode || "",
+    operationDate: response?.operationDate || "",
+    processingType: response?.processingType || "",
+    userId: response?.userId || "",
+    werhouseName: response?.werhouseName || "",
     note: response?.note || "",
+
+    // vendorId: response?.vendorId || "",
+    // vendorInvoiceCode: response?.vendorInvoiceCode || "",
+    // vendorTaxNumber: response?.vendorTaxNumber || "",
+    // vendorAccountId: response?.vendorAccountId || 1,
+    // costCenterId: response?.costCenterId || "",
+    // paymentMethod: response?.paymentMethod || "",
+    // paymentAccountId: response?.paymentAccountId || "",
+    // paymentStatus: response?.paymentStatus || 0,
+    // purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
+    // branchId: response?.branchId || "",
+    // warehouseId: response?.warehouseId || "",
+    // currencyId: response?.currencyId || "",
+    // convertionRate: response?.convertionRate || "",
+    // referenceDocument: response?.referenceDocument || "",
+    // withTax: response?.withTax || 0,
+    // withoutTax: response?.withoutTax || 0,
+    // total: response?.total || "",
+    // net: response?.net || 0,
+    // paid: response?.paid || 0,
+    // remaining: response?.remaining || 0,
+    // classification: response?.classification || 0,
+    // paymentTemplateId: response?.paymentTemplateId || 1,
+    // invoiceStatus: response?.invoiceStatus || 0,
+    // approvalDate: response?.approvalDate || "",
+    // note: response?.note || "",
+    mainENdPoint: mainENdPoint,
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
 
@@ -110,21 +119,21 @@ function Main({ editable }: Main_TP) {
           uoms: item?.product?.uoms,
         }))
       : [
-        {
-          quantity: 0,
-          price: 0,
-          total: 0,
-          discountRate: 0,
-          discountValue: 0,
-          totalAfterDiscount: 0,
-          extraRate: 0,
-          extraValue: 0,
-          totalAfterExtra: 0,
-          taxRate: 0,
-          vat: 0,
-          totalAfterTax: 0,
-        },
-      ],
+          {
+            quantity: 0,
+            price: 0,
+            total: 0,
+            discountRate: 0,
+            discountValue: 0,
+            totalAfterDiscount: 0,
+            extraRate: 0,
+            extraValue: 0,
+            totalAfterExtra: 0,
+            taxRate: 0,
+            vat: 0,
+            totalAfterTax: 0,
+          },
+        ],
     invoiceDiscountsAndAdditionsRequest: response
       ?.invoiceDiscountsAndAdditionsRequest?.length
       ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({

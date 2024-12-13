@@ -44,6 +44,9 @@ import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
 import EditInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Edit";
 import EditInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/edit";
+import ProcessingFreeQuantities from "../pages/ProcessingFreeQuantities";
+import AddProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Add";
+import EditProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -148,7 +151,7 @@ export const AllRoutesProvider = () => {
         />
 
         {/* ----------------------- */}
-        {/* <Route
+        <Route
           path="/purchase/invoices/ProcessingFreeQuantities"
           element={
             <ProcessingFreeQuantities
@@ -163,7 +166,15 @@ export const AllRoutesProvider = () => {
               title={t("Add Invoices ProcessingFreeQuantities")}
             />
           }
-        /> */}
+        />
+        <Route
+          path="/purchase/invoices/ProcessingFreeQuantities/edit/:id"
+          element={
+            <EditProcessingFreeQuantities
+              title={t("edit Invoices ProcessingFreeQuantities")}
+            />
+          }
+        />
 
         {/* ------------------------------------------ */}
         <Route
