@@ -248,6 +248,31 @@ function MainData() {
               />
             </div>
           </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Label htmlFor=""> آلية معالجة الكميات المجانية</Label>
+            <div className="flex items-center gap-4">
+              <RadioButtons
+                name="priceIncludeTax"
+                label="اعتبارها ايراد للشركة"
+                checked={values?.priceIncludeTax == false}
+                onChange={() => setFieldValue("priceIncludeTax", false)}
+              />
+
+              <RadioButtons
+                name="priceIncludeTax"
+                label=" تخفيض التكاليف"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+              <RadioButtons
+                name="priceIncludeTax"
+                label="معلقة (غير معالجة)"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+            </div>
+          </Grid>
         </Grid>
         <div className="bg-[#f6f8ff] w-100 h-10"></div>
         <Grid item xs={12} mt={1}>

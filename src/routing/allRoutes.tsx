@@ -47,6 +47,13 @@ import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFr
 import TypeOfDocumentaryCredit from "../pages/PURCHASE/INVOICES/TypeOfDocumentaryCredit";
 import EditInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Edit";
 
+import PurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate";
+import EditPurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate/Edit";
+import AddPurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate/Add";
+import PurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup";
+import AddPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Add";
+import EditPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Edit";
+
 export const AllRoutesProvider = () => {
   return (
     <Routes>
@@ -268,6 +275,34 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/PurchaseSupplier/edit/:id"
           element={<EditPurchaseSupplier title={t("Edit Purchase request")} />}
+        />
+
+
+         {/* ----------------------------------------- */}
+         <Route
+          path="/purchase/PurchaseSupplierGroup"
+          element={<PurchaseSupplierGroup title={t("Suppliers Groups")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplierGroup/add"
+          element={<AddPurchaseSupplierGroup title={t("Add Supplier Group")} />}
+        />
+        <Route
+          path="/purchase/PurchaseSupplierGroup/edit/:id"
+          element={<EditPurchaseSupplierGroup title={t("Edit Supplier Group")} />}
+        />
+        {/* ----------------------------------------- */}
+        <Route
+          path="/purchase/PurchaseTemplate"
+          element={<PurchaseTemplate title={t("Payment terms")} />}
+        />
+        <Route
+          path="/purchase/PurchaseTemplate/add"
+          element={<AddPurchaseTemplate title={t("Add Payment terms")} />}
+        />
+        <Route
+          path="/purchase/PurchaseTemplate/edit/:id"
+          element={<EditPurchaseTemplate title={t("Edit Payment terms")} />}
         />
       </Route>
 

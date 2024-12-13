@@ -7,6 +7,8 @@ import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectCurrencyProps = {
   name: string;
+  labelName?: string;
+  disabled?: boolean;
 };
 
 interface Option {
@@ -18,7 +20,11 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({ name }) => {
+const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({
+   name,
+  labelName,
+  disabled,
+ }) => {
   const { setFieldValue } = useFormikContext<FormikValues>();
 
   const handleChange = (selectedOption: Option | null) => {
@@ -49,7 +55,7 @@ const SelectPartnerGroup: React.FC<SelectCurrencyProps> = ({ name }) => {
   return (
     <SelectComp
       name={name}
-      label="مجموعة المورد"
+      label={labelName ? labelName : "مجموعة المورد"}
       placeholder={isLoading ? "جاري التحميل..." : "اختر مجموعة المورد"}
       options={options}
       isLoading={isLoading}

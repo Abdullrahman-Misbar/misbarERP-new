@@ -64,9 +64,9 @@ export const generateColumns = (
       ),
     },
     {
-      header: `${t("referenceDocument")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
+      header: `${t("invoice Status")}`,
+      accessorKey: "invoiceStatus",
+      cell: (info) => info.renderValue() || "-",
     },
     {
       header: `${t("purchaseRepresentativeId")}`,
@@ -93,6 +93,7 @@ export const generateColumns = (
         </div>
       ),
     },
+   
 
     {
       header: `${t("note")}`,

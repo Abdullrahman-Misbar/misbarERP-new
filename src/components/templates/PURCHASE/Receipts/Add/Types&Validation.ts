@@ -20,7 +20,6 @@ export const validationSchema = () =>
 
 export type Values_TP = {
   code: string;
-
   expectedReceiptDate: string;
   editable: boolean;
   total: string;

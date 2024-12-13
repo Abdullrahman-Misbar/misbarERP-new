@@ -81,6 +81,7 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Supplier groups",
+        link: "/purchase/PurchaseSupplierGroup"
       },
       {
         id: crypto.randomUUID(),
@@ -91,6 +92,7 @@ export const sideBarItems: MenuItem_TP[] = [
         id: crypto.randomUUID(),
         icon: FaRegCircle,
         label: "Payment terms",
+        link: "/purchase/PurchaseTemplate"
       },
       {
         id: crypto.randomUUID(),
