@@ -20,6 +20,7 @@ export const validationSchema = () =>
 
 export type Values_TP = {
   code: string;
+
   expectedReceiptDate: string;
   editable: boolean;
   total: string;
@@ -41,6 +42,13 @@ export type Values_TP = {
   voucherDate: string;
   otherAccountId: number;
   voucherCode: number;
+  voucherType: any;
+  cancelRequestEndPoint: string;
+  deleteEndPoint: string;
+  controlButtonEndPoint: string;
+  IndexMainPath: string;
+  mainENdPoint: string;
+  ApproveOrDisApproveEndPoint: string;
 
   voucherDetailsRequest: string[];
   copValue: {

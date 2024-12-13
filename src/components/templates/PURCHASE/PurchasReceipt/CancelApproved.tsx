@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useMutate } from "../../../../hooks";
 import { notify } from "../../../../utils/toast";
 import showAlert from "../../../molecules/ShowAlert";
+import { ApproveOrDisApproveEndPoint } from "./const";
 
 type CancelApproved_TP = {
   refetch: () => void;
@@ -13,9 +14,9 @@ function CancelApproved({ refetch, info }: CancelApproved_TP) {
   const statusApproved = info?.row?.original?.isApproved ? false : true;
   const { mutate } = useMutate({
     mutationKey: [
-      `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+      `${ApproveOrDisApproveEndPoint}/${id}?value=${statusApproved}`,
     ],
-    endpoint: `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+    endpoint: `${ApproveOrDisApproveEndPoint}/${id}?value=${statusApproved}`,
     onSuccess: () => {
       refetch();
       notify(

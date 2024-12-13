@@ -5,23 +5,28 @@ import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
-
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+} from "../const";
 type Main_TP = {
   editable?: boolean;
 };
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasReceipt/Get/${id}`;
+  const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
-  const postEndPoint = id
-    ? `api/PurchasReceipt/Update/${id}`
-    : `api/PurchasReceipt`;
+  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     method: id ? "PUT" : "post",
@@ -38,7 +43,18 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
+    const {
+      copValue,
+      uoms,
+      editable,
+      cancelRequestEndPoint,
+      deleteEndPoint,
+      controlButtonEndPoint,
+      IndexMainPath,
+      mainENdPoint,
+      ApproveOrDisApproveEndPoint,
+      ...valuesWithoutCopValue
+    } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -64,6 +80,15 @@ function Main({ editable }: Main_TP) {
     partnerId: 8,
     editable: editable ? true : false,
     SourceActivityType: 1,
+
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+
+    
     receiptDetailsModal: response?.receiptDetailsModal?.length
       ? response?.receiptDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,
