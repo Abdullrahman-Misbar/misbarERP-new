@@ -1,8 +1,10 @@
 // Import necessary dependencies
 import { Button } from "@mui/material";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BreadcrumbComponent from "../../../../molecules/Breadcrumb";
 import { Table } from "../../../../molecules/tantable/Table";
+import { generateColumns } from "./generateColumns";
 
 // Define the data for the Manual table
 const manualData = [
@@ -44,69 +46,11 @@ const manualData = [
   },
 ];
 
-const manualColumns = [
-  {
-    accessorKey: "id",
-    header: "#",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    accessorKey: "purchaseRequest",
-    header: "طلب الشراء",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    accessorKey: "item",
-    header: "الصنف",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    accessorKey: "unit",
-    header: "الوحدة",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    header: "السعر",
-    isGroup: true, // Mark as a grouped header
-    colSpan: 3, // Number of columns under this group
-    columns: [
-      { accessorKey: "supplier1", header: "المورد الأول" },
-      { accessorKey: "supplier2", header: "المورد الثاني" },
-      { accessorKey: "supplier3", header: "المورد الثالث" },
-    ],
-  },
-  {
-    accessorKey: "offerDate",
-    header: "تاريخ انتهاء العرض",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    accessorKey: "referenceDoc",
-    header: "المستند المرجعي",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-  },
-  {
-    accessorKey: "notes",
-    header: "ملاحظات",
-    headerStyle: { backgroundColor: "#f5f5f5", border: "1px solid #ddd" },
-    cell: ({ row }) => {
-      const navigate = useNavigate();
-      return (
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() =>
-            navigate(`/purchase/PurchaseRequest/manual/${row.original.id}`)
-          }
-        >
-          اختر
-        </Button>
-      );
-    },
-  },
-];
 export default function Main() {
+  const [page, setPage] = useState(0);
+
+  const columns = useMemo(() => generateColumns(page), [page]);
+
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
     { label: "العمليات" },
@@ -134,7 +78,7 @@ export default function Main() {
       <div className="bg-white p-4  mb-2">
         <Table
           data={manualData}
-          columns={manualColumns}
+          columns={columns}
           isSuccess={true}
           isFetching={false}
           isLoading={false}
