@@ -2,48 +2,48 @@ import { t } from "i18next";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/login";
-import PurchaseRequest from "../pages/PURCHASE/PurchaseRequest";
-import AddPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Add";
-import EditPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Edit";
-import { ErrorPage } from "./ErrorPage";
-import { Root } from "./Root";
+import MainScreen from "../pages/MainScreen";
+import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
+import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
+import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
+import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
+import AddInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Add";
+import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
+import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
+import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
+import AddNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Add";
+import EditNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Edit";
+import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
+import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
+import EditNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Edit";
 import PurchaseOrder from "../pages/PURCHASE/PurchaseOrder";
 import AddPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Add";
 import EditPurchaseOrder from "../pages/PURCHASE/PurchaseOrder/Edit";
+import PurchaseRequest from "../pages/PURCHASE/PurchaseRequest";
+import AddPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Add";
+import EditPurchaseRequest from "../pages/PURCHASE/PurchaseRequest/Edit";
+import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
+import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
+import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 import PurchasQutations from "../pages/PURCHASE/PurchasQutations";
 import AddPurchasQutations from "../pages/PURCHASE/PurchasQutations/Add";
 import EditPurchasQutations from "../pages/PURCHASE/PurchasQutations/Edit";
 import PurchasReceipt from "../pages/PURCHASE/PurchasReceipt";
 import AddPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Add";
 import EditPurchasReceipt from "../pages/PURCHASE/PurchasReceipt/Edit";
-import InvoicesLocal from "../pages/PURCHASE/INVOICES/invoicesLocal";
 import Receipts from "../pages/PURCHASE/Receipts";
 import AddReceipt from "../pages/PURCHASE/Receipts/Add";
 import EditReceipt from "../pages/PURCHASE/Receipts/Edit";
-import NotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit";
-import NotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit";
-import AddNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Add";
-import AddInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Add";
-import EditNotificationDebit from "../pages/PURCHASE/NOTIFICATION/notificationDebit/Edit";
-import AddNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Add";
-import EditNotificationCredit from "../pages/PURCHASE/NOTIFICATION/notificationCredit/Edit";
-import OrderSetting from "../pages/SETTING/orderSetting";
+import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
 import Setting from "../pages/SETTING";
+import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
 import InvoiceSetting from "../pages/SETTING/invoiceSetting";
 import LogisticSetting from "../pages/SETTING/Logistic";
-import InformationWindowSetting from "../pages/SETTING/InformationWindowSetting";
-import MainScreen from "../pages/MainScreen";
-import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
-import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
-import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
-import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
-import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
-import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
-import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
-import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
-import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
-import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
-import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
+import OrderSetting from "../pages/SETTING/orderSetting";
+import { ErrorPage } from "./ErrorPage";
+import { Root } from "./Root";
+import EditInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Edit";
+import EditInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -113,7 +113,7 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
         />
-          <Route
+        <Route
           path="/purchase/invoices/local/edit/:id"
           element={<EditInvoiceLocal title={t("Edit Invoices Local")} />}
         />
@@ -134,9 +134,17 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/InvoicesReturns/add"
           element={<AddInvoiceReturn title={t("Add Invoices External")} />}
         />
-           <Route
+        <Route
+          path="/purchase/invoices/InvoicesReturns/edit/:id"
+          element={
+            <EditInvoiceReturn title={t("Add Invoices EditInvoiceReturn")} />
+          }
+        />
+        <Route
           path="/purchase/invoices/DocumentaryCreditCards"
-          element={<DocumentaryCreditCards title={t("Document Credit Cards")} />}
+          element={
+            <DocumentaryCreditCards title={t("Document Credit Cards")} />
+          }
         />
 
         {/* ----------------------- */}
