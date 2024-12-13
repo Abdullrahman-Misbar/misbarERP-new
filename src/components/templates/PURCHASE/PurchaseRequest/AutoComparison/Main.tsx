@@ -1,9 +1,10 @@
 // Import necessary dependencies
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import { Table } from "../../../../molecules/tantable/Table";
 import BreadcrumbComponent from "../../../../molecules/Breadcrumb";
+import { generateColumns } from "./generateColumns";
 
 // Define the data and columns
 const data = [
@@ -36,50 +37,10 @@ const data = [
   },
 ];
 
-const columns = [
-  { accessorKey: "id", header: "#" },
-  { accessorKey: "priceRequest", header: "عرض السعر" },
-  { accessorKey: "supplier", header: "المورد" },
-  { accessorKey: "offerDate", header: "تاريخ انتهاء العرض" },
-  { accessorKey: "referenceDoc", header: "المستند المرجعي" },
-  {
-    accessorKey: "total",
-    header: "الإجمالي",
-    cell: ({ getValue }) => (
-      <Box
-        sx={{
-          backgroundColor: "#DFFFD6",
-          fontWeight: "bold",
-          textAlign: "center",
-        }}
-      >
-        {getValue()}
-      </Box>
-    ),
-  },
-  { accessorKey: "notes", header: "ملاحظات" },
-  {
-    accessorKey: "approve",
-    header: "اعتماد عرض السعر",
-    cell: ({ row }) => {
-      const navigate = useNavigate();
-      return (
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() =>
-            navigate(`/purchase/PurchaseRequest/auto/${row.original.id}`)
-          }
-        >
-          اعتماد
-        </Button>
-      );
-    },
-  },
-];
-
 export default function App() {
+  const [page, setPage] = useState(0);
+
+  const columns = useMemo(() => generateColumns(page), [page]);
   const navigate = useNavigate();
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
