@@ -13,9 +13,8 @@ import {
 import React, { useEffect, useState } from "react";
 import DataNotFoundDrawer from "../DataNotFoundDrawer";
 import TableSkeleton from "../Skeleton/TableSkeleton";
-import { ReactTableProps } from "./tableTypes";
-import { Checkbox } from "../Checkbox";
 import MenuShowItems from "./MenuShowItems";
+import { ReactTableProps } from "./tableTypes";
 
 export const Table = <T extends object>({
   data,

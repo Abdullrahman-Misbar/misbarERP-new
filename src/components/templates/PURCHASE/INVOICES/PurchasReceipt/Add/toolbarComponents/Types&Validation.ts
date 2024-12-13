@@ -10,9 +10,11 @@ export type RowData = {
   vendorName: string
   expectedReceiptDate: string
   note: string
-  isApproved: boolean
-  requestDate:string
+  status: number
   actions?: unknown 
-  requestEndDate:string
-  isCanceled?:boolean
 }
+export const validationSchema = () =>
+  Yup.object({
+    username: Yup.string().trim().required('اسم المستخدم مطلوب'),
+    password: Yup.string().trim().required('كلمة المرور مطلوبة'),
+  })
