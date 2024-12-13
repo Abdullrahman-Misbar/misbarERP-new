@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import { useFormikContext } from "formik";
 import React from "react";
 import { Label } from "./Label";
+import { FormikError } from "./FormikError";
 
 interface BaseInputDatepickerProps {
   name: string;
@@ -45,6 +46,7 @@ const BaseInputDatepicker: React.FC<BaseInputDatepickerProps> = ({
             disabled={disabled}
           />
         </LocalizationProvider>
+        <FormikError name={name} />
       </div>
     </>
   );

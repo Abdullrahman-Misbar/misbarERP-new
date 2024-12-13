@@ -9,6 +9,7 @@ import { useFetch } from "../../../../../hooks";
 import { Table } from "../../../../molecules/tantable/Table";
 import Paginate from "../../../../molecules/table/Paginate";
 import { mainENdPoint } from "./const";
+import { InvoiceLocalType } from "../../../../../utils/globalConst";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -18,6 +19,7 @@ function Main() {
   const queryParams = {
     // page: page,
     // term: word,
+    invoiceType:InvoiceLocalType,
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
@@ -40,15 +42,17 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord}   />
+      <MainHeadLayout setWord={setWord} />
       <div className="p-3 bg-white rounded-md">
         <Table
+          //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
@@ -57,6 +61,7 @@ function Main() {
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
+      //@ts-ignore
           pagesCount={data?.data?.totalCount / 10}
           previousLabel={<IoIosArrowBack />}
           nextLabel={<IoIosArrowForward />}

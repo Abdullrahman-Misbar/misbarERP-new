@@ -37,30 +37,35 @@ function MainData() {
   useEffect(() => {
     if (values.invoiceDetailsRequest) {
       const totalInvoiceValue = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.total || 0),
+        (sum: number, item: { total: string | number }) =>
+          sum + (+item.total || 0),
         0
       );
       const totalDiscountValue = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.discountValue || 0), // إجمالي الخصم
+        (sum: number, item: { discountValue: string | number }) =>
+          sum + (+item.discountValue || 0),
         0
       );
       const totalAdditionalValue = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.extraValue || 0), // إجمالي الخصم
+        (sum: number, item: { extraValue: string | number }) =>
+          sum + (+item.extraValue || 0),
         0
       );
       const totalAfterDiscountAndAdditional =
         values.invoiceDetailsRequest.reduce(
-          (sum, item) => sum + (+item.totalAfterExtra || 0), // الإجمالي بعد الخصم والاضافة
+          (sum: number, item: { totalAfterExtra: string | number }) =>
+            sum + (+item.totalAfterExtra || 0),
 
           0
         );
       const TaxAdditionalValue = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.vat || 0), // الإجمالي بعد الخصم والاضافة
+        (sum: number, item: { vat: string | number }) => sum + (+item.vat || 0),
 
         0
       );
       const TotalInvoicesValueByTax = values.invoiceDetailsRequest.reduce(
-        (sum, item) => sum + (+item.totalAfterTax || 0), // الإجمالي بعد الخصم والاضافة
+        (sum: number, item: { totalAfterTax: string | number }) =>
+          sum + (+item.totalAfterTax || 0),
 
         0
       );
@@ -74,7 +79,6 @@ function MainData() {
       );
       setFieldValue("TaxAdditionalValue", TaxAdditionalValue, false);
       setFieldValue("TotalInvoicesValueByTax", TotalInvoicesValueByTax, false);
-
     }
   }, [values.invoiceDetailsRequest, setFieldValue]);
   return (

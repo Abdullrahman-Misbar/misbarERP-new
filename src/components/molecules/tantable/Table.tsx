@@ -42,6 +42,7 @@ export const Table = <T extends object>({
   const [currentPageData, setCurrentPageData] = useState<T[]>([]);
   const [sorting, setSorting] = React.useState<SortingState[]>([]);
   const [sortingState, setSortingState] = useState<Record<string, string>>({});
+  const [columnVisibility, setColumnVisibility] = useState({});
 
   const table = useReactTable(
     {
@@ -51,6 +52,8 @@ export const Table = <T extends object>({
         fuzzy: fuzzyFilter,
       },
       state: {
+        columnVisibility,
+
         globalFilter,
         sorting,
       },
@@ -62,6 +65,8 @@ export const Table = <T extends object>({
       onSortingChange: setSorting,
       onColumnFiltersChange: setColumnFilters,
       onGlobalFilterChange: setGlobalFilter,
+      onColumnVisibilityChange: setColumnVisibility,
+
       globalFilterFn: fuzzyFilter,
       getCoreRowModel: getCoreRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
@@ -125,6 +130,7 @@ export const Table = <T extends object>({
             <TableSkeleton />
           </div>
         ) : (
+          <div className="column-visibility-controls">
           <table id="print-table" className="min-w-full text-center">
             <thead className="border-b ">
               {table?.getHeaderGroups()?.map((headerGroup) => (
@@ -189,6 +195,7 @@ export const Table = <T extends object>({
             )}
             <tfoot>{generateFooters(footerData)}</tfoot>
           </table>
+          </div>
         )}
         {isSuccess &&
           !data?.length &&

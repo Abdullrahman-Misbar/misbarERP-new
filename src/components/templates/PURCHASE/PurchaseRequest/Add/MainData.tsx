@@ -18,7 +18,6 @@ import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
-  console.log("🚀 ~ MainData ~ values:", values);
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -74,7 +73,8 @@ function MainData() {
               <SwitchComp
                 name="deliverdConfirmation"
                 defaultChecked={values?.deliverdConfirmation == true}
-                onChange={(e) => {
+                //@ts-ignore
+                onChange={(e: any) => {
                   setFieldValue(
                     "deliverdConfirmation",
                     e.target.checked ? true : false

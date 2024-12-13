@@ -5,6 +5,7 @@ import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
+import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
 
 type Main_TP = {
   editable?: boolean;
@@ -12,7 +13,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasQutations/Get/${id}`;
+  const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -20,8 +21,8 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
   const postEndPoint = id
-    ? `api/PurchasQutations/Update/${id}`
-    : `api/PurchasQutations`;
+    ? `${mainENdPoint}/Update/${id}`
+    : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     method: id ? "PUT" : "post",
@@ -63,10 +64,15 @@ function Main({ editable }: Main_TP) {
     purchaseRequestDetailstId: response?.purchaseRequestDetailstId || null,
     quotationDetailsId: response?.quotationDetailsId || 0,
     editable: editable ? true : false,
-
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
     SourceActivityType: 1,
-    qutationDetailsModal: response?.qutationDetailsResponse?.length
-      ? response?.qutationDetailsResponse?.map((item: Item_TP) => ({
+    qutationDetailsModal: response?.qutationDetailsModal?.length
+      ? response?.qutationDetailsModal?.map((item: Item_TP) => ({
           id: item?.id || 0,
           itemId: item?.itemId || 0,
           barcode: item?.barcode || "string",

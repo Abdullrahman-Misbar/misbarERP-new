@@ -14,8 +14,10 @@ export type RowData = {
 };
 export const validationSchema = () =>
   Yup.object({
-    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
-    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+    requestDate: Yup.string().trim().required("تاريخ الطلب مطلوب"),
+    approvalDate: Yup.string().trim().required("تاريخ اعتماد الطلب"),
+    warehouseId: Yup.string().trim().required("المستودع مطلوب"),
+
   });
 
 export type Values_TP = {
@@ -34,6 +36,7 @@ export type Values_TP = {
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
+  confirmationDayes:string
   IndexMainPath:string
   mainENdPoint:string
   ApproveOrDisApproveEndPoint:string

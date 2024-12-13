@@ -55,6 +55,7 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
+    invoiceType:1,
     invoiceCode: response?.invoiceCode || "",
     invoiceDate: response?.invoiceDate || "",
     vendorId: response?.vendorId || "",

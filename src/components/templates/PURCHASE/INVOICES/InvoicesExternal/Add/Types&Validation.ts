@@ -64,6 +64,7 @@ export type Values_TP = {
     priceIncludeTax: string;
     isApproved: string;
   };
+  invoiceDetailsRequest:[]
   uoms: string;
 };
 

@@ -6,6 +6,7 @@ import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkelet
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 
 type Main_TP = {
   editable?: boolean;
@@ -36,7 +37,6 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    console.log("🚀 ~ handleSubmit ~ values:", values)
     const {
       copValue,
       uoms,
@@ -45,9 +45,11 @@ function Main({ editable }: Main_TP) {
       deleteEndPoint,
       ...valuesWithoutCopValue
     } = values;
-      console.log("🚀 ~ handleSubmit ~ valuesWithoutCopValue:", valuesWithoutCopValue)
+    console.log(
+      "🚀 ~ handleSubmit ~ valuesWithoutCopValue:",
+      valuesWithoutCopValue
+    );
     const jsonData = JSON.stringify(valuesWithoutCopValue);
-    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData)
     mutate(jsonData);
   };
   //@ts-ignore
@@ -56,6 +58,7 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     invoiceCode: response?.invoiceCode || "",
+    invoiceType: InvoiceLocalType,
     invoiceDate: response?.invoiceDate || "",
     vendorId: response?.vendorId || "",
     vendorInvoiceCode: response?.vendorInvoiceCode || "",
@@ -81,7 +84,7 @@ function Main({ editable }: Main_TP) {
     paymentTemplateId: response?.paymentTemplateId || 1,
     invoiceStatus: response?.invoiceStatus || 0,
     approvalDate: response?.approvalDate || "",
-    note: response?.note || "",
+    notes: response?.notes || "",
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
 
@@ -110,21 +113,21 @@ function Main({ editable }: Main_TP) {
           uoms: item?.product?.uoms,
         }))
       : [
-        {
-          quantity: 0,
-          price: 0,
-          total: 0,
-          discountRate: 0,
-          discountValue: 0,
-          totalAfterDiscount: 0,
-          extraRate: 0,
-          extraValue: 0,
-          totalAfterExtra: 0,
-          taxRate: 0,
-          vat: 0,
-          totalAfterTax: 0,
-        },
-      ],
+          {
+            quantity: 0,
+            price: 0,
+            total: 0,
+            discountRate: 0,
+            discountValue: 0,
+            totalAfterDiscount: 0,
+            extraRate: 0,
+            extraValue: 0,
+            totalAfterExtra: 0,
+            taxRate: 0,
+            vat: 0,
+            totalAfterTax: 0,
+          },
+        ],
     invoiceDiscountsAndAdditionsRequest: response
       ?.invoiceDiscountsAndAdditionsRequest?.length
       ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({

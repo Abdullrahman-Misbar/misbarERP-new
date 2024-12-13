@@ -12,7 +12,7 @@ import {
   mainENdPoint,
 } from "../const";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
+import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -68,9 +68,9 @@ function Main({ editable }: Main_TP) {
     code: response?.code || "",
     vendorId: response?.vendorId || "",
     editable: editable ? true : false,
-    requestDate: response?.requestDate || "",
+    requestDate: response?.requestDate || new Date(),
     requestEndDate: response?.requestEndDate || "",
-    approvalDate: response?.approvalDate || "",
+    approvalDate: response?.approvalDate || new Date(),
     expectedReceiptDate: response?.expectedReceiptDate || "",
     deliverdDate: response?.deliverdDate || "",
     referenceDocument: response?.referenceDocument || "",
@@ -90,7 +90,7 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
-
+    
     SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length
       ? response?.purchaseRequestDetailsDto?.map((item: Item_TP) => ({
@@ -136,6 +136,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
+        validationSchema={validationSchema}
         enableReinitialize
       >
         <Form>
