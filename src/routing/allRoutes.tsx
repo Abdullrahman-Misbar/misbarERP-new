@@ -42,6 +42,7 @@ import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
 import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
 import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
+import EditInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/edit";
 // import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
 // import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
 
@@ -121,7 +122,7 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/external/add"
           element={<AddInvoiceExternal title={t("Add Invoices External")} />}
         />
-
+        {/* ----------------------------- */}
         <Route
           path="/purchase/invoices/InvoicesReturns"
           element={<InvoicesReturns title={t("Invoices Returns")} />}
@@ -130,6 +131,11 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/InvoicesReturns/add"
           element={<AddInvoiceReturn title={t("Add Invoices External")} />}
         />
+        <Route
+          path="/purchase/invoices/InvoicesReturns/edit/:id"
+          element={<EditInvoiceReturn title={t("Add Invoices External")} />}
+        />
+        {/* -------------------------------  */}
         <Route
           path="/purchase/invoices/DocumentaryCreditCards"
           element={

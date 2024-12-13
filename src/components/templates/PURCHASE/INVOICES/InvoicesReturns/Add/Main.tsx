@@ -14,6 +14,7 @@ function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
   const endpoint = `${mainENdPoint}/Get/${id}`;
+  // const endpoint = `api/PurchasInvoice/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -36,7 +37,7 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    console.log("🚀 ~ handleSubmit ~ values:", values)
+    console.log("🚀 ~ handleSubmit ~ values:", values);
     const {
       copValue,
       uoms,
@@ -45,9 +46,12 @@ function Main({ editable }: Main_TP) {
       deleteEndPoint,
       ...valuesWithoutCopValue
     } = values;
-      console.log("🚀 ~ handleSubmit ~ valuesWithoutCopValue:", valuesWithoutCopValue)
+    console.log(
+      "🚀 ~ handleSubmit ~ valuesWithoutCopValue:",
+      valuesWithoutCopValue
+    );
     const jsonData = JSON.stringify(valuesWithoutCopValue);
-    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData)
+    console.log("🚀 ~ handleSubmit ~ jsonData:", jsonData);
     mutate(jsonData);
   };
   //@ts-ignore
@@ -110,21 +114,21 @@ function Main({ editable }: Main_TP) {
           uoms: item?.product?.uoms,
         }))
       : [
-        {
-          quantity: 0,
-          price: 0,
-          total: 0,
-          discountRate: 0,
-          discountValue: 0,
-          totalAfterDiscount: 0,
-          extraRate: 0,
-          extraValue: 0,
-          totalAfterExtra: 0,
-          taxRate: 0,
-          vat: 0,
-          totalAfterTax: 0,
-        },
-      ],
+          {
+            quantity: 0,
+            price: 0,
+            total: 0,
+            discountRate: 0,
+            discountValue: 0,
+            totalAfterDiscount: 0,
+            extraRate: 0,
+            extraValue: 0,
+            totalAfterExtra: 0,
+            taxRate: 0,
+            vat: 0,
+            totalAfterTax: 0,
+          },
+        ],
     invoiceDiscountsAndAdditionsRequest: response
       ?.invoiceDiscountsAndAdditionsRequest?.length
       ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({

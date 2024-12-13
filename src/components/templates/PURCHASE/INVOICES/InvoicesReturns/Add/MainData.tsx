@@ -116,17 +116,17 @@ function MainData() {
             <div className="flex items-center gap-4 mt-8">
               <Label htmlFor=""> طبيعة الاسعار</Label>
               <RadioButtons
-                name="withTax"
+                name="priceNature"
                 label="باستثناء الضريبة"
-                checked={values?.withTax == 1}
-                onChange={() => setFieldValue("withTax", 1)}
+                checked={values?.priceNature == 1}
+                onChange={() => setFieldValue("priceNature", 1)}
               />
 
               <RadioButtons
-                name="withTax"
+                name="priceNature"
                 label="شاملة الضريبة"
-                checked={values?.withTax == 0}
-                onChange={() => setFieldValue("withTax", 0)}
+                checked={values?.priceNature == 0}
+                onChange={() => setFieldValue("priceNature", 0)}
               />
             </div>
           </Grid>
@@ -138,6 +138,7 @@ function MainData() {
               label="تاريخ الفاتورة"
             />
           </Grid>
+
           <Grid item xs={12} sm={4} mt={4}>
             <div className="flex items-center gap-5">
               <Label htmlFor="">حالة الدفع</Label>
@@ -148,6 +149,7 @@ function MainData() {
               )}
             </div>
           </Grid>
+
           <Grid item xs={12} sm={4}>
             <BaseInputField
               name="vendorInvoiceCode"
@@ -183,7 +185,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
-              name="expectedReceiptDate"
+              name="ا"
               placeholder=" تاريخ الاستحقاق"
               label="تاريخ الاستحقاق"
             />
@@ -200,6 +202,7 @@ function MainData() {
               label="معدل التحويل"
             />
           </Grid>
+
           <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="approvalDate"
@@ -211,13 +214,14 @@ function MainData() {
           <Grid item xs={12} sm={4}>
             <SelectWarehouse name="warehouseId" label="اختر المستودع" />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <SelectCostCenter name="costCenterId" />
           </Grid>
 
           <Grid item xs={6}>
             <BaseInputField
-              name="note"
+              name="notes"
               placeholder="البيان"
               type="textarea"
               label="البيان"
@@ -225,26 +229,27 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Label htmlFor=""> آلية معالجة الكميات المجانية</Label>
+            <Label htmlFor="">آلية معالجة الكميات المجانية</Label>
             <div className="flex items-start flex-col gap-4">
               <RadioButtons
-                name="priceIncludeTax"
+                name="freeQuantitiesPolicy"
                 label="اعتبارها ايراد للشركة"
-                checked={values?.priceIncludeTax == false}
-                onChange={() => setFieldValue("priceIncludeTax", false)}
+                checked={values?.freeQuantitiesPolicy === 0}
+                onChange={() => setFieldValue("freeQuantitiesPolicy", 0)}
               />
 
               <RadioButtons
-                name="priceIncludeTax"
-                label=" تخفيض التكاليف"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
+                name="freeQuantitiesPolicy"
+                label="تخفيض التكاليف"
+                checked={values?.freeQuantitiesPolicy === 1}
+                onChange={() => setFieldValue("freeQuantitiesPolicy", 1)}
               />
+
               <RadioButtons
-                name="priceIncludeTax"
+                name="freeQuantitiesPolicy"
                 label="معلقة (غير معالجة)"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
+                checked={values?.freeQuantitiesPolicy === 2}
+                onChange={() => setFieldValue("freeQuantitiesPolicy", 2)}
               />
             </div>
           </Grid>
@@ -255,8 +260,8 @@ function MainData() {
               <RadioButtons
                 name="priceIncludeTax"
                 label=" متوسط أسعار الشراء من المورد"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
+                checked={values?.priceIncludeTax == false}
+                onChange={() => setFieldValue("priceIncludeTax", false)}
               />
               <RadioButtons
                 name="priceIncludeTax"
