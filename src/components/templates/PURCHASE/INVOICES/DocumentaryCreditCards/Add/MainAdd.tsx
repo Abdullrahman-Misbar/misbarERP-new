@@ -1,20 +1,21 @@
 import { Form, Formik } from "formik";
 import { useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../../hooks";
-import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
-import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import { postENdPoint } from "../const";
 import MainData from "./MainData";
 import { Values_TP } from "./Types&Validation";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 type MainAdd_TP = {
   editable?: boolean;
+  refetch:(options?: RefetchOptions) => Promise<QueryObserverResult>
 };
-function MainAdd({ editable }: MainAdd_TP) {
+function MainAdd({ editable  ,refetch }: MainAdd_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `${postENdPoint}/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -22,12 +23,13 @@ function MainAdd({ editable }: MainAdd_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
+  const postEndPoint = id ? `${postENdPoint}/Update/${id}` : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
     onSuccess: () => {
       notify("success");
+      refetch()
     },
     Module: "PURCHASE",
     method: id ? "PUT" : "post",

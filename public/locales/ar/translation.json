@@ -112,7 +112,9 @@
   "sourceDocumentDate": "تاريخ المستند المرجعي",
   "User": "المستخدم",
   "Statement": "البيان",
-
+  "Processing type": "نوع المعالجة",
+  "Entry repository": "مستودع الادخال",
+  "": "",
   "Date" : "التاريخ" ,
   "Payment Account": "حساب الدفع",
   "Disbursed Amount": "المبلغ المصروف",

@@ -14,18 +14,16 @@ import { generateColumns } from "./generateColumns";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
-  setOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
+function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
+  const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
 
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
-    { label: "فواتير الشراء" },
-    { label: "مشتريات خارجية", link: "/purchase/invoices/external" },
-    { label: "بطاقات الاعتماد المستندي" },
+    { label: " مرتجع الشراء" },
   ];
 
   return (
@@ -36,6 +34,7 @@ function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
       <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
         <div className="col-span-12">
           <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
+          <Filter />
         </div>
       </div>
 
@@ -44,10 +43,13 @@ function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => setOpen(true)}
+            action={() =>
+              navigate("/purchase/invoices/ProcessingFreeQuantities/add")
+            }
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
+            {/* Display SettingsMenu when MdSettings is clicked */}
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
@@ -74,6 +76,7 @@ function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
         setOpen={setImportExcelModal}
         AgreeTextButton="استيراد"
       >
+        
         <Formik initialValues={{}} onSubmit={() => {}}>
           <ImportExcelModal />
         </Formik>

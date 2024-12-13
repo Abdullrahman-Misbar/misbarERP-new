@@ -39,10 +39,11 @@ import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
 import PurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier";
 import AddPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Add";
 import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
-
 import InvoicesReturns from "../pages/PURCHASE/INVOICES/InvoicesReturns";
 import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
 import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
+import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
+import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
 
 export const AllRoutesProvider = () => {
   return (
@@ -132,6 +133,24 @@ export const AllRoutesProvider = () => {
            <Route
           path="/purchase/invoices/DocumentaryCreditCards"
           element={<DocumentaryCreditCards title={t("Document Credit Cards")} />}
+        />
+
+        {/* ----------------------- */}
+        <Route
+          path="/purchase/invoices/ProcessingFreeQuantities"
+          element={
+            <ProcessingFreeQuantities
+              title={t("Invoices ProcessingFreeQuantities")}
+            />
+          }
+        />
+        <Route
+          path="/purchase/invoices/ProcessingFreeQuantities/add"
+          element={
+            <AddProcessingFreeQuantities
+              title={t("Add Invoices ProcessingFreeQuantities")}
+            />
+          }
         />
 
         {/* ------------------------------------------ */}
