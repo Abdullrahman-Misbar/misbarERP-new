@@ -6,6 +6,15 @@ import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton"
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
 
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+} from "../const";
+
 type Main_TP = {
   editable?: boolean;
   VoucherType: number;
@@ -39,7 +48,18 @@ function Main({ VoucherType, editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
+    const {
+      copValue,
+      uoms,
+      editable,
+      cancelRequestEndPoint,
+      deleteEndPoint,
+      controlButtonEndPoint,
+      IndexMainPath,
+      mainENdPoint,
+      ApproveOrDisApproveEndPoint,
+      ...valuesWithoutCopValue
+    } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -47,9 +67,11 @@ function Main({ VoucherType, editable }: Main_TP) {
   //@ts-ignore
   const response = data?.data;
 
+  console.log(response?.voucherType);
+
   const initialValues = {
-    id: id ? +id : 0,
-    voucherType: response?.voucherType || VoucherType,
+    id: id ? Number(id) : 0,
+    voucherType: id ? response?.voucherType : Number(VoucherType),
     voucherCode: response?.voucherCode || "",
     voucherDate: response?.voucherDate || "",
     currencyId: response?.currencyId || 0,
@@ -58,6 +80,13 @@ function Main({ VoucherType, editable }: Main_TP) {
     costCenterId: response?.costCenterId || 0,
     sourceDocument: response?.sourceDocument || "",
     note: response?.note || "",
+
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
 
     editable: editable ? true : false,
     SourceActivityType: 1,

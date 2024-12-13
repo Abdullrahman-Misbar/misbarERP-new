@@ -16,8 +16,10 @@ function MainCopyComp() {
     // term: word,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-const {values} = useFormikContext()
-  const endpoint = `api/PurchasQutations?Take=1000${searchParams.toString()}`;
+  const { values } = useFormikContext<any>();
+  const endpoint = `${
+    values?.mainENdPoint
+  }?Take=1000${searchParams.toString()}`;
 
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,

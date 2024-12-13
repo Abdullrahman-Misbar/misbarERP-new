@@ -21,7 +21,6 @@ function Main() {
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
-
   const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,

@@ -44,6 +44,8 @@ import AddInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/Add";
 import DocumentaryCreditCards from "../pages/PURCHASE/INVOICES/DocumentaryCreditCards";
 import ProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities";
 import AddProcessingFreeQuantities from "../pages/PURCHASE/INVOICES/ProcessingFreeQuantities/Add";
+import TypeOfDocumentaryCredit from "../pages/PURCHASE/INVOICES/TypeOfDocumentaryCredit";
+import EditInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Edit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -113,6 +115,10 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/local/add"
           element={<AddInvoiceLocal title={t("Add Invoices Local")} />}
         />
+          <Route
+          path="/purchase/invoices/local/edit/:id"
+          element={<EditInvoiceLocal title={t("Edit Invoices Local")} />}
+        />
         <Route
           path="/purchase/invoices/external"
           element={<InvoicesExternal title={t("Invoices External")} />}
@@ -130,9 +136,17 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/InvoicesReturns/add"
           element={<AddInvoiceReturn title={t("Add Invoices External")} />}
         />
-           <Route
+        <Route
           path="/purchase/invoices/DocumentaryCreditCards"
-          element={<DocumentaryCreditCards title={t("Document Credit Cards")} />}
+          element={
+            <DocumentaryCreditCards title={t("Document Credit Cards")} />
+          }
+        />
+          <Route
+          path="/purchase/invoices/TypeOfDocumentaryCredit"
+          element={
+            <TypeOfDocumentaryCredit title={t("Type Of Documentary Credit")} />
+          }
         />
 
         {/* ----------------------- */}

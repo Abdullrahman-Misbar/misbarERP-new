@@ -11,8 +11,7 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const [open, setOpen] = useState(false);
-  const [cardId, setCardID] = useState('');
-  console.log("🚀 ~ Main ~ cardId:", cardId)
+  const [cardId, setCardID] = useState("");
 
   const queryParams = {
     // page: page,
@@ -39,7 +38,7 @@ function Main() {
           <TreeCreditCard data={data} setCardID={setCardID} />
         </div>
         <div className="bg-white col-span-8 shadow-md">
-          <MainAdd refetch={refetch} />
+          <MainAdd refetch={refetch} cardId={cardId} />
         </div>
       </div>
 

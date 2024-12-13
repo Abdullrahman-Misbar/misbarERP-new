@@ -3,36 +3,37 @@ import { useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../../hooks";
 import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
-import { postENdPoint } from "../const";
+import { mainENdPoint, postENdPoint } from "../const";
 import MainData from "./MainData";
 import { Values_TP } from "./Types&Validation";
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 type MainAdd_TP = {
   editable?: boolean;
-  refetch:(options?: RefetchOptions) => Promise<QueryObserverResult>
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
+  cardId?: number;
 };
-function MainAdd({ editable  ,refetch }: MainAdd_TP) {
+function MainAdd({ editable, refetch, cardId }: MainAdd_TP) {
   const { id } = useParams();
 
-  const endpoint = `${postENdPoint}/Get/${id}`;
+  const endpoint = `api/LetterOfCredit/Get/${cardId}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    enabled: !!id && !!editable,
+    enabled: !!cardId,
   });
 
-  const postEndPoint = id ? `${postENdPoint}/Update/${id}` : `${postENdPoint}`;
+  const postEndPoint = cardId ? `api/LetterOfCredit/UpdateLettersOfCreditCard/${cardId}` : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
     onSuccess: () => {
       notify("success");
-      refetch()
+      refetch();
     },
     Module: "PURCHASE",
-    method: id ? "PUT" : "post",
+    method: cardId ? "PUT" : "post",
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },
@@ -55,10 +56,10 @@ function MainAdd({ editable  ,refetch }: MainAdd_TP) {
   const response = data?.data;
 
   const initialValues = {
-    cardCode: response?.cardCode ||  "",
+    cardCode: response?.cardCode || "",
     cardName: response?.cardName || "",
-    mainCardId: response?.cardName ||  0,
-    note:  response?.cardName  || "",
+    mainCardId: response?.mainCardId || 0,
+    note: response?.cardName || "",
   };
 
   if (editable && isLoading)
