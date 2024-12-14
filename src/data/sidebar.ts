@@ -254,7 +254,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Processing free quantities",
-        link: "",
+        link: "/purchase/FreeQuantitiesProcessingOperations",
         icon: FaRegCircle,
       },
       {
