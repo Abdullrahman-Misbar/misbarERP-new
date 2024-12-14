@@ -127,6 +127,7 @@
   "account"  : "الحساب",
   "convertionRate" : "التعادل",
   "cost center" : "مركز التكلفه",
-  "voucher code" : "الرقم المرجعي"
+  "voucher code" : "الرقم المرجعي",
+  "Purchase Compare":"مقارنة المشتريات "
 
 }

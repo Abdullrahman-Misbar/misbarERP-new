@@ -4,5 +4,7 @@
   "required": "This field is required",
   "AUTH.INPUT.USERNAME": "User Name",
   "Master_Data": "Master Data",
-  "Religious_Tourism":"Religious Tourism"
+  "Religious_Tourism":"Religious Tourism",
+  "Purchase Compare":"  Purchase  Compare  "
+
 }

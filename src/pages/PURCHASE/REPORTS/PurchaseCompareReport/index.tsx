@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet-async";
-import Main from "../../../../components/templates/PURCHASE/REPORTS/purchaseInvoiceReport/main";
+import Main from "../../../../components/templates/PURCHASE/REPORTS/PurchaseCompareReport/main";
   
 type PurchaseInvoiceReport_TP = {
   title: string;
 };
 
-function PurchaseInvoiceReport({ title }: PurchaseInvoiceReport_TP) {
+function PurchaseCompareReport({ title }: PurchaseInvoiceReport_TP) {
   return (
     <>
       <Helmet>
@@ -18,4 +18,4 @@ function PurchaseInvoiceReport({ title }: PurchaseInvoiceReport_TP) {
   );
 }
 
-export default PurchaseInvoiceReport;
+export default PurchaseCompareReport;

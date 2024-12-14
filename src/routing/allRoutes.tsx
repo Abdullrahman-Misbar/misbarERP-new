@@ -37,6 +37,7 @@ import MainScreen from "../pages/MainScreen";
 import PurchaseInvoiceReport from "../pages/PURCHASE/REPORTS/purchaseInvoiceReport";
 import AddInvoiceExternal from "../pages/PURCHASE/INVOICES/invoicesExternal/Add";
 import InvoicesExternal from "../pages/PURCHASE/INVOICES/invoicesExternal";
+import PurchaseCompareReport from "../pages/PURCHASE/REPORTS/PurchaseCompareReport";
 
 export const AllRoutesProvider = () => {
   return (
@@ -184,6 +185,11 @@ export const AllRoutesProvider = () => {
           path="/purchase/reports/purchaseInvoiceReport"
           element={<PurchaseInvoiceReport title={t("invoices Setting")} />}
         />
+<Route
+          path="/purchase/reports/purchaseCompareReport"
+          element={<PurchaseCompareReport title={t("invoices Setting")} />}
+        />
+
         {/* ------------------setting ------------------------ */}
 
         <Route path="/setting" element={<Setting />}>

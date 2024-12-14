@@ -310,9 +310,11 @@ export const sideBarItems: MenuItem_TP[] = [
         //   },
         // ],
       },
+
       {
         id: crypto.randomUUID(),
-        label: "Suppliers",
+        label: "Purchase Compare",
+        link:'/purchase/reports/purchaseCompareReport',
         icon: FaRegCircle,
       },
       {
