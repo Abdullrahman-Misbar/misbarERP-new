@@ -14,7 +14,7 @@ import UndoBar from "./UndoBar";
 import UploadFileBar from "./UploadFileBar";
 
 type Toolbar_TP = {
-  componentCopy: React.ReactNode;
+  componentCopy?: React.ReactNode;
   newValues?: { [key: string]: string };
   visibility?: {
     repeaterBar?: boolean;
@@ -35,7 +35,6 @@ type Toolbar_TP = {
 };
 
 const Toolbar = ({ componentCopy, newValues, visibility }: Toolbar_TP) => {
-  // Set default visibility to true for all components
   const defaultVisibility = {
     repeaterBar: true,
     addBar: true,
@@ -53,7 +52,6 @@ const Toolbar = ({ componentCopy, newValues, visibility }: Toolbar_TP) => {
     scheduledActivities: true,
   };
 
-  // Merge default visibility with provided visibility
   const finalVisibility = { ...defaultVisibility, ...visibility };
 
   return (

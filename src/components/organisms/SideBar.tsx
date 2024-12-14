@@ -132,7 +132,9 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
       rtl={isRTL}
       className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative"
       transitionDuration={250}
-      width="405px"
+      width="325px"
+    
+    
       collapsed={collapsed}
     >
       <div
