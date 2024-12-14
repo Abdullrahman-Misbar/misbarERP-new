@@ -17,6 +17,7 @@ type Main_TP = {
 function MainData({ VoucherType }: Main_TP) {
   console.log(VoucherType);
   const { values } = useFormikContext<Values_TP>();
+  console.log("🚀 ~ MainData ~ values:", values);
   const newValues = {
     voucherType: values?.copValue?.voucherType || VoucherType,
     id: 0,
@@ -30,16 +31,21 @@ function MainData({ VoucherType }: Main_TP) {
     sourceDocument: values?.copValue?.sourceDocument || "",
     note: values?.copValue?.note || "",
     voucherDetailsRequest:
-      values?.copValue?.voucherDetailsRequest.filter((item: any) => {
-        if (item.voucherType === 0) {
-          // cash-receipts
-          return item.debitAmount !== 0;
-        } else if (item.voucherType === 1 || item.voucherType === 2) {
-          // cash-payments or transfer-receipts
-          return item.creditAmount !== 0;
-        }
-        return item;
-      }) || [],
+      values?.copValue?.voucherDetailsRequest
+        .filter((item: any) => {
+          if (item.voucherType === 0) {
+            // cash-receipts
+            return item.debitAmount !== 0;
+          } else if (item.voucherType === 1 || item.voucherType === 2) {
+            // cash-payments or transfer-receipts
+            return item.creditAmount !== 0;
+          }
+          return item;
+        })
+        .map((item: any) => {
+          const { id, ...rest } = item; // Destructure the id
+          return { ...rest, id: 0 }; // Set id to 0 and return the modified item
+        }) || [],
   };
 
   return (

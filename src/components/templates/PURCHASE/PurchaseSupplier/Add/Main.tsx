@@ -4,7 +4,7 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
+import { validationSchema, Values_TP } from "./Types&Validation";
 import {
   ApproveOrDisApproveEndPoint,
   cancelRequestEndPoint,
@@ -154,6 +154,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
+         validationSchema={validationSchema}
         enableReinitialize
       >
         <Form>

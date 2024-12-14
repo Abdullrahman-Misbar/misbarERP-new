@@ -5,7 +5,6 @@ import { Edit } from "../../../atoms/icons/Edit";
 import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
-import CancelApproved from "./CancelApproved";
 
 type RefetchFunction = () => void;
 
@@ -46,23 +45,55 @@ export const generateColumns = (
           : t("Account Transferred From")
       }`,
       accessorKey: "otherAccountId",
-      cell: (info) => info.renderValue(),
+      cell: (info) => {
+        const voucherDetails = info?.row?.original?.voucherDetailsRequest;
+
+        if (voucherDetails?.length && info?.row?.original?.voucherType === 0) {
+          const filteredDetails = voucherDetails.filter(
+            (item) => item?.debitAmount !== 0
+          );
+
+          return filteredDetails.length ? (
+            <div>
+              {filteredDetails.map((item, index) => (
+                <div key={index}>{item.accountName}</div>
+              ))}
+            </div>
+          ) : (
+            <span>-</span>
+          );
+        }
+      },
     },
     {
       header: `${
         VoucherType === 0
-          ? t("Received Amount")
+          ? t("Receipt Amount")
           : VoucherType === 1
-          ? t("Disbursed Amount")
+          ? t("Payment Amount")
           : t("Transferred Amount")
       }`,
-      accessorKey: "amount",
-      cell: (info) =>
-        info?.row?.original?.amount ? (
-          <div>{info?.row?.original?.amount}</div>
-        ) : (
-          <span>غير متوفر</span>
-        ),
+      accessorKey: "voucherType",
+      cell: (info) => {
+        const voucherDetails = info?.row?.original?.voucherDetailsRequest;
+        if (voucherDetails?.length && info?.row?.original?.voucherType === 0) {
+          const filteredDetails = voucherDetails.filter(
+            (item) => item?.debitAmount !== 0
+          );
+
+          return filteredDetails.length ? (
+            <div>
+              {filteredDetails.map((item, index) => (
+                <div key={index}>{item.debitAmount}</div>
+              ))}
+            </div>
+          ) : (
+            <span>-</span>
+          );
+        }
+
+        return <span>{t("غير متوفر")}</span>;
+      },
     },
 
     {
@@ -83,7 +114,7 @@ export const generateColumns = (
     },
     {
       header: `${t("user")}`,
-      accessorKey: "user",
+      accessorKey: "userName",
       cell: (info) =>
         info?.row?.original?.user ? (
           <div>{info?.row?.original?.user}</div>

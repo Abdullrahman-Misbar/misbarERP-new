@@ -1,26 +1,10 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Switch } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import * as React from "react";
-import { SwitchComp } from "../../atoms/formik/SwitchComp";
-import { Switch } from "@mui/material";
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
+
 
 const ITEM_HEIGHT = 48;
 
@@ -32,6 +16,22 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const hideAllColumns = () => {
+    const updatedVisibility = {};
+    table.getAllLeafColumns().forEach((column) => {
+      updatedVisibility[column.id] = false;
+    });
+    setColumnVisibility(updatedVisibility);
+  };
+
+  const showAllColumns = () => {
+    const updatedVisibility = {};
+    table.getAllLeafColumns().forEach((column) => {
+      updatedVisibility[column.id] = true;
+    });
+    setColumnVisibility(updatedVisibility);
   };
 
   return (
@@ -106,9 +106,19 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
             )
           )}
         </div>
-        <div className="flex  items-center justify-between px-2 w-full ">
-          <span className="text-[14px] text-primary p-1">اخفاء الجميع</span>
-          <span className="text-[14px] text-primary p-1"> اظهار الجميع</span>
+        <div className="flex items-center justify-between px-2 w-full">
+          <button
+            className="text-[14px] text-primary p-1"
+            onClick={hideAllColumns} // استدعاء دالة إخفاء الجميع
+          >
+            اخفاء الجميع
+          </button>
+          <button
+            className="text-[14px] text-primary p-1"
+            onClick={showAllColumns} // استدعاء دالة إظهار الجميع
+          >
+            اظهار الجميع
+          </button>
         </div>
       </Menu>
     </div>

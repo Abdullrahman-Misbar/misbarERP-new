@@ -3,11 +3,11 @@ import { Tooltip, Menu, MenuItem, Typography } from "@mui/material";
 import { IoSettingsOutline } from "react-icons/io5";
 import Setting from "../../atoms/icons/SettingIcon";
 import GoBackArow from "../../atoms/icons/GoBackArow";
+import { useNavigate } from "react-router-dom";
 
 function SettingBar() {
   const [anchorEl, setAnchorEl] = useState(null); // Anchor for the main menu
   const [subMenuAnchorEl, setSubMenuAnchorEl] = useState(null); // Anchor for the submenu
-
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -18,15 +18,15 @@ function SettingBar() {
     setSubMenuAnchorEl(null); // Close the submenu as well
   };
 
-
   const handleSubMenuOpen = (event) => {
     setSubMenuAnchorEl(event.currentTarget);
   };
 
-
   const handleSubMenuClose = () => {
     setSubMenuAnchorEl(null);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -39,7 +39,6 @@ function SettingBar() {
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </div>
       </Tooltip>
-
 
       <Menu
         anchorEl={anchorEl}
@@ -71,10 +70,7 @@ function SettingBar() {
           </Typography>
         </MenuItem>
         <hr />
-        <MenuItem
-          onClick={handleSubMenuOpen} 
-          className="gap-2"
-        >
+        <MenuItem onClick={handleSubMenuOpen} className="gap-2">
           <div className="flex items-center justify-center gap-2">
             <GoBackArow />
             <Typography
@@ -99,7 +95,13 @@ function SettingBar() {
         transformOrigin={{ vertical: "top", horizontal: "right" }}
         sx={{ marginTop: "-8px" }} // Adjust positioning if needed
       >
-        <MenuItem onClick={handleMenuClose} className="gap-2">
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            navigate(`/purchase/PurchaseRequest/manual/:id`);
+          }}
+          className="gap-2"
+        >
           <IoSettingsOutline className="text-gray-500" />
           <Typography
             style={{
@@ -112,7 +114,13 @@ function SettingBar() {
           </Typography>
         </MenuItem>
 
-        <MenuItem onClick={handleMenuClose} className="gap-2">
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            navigate(`/purchase/PurchaseRequest/auto/:id`);
+          }}
+          className="gap-2"
+        >
           <IoSettingsOutline className="text-gray-500" />
           <Typography
             style={{

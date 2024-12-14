@@ -1,6 +1,5 @@
 import { useFormikContext } from "formik";
-import React, { useEffect } from "react";
-import NotFound from "../../../pages/404";
+import React, { useEffect, useState } from "react";
 import DataNotFoundDrawer from "../DataNotFoundDrawer";
 
 export interface HeaderType {
@@ -17,7 +16,7 @@ export interface HeaderType {
     moduleName: string,
     index: number
   ) => void;
-  value?: any; // Default value if necessary
+  value?: any;
   width?: string;
 }
 
@@ -32,7 +31,6 @@ interface TableDynamicProps {
     push: Function
   ) => void;
   push: () => void;
-  children:any
 }
 
 const TableDynamic: React.FC<TableDynamicProps> = ({
@@ -40,11 +38,10 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
   actions,
   moduleName,
   remove,
-  handleTabPress,
-  push,
-  children
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
+  const [activeRow, setActiveRow] = useState<number>(0); // حالة العنصر النشط
+
   useEffect(() => {
     const updatedValues = values[moduleName]?.filter(
       (item: any) => !(item?.isDeleted && item.id === 0)
@@ -75,6 +72,15 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
     []
   );
 
+  // التعامل مع ضغطات لوحة المفاتيح
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === "ArrowDown") {
+      setActiveRow((prev) => Math.min(prev + 1, filteredItems.length - 1));
+    } else if (e.key === "ArrowUp") {
+      setActiveRow((prev) => Math.max(prev - 1, 0));
+    }
+  };
+
   return (
     <div className="overflow-x-scroll">
       <table className="w-full text-right border-collapse">
@@ -98,8 +104,15 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
         </thead>
         <tbody>
           {filteredItems?.length ? (
-            filteredItems?.map((item: any) => (
-              <tr key={item.tempKey}>
+            filteredItems?.map((item: any, index: number) => (
+              <tr
+                key={item.tempKey}
+                tabIndex={0} // لجعل الصف قابلاً للتركيز
+                className={`${
+                  activeRow === index ? "bg-blue-100" : ""
+                }`} // تمييز العنصر النشط
+                onKeyDown={(e) => handleKeyDown(e, index)}
+              >
                 {headers.map((header) => (
                   <td
                     key={header.name}
@@ -145,13 +158,12 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
           ) : (
             <tr>
               <td colSpan={headers?.length}>
-                <div className="flex justify-center mt-10 h-[250px] overflow-hidden ">
+                <div className="flex justify-center mt-10 h-[250px] overflow-hidden">
                   <DataNotFoundDrawer text="لايوجد عناصر" />
                 </div>
               </td>
             </tr>
           )}
-          {/* {children } */}
         </tbody>
       </table>
     </div>

@@ -19,14 +19,14 @@ type OpenMenus_TP = {
   [key: string]: boolean;
 };
 
-export const SideBar = () => {
+export const SideBar = ({ setCollapsed, collapsed }) => {
   /////////// CUSTOM HOOKS
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const isRTL = useIsRTL();
   const [opened, setOpened] = useState<OpenMenus_TP>({});
-  const { collapseSidebar, collapsed } = useProSidebar();
+  // const { setCollapseSidebar, collapsed } = useProSidebar();
 
   const path = location.pathname;
 
@@ -92,7 +92,7 @@ export const SideBar = () => {
           location.pathname === Item.link
             ? "bg-LightGreen !font-somarBold "
             : "text-mainBlack "
-        } `} 
+        } `}
         key={Item.id}
         label={<p className="!font-somarBold">{t(Item.label)}</p>}
         icon={
@@ -114,12 +114,12 @@ export const SideBar = () => {
           location.pathname === Item.link
             ? "text-black !font-somarBold bg-gray-100 hover:bg-gray-200 hover:text-primary"
             : "text-mainBlack hover:bg-gray-100 hover:text-primary"
-        } `} 
+        } `}
         key={Item.id}
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-        icon={<Item.icon className="text-gray-300"  />}
+        icon={<Item.icon className="text-gray-300" />}
         active={location.pathname === Item.link}
       >
         {t(Item.label)}
@@ -130,10 +130,17 @@ export const SideBar = () => {
   return (
     <Sidebar
       rtl={isRTL}
-      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3"
-      transitionDuration={270}
-      width="265"
+      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative"
+      transitionDuration={250}
+      width="405px"
+      collapsed={collapsed}
     >
+      <div
+        className="absolute left-[10px] top-[10px] text-[30px] cursor-pointer"
+        onClick={() => setCollapsed(!collapsed)}
+      >
+        x
+      </div>
       <div className="flex flex-col items-start px-5 py-2">
         <div className="w-full p-3">
           <img src="/src/assets/logo.png" alt="Logo" />
@@ -144,7 +151,9 @@ export const SideBar = () => {
       <Menu>
         {sideBarItems.map((Item, index) => {
           if ((Item as any).header) {
-            return (
+            return collapsed ? (
+              ""
+            ) : (
               <div
                 key={index}
                 className="px-6 py-2 text-xs font-bold text-gray-400  font-somarLight "
@@ -160,7 +169,7 @@ export const SideBar = () => {
                 location.pathname === Item.link
                   ? "bg-LightGreen font-somarBold "
                   : " text-mainBlack "
-              } `} // إضافة الخط الرأسي
+              } `} 
               key={Item.id}
               label={t(Item.label)}
               icon={<Item.icon size={20} />}
