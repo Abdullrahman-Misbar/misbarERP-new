@@ -7,7 +7,7 @@ import SelectMultiComp from "../../atoms/formik/SelectMultiComp";
 type SelectItemProps = {
   name: string;
   label: string;
-  onChange:()=>void
+  onChange?:()=>void
   value?:string
 };
 

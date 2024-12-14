@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Paper } from "@mui/material";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 import { useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import { viewReportFromServer } from "../../../../molecules/ReoprtViwer";
@@ -8,18 +8,40 @@ import MainHeadLayout from "./MainHeadLayout";
 import ReportOptions from "./ReportOptions";
 import ReportSource from "./ReportSource";
 import { mainENdPoint } from "./const";
+import ItemExpOption from "./ItemExpOption";
+import ExplorerOption from "./ExplorerOption";
 
 function Main() {
-  const initialValues = {
+
+   const initialValues = {
     isDetails: true,
+    itemCode:null,
+    itemIds:null,
+    warehouseIds:null,
+    categoryIds:null,
+    variantIds:null,
+    currencyIds:null,
+    uomIds:null,
+    moveTypeIds:null,
+    partnerIds:null,
+    attributeVar:null,
+    emptyItems:null,
+    zeroBalanceQuantity:null,
+    inventoryOpiningBalance:null,
+    filterFlagsEnum:0,
+    groupBy:0,
+
+
     isLocalPurchase: true,
-    isForeignPurchase: false,
+    isForeignPurchase: true,
     groupByType: false,
     unApprovedInvoices: false,
     groupPartnerIds: null,
     costCenterIds: null,
     accountIds: null,
     branchIds: null,
+    startDate:new Date(new Date().getFullYear(), 0, 1), 
+    endDate:new Date(),
     reportTypesEnum: 1,
     compareWithPreviousYear: false,
     period: 1,
@@ -57,12 +79,15 @@ function Main() {
 
     mutate(jsonData);
   };
+    // const { values } = useFormikContext<any>();
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
+        
+        
       >
         <Form>
           <MainHeadLayout />
@@ -73,20 +98,18 @@ function Main() {
                 // justifyContent="space-between"
                 // mb={2}
                 // p={2}
-                className="grid grid-cols-3 p-4 rounded-md "
+                className="grid grid-cols-3 p-4 rounded-md  "
               >
-                <div className="flex mt-4">
-                  <ReportOptions />
-                  <Divider orientation="vertical"  />
+                <div className= "flex mr-8">
+                  <ReportOptions /> 
+                  <Divider orientation="vertical"  flexItem />
                 </div>
-                <div className="flex mr-5">
-                  <InvoiceExpOption />
-                  <Divider orientation="vertical" flexItem />
-                </div>
-                <div className="flex mr-5">
+               
+                  <ExplorerOption />
+                  <div>
                   <ReportSource />
-                  {/* <Divider orientation="vertical" flexItem /> */}
-                </div>
+                  </div>
+                 
               </div>
               <Box
                 sx={{

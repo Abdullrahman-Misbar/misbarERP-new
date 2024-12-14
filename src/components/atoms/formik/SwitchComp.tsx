@@ -6,12 +6,14 @@ type EditProps_TP = {
   defaultChecked?: boolean;
   name: string;
   onChange?:()=>void
+  label?:string
 };
 export const SwitchComp = ({
   disabled,
   defaultChecked,
   name,
-  onChange
+  onChange,
+  label
 }: EditProps_TP) => {
   const { setFieldValue } = useFormikContext();
   return (
@@ -20,8 +22,10 @@ export const SwitchComp = ({
         disabled={disabled}
         defaultChecked={defaultChecked}
         name={name}
+        
         onChange={onChange  ? onChange : (e) => setFieldValue(name, e.target.checked)}
       />
+     {label &&<span className="text-s">{label}</span>} 
     </div>
   );
 };
