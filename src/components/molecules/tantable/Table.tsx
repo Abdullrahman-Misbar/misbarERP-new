@@ -182,7 +182,7 @@ export const Table = <T extends object>({
                       )
                     )}
 
-                    <div className="absolute top-[5px] left-[-5px]">
+                    <div className="absolute top-[5px] left-[-10px]">
                       <MenuShowItems
                         table={table}
                         setColumnVisibility={setColumnVisibility}

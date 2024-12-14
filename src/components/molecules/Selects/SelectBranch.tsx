@@ -6,6 +6,7 @@ import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectBranchProps = {
   name: string
+  value?:string
 }
 
 interface Option {
@@ -17,8 +18,8 @@ interface FormikValues {
   [key: string]: any
 }
 
-const SelectBranch: React.FC<SelectBranchProps> = ({ name }) => {
-  const { setFieldValue } = useFormikContext<FormikValues>()
+const SelectBranch: React.FC<SelectBranchProps> = ({ name , value }) => {
+  const { setFieldValue , values } = useFormikContext<FormikValues>()
 
   const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value)
@@ -38,6 +39,7 @@ const SelectBranch: React.FC<SelectBranchProps> = ({ name }) => {
       value: item.id,
       label: item.lookupForignName
     })) || []
+    const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -45,7 +47,7 @@ const SelectBranch: React.FC<SelectBranchProps> = ({ name }) => {
       label='الفرع'
       placeholder='اختر الفرع'
       options={options}
-      // value={values[name] || ''}
+      value={selectedValue}
       isLoading={isLoading}
 
       onChange={handleChange}

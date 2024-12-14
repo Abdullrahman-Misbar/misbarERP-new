@@ -107,10 +107,7 @@ const TableDynamic: React.FC<TableDynamicProps> = ({
             filteredItems?.map((item: any, index: number) => (
               <tr
                 key={item.tempKey}
-                tabIndex={0} // لجعل الصف قابلاً للتركيز
-                className={`${
-                  activeRow === index ? "bg-blue-100" : ""
-                }`} // تمييز العنصر النشط
+                tabIndex={0}
                 onKeyDown={(e) => handleKeyDown(e, index)}
               >
                 {headers.map((header) => (

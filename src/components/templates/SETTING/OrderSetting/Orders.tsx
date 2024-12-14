@@ -21,6 +21,7 @@ function Orders() {
 
   return (
     <>
+    
       <span className="text-xl font-bold">الطلبات</span>
       <div className="flex items-center justify-center gap-12 w-full">
         <div className="flex flex-col gap-12 w-[50%]">

@@ -74,7 +74,7 @@ const TableDynamicInvoices: React.FC<TableDynamicInvoicesProps> = ({
     <div className="overflow-x-scroll">
       <table className="w-full text-right border-collapse">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="">
             {headers?.map((header) => (
               <th
                 key={header?.name}

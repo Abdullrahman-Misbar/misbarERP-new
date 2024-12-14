@@ -22,79 +22,56 @@ export const generateColumns = (
       cell: (info) => <span>{indexTable(info.row.index, page)}</span>,
     },
     {
-      header: `${t("Reference number")}`,
-      accessorKey: "invoiceCode",
+      header: `${t("code")}`,
+      accessorKey: "letterOfCreditCode",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("vendor Name")}`,
-      accessorKey: "parterName",
+      header: `${t("letter Of Credit Name")}`,
+      accessorKey: "letterOfCreditName",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("invoice Date")}`,
-      accessorKey: "invoiceDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.invoiceDate?.slice(0, 10)}</div>
-      ),
+      header: `${t("letter Of Credit Name En")}`,
+      accessorKey: "foreignName",
+      cell: (info) => info.renderValue() || "_",
     },
     {
-      header: `${t("user")}`,
-      accessorKey: "userName",
-      cell: (info) => info.renderValue() || "-",
+      header: `${t("letter OfCredit Car")}`,
+      accessorKey: "creditCardName",
+      cell: (info) => info.renderValue() || "_",
     },
     {
-      header: `${t("invoice Status")}`,
-      accessorKey: "invoiceStatus",
-      cell: (info) => (
-        <div
-          className="w-[150px] rounded-md p-2 text-white"
-          style={{
-            backgroundColor: info?.row?.original?.invoiceStatus
-              ? "green"
-              : "red",
-          }}
-        >
-          {info?.row?.original?.invoiceStatus ? (
-            <p className=" rounded-full p-1">مسودة</p>
-          ) : (
-            <p className=" rounded-full p-1">غير مسودة</p>
-          )}
-        </div>
-      ),
-    },
-    {
-      header: `${t("invoice Status")}`,
-      accessorKey: "invoiceStatus",
-      cell: (info) => info.renderValue() || "-",
-    },
-    {
-      header: `${t("purchaseRepresentativeId")}`,
-      accessorKey: "repersentiveName",
+      header: `${t("account")}`,
+      accessorKey: "accountName",
       cell: (info) => info.renderValue(),
     },
     {
-      header: `${t("Nature of prices")}`,
-      accessorKey: "priceNature",
-      cell: (info) => info.renderValue() || "-",
-    },
-    {
-      header: `${t("currancy Name")}`,
-      accessorKey: "currancyName",
-      cell: (info) => info.renderValue() || "-",
-    },
-
-    {
-      header: `${t("payment Status")}`,
-      accessorKey: "paymentStatus",
+      header: `${t("opening Date card")}`,
+      accessorKey: "openingDate",
       cell: (info) => (
-        <div>
-          {info?.row?.original?.paymentStatus ? <p>مسوده</p> : <p>غير مسودة</p>}
-        </div>
+        <div>{info?.row?.original?.openingDate?.slice(0, 10)}</div>
       ),
     },
-   
-
+    {
+      header: `${t("expected Closing Date")}`,
+      accessorKey: "expectedClosingDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.expectedClosingDate?.slice(0, 10)}</div>
+      ),
+    },
+    {
+      header: `${t("closing Date")}`,
+      accessorKey: "closingDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.closingDate?.slice(0, 10)}</div>
+      ),
+    },
+    {
+      header: `${t("letter Status")}`,
+      accessorKey: "letterStatus",
+      cell: (info) => info.renderValue(),
+    },
     {
       header: `${t("note")}`,
       accessorKey: "note",
@@ -112,7 +89,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/invoices/local/edit/${info?.row?.original?.id}`
+                      `/purchase/invoices/DocumentaryCredit/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

@@ -1,6 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-// components
 import {
   Menu,
   MenuItem,
@@ -8,7 +6,6 @@ import {
   SubMenu,
   useProSidebar,
 } from "react-pro-sidebar";
-
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useIsRTL } from "../../hooks/useIsRTL";
@@ -26,13 +23,12 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
   const location = useLocation();
   const isRTL = useIsRTL();
   const [opened, setOpened] = useState<OpenMenus_TP>({});
-  // const { setCollapseSidebar, collapsed } = useProSidebar();
+  const [isMobile, setIsMobile] = useState(false); // Track if the screen is mobile
 
   const path = location.pathname;
 
   const goTo = (e: any, link: string) => {
     e.preventDefault();
-
     if (e.button === 0) {
       // Left click
       if (e.ctrlKey) {
@@ -50,12 +46,10 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
     const opened: OpenMenus_TP = {};
 
     sideBarItems.forEach((item: MenuItem_TP) => {
-      // Check if item has a link
       if (item.link && item.link === path) {
         opened[item.id] = true;
       }
 
-      // Check if item has sub-items
       if (item.items) {
         item.items.forEach((innerItem) => {
           if (innerItem.link && innerItem.link === path) {
@@ -97,7 +91,6 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
         label={<p className="!font-somarBold">{t(Item.label)}</p>}
         icon={
           <div>
-            {/* 1 */}
             <FaRegCircle className="text-gray-300" />
           </div>
         }
@@ -127,14 +120,32 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
     );
   };
 
+  // Adjust sidebar based on window width
+  const handleResize = () => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+      setCollapsed(true); 
+    } else {
+      setIsMobile(false);
+      setCollapsed(false); 
+    }
+  };
+
+  useEffect(() => {
+    handleResize(); // Check screen size initially
+    window.addEventListener("resize", handleResize); // Listen for window resizing
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <Sidebar
       rtl={isRTL}
-      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative"
+      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative !min-w-[325px]"
       transitionDuration={250}
-      width="325px"
-    
-    
+      // width={isMobile ? "60px" : "325px"} // Conditionally set width based on screen size
       collapsed={collapsed}
     >
       <div
@@ -171,7 +182,7 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
                 location.pathname === Item.link
                   ? "bg-LightGreen font-somarBold "
                   : " text-mainBlack "
-              } `} 
+              } `}
               key={Item.id}
               label={t(Item.label)}
               icon={<Item.icon size={20} />}

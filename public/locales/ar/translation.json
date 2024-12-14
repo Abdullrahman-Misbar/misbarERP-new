@@ -143,5 +143,12 @@
   "template Name": "اسم القالب",
   "foreign Name": "الاسم الأجنبي",
   "discerption": "الوصف",
-  "Date": "التاريخ"
+  "Date": "التاريخ",
+  "letter Of Credit Name":"اسم الاعتماد المستندي",
+  "letter Of Credit Name En":"الاسم الاجنبي",
+  "opening Date card":"تاريخ فتح الاعتماد",
+  "expected Closing Date":"تاريخ الاقفال المتوقع",
+  "closing Date":"تاريخ الاقفال",
+  "letter Status":"حالة الاعتماد",
+  "letter OfCredit Car":"بطاقة الاعتماد"
 }

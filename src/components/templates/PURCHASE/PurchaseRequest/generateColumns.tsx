@@ -6,6 +6,7 @@ import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import CancelApproved from "./CancelApproved";
+import { AiOutlineDollarCircle } from "react-icons/ai";
 
 type RefetchFunction = () => void;
 
@@ -64,7 +65,15 @@ export const generateColumns = (
     {
       header: `${t("status Canceled Request")}`,
       accessorKey: "isCanceled",
-      cell: (info) => <div>{info?.row?.original?.isCanceled ? <p>تم الالغاء</p> : <p> غير ملغاة </p>}</div>,
+      cell: (info) => (
+        <div>
+          {info?.row?.original?.isCanceled ? (
+            <p>تم الالغاء</p>
+          ) : (
+            <p> غير ملغاة </p>
+          )}
+        </div>
+      ),
     },
     {
       header: `${t("Number of offers")}`,
@@ -90,6 +99,12 @@ export const generateColumns = (
       cell: (info) => (
         <div className="flex justify-center">
           <ActionMenu>
+            <div className="flex items-center  gap-2">
+              <div className="bg-[#F3F6F9] p-1 rounded-md">
+                <AiOutlineDollarCircle className="text-[18px] text-[#B5B5C3]" />
+              </div>
+              <span className="text-[14px] text-[#70707e] "> عروض الاسعار</span>
+            </div>
             <div>
               <span>
                 <Edit

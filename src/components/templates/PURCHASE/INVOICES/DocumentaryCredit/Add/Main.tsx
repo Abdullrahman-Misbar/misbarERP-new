@@ -3,10 +3,17 @@ import { useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../../hooks";
 import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+  postEndPont
+} from "../const";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
-import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
-import { InvoiceLocalType } from "../../../../../../utils/globalConst";
+import { Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -14,7 +21,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `api/LetterOfCredit/GetLettersOfCredit/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -22,7 +29,7 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
+  const postEndPoint = id ? `api/LetterOfCredit/UpdateLettersOfCredit/${id}` : `${postEndPont}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -45,10 +52,7 @@ function Main({ editable }: Main_TP) {
       deleteEndPoint,
       ...valuesWithoutCopValue
     } = values;
-    console.log(
-      "🚀 ~ handleSubmit ~ valuesWithoutCopValue:",
-      valuesWithoutCopValue
-    );
+
     const jsonData = JSON.stringify(valuesWithoutCopValue);
     mutate(jsonData);
   };
@@ -57,128 +61,27 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    invoiceCode: response?.invoiceCode || "",
-    invoiceType: InvoiceLocalType,
-    invoiceDate: response?.invoiceDate || "",
-    vendorId: response?.vendorId || "",
-    vendorInvoiceCode: response?.vendorInvoiceCode || "",
-    vendorTaxNumber: response?.vendorTaxNumber || "",
-    vendorAccountId: response?.vendorAccountId || 1,
-    costCenterId: response?.costCenterId || "",
-    paymentMethod: response?.paymentMethod || "",
-    paymentAccountId: response?.paymentAccountId || "",
-    paymentStatus: response?.paymentStatus || 0,
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
-    branchId: response?.branchId || "",
-    warehouseId: response?.warehouseId || "",
-    currencyId: response?.currencyId || "",
-    convertionRate: response?.convertionRate || "",
-    referenceDocument: response?.referenceDocument || "",
-    withTax: response?.withTax || 0,
-    withoutTax: response?.withoutTax || 0,
-    total: response?.total || "",
-    net: response?.net || 0,
-    paid: response?.paid || 0,
-    remaining: response?.remaining || 0,
-    classification: response?.classification || 0,
-    paymentTemplateId: response?.paymentTemplateId || 1,
-    invoiceStatus: response?.invoiceStatus || 0,
-    approvalDate: response?.approvalDate || "",
-    notes: response?.notes || "",
+    editable: editable,
+    letterOfCreditCode: response?.letterOfCreditCode || "",
+    letterOfCreditName: response?.letterOfCreditName || "",
+    accountName: response?.accountName || "",
+    openingDate: response?.openingDate || "",
+    expectedClosingDate: response?.expectedClosingDate || "",
+    closingDate: response?.closingDate || "",
+    letterStatus: response?.letterStatus || 0,
+    letterOfCreditCardId: response?.letterOfCreditCardId || 0,
+    foreignName: response?.foreignName || 0,
+
+
+    note: response?.note || "",
+
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
 
-    invoiceDetailsRequest: response?.invoiceDetailsRequest?.length
-      ? response?.invoiceDetailsRequest?.map((item: Item_TP) => ({
-          itemId: item?.itemId,
-          invoiceId: item?.invoiceId,
-
-          id: item?.id || 0,
-          quantity: item?.quantity,
-          uomId: item?.uomId,
-          cost: item?.cost,
-          discountRate: item?.discountRate,
-          discountValue: item?.discountValue,
-          totalAfterDiscount: item?.totalAfterDiscount,
-          extraRate: item?.extraRate,
-          extraValue: item?.extraValue,
-          totalAfterExtra: item?.totalAfterExtra,
-          taxRate: item?.taxRate,
-          vat: item?.vat,
-          totalAfterTax: item?.totalAfterTax,
-          freeQuantities: item?.freeQuantities,
-          note: item?.note,
-          note: item?.note,
-          isDeleted: false,
-          uoms: item?.product?.uoms,
-        }))
-      : [
-          {
-            quantity: 0,
-            price: 0,
-            total: 0,
-            discountRate: 0,
-            discountValue: 0,
-            totalAfterDiscount: 0,
-            extraRate: 0,
-            extraValue: 0,
-            totalAfterExtra: 0,
-            taxRate: 0,
-            vat: 0,
-            totalAfterTax: 0,
-          },
-        ],
-    invoiceDiscountsAndAdditionsRequest: response
-      ?.invoiceDiscountsAndAdditionsRequest?.length
-      ? response?.invoiceDiscountsAndAdditionsRequest?.map((item: Item_TP) => ({
-          invoiceId: item?.invoiceId,
-          id: item?.id || 0,
-          accountId: item?.accountId,
-          influencingOnCost: item?.influencingOnCost,
-          discountRate: item?.discountRate,
-          discountValue: item?.discountValue,
-          additionRate: item?.additionRate,
-          additionValue: item?.additionValue,
-          isDeleted: false,
-          currencyId: item?.currencyId,
-          convertionRate: item?.convertionRate,
-          equivalent: item?.equivalent,
-          theCorrespondingAccountId: item?.theCorrespondingAccountId,
-          note: item?.note,
-
-          uoms: item?.product?.uoms,
-        }))
-      : [],
-    invoicesPaymentsSchedulingRequest: response
-      ?.invoicesPaymentsSchedulingRequest?.length
-      ? response?.invoicesPaymentsSchedulingRequest?.map((item: Item_TP) => ({
-          id: item?.id || 0,
-          invoiceType: item?.invoiceType,
-          invoiceId: item?.invoiceId,
-          paymentTermId: item?.paymentTermId,
-          invoicePortion: item?.invoicePortion,
-          dueAmount: item?.dueAmount,
-          creditDays: item?.creditDays,
-          dueDate: item?.dueDate,
-          isDeleted: false,
-          amount: item?.amount,
-          discountAmount: item?.discountAmount,
-          dueAmountAfterDiscount: item?.dueAmountAfterDiscount,
-          discountDueDate: item?.discountDueDate,
-          status: item?.status,
-
-          // uoms: item?.product?.uoms,
-        }))
-      : [],
-    invoicePaymentsRequest: response?.invoicePaymentsRequest?.length
-      ? response?.invoicePaymentsRequest?.map((item: Item_TP) => ({
-          id: item?.id || 0,
-          paymentAmount: item?.paymentAmount,
-          paymentMethod: item?.paymentMethod,
-          invoiceId: item?.invoiceId,
-          paymentDate: item?.quantity,
-        }))
-      : [],
     copValue: {
       code: "",
       total: "",

@@ -92,7 +92,6 @@ function Main({ editable }: Main_TP) {
       ? response?.invoiceDetailsRequest?.map((item: Item_TP) => ({
           itemId: item?.itemId,
           invoiceId: item?.invoiceId,
-
           id: item?.id || 0,
           quantity: item?.quantity,
           uomId: item?.uomId,

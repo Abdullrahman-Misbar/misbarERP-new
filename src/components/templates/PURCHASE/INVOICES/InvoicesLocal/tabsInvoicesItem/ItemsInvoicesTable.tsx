@@ -1,9 +1,8 @@
 import { FieldArray, useFormikContext } from "formik";
 import React from "react";
 import DeleteIcon from "../../../../../atoms/icons/DeleteIcon";
-import TableDynamic from "../../../../../molecules/table/TableDynamic";
-import { FormValues, ItemsTableProps } from "./Types&Validation";
 import TableDynamicInvoices from "../../../../../molecules/table/TableDynamicInvoices";
+import { FormValues, ItemsTableProps } from "./Types&Validation";
 
 export default function ItemsInvoicesTable({
   moduleName,
@@ -12,56 +11,6 @@ export default function ItemsInvoicesTable({
 }: ItemsTableProps & { children?: React.ReactNode }) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
   console.log("🚀 ~ values:", values);
-  // const headers = [
-  //   {
-  //     label: " الصنف",
-  //   },
-  //   {
-  //     label: " الكمية",
-  //   },
-  //   {
-  //     label: " الوحدة",
-  //   },
-  //   {
-  //     label: " التكلفة",
-  //   },
-  //   {
-  //     label: " الاجمالي",
-  //   },
-  //   {
-  //     label: " الخصم%",
-  //   },
-  //   {
-  //     label: " الخصم",
-  //   },
-  //   {
-  //     label: "الإجمالي بعد الخصم",
-  //   },
-  //   {
-  //     label: "الاضافة%",
-  //   },
-  //   {
-  //     label: "الاضافة",
-  //   },
-  //   {
-  //     label: "الإجمالي بعد الاضافة",
-  //   },
-  //   {
-  //     label: "معدل الضريبة",
-  //   },
-  //   {
-  //     label: " ضريبة القيمة المضافة",
-  //   },
-  //   {
-  //     label: "الإجمالي بعد الضريبة",
-  //   },
-  //   {
-  //     label: "الكميات المجانية",
-  //   },
-  //   {
-  //     label: "ملاحظات",
-  //   },
-  // ];
 
   const handleTabPress = (
     e: React.KeyboardEvent,
