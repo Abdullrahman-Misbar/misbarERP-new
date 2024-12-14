@@ -138,13 +138,8 @@ export const Table = <T extends object>({
                       header.column.columnDef.isGroup ? (
                         <th
                           key={header.id}
+                          className="text-center bg-[#f5f5f5] rounded-none"
                           colSpan={header.column.columnDef.colSpan || 1}
-                          style={{
-                            textAlign: "center",
-                            backgroundColor: "#e0e0e0",
-                            fontWeight: "bold",
-                            border: "1px solid #ddd",
-                          }}
                         >
                           {flexRender(
                             header.column.columnDef.header,
