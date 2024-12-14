@@ -19,7 +19,7 @@ type OpenMenus_TP = {
   [key: string]: boolean;
 };
 
-export const SideBar = ({setCollapsed ,collapsed }) => {
+export const SideBar = ({ setCollapsed, collapsed }) => {
   /////////// CUSTOM HOOKS
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -151,7 +151,9 @@ export const SideBar = ({setCollapsed ,collapsed }) => {
       <Menu>
         {sideBarItems.map((Item, index) => {
           if ((Item as any).header) {
-            return (
+            return collapsed ? (
+              ""
+            ) : (
               <div
                 key={index}
                 className="px-6 py-2 text-xs font-bold text-gray-400  font-somarLight "
@@ -167,7 +169,7 @@ export const SideBar = ({setCollapsed ,collapsed }) => {
                 location.pathname === Item.link
                   ? "bg-LightGreen font-somarBold "
                   : " text-mainBlack "
-              } `} // إضافة الخط الرأسي
+              } `} 
               key={Item.id}
               label={t(Item.label)}
               icon={<Item.icon size={20} />}
