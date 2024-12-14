@@ -6,7 +6,6 @@ import Warnings from "./Warnings";
 function Main() {
   const initialValues = {
     settings: [
-      // Orders
       {
         id: 1,
         settingId: 1,
@@ -118,7 +117,7 @@ function Main() {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={() => {}}>
+      <Formik initialValues={initialValues} onSubmit={(values) => console.log("values" , values)}>
         <Form>
           <div className="bg-white rounded-lg p-5">
             <div className="my-5">

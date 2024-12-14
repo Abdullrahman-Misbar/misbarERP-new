@@ -5,7 +5,6 @@ import { SwitchComp } from "../../../atoms/formik/SwitchComp";
 function Orders() {
   const { values, setFieldValue } = useFormikContext<any>();
 
-  console.log("values", values);
   const handleSwitchChange = (id: number, checked: boolean) => {
     const updatedSettings = values?.settings?.map((item) =>
       item.id === id ? { ...item, isDisabled: checked } : item
