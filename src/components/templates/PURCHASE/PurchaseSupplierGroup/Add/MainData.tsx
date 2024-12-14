@@ -26,25 +26,22 @@ function MainData() {
     costCenterName: values?.copValue?.costCenterName || "",
     mainCategoryName: values?.copValue?.mainCategoryName || "",
     tags: values?.copValue?.tags || [],
-  
   };
- 
+
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-    
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
-       
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="categoryCode"
               placeholder="الرقم المرجعي"
               type="text"
-             
+              disabled
               label="الرقم المرجعي"
             />
           </Grid>
@@ -60,12 +57,18 @@ function MainData() {
             />
           </Grid>
 
-          
           <Grid item xs={12} sm={6}>
-            <SelectMultiCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
+            <SelectMultiCostCenter
+              name="costCenterId"
+              labelName={"مركز التكلفة"}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectPartnerGroup name="mainCategoryId" label="المجموعة الرئيسية " placeholder="أختر المجموعة الرئيسية"  />
+            <SelectPartnerGroup
+              name="mainCategoryId"
+              label="المجموعة الرئيسية "
+              placeholder="أختر المجموعة الرئيسية"
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SelectMultiTags name="tags" labelName={"الوسوم"} />
@@ -79,7 +82,6 @@ function MainData() {
             />
           </Grid>
         </Grid>
-        
       </div>
     </LayoutMainData>
   );
