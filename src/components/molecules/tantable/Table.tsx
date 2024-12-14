@@ -131,7 +131,7 @@ export const Table = <T extends object>({
         ) : (
           <div className="column-visibility-controls">
             <table id="print-table" className="min-w-full text-center">
-              <thead className="border-b ">
+              <thead className="border-b  relative">
                 {table?.getHeaderGroups()?.map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) =>
@@ -186,6 +186,13 @@ export const Table = <T extends object>({
                         </th>
                       )
                     )}
+
+                    <div className="absolute top-[5px] left-[-5px]">
+                      <MenuShowItems
+                        table={table}
+                        setColumnVisibility={setColumnVisibility}
+                      />
+                    </div>
                   </tr>
                 ))}
               </thead>

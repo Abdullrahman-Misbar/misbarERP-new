@@ -1,26 +1,10 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Switch } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import * as React from "react";
-import { SwitchComp } from "../../atoms/formik/SwitchComp";
-import { Switch } from "@mui/material";
 
-const options = [
-  "None",
-  "Atria",
-  "Callisto",
-  "Dione",
-  "Ganymede",
-  "Hangouts Call",
-  "Luna",
-  "Oberon",
-  "Phobos",
-  "Pyxis",
-  "Sedna",
-  "Titania",
-  "Triton",
-  "Umbriel",
-];
+
 
 const ITEM_HEIGHT = 48;
 
@@ -34,7 +18,6 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
     setAnchorEl(null);
   };
 
-  // دالة إخفاء الجميع
   const hideAllColumns = () => {
     const updatedVisibility = {};
     table.getAllLeafColumns().forEach((column) => {
@@ -43,7 +26,6 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
     setColumnVisibility(updatedVisibility);
   };
 
-  // دالة إظهار الجميع
   const showAllColumns = () => {
     const updatedVisibility = {};
     table.getAllLeafColumns().forEach((column) => {
