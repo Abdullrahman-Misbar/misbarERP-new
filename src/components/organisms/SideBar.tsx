@@ -1,16 +1,18 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  Menu,
-  MenuItem,
-  Sidebar,
-  SubMenu,
-  useProSidebar,
-} from "react-pro-sidebar";
+
+// components
+import { Menu, MenuItem, Sidebar, SubMenu } from "react-pro-sidebar";
+
+import { Tooltip } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useIsRTL } from "../../hooks/useIsRTL";
-import { MenuItem_TP, sideBarItems } from "../../data/sidebar";
 import { FaRegCircle } from "react-icons/fa";
+import {
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
+import { MenuItem_TP, sideBarItems } from "../../data/sidebar";
+import { useIsRTL } from "../../hooks/useIsRTL";
 
 type OpenMenus_TP = {
   [key: string]: boolean;
@@ -112,55 +114,74 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
         onClick={(e) => {
           goTo(e, Item.link!);
         }}
-        icon={<Item.icon className="text-gray-300" />}
+        icon={
+          collapsed ? (
+            <Tooltip title={t(Item.label)}>
+              <button>
+                <Item.icon className="text-gray-300" />{" "}
+              </button>
+            </Tooltip>
+          ) : (
+            <Item.icon className="text-gray-300" />
+          )
+        }
         active={location.pathname === Item.link}
       >
-        {t(Item.label)}
+        <Tooltip title={t(Item.label)}>
+          <button>{t(Item.label)}</button>
+        </Tooltip>
       </MenuItem>
     );
   };
 
-  // Adjust sidebar based on window width
-  const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setIsMobile(true);
-      setCollapsed(true); 
-    } else {
-      setIsMobile(false);
-      setCollapsed(false); 
-    }
+  const handleMouseEnter = () => {
+    setCollapsed(false);
   };
 
-  useEffect(() => {
-    handleResize(); // Check screen size initially
-    window.addEventListener("resize", handleResize); // Listen for window resizing
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const handleMouseLeave = () => {
+    setCollapsed(true);
+  };
 
   return (
     <Sidebar
       rtl={isRTL}
-      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative !min-w-[325px]"
+      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative "
       transitionDuration={250}
-      // width={isMobile ? "60px" : "325px"} // Conditionally set width based on screen size
+      width="100%"
       collapsed={collapsed}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
     >
       <div
-        className="absolute left-[10px] top-[10px] text-[30px] cursor-pointer"
-        onClick={() => setCollapsed(!collapsed)}
+        className="absolute left-[10px] top-[20px] text-[30px] cursor-pointer text-primary"
+        onClick={() => {
+          setCollapsed(!collapsed);
+        }}
       >
-        x
+        {collapsed ? (
+          <MdKeyboardDoubleArrowLeft />
+        ) : (
+          <MdKeyboardDoubleArrowRight />
+        )}
       </div>
-      <div className="flex flex-col items-start px-5 py-2">
-        <div className="w-full p-3">
-          <img src="/src/assets/logo.png" alt="Logo" />
-        </div>
-        <p className="text-primary ">مسبار الكون</p>
-        <h1 className="text-xl text-light font-somarBold">نظام المشتريات</h1>
+      <div
+        className={`flex flex-col items-start px-5 py-2 ${
+          collapsed ? "h-[100px]" : "min-h-[240px]"
+        }`}
+      >
+        {!collapsed ? (
+          <>
+            <div className="w-full p-3">
+              <img src="/src/assets/logo.png" alt="Logo" />
+            </div>
+            <p className="text-primary">مسبار الكون</p>
+            <h1 className="text-xl text-light font-somarBold">
+              نظام المشتريات
+            </h1>
+          </>
+        ) : null}
       </div>
+
       <Menu>
         {sideBarItems.map((Item, index) => {
           if ((Item as any).header) {
@@ -180,12 +201,22 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
               defaultOpen={isOpen(Item.id)}
               className={`${
                 location.pathname === Item.link
-                  ? "bg-LightGreen font-somarBold "
-                  : " text-mainBlack "
-              } `}
+                  ? "bg-LightGreen font-somarBold"
+                  : "text-mainBlack"
+              }`}
               key={Item.id}
               label={t(Item.label)}
-              icon={<Item.icon size={20} />}
+              icon={
+                collapsed ? (
+                  <Tooltip title={t(Item.label)}>
+                    <button>
+                      <Item.icon size={20} />
+                    </button>
+                  </Tooltip>
+                ) : (
+                  <Item.icon size={20} />
+                )
+              }
               active={location.pathname === Item.link}
             >
               {Item.items.map((innerItem) => generateItem(innerItem))}

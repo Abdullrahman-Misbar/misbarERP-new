@@ -11,7 +11,6 @@ import { mainENdPoint } from "./const";
 
 function Main() {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);

@@ -5,7 +5,7 @@ import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
-import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
 import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 
 type Main_TP = {
@@ -57,6 +57,7 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
+    editable:editable,
     invoiceCode: response?.invoiceCode || "",
     invoiceType: InvoiceLocalType,
     invoiceDate: response?.invoiceDate || "",
@@ -85,8 +86,13 @@ function Main({ editable }: Main_TP) {
     invoiceStatus: response?.invoiceStatus || 0,
     approvalDate: response?.approvalDate || "",
     notes: response?.notes || "",
+
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
 
     invoiceDetailsRequest: response?.invoiceDetailsRequest?.length
       ? response?.invoiceDetailsRequest?.map((item: Item_TP) => ({

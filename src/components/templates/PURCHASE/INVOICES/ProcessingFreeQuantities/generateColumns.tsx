@@ -17,35 +17,35 @@ export const generateColumns = (
   return [
     {
       header: `${t("Reference number")}`,
-      accessorKey: "invoiceCode",
+      accessorKey: "operationCode",
       cell: (info) => info.renderValue(),
     },
 
     {
       header: `${t("Date")}`,
-      accessorKey: "invoiceDate",
+      accessorKey: "operationDate",
       cell: (info) => (
-        <div>{info?.row?.original?.invoiceDate?.slice(0, 10)}</div>
+        <div>{info?.row?.original?.operationDate?.slice(0, 10)}</div>
       ),
     },
     {
       header: `${t("Processing type")}`,
-      accessorKey: "user",
+      accessorKey: "processingType",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("user")}`,
-      accessorKey: "user",
+      accessorKey: "userId",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("Entry repository")}`,
-      accessorKey: "user",
+      accessorKey: "werhouseName",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("note")}`,
-      accessorKey: "user",
+      accessorKey: "note",
       cell: (info) => info.renderValue(),
     },
 
@@ -60,7 +60,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
+                      `/purchase/invoices/ProcessingFreeQuantities/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

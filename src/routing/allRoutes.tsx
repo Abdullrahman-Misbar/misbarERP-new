@@ -44,6 +44,9 @@ import { ErrorPage } from "./ErrorPage";
 import { Root } from "./Root";
 import EditInvoiceLocal from "../pages/PURCHASE/INVOICES/invoicesLocal/Edit";
 import EditInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/edit";
+import ProcessingFreeQuantities from "../pages/ProcessingFreeQuantities";
+import AddProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Add";
+import EditProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Edit";
 
 import PurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate";
 import EditPurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate/Edit";
@@ -163,16 +166,16 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/DocumentaryCredit"
           element={<DocumentaryCredit title={t("Document Credit")} />}
         />
-          <Route
+        <Route
           path="/purchase/invoices/DocumentaryCredit/add"
           element={<AddDocumentaryCredit title={t("Add Document Credit")} />}
         />
-             <Route
+        <Route
           path="/purchase/invoices/DocumentaryCredit/edit/:id"
           element={<EditDocumentaryCredit title={t("Edit Document Credit")} />}
         />
         {/* ----------------------- */}
-        {/* <Route
+        <Route
           path="/purchase/invoices/ProcessingFreeQuantities"
           element={
             <ProcessingFreeQuantities
@@ -187,7 +190,15 @@ export const AllRoutesProvider = () => {
               title={t("Add Invoices ProcessingFreeQuantities")}
             />
           }
-        /> */}
+        />
+        <Route
+          path="/purchase/invoices/ProcessingFreeQuantities/edit/:id"
+          element={
+            <EditProcessingFreeQuantities
+              title={t("edit Invoices ProcessingFreeQuantities")}
+            />
+          }
+        />
 
         {/* ------------------------------------------ */}
         <Route

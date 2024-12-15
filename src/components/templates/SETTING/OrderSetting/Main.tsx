@@ -100,7 +100,7 @@ function Main() {
       },
       {
         id: 14,
-        settingId:14,
+        settingId: 14,
         isDisabled: true,
         settingKey: "exceedAllowedValueWarning",
         settingValue: "",
@@ -117,10 +117,11 @@ function Main() {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={(values) => console.log("values" , values)}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values) => console.log("values", values)}
+      >
         <Form>
-
-          
           <div className="bg-white rounded-lg p-5">
             <div className="my-5">
               <Orders />

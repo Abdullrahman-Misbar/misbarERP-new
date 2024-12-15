@@ -13,7 +13,6 @@ type Main_TP = {
 };
 function Main({ type }: Main_TP) {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);

@@ -74,7 +74,6 @@ function MainData() {
       );
       setFieldValue("TaxAdditionalValue", TaxAdditionalValue, false);
       setFieldValue("TotalInvoicesValueByTax", TotalInvoicesValueByTax, false);
-
     }
   }, [values.invoiceDetailsRequest, setFieldValue]);
   return (
@@ -82,6 +81,9 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
+      visibility={{
+        settingBar: false,
+      }}
       className="p-0"
     >
       <div>
@@ -168,7 +170,7 @@ function MainData() {
               )}
             </div>
           </Grid>
-          
+
           <Grid item xs={12} sm={4}>
             <BaseInputField
               name="vendorTaxNumber"
@@ -282,7 +284,7 @@ function MainData() {
         </Grid>
         <hr />
         <Grid container rowSpacing={4} columnSpacing={4} mt={3} p={3}>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="total"
               placeholder="0.00"
@@ -291,7 +293,7 @@ function MainData() {
               disabled
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalDiscount"
               placeholder="0.00"
@@ -300,7 +302,7 @@ function MainData() {
               disabled
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalAdditionalValue"
               placeholder="0.00"
@@ -309,7 +311,7 @@ function MainData() {
               disabled
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalAfterDiscountAndAdditional"
               placeholder="0.00"
@@ -318,7 +320,7 @@ function MainData() {
               disabled
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="TaxAdditionalValue"
               placeholder="0.00"
@@ -327,7 +329,7 @@ function MainData() {
               disabled
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="TotalInvoicesValueByTax"
               placeholder="0.00"

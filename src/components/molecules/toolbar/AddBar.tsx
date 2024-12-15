@@ -20,10 +20,12 @@ function AddBar() {
   return (
     <div>
       <Tooltip title="إضافة">
+
         <div className="flex items-center ">
           <AddIcon action={handleAdd} />
           <div className="w-px h-12 bg-gray-200 mx-4"></div>
         </div>
+        
       </Tooltip>
     </div>
   );

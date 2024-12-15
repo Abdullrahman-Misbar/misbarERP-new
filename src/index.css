@@ -84,15 +84,16 @@ body {
     @apply relative active:top-[1px] md:w-[100px] cutsom-button-sub hover:cursor-pointer py-2 px-4 font-bold rounded-md w-full bg-main dark:bg-dark-tertiary dark:!border-dark-borderDark text-white border border-lightBlack   flex items-center justify-center gap-2;
   }
 }
-.ps-menu-label{
-  @apply font-somarBold
-
+input {
+  /* font-family: "Somar-Light" !; */
+  font-family: 'Somar-Light' !important;
 }
-.css-1ip1oky >.ps-menu-button {
-
+.ps-menu-label {
+  @apply font-somarBold;
+}
+.css-1ip1oky > .ps-menu-button {
   height: 40px !important;
-
 }
-.swal2-container{
+.swal2-container {
   z-index: 99999 !important;
 }

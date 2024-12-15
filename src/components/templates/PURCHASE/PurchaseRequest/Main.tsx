@@ -11,7 +11,6 @@ import MainHeadLayout from "./MainHeadLayout";
 
 function Main() {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page)
   const navigate = useNavigate();
   const [word, setWord] = useState("");
   const debouncedWord = useDebounce(word, 3000);
