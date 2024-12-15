@@ -47,21 +47,24 @@ import EditInvoiceReturn from "../pages/PURCHASE/INVOICES/InvoicesReturns/edit";
 import ProcessingFreeQuantities from "../pages/ProcessingFreeQuantities";
 import AddProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Add";
 import EditProcessingFreeQuantities from "../pages/ProcessingFreeQuantities/Edit";
-
 import PurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate";
 import EditPurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate/Edit";
 import AddPurchaseTemplate from "../pages/PURCHASE/PurchaseTemplate/Add";
 import PurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup";
 import AddPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Add";
 import EditPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/Edit";
-
 import ManualComparison from "../pages/PURCHASE/PurchaseRequest/ManualComparison";
 import AutoComparisonTable from "../pages/PURCHASE/PurchaseRequest/AutoComparison";
 import DocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit";
 import AddDocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit/Add";
 import EditDocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit/Edit";
-
 import TypeOfDocumentaryCredit from "../pages/PURCHASE/INVOICES/TypeOfDocumentaryCredit";
+import EditPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Edit";
+import AddPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Add";
+import PurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement";
+import AddPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Add/index";
+import EditPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Edit/index";
+import FreeQuantitiesProcessingOperations from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/index";
 
 export const AllRoutesProvider = () => {
   return (
@@ -69,7 +72,47 @@ export const AllRoutesProvider = () => {
       <Route path="/" element={<Root />} errorElement={<ErrorPage />}>
         <Route path="*" element={<ErrorPage />} />
         <Route index element={<Home title={t("Home")} />} />
+
         {/* PURCHASE */}
+        <Route
+          path="/purchase/PurchaseAgreement"
+          element={<PurchaseAgreement title={t("Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreement/add"
+          element={<AddPurchaseAgreement title={t("Add Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreement/edit/:id"
+          element={<EditPurchaseAgreement title={t("Edit Purchase request")} />}
+        />
+        {/* ----------------------------------------- */}
+        <Route
+          path="/purchase/FreeQuantitiesProcessingOperations"
+          element={
+            <FreeQuantitiesProcessingOperations
+              title={t("Purchase Free Quantities")}
+            />
+          }
+        />
+        <Route
+          path="/purchase/FreeQuantitiesProcessingOperations/add"
+          element={
+            <AddPurchasFreeQuantities
+              title={t("Add Purchase Free Quantities")}
+            />
+          }
+        />
+        <Route
+          path="/purchase/FreeQuantitiesProcessingOperations/edit/:id"
+          element={
+            <EditPurchasFreeQuantities
+              title={t("Edit Purchase Free Quantities")}
+            />
+          }
+        />
+        {/* ----------------------------------------- */}
+
         <Route
           path="/purchase/PurchaseRequest"
           element={<PurchaseRequest title={t("Purchase request")} />}
@@ -176,17 +219,10 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/DocumentaryCredit/edit/:id"
           element={<EditDocumentaryCredit title={t("Edit Document Credit")} />}
         />
-    <Route
+        <Route
           path="/purchase/invoices/TypeOfDocumentaryCredit"
-          element={
-            <TypeOfDocumentaryCredit title={t("Document Credit")} />
-          }
+          element={<TypeOfDocumentaryCredit title={t("Document Credit")} />}
         />
-
-
-
-
-
 
         {/* ----------------------- */}
         <Route

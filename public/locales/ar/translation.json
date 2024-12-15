@@ -150,5 +150,15 @@
   "expected Closing Date":"تاريخ الاقفال المتوقع",
   "closing Date":"تاريخ الاقفال",
   "letter Status":"حالة الاعتماد",
-  "letter OfCredit Car":"بطاقة الاعتماد"
+  "letter OfCredit Car":"بطاقة الاعتماد",
+
+  "Purchase Agreement":"اتفاقية الشراء",
+  "Add Purchase Agreement":"اضافة اتفاقية شراء",
+  "Edit Purchase Agreement": " تعديل اتفاقية شراء ",
+  "order Date": "تاريخ الاتفاقية",
+  "agreement Dead line": "الموعد النهائي",
+  "Receipt Date": "تاريخ الاستلام",
+  "agrement Status": "الحالة",
+  "aggreement Type": "نوع الاتفاقية",
+  "Responsible Name": "المسئول"
 }

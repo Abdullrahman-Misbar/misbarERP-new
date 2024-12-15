@@ -27,6 +27,8 @@ function MainSelectChoseModule({ moduleName }: MainSelectChoseModule_TP) {
       ? `api/PurchasRequest/GetAllItemsFormPurchaseRequest/${values.num_item_id}`
       : values.items_type == "purchase_quotes"
       ? `api/PurchasQutations/GetAllItemsForQutation/${values.num_item_id}`
+      : values.items_type == "purchase_agreement"
+      ? `api/PurchasAgreement/GetAllItemsForAgreement/${values.num_item_id}`
       : "";
 
   const { data: rowData } = useFetch<any>({
