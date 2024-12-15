@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
 import useDebounce from "../../../../../hooks/useDebounce";
@@ -18,6 +17,8 @@ function Main() {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+  const [mainData, setMainData] = useState({});
+
   const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
     // page: page,
@@ -33,7 +34,7 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
+    () => generateColumns(page, refetch, navigate, setOpen, setMainData),
     [page, refetch]
   );
 
@@ -43,7 +44,7 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord}  setOpen={setOpen}  />
+      <MainHeadLayout setWord={setWord} setOpen={setOpen} />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data || []}
@@ -73,7 +74,7 @@ function Main() {
         header="اضافة بطاقة اعتماد مستندي"
         hiddenFooter
       >
-        <MainAdd refetch={refetch} />
+        <MainAdd refetch={refetch}  mainData={mainData}  />
       </ModalComp>
     </div>
   );

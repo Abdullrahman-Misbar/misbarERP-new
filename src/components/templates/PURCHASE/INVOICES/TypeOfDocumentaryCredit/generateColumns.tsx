@@ -6,13 +6,16 @@ import ActionMenu from "../../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import { NavigateFunction } from "react-router-dom";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type RefetchFunction = () => void;
-
+// const [id, setId] = useState(1);
 export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  setMainData: Dispatch<SetStateAction<number | null>>
 ): ColumnDef<RowData>[] => {
   return [
     {
@@ -39,6 +42,7 @@ export const generateColumns = (
     {
       header: `${t("Actions")}`,
       accessorKey: "actions",
+
       cell: (info) => (
         <div className="flex justify-center">
           <ActionMenu>
@@ -46,9 +50,8 @@ export const generateColumns = (
               <span>
                 <Edit
                   action={() => {
-                    navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
-                    );
+                    setOpen(true);
+                    setMainData(info?.row?.original);
                   }}
                 />
               </span>

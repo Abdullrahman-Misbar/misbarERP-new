@@ -61,6 +61,8 @@ import DocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit";
 import AddDocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit/Add";
 import EditDocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit/Edit";
 
+import TypeOfDocumentaryCredit from "../pages/PURCHASE/INVOICES/TypeOfDocumentaryCredit";
+
 export const AllRoutesProvider = () => {
   return (
     <Routes>
@@ -174,6 +176,18 @@ export const AllRoutesProvider = () => {
           path="/purchase/invoices/DocumentaryCredit/edit/:id"
           element={<EditDocumentaryCredit title={t("Edit Document Credit")} />}
         />
+    <Route
+          path="/purchase/invoices/TypeOfDocumentaryCredit"
+          element={
+            <TypeOfDocumentaryCredit title={t("Document Credit")} />
+          }
+        />
+
+
+
+
+
+
         {/* ----------------------- */}
         <Route
           path="/purchase/invoices/ProcessingFreeQuantities"

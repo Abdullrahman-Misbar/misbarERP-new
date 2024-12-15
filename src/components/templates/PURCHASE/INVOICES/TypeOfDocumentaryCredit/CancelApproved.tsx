@@ -13,9 +13,9 @@ function CancelApproved({ refetch, info }: CancelApproved_TP) {
   const statusApproved = info?.row?.original?.isApproved ? false : true;
   const { mutate } = useMutate({
     mutationKey: [
-      `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+      `api/LetterOfCredit/UpdateLettersOfCreditExpensesTypes/${id}?value=${statusApproved}`,
     ],
-    endpoint: `api/PurchasRequest/ApproveOrDisApprove/${id}?value=${statusApproved}`,
+    endpoint: `api/LetterOfCredit/UpdateLettersOfCreditExpensesTypes/${id}?value=${statusApproved}`,
     onSuccess: () => {
       refetch();
       notify(

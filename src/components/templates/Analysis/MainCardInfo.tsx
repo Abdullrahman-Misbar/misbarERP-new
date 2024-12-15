@@ -16,7 +16,7 @@ const MainCardInfo: React.FC<MainCardInfoProps> = ({
   color,
 }) => {
   return (
-    <div className="min-w-[350px] min-h-[152px] flex items-center justify-between p-6 bg-white rounded-md">
+    <div className="min-w-[350px] min-h-[152px] flex items-center justify-between p-2 bg-white rounded-md">
       <div className="flex flex-col items-start">
         <p className="text-light ">{total}</p>
         <span className="text-black text-2xl  font-semibold my-1">{price}</span>

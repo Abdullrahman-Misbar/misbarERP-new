@@ -1,29 +1,23 @@
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 import { Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
-import { useFetch, useMutate } from "../../../../../../hooks";
+import { useMutate } from "../../../../../../hooks";
 import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
-import { mainENdPoint } from "../const";
+import { mainPostENdPoint, UpdateENdPoint } from "../const";
 import MainData from "./MainData";
 import { Values_TP } from "./Types&Validation";
 
 type MainAdd_TP = {
   editable?: boolean;
+  mainData: any;
   refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
-function MainAdd({ editable }: MainAdd_TP) {
-  const { id } = useParams();
+function MainAdd({ editable, mainData }: MainAdd_TP) {
+  console.log("🚀 ~ MainAdd ~ mainData:", mainData);
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
-  const { data, isLoading } = useFetch({
-    endpoint: endpoint,
-    queryKey: [endpoint],
-    Module: "PURCHASE",
-    enabled: !!id && !!editable,
-  });
-
-  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
+  const postEndPoint = mainData?.id
+    ? `${UpdateENdPoint}/${mainData?.id}`
+    : `${mainPostENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -31,7 +25,7 @@ function MainAdd({ editable }: MainAdd_TP) {
       notify("success");
     },
     Module: "PURCHASE",
-    method: id ? "PUT" : "post",
+    method: mainData?.id ? "PUT" : "post",
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },
@@ -49,18 +43,15 @@ function MainAdd({ editable }: MainAdd_TP) {
     const jsonData = JSON.stringify(valuesWithoutCopValue);
     mutate(jsonData);
   };
-  //@ts-ignore
-  const response = data?.data;
-
   const initialValues = {
-    id: id ? +id : 0,
-    invoiceCode: response?.invoiceCode || "",
-    invoiceDate: response?.invoiceDate || "",
-    vendorId: response?.vendorId || "",
-
+    id: mainData?.id ? mainData?.id : 0,
+    expenseType: mainData?.expenseType || "",
+    distributionMethod: mainData?.distributionMethod || "",
+    expenseAccountId: mainData?.expenseAccountId || "",
+    note: mainData?.note || "",
   };
 
-  if (editable && isLoading)
+  if (editable)
     return (
       <>
         <AddLayoutSkeleton />

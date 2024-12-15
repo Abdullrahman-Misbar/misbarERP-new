@@ -134,13 +134,13 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
     );
   };
 
-  const handleMouseEnter = () => {
-    setCollapsed(false);
-  };
+  // const handleMouseEnter = () => {
+  //   setCollapsed(false);
+  // };
 
-  const handleMouseLeave = () => {
-    setCollapsed(true);
-  };
+  // const handleMouseLeave = () => {
+  //   setCollapsed(true);
+  // };
 
   return (
     <Sidebar

@@ -19,7 +19,7 @@ export const Root = () => {
     return (
       <div
         className={`grid h-screen ${
-          collapsed ? "grid-cols-[4%_96%]" : "grid-cols-[17%_82%]"
+          collapsed ? "grid-cols-[4%_96%]" : "grid-cols-[17%_83%]"
         } grid-rows-[auto_1fr] `}
       >
         <div className="col-start-1 col-end-2 row-span-full">

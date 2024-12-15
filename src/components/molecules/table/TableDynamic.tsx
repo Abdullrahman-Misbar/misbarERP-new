@@ -1,166 +1,146 @@
+import React, { useEffect, useRef, useState } from "react";
 import { useFormikContext } from "formik";
-import React, { useEffect, useState } from "react";
-import DataNotFoundDrawer from "../DataNotFoundDrawer";
 
-export interface HeaderType {
-  name: string;
-  label: string;
-  type?: "text" | "number";
-  component: React.ComponentType<any>;
-  size?: number;
-  placeholder?: string;
-  onChange?: (
-    e: React.ChangeEvent<any>,
-    setFieldValue: Function,
-    values: any,
-    moduleName: string,
-    index: number
-  ) => void;
-  value?: any;
-  width?: string;
-}
-
-interface TableDynamicProps {
-  headers: HeaderType[];
-  actions?: (originalIndex: number, remove: () => void) => React.ReactNode;
-  moduleName: string;
-  remove: () => void;
-  handleTabPress: (
-    e: React.KeyboardEvent,
-    index: number,
-    push: Function
-  ) => void;
-  push: () => void;
-}
-
-const TableDynamic: React.FC<TableDynamicProps> = ({
+const TableDynamic: React.FC<any> = ({
   headers,
   actions,
   moduleName,
   remove,
 }) => {
   const { values, setFieldValue } = useFormikContext<any>();
-  const [activeRow, setActiveRow] = useState<number>(0); // حالة العنصر النشط
+  const [activeRow, setActiveRow] = useState<number>(0);
+  const [activeColumn, setActiveColumn] = useState<number>(0);
+  const tableRefs = useRef<Array<Array<HTMLInputElement | null>>>([]);
+
+  const filteredItems =
+    values[moduleName]?.map((item: any, index: number) => ({
+      ...item,
+      originalIndex: index,
+    })) || [];
 
   useEffect(() => {
-    const updatedValues = values[moduleName]?.filter(
-      (item: any) => !(item?.isDeleted && item.id === 0)
+    tableRefs.current = filteredItems.map(() =>
+      new Array(headers.length).fill(null)
     );
+  }, [filteredItems, headers.length]);
 
-    if (updatedValues?.length !== values[moduleName]?.length) {
-      setFieldValue(moduleName, updatedValues);
-    }
-  }, [values[moduleName], setFieldValue, moduleName]);
-
-  const filteredItems = values[moduleName]?.reduce(
-    (acc: any[], item: any, index: number) => {
-      if (item?.isDeleted && item.id === 0) {
-        return acc;
+  const focusCell = (rowIndex: number, colIndex: number) => {
+    setTimeout(() => {
+      const cell = tableRefs.current[rowIndex]?.[colIndex];
+      if (cell) {
+        cell.focus();    // تركيز الإدخال
+        if (cell.select) cell.select(); // تحديد النص داخل الإدخال (اختياري)
       }
+    }, 0);
+  };
+  
 
-      if (item?.isDeleted && item.id !== 0) {
-        return acc;
-      }
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    let nextRow = activeRow;
+    let nextColumn = activeColumn;
 
-      acc.push({
-        ...item,
-        originalIndex: index,
-        tempKey: item?.id === 0 ? `temp-${index}` : item?.id,
-      });
-      return acc;
-    },
-    []
-  );
-
-  // التعامل مع ضغطات لوحة المفاتيح
-  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
     if (e.key === "ArrowDown") {
-      setActiveRow((prev) => Math.min(prev + 1, filteredItems.length - 1));
+      e.preventDefault();
+      nextRow = Math.min(activeRow + 1, filteredItems.length - 1);
     } else if (e.key === "ArrowUp") {
-      setActiveRow((prev) => Math.max(prev - 1, 0));
+      e.preventDefault();
+      nextRow = Math.max(activeRow - 1, 0);
+    } else if (e.key === "ArrowRight" || e.key === "Tab") {
+      e.preventDefault();
+      nextColumn = (activeColumn + 1) % headers.length;
+      if (nextColumn === 0) {
+        nextRow = Math.min(activeRow + 1, filteredItems.length - 1);
+      }
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      nextColumn = (activeColumn - 1 + headers.length) % headers.length;
+    } else if (e.key === " ") {
+      // عند الضغط على مسطرة
+      e.preventDefault();
+      focusCell(activeRow, activeColumn);
     }
+
+    setActiveRow(nextRow);
+    setActiveColumn(nextColumn);
+    focusCell(nextRow, nextColumn);
+  };
+
+  const handleCellClick = (rowIndex: number, colIndex: number) => {
+    setActiveRow(rowIndex);
+    setActiveColumn(colIndex);
+    focusCell(rowIndex, colIndex);
   };
 
   return (
     <div className="overflow-x-scroll">
-      <table className="w-full text-right border-collapse">
+      <table className="w-full border-collapse">
         <thead>
-          <tr className="bg-gray-100">
-            {headers?.map((header) => (
-              <th
-                key={header?.name}
-                className={`p-3 border-b-2 border-gray-300 text-center text-[16px]`}
-                style={{
-                  width: header?.width,
-                }}
-              >
-                {header?.label}
+          <tr>
+            {headers.map((header: any) => (
+              <th key={header.name} className="p-2 border">
+                {header.label}
               </th>
             ))}
-            <th className="p-3 border-b-2 border-gray-300 text-center text-[16px]">
-              العمليات
-            </th>
+            <th className="p-2 border">العمليات</th>
           </tr>
         </thead>
         <tbody>
-          {filteredItems?.length ? (
-            filteredItems?.map((item: any, index: number) => (
-              <tr
-                key={item.tempKey}
-                tabIndex={0}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-              >
-                {headers.map((header) => (
-                  <td
-                    key={header.name}
-                    className="p-3 border-b border-gray-200 min-w-[200px]"
-                  >
-                    <header.component
-                      name={`${moduleName}[${item.originalIndex}].${header.name}`}
-                      value={
-                        values[moduleName]?.[item.originalIndex]?.[
-                          header.name
-                        ] || header?.value
+          {filteredItems?.map((item: any, rowIndex: number) => (
+            <tr key={rowIndex}>
+              {headers.map((header: any, colIndex: number) => (
+                <td
+                  key={colIndex}
+                  className={`p-2 border ${
+                    activeRow === rowIndex && activeColumn === colIndex
+                      ? "bg-blue-100"
+                      : ""
+                  }`}
+                  onClick={() => handleCellClick(rowIndex, colIndex)}
+                  tabIndex={0}
+                  onKeyDown={handleKeyDown}
+                >
+                  <header.component
+                    ref={(el: HTMLInputElement | null) => {
+                      if (!tableRefs.current[rowIndex]) {
+                        tableRefs.current[rowIndex] = [];
                       }
-                      type={header?.type}
-                      placeholder={header?.placeholder}
-                      moduleName={moduleName}
-                      index={item.originalIndex}
-                      disabled={header?.disabled}
-                      onChange={
-                        header?.onChange
-                          ? (e: React.ChangeEvent<any>) =>
-                              header.onChange(
-                                e,
-                                setFieldValue,
-                                values,
-                                moduleName,
-                                item.originalIndex
-                              )
-                          : (e: { target: { value: any } }) => {
-                              setFieldValue(
-                                `${moduleName}[${item.originalIndex}].${header.name}`,
-                                e.target.value
-                              );
-                            }
-                      }
-                    />
-                  </td>
-                ))}
-                <td className="p-3 text-center">
-                  {actions && actions(item.originalIndex, remove)}{" "}
+                      tableRefs.current[rowIndex][colIndex] = el;
+                    }}
+                    name={`${moduleName}[${item.originalIndex}].${header.name}`}
+                    value={
+                      values[moduleName]?.[item.originalIndex]?.[header.name] ||
+                      header?.value
+                    }
+                    placeholder={header?.placeholder}
+                    type={header?.type}
+                    autoFocus={activeRow == rowIndex && activeColumn == colIndex}
+                    moduleName={moduleName}
+                    disabled={header?.disabled}
+                    onChange={
+                      header?.onChange
+                        ? (e: React.ChangeEvent<any>) =>
+                            header.onChange(
+                              e,
+                              setFieldValue,
+                              values,
+                              moduleName,
+                              item.originalIndex
+                            )
+                        : (e: { target: { value: any } }) => {
+                            setFieldValue(
+                              `${moduleName}[${item.originalIndex}].${header.name}`,
+                              e.target.value
+                            );
+                          }
+                    }
+                  />
                 </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={headers?.length}>
-                <div className="flex justify-center mt-10 h-[250px] overflow-hidden">
-                  <DataNotFoundDrawer text="لايوجد عناصر" />
-                </div>
+              ))}
+              <td className="p-2 border text-center">
+                {actions && actions(rowIndex, remove)}
               </td>
             </tr>
-          )}
+          ))}
         </tbody>
       </table>
     </div>

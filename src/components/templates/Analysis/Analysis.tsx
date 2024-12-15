@@ -1,6 +1,6 @@
 import React from "react";
 import MainCardInfo from "./MainCardInfo";
-import AvargeOrder from "./AvargeOrder";
+import AverageOrder from "./AverageOrder";
 import Curve from "./Curve";
 
 const MainGrid: React.FC = () => {
@@ -39,7 +39,7 @@ const MainGrid: React.FC = () => {
 
         {/* Average Order: Takes 5 columns */}
         <div className="col-span-5">
-          <AvargeOrder />
+          <AverageOrder />
         </div>
       </div>
 

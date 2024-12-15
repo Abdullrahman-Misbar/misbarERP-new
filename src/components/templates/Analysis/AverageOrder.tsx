@@ -1,6 +1,6 @@
 import React from "react";
 
-function AvargeOrder() {
+function AverageOrder() {
   return (
     <div className="bg-white !rounded-md min-w-[350px] flex flex-col item-center justify-center !min-h-[256px] p-6 ">
       <div className=" w-full flex items-center justify-between p-6 bg-white ">
@@ -37,4 +37,4 @@ function AvargeOrder() {
   );
 }
 
-export default AvargeOrder;
+export default AverageOrder;

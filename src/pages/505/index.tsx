@@ -1,12 +1,10 @@
-import React from "react";
 
-function NoData() {
+function Error500() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center text-gray-600">
       <div className="mb-4">
         <img
           src="/src/assets/NoData.png"
-          // className="w-16 h-16"
         />
       </div>
 
@@ -21,4 +19,4 @@ function NoData() {
   );
 }
 
-export default NoData;
+export default Error500;

@@ -33,58 +33,21 @@ export const generateColumns = (
       },
     },
     {
-      header: `${t("Reference number")}`,
-      accessorKey: "code",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("createDate")}`,
-      accessorKey: "createDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.createDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("vendorId")}`,
-      accessorKey: "vendorId",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("purchaseRepresentativeId")}`,
-      accessorKey: "purchaseRepresentativeId",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("approvalDate")}`,
-      accessorKey: "approvalDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("expectedReceiptDate")}`,
-      accessorKey: "expectedReceiptDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("referenceDocument")}`,
-      accessorKey: "referenceDocument",
+      header: `${t("expense Type")}`,
+      accessorKey: "expenseType",
       cell: (info) => info.renderValue(),
     },
 
     {
-      header: `${t("status approved")}`,
-      accessorKey: "status",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
-    },
-    {
-      header: `${t("purchaseAgreementId")}`,
-      accessorKey: "purchaseAgreementId",
+      header: `${t("distribution Method")}`,
+      accessorKey: "distributionMethod",
       cell: (info) => info.renderValue(),
     },
-
+    {
+      header: `${t("expense account")}`,
+      accessorKey: "expenseAccountId",
+      cell: (info) => info.renderValue(),
+    },
     {
       header: `${t("note")}`,
       accessorKey: "note",
