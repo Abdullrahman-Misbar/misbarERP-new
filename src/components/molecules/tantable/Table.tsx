@@ -42,6 +42,7 @@ export const Table = <T extends object>({
   const [sorting, setSorting] = React.useState<SortingState[]>([]);
   const [sortingState, setSortingState] = useState<Record<string, string>>({});
   const [columnVisibility, setColumnVisibility] = useState({});
+  const [columnSizing, setColumnSizing] = useState({});
 
   const table = useReactTable(
     {
@@ -55,12 +56,15 @@ export const Table = <T extends object>({
 
         globalFilter,
         sorting,
+        columnSizing,
       },
       initialState: {
         pagination: {
           pageSize: 100,
         },
       },
+      onColumnSizingChange: setColumnSizing,
+      columnResizeMode: "onChange",
       onSortingChange: setSorting,
       onColumnFiltersChange: setColumnFilters,
       onGlobalFilterChange: setGlobalFilter,
@@ -140,6 +144,10 @@ export const Table = <T extends object>({
                           key={header.id}
                           className="text-center bg-[#f5f5f5] rounded-none"
                           colSpan={header.column.columnDef.colSpan || 1}
+                          style={{
+                            width: header.getSize(),
+                            textAlign: "center",
+                          }}
                         >
                           {flexRender(
                             header.column.columnDef.header,

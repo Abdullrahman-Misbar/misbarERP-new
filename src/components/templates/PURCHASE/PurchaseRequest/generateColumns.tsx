@@ -20,21 +20,27 @@ export const generateColumns = (
       header: "#",
       accessorKey: "id",
       cell: (info) => <span>{indexTable(info.row.index, page)}</span>,
+      enableResizing: true,
     },
     {
       header: `${t("Reference number")}`,
       accessorKey: "code",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
+
     },
     {
       header: `${t("vendor Name")}`,
       accessorKey: "partnerName",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
+
     },
     {
       header: `${t("reference Document")}`,
       accessorKey: "referenceDocument",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
     },
     {
       header: `${t("request Date")}`,
@@ -42,6 +48,7 @@ export const generateColumns = (
       cell: (info) => (
         <div>{info?.row?.original?.requestDate?.slice(0, 10)}</div>
       ),
+      enableResizing: true,
     },
     {
       header: `${t("request End Date")}`,
@@ -49,6 +56,7 @@ export const generateColumns = (
       cell: (info) => (
         <div>{info?.row?.original?.requestEndDate?.slice(0, 10)}</div>
       ),
+      enableResizing: true,
     },
     {
       header: `${t("approval Date")}`,
@@ -56,11 +64,13 @@ export const generateColumns = (
       cell: (info) => (
         <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
       ),
+      enableResizing: true,
     },
     {
       header: `${t("status approved")}`,
       accessorKey: "isApproved",
       cell: (info) => <CancelApproved info={info} refetch={refetch} />,
+      enableResizing: true,
     },
     {
       header: `${t("status Canceled Request")}`,
@@ -74,23 +84,27 @@ export const generateColumns = (
           )}
         </div>
       ),
+      enableResizing: true,
     },
     {
       header: `${t("Number of offers")}`,
       accessorKey: "totalQutotaionCount",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
     },
 
     {
       header: `${t("total")}`,
       accessorKey: "total",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
     },
 
     {
       header: `${t("note")}`,
       accessorKey: "note",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
     },
 
     {
@@ -120,6 +134,7 @@ export const generateColumns = (
           </ActionMenu>
         </div>
       ),
+      enableResizing: true,
     },
   ];
 };

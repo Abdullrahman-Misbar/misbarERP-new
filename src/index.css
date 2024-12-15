@@ -97,3 +97,20 @@ input {
 .swal2-container {
   z-index: 99999 !important;
 }
+.resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  cursor: col-resize;
+  background: #ccc;
+}
+
+.resizer:hover {
+  background: #ccc;
+}
+
+.isResizing {
+  background: #999;
+}
