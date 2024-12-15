@@ -41,6 +41,13 @@ export type Values_TP = {
   voucherDate: string;
   otherAccountId: number;
   voucherCode: number;
+  voucherType: any;
+  cancelRequestEndPoint: string;
+  deleteEndPoint: string;
+  controlButtonEndPoint: string;
+  IndexMainPath: string;
+  mainENdPoint: string;
+  ApproveOrDisApproveEndPoint: string;
 
   voucherDetailsRequest: string[];
   copValue: {

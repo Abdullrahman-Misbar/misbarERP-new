@@ -5,7 +5,8 @@ import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
-import { cancelRequestEndPoint, deleteEndPoint, mainENdPoint } from "../const";
+import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
+import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 
 type Main_TP = {
   editable?: boolean;
@@ -56,10 +57,9 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
+    editable:editable,
     invoiceCode: response?.invoiceCode || "",
-
-    invoiceType: 0,
-
+    invoiceType: InvoiceLocalType,
     invoiceDate: response?.invoiceDate || "",
     vendorId: response?.vendorId || "",
     vendorInvoiceCode: response?.vendorInvoiceCode || "",
@@ -85,15 +85,19 @@ function Main({ editable }: Main_TP) {
     paymentTemplateId: response?.paymentTemplateId || 1,
     invoiceStatus: response?.invoiceStatus || 0,
     approvalDate: response?.approvalDate || "",
-    note: response?.note || "",
+    notes: response?.notes || "",
+
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
 
     invoiceDetailsRequest: response?.invoiceDetailsRequest?.length
       ? response?.invoiceDetailsRequest?.map((item: Item_TP) => ({
           itemId: item?.itemId,
           invoiceId: item?.invoiceId,
-
           id: item?.id || 0,
           quantity: item?.quantity,
           uomId: item?.uomId,

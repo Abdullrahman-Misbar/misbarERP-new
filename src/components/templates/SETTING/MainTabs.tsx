@@ -6,7 +6,22 @@ function MainTabs() {
   return (
     <>
       <div className="bg-white p-0 rounded-md">
-        <Toolbar />
+        <Toolbar
+          visibility={{
+            addBar: false,
+            approvedBar: false,
+            cancelBar: false,
+            closeBar: false,
+            controlTableButton: false,
+            deleteBar: false,
+            operationLogsBar: false,
+            printBar: false,
+            repeaterBar: false,
+            uploadFileBar: false,
+            settingBar: false,
+            scheduledActivities: false,
+          }}
+        />
       </div>
 
       <div className="bg-white rounded-lg  !mt-5 p-5">

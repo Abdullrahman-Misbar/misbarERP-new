@@ -34,14 +34,14 @@ export const generateColumns = (
       accessorKey: "mainCategoryName",
       cell: (info) => info.renderValue(),
     },
-    {
-      header: `${t("tags")}`,
-      accessorKey: "tags",
-      cell: (info) => {
-        const tags = info.getValue() as Array<{ tagName: string }>;
-        return tags.map(tag => tag.tagName).join(", ");
-      },
-    },
+    // {
+    //   header: `${t("tags")}`,
+    //   accessorKey: "tags",
+    //   cell: (info) => {
+    //     const tags = info.getValue() as Array<{ tagName: string }>;
+    //     return tags?.map(tag => tag.tagName).join(", ");
+    //   },
+    // },
     
 
     {

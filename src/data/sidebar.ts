@@ -112,7 +112,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchasing representatives",
-        link: "",
+        link: "/purchase/PurchaseRepresentative",
         icon: FaRegCircle,
       },
       {
@@ -144,6 +144,8 @@ export const sideBarItems: MenuItem_TP[] = [
 
     icon: OprationsIcon,
     items: [
+
+      
       {
         id: crypto.randomUUID(),
         label: "Purchase Request",
@@ -189,19 +191,19 @@ export const sideBarItems: MenuItem_TP[] = [
               {
                 id: crypto.randomUUID(),
                 label: "Documentary credit cards",
-                link: "",
+                link: "/purchase/invoices/DocumentaryCreditCards",
                 icon: FaRegCircle,
               },
               {
                 id: crypto.randomUUID(),
-                label: "Types of expenses for documentary credits",
-                link: "",
+                label: "Type Of Documentary Credit",
+                link: "/purchase/invoices/TypeOfDocumentaryCredit",
                 icon: FaRegCircle,
               },
               {
                 id: crypto.randomUUID(),
                 label: "Documentary credits",
-                link: "",
+                link: "/purchase/invoices/DocumentaryCredit",
                 icon: FaRegCircle,
               },
               {
@@ -242,16 +244,18 @@ export const sideBarItems: MenuItem_TP[] = [
           },
         ],
       },
+
+      
       {
         id: crypto.randomUUID(),
         label: "Purchase agreements",
-        link: "",
+        link: "/purchase/PurchaseAgreement",
         icon: FaRegCircle,
       },
       {
         id: crypto.randomUUID(),
         label: "Processing free quantities",
-        link: "",
+        link: "/purchase/invoices/ProcessingFreeQuantities",
         icon: FaRegCircle,
       },
       {

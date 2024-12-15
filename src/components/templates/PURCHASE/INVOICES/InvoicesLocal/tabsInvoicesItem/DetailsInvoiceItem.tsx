@@ -63,6 +63,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
                 setFieldValue(`${moduleName}[${index}].itemId`, e.value);
                 setFieldValue(`${moduleName}[${index}].uoms`, e.uoms);
               }}
+              value={item?.itemId}
             />
           </td>
           <td className={className}>
@@ -75,10 +76,16 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               onChange={(e) =>
                 handleInputChange(index, "quantity", +e.target.value)
               }
+              value={item?.quantity}
             />
           </td>
           <td className={className}>
-            <SelectUoms name={`${moduleName}[${values[moduleName]?.length - 1}].uomId`} index={index} moduleName={moduleName} />
+            <SelectUoms
+              name={`${moduleName}[${values[moduleName]?.length - 1}].uomId`}
+              index={index}
+              moduleName={moduleName}
+              value={item?.uomId}
+            />
           </td>
           <td className={className}>
             <BaseInputRepeater
@@ -90,6 +97,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               onChange={(e) =>
                 handleInputChange(index, "price", +e.target.value)
               }
+              value={item?.cost}
             />
           </td>
           <td className={className}>
@@ -100,7 +108,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               //@ts-ignore
 
               value={values[moduleName]?.[index]?.total || 0}
-              readOnly
+              disabled
             />
           </td>
           <td className={className}>
@@ -151,6 +159,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               onChange={(e) =>
                 handleInputChange(index, "extraRate", e.target.value)
               }
+              value={item?.extraRate}
             />
           </td>
           <td className={className}>
@@ -185,6 +194,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               onChange={(e) =>
                 handleInputChange(index, "taxRate", e.target.value)
               }
+              value={item.taxRate || 0}
             />
           </td>
           <td className={className}>
@@ -214,6 +224,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               name={`freeQuantities`}
               type="number"
               placeholder="الكميات المجانية"
+              value={item?.freeQuantities}
             />
           </td>
           <td className="min-w-[200px] border-l px-1 border-b py-1">
@@ -221,6 +232,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               name={`note`}
               type="text"
               placeholder="الملاحظات"
+              value={item?.note}
             />
           </td>
         </tr>

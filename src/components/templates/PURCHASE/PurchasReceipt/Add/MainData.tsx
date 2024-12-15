@@ -42,7 +42,6 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasRequest"
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>

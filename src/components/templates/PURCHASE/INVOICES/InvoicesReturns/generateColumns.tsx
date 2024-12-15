@@ -40,21 +40,34 @@ export const generateColumns = (
     },
     {
       header: `${t("user")}`,
-      accessorKey: "user",
-      cell: (info) => info.renderValue(),
+      accessorKey: "userName",
+      cell: (info) => (
+        <div>
+          {info?.row?.original?.userName
+            ? info?.row?.original?.userName
+            : "غير متوفر"}
+        </div>
+      ),
     },
     {
       header: `${t("invoice Status")}`,
       accessorKey: "invoiceStatus",
-      cell: (info) =>   <div
-      className="w-[100px] rounded-md p-2 text-white"
-      style={{
-        backgroundColor: info?.row?.original?.invoiceStatus ? "green" : "red",
-      }}
-    >
-      {info?.row?.original?.invoiceStatus ? t("Approved") : t("Not Approved")}
-    </div>,
+      cell: (info) => (
+        <div
+          className="w-[100px] rounded-md p-2 text-white"
+          style={{
+            backgroundColor: info?.row?.original?.invoiceStatus
+              ? "green"
+              : "red",
+          }}
+        >
+          {info?.row?.original?.invoiceStatus
+            ? t("Approved")
+            : t("Not Approved")}
+        </div>
+      ),
     },
+
     {
       header: `${t("referenceDocument")}`,
       accessorKey: "referenceDocument",
@@ -67,20 +80,18 @@ export const generateColumns = (
     },
     {
       header: `${t("Nature of prices")}`,
-      accessorKey: "price",
-      cell: (info) => info.renderValue() || "-",
+      accessorKey: "priceNature",
+      cell: (info) => info.renderValue(),
     },
     {
       header: `${t("currancy Name")}`,
       accessorKey: "currancyName",
-      cell: (info) => info.renderValue() || "-",
+      cell: (info) => info.renderValue(),
     },
-  
-   
 
     {
       header: `${t("note")}`,
-      accessorKey: "note",
+      accessorKey: "notes",
       cell: (info) => info.renderValue(),
     },
 
@@ -95,7 +106,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
+                      `/purchase/invoices/InvoicesReturns/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

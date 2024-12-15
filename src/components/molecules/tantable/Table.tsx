@@ -10,12 +10,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { t } from "i18next";
 import React, { useEffect, useState } from "react";
-import { Loading } from "../../molecules/Loading/Loading";
-import { ReactTableProps } from "./tableTypes";
-import TableSkeleton from "../Skeleton/TableSkeleton";
 import DataNotFoundDrawer from "../DataNotFoundDrawer";
+import TableSkeleton from "../Skeleton/TableSkeleton";
+import MenuShowItems from "./MenuShowItems";
+import { ReactTableProps } from "./tableTypes";
 
 export const Table = <T extends object>({
   data,
@@ -42,6 +41,8 @@ export const Table = <T extends object>({
   const [currentPageData, setCurrentPageData] = useState<T[]>([]);
   const [sorting, setSorting] = React.useState<SortingState[]>([]);
   const [sortingState, setSortingState] = useState<Record<string, string>>({});
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [columnSizing, setColumnSizing] = useState({});
 
   const table = useReactTable(
     {
@@ -51,17 +52,24 @@ export const Table = <T extends object>({
         fuzzy: fuzzyFilter,
       },
       state: {
+        columnVisibility,
+
         globalFilter,
         sorting,
+        columnSizing,
       },
       initialState: {
         pagination: {
           pageSize: 100,
         },
       },
+      onColumnSizingChange: setColumnSizing,
+      columnResizeMode: "onChange",
       onSortingChange: setSorting,
       onColumnFiltersChange: setColumnFilters,
       onGlobalFilterChange: setGlobalFilter,
+      onColumnVisibilityChange: setColumnVisibility,
+
       globalFilterFn: fuzzyFilter,
       getCoreRowModel: getCoreRowModel(),
       getFilteredRowModel: getFilteredRowModel(),
@@ -125,70 +133,100 @@ export const Table = <T extends object>({
             <TableSkeleton />
           </div>
         ) : (
-          <table id="print-table" className="min-w-full text-center">
-            <thead className="border-b ">
-              {table?.getHeaderGroups()?.map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th
-                      key={header.id}
-                      className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
-                    >
-                      {header.isPlaceholder ? null : (
-                        <div
-                          {...{
-                            className: header.column.getCanSort()
-                              ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
-                              : "",
-                            onClick: () => handleSorting(header),
+          <div className="column-visibility-controls">
+            <table id="print-table" className="min-w-full text-center">
+              <thead className="border-b  relative">
+                {table?.getHeaderGroups()?.map((headerGroup) => (
+                  <tr key={headerGroup.id}>
+                    {headerGroup.headers.map((header) =>
+                      header.column.columnDef.isGroup ? (
+                        <th
+                          key={header.id}
+                          className="text-center bg-[#f5f5f5] rounded-none"
+                          colSpan={header.column.columnDef.colSpan || 1}
+                          style={{
+                            width: header.getSize(),
+                            textAlign: "center",
                           }}
                         >
                           {flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                          {header.column?.columnDef?.filterKey && (
-                            <span className="table-sort-arrow">
-                              {{
-                                asc: " 🔼",
-                                desc: " 🔽",
-                              }[sortingState[header.id]] ?? null}
-                            </span>
+                        </th>
+                      ) : (
+                        <th
+                          key={header.id}
+                          style={{
+                            ...(header.column.columnDef.headerStyle || {}),
+                            textAlign: "center",
+                          }}
+                          className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
+                        >
+                          {header.isPlaceholder ? null : (
+                            <div
+                              {...{
+                                className: header.column.getCanSort()
+                                  ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
+                                  : "",
+                                onClick: () => handleSorting(header),
+                              }}
+                            >
+                              {flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                              {header.column?.columnDef?.filterKey && (
+                                <span className="table-sort-arrow">
+                                  {{
+                                    asc: " 🔼",
+                                    desc: " 🔽",
+                                  }[sortingState[header.id]] ?? null}
+                                </span>
+                              )}
+                            </div>
                           )}
-                        </div>
-                      )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
+                        </th>
+                      )
+                    )}
 
-            {isSuccess && !!data.length && (
-              <tbody className="">
-                {table?.getRowModel()?.rows?.map((row) => (
-                  <tr key={row.id} className="border-b ">
-                    {row?.getVisibleCells()?.map((cell) => (
-                      <td
-                        className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
-                        key={cell.id}
-                        style={{
-                          background: row.original.is_free_session
-                            ? "#F4FFFA"
-                            : "",
-                        }}
-                      >
-                        {flexRender(
-                          cell?.column?.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    ))}
+                    <div className="absolute top-[5px] left-[-10px]">
+                      <MenuShowItems
+                        table={table}
+                        setColumnVisibility={setColumnVisibility}
+                      />
+                    </div>
                   </tr>
                 ))}
-              </tbody>
-            )}
-            <tfoot>{generateFooters(footerData)}</tfoot>
-          </table>
+              </thead>
+
+              {isSuccess && !!data.length && (
+                <tbody className="">
+                  {table?.getRowModel()?.rows?.map((row) => (
+                    <tr key={row.id} className="border-b ">
+                      {row?.getVisibleCells()?.map((cell) => (
+                        <td
+                          className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
+                          key={cell.id}
+                          style={{
+                            background: row.original.is_free_session
+                              ? "#F4FFFA"
+                              : "",
+                          }}
+                        >
+                          {flexRender(
+                            cell?.column?.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              )}
+              <tfoot>{generateFooters(footerData)}</tfoot>
+            </table>
+          </div>
         )}
         {isSuccess &&
           !data?.length &&

@@ -42,7 +42,7 @@ const SelectMultiPartnerGroup: React.FC<SelectVendorProps> = ({
 
   const options: Option[] =
   //@ts-ignore
-    data?.map((vendor: { id: number; lookupName: string }) => ({
+    data?.data?.map((vendor: { id: number; lookupName: string }) => ({
       value: vendor.id,
       label: vendor.lookupName,
     })) || [];

@@ -7,10 +7,10 @@ import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { mainENdPoint } from "./const";
 
 function Main() {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);
@@ -21,7 +21,7 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `api/PurchasQutations?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

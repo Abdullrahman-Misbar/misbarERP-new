@@ -40,34 +40,42 @@ export const generateColumns = (
     },
     {
       header: `${t("user")}`,
-      accessorKey: "user",
-      cell: (info) => info.renderValue(),
+      accessorKey: "userName",
+      cell: (info) => info.renderValue() || "-",
     },
     {
       header: `${t("invoice Status")}`,
       accessorKey: "invoiceStatus",
-      cell: (info) =>   <div
-      className="w-[100px] rounded-md p-2 text-white"
-      style={{
-        backgroundColor: info?.row?.original?.invoiceStatus ? "green" : "red",
-      }}
-    >
-      {info?.row?.original?.invoiceStatus ? t("Approved") : t("Not Approved")}
-    </div>,
+      cell: (info) => (
+        <div
+          className="w-[150px] rounded-md p-2 text-white"
+          style={{
+            backgroundColor: info?.row?.original?.invoiceStatus
+              ? "green"
+              : "red",
+          }}
+        >
+          {info?.row?.original?.invoiceStatus ? (
+            <p className=" rounded-full p-1">مسودة</p>
+          ) : (
+            <p className=" rounded-full p-1">غير مسودة</p>
+          )}
+        </div>
+      ),
     },
     {
-      header: `${t("referenceDocument")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
+      header: `${t("invoice Status")}`,
+      accessorKey: "invoiceStatus",
+      cell: (info) => info.renderValue() || "-",
     },
     {
       header: `${t("purchaseRepresentativeId")}`,
-      accessorKey: "purchaseRepresentativeId",
+      accessorKey: "repersentiveName",
       cell: (info) => info.renderValue(),
     },
     {
       header: `${t("Nature of prices")}`,
-      accessorKey: "price",
+      accessorKey: "priceNature",
       cell: (info) => info.renderValue() || "-",
     },
     {
@@ -75,16 +83,15 @@ export const generateColumns = (
       accessorKey: "currancyName",
       cell: (info) => info.renderValue() || "-",
     },
-    {
-      header: `${t("invoice Status")}`,
-      accessorKey: "invoiceStatus",
-      cell: (info) => info.renderValue() || "-",
-    },
-   
+
     {
       header: `${t("payment Status")}`,
       accessorKey: "paymentStatus",
-      cell: (info) => info.renderValue() || "-",
+      cell: (info) => (
+        <div>
+          {info?.row?.original?.paymentStatus ? <p>مسوده</p> : <p>غير مسودة</p>}
+        </div>
+      ),
     },
    
 
@@ -105,7 +112,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchasOrder/edit/${info?.row?.original?.id}`
+                      `/purchase/invoices/local/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

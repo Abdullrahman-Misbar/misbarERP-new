@@ -4,7 +4,7 @@ import MainHeadLayout from "./MainHeadLayout";
 function Main() {
   return (
     <div>
-      <Formik initialValues={{}} onSubmit={() => {}}>
+      <Formik initialValues={{}} onSubmit={(values) => console.log("values" , values)}>
         <Form>
           <MainHeadLayout />
         </Form>

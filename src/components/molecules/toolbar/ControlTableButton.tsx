@@ -53,7 +53,7 @@ function ControlTableButton() {
         id: response?.id,
       }));
       setControlInput(response?.id);
-      navigate(`/purchase/PurchaseRequest/edit/${response?.id}`);
+      navigate(`${values?.IndexMainPath}/edit/${response?.id}`);
     }
   }, [data, navigate]);
 
@@ -62,7 +62,7 @@ function ControlTableButton() {
 
     setControlButton({ nextType, id: newId });
     setControlInput(newId);
-    navigate(`/purchase/PurchaseRequest/edit/${newId}`);
+    navigate(`${values?.IndexMainPath}/edit/${newId}`);
   };
 
   const renderControlButton = (

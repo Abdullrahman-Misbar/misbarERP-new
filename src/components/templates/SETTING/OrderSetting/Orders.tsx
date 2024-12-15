@@ -5,7 +5,6 @@ import { SwitchComp } from "../../../atoms/formik/SwitchComp";
 function Orders() {
   const { values, setFieldValue } = useFormikContext<any>();
 
-  console.log("values", values);
   const handleSwitchChange = (id: number, checked: boolean) => {
     const updatedSettings = values?.settings?.map((item) =>
       item.id === id ? { ...item, isDisabled: checked } : item
@@ -22,6 +21,7 @@ function Orders() {
 
   return (
     <>
+    
       <span className="text-xl font-bold">الطلبات</span>
       <div className="flex items-center justify-center gap-12 w-full">
         <div className="flex flex-col gap-12 w-[50%]">

@@ -74,7 +74,6 @@ function MainData() {
       );
       setFieldValue("TaxAdditionalValue", TaxAdditionalValue, false);
       setFieldValue("TotalInvoicesValueByTax", TotalInvoicesValueByTax, false);
-
     }
   }, [values.invoiceDetailsRequest, setFieldValue]);
   return (
@@ -82,6 +81,9 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
+      visibility={{
+        settingBar: false,
+      }}
       className="p-0"
     >
       <div>
@@ -212,16 +214,41 @@ function MainData() {
             <SelectWarehouse name="warehouseId" label="اختر المستودع" />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectCostCenter name="costCenterId" />
+            <SelectCostCenter name="costCenterId" labelName="مركز التكلفة" />
           </Grid>
 
           <Grid item xs={6}>
             <BaseInputField
-              name="note"
+              name="notes"
               placeholder="البيان"
               type="textarea"
               label="البيان"
             />
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Label htmlFor=""> آلية معالجة الكميات المجانية</Label>
+            <div className="flex items-center gap-4">
+              <RadioButtons
+                name="priceIncludeTax"
+                label="اعتبارها ايراد للشركة"
+                checked={values?.priceIncludeTax == false}
+                onChange={() => setFieldValue("priceIncludeTax", false)}
+              />
+
+              <RadioButtons
+                name="priceIncludeTax"
+                label=" تخفيض التكاليف"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+              <RadioButtons
+                name="priceIncludeTax"
+                label="معلقة (غير معالجة)"
+                checked={values?.priceIncludeTax == true}
+                onChange={() => setFieldValue("priceIncludeTax", true)}
+              />
+            </div>
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -257,52 +284,58 @@ function MainData() {
         </Grid>
         <hr />
         <Grid container rowSpacing={4} columnSpacing={4} mt={3} p={3}>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="total"
               placeholder="0.00"
               type="number"
               label="إجمالي قيمة الفاتورة"
+              disabled
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalDiscount"
               placeholder="0.00"
               type="number"
               label="الخصم"
+              disabled
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalAdditionalValue"
               placeholder="0.00"
               type="number"
               label="الاضافة"
+              disabled
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="totalAfterDiscountAndAdditional"
               placeholder="0.00"
               type="number"
               label="الإجمالي بعد الخصم والاضافة"
+              disabled
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="TaxAdditionalValue"
               placeholder="0.00"
               type="number"
               label="ضريبة القيمة المضافة"
+              disabled
             />
           </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="TotalInvoicesValueByTax"
               placeholder="0.00"
               type="number"
               label="اجمالي قيمة الفاتورة شامل للضريبة"
+              disabled
             />
           </Grid>
         </Grid>

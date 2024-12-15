@@ -3,12 +3,13 @@ import SelectComp from "../../atoms/formik/SelectComp";
 
 type SelectPaymentMethod_TP = {
   name: string;
+  value?:string
 };
 type Formik_Values = {
   name: string;
 };
-const SelectPaymentMethod = ({ name }: SelectPaymentMethod_TP) => {
-  const { setFieldValue } = useFormikContext<Formik_Values>();
+const SelectPaymentMethod = ({ name , value }: SelectPaymentMethod_TP) => {
+  const { setFieldValue , values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
@@ -19,6 +20,7 @@ const SelectPaymentMethod = ({ name }: SelectPaymentMethod_TP) => {
     { label: "شيك", value: 1 },
     { label: "اجل", value: 2 },
   ];
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -27,6 +29,7 @@ const SelectPaymentMethod = ({ name }: SelectPaymentMethod_TP) => {
       placeholder="طريقة الدفع"
       options={options}
       onChange={handleChange}
+      value={selectedValue}
     />
   );
 };

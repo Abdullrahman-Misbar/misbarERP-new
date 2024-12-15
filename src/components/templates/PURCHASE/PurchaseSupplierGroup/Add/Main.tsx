@@ -10,6 +10,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  postENdPoint,
 } from "../const";
 import MainData from "./MainData";
 import { validationSchema, Values_TP } from "./Types&Validation";
@@ -29,8 +30,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `${mainENdPoint}/${id}`
-    : `${mainENdPoint}`;
+    ? `${postENdPoint}/${id}`
+    : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -111,7 +112,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
-        validationSchema={validationSchema}
+        // validationSchema={validationSchema}
         enableReinitialize
       >
         <Form>

@@ -5,6 +5,14 @@ import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+} from "../const";
 
 type Main_TP = {
   editable?: boolean;
@@ -12,16 +20,14 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `api/PurchasQutations/Get/${id}`;
+  const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
-  const postEndPoint = id
-    ? `api/PurchasQutations/Update/${id}`
-    : `api/PurchasQutations`;
+  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     method: id ? "PUT" : "post",
@@ -63,24 +69,27 @@ function Main({ editable }: Main_TP) {
     purchaseRequestDetailstId: response?.purchaseRequestDetailstId || null,
     quotationDetailsId: response?.quotationDetailsId || 0,
     editable: editable ? true : false,
-
+    cancelRequestEndPoint: cancelRequestEndPoint,
+    deleteEndPoint: deleteEndPoint,
+    controlButtonEndPoint: controlButtonEndPoint,
+    IndexMainPath: IndexMainPath,
+    mainENdPoint: mainENdPoint,
+    ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
     SourceActivityType: 1,
-    qutationDetailsModal: response?.qutationDetailsResponse?.length
-      ? response?.qutationDetailsResponse?.map((item: Item_TP) => ({
-          id: item?.id || 0,
-          itemId: item?.itemId || 0,
-          barcode: item?.barcode || "string",
-          description: item?.description || "string",
-          quantity: item?.quantity || 0,
-          uomId: item?.uomId || 0,
-          price: item?.price || 0,
-          total: item?.total || 0,
-          warehouseId: item?.warehouseId || 0,
-          note: item?.note || "string",
-          purchaseRequestId: item?.purchaseRequestId || 0,
-          isDeleted: item?.isDeleted || false,
-          itemName: item?.itemName || "string",
-          isChoosen: item?.isChoosen || false,
+    qutationDetailsModal: response?.qutationDetailsModal?.length
+      ? response?.qutationDetailsModal?.map((item: Item_TP) => ({
+          itemId: item?.itemId,
+          id: item?.id,
+          note: item?.note,
+          price: item?.price,
+          quantity: item?.quantity,
+          total: item?.total,
+          uomId: item?.uomId,
+          warehouseId: item?.warehouseId,
+          isDeleted: false,
+          description: item?.description,
+          product: item?.product,
+
           uoms: item?.product?.uoms,
         }))
       : [],

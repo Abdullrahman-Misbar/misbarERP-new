@@ -1,5 +1,4 @@
 import { Grid } from "@mui/material";
-import { SetStateAction, useState } from "react";
 
 import { useFormikContext } from "formik";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
@@ -7,7 +6,6 @@ import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
 import SelectAccount from "../../../../molecules/Selects/SelectAccount";
 import SelectMultiCostCenter from "../../../../molecules/SelectMulti/SelectMultiCostCenter";
-import SelectMultiPartnerGroup from "../../../../molecules/SelectMulti/SelectMultiPartnerGroup";
 import SelectMultiTags from "../../../../molecules/SelectMulti/SelectMultiTags";
 
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
@@ -26,25 +24,22 @@ function MainData() {
     costCenterName: values?.copValue?.costCenterName || "",
     mainCategoryName: values?.copValue?.mainCategoryName || "",
     tags: values?.copValue?.tags || [],
-  
   };
- 
+
   return (
     <LayoutMainData
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-    
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
-       
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="categoryCode"
               placeholder="الرقم المرجعي"
               type="text"
-             
+              disabled
               label="الرقم المرجعي"
             />
           </Grid>
@@ -60,12 +55,18 @@ function MainData() {
             />
           </Grid>
 
-          
           <Grid item xs={12} sm={6}>
-            <SelectMultiCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
+            <SelectMultiCostCenter
+              name="costCenterId"
+              labelName={"مركز التكلفة"}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <SelectPartnerGroup name="mainCategoryId" label="المجموعة الرئيسية " placeholder="أختر المجموعة الرئيسية"  />
+            <SelectPartnerGroup
+              name="mainCategoryId"
+              label="المجموعة الرئيسية "
+              placeholder="أختر المجموعة الرئيسية"
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SelectMultiTags name="tags" labelName={"الوسوم"} />
@@ -79,7 +80,6 @@ function MainData() {
             />
           </Grid>
         </Grid>
-        
       </div>
     </LayoutMainData>
   );
