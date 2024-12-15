@@ -58,6 +58,7 @@ import EditPurchaseSupplierGroup from "../pages/PURCHASE/PurchaseSupplierGroup/E
 import ManualComparison from "../pages/PURCHASE/PurchaseRequest/ManualComparison";
 import AutoComparisonTable from "../pages/PURCHASE/PurchaseRequest/AutoComparison";
 import DocumentaryCredit from "../pages/PURCHASE/INVOICES/DocumentaryCredit";
+import TypeOfDocumentaryCredit from "../pages/PURCHASE/INVOICES/TypeOfDocumentaryCredit";
 
 export const AllRoutesProvider = () => {
   return (
@@ -166,6 +167,18 @@ export const AllRoutesProvider = () => {
             <DocumentaryCredit title={t("Document Credit")} />
           }
         />
+    <Route
+          path="/purchase/invoices/TypeOfDocumentaryCredit"
+          element={
+            <TypeOfDocumentaryCredit title={t("Document Credit")} />
+          }
+        />
+
+
+
+
+
+
         {/* ----------------------- */}
         <Route
           path="/purchase/invoices/ProcessingFreeQuantities"

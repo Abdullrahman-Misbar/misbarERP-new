@@ -6,6 +6,7 @@ import BaseInputSearch from "../../../../../../atoms/formik/BaseInputSearch";
 import { Table } from "../../../../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import { useFormikContext } from "formik";
+import { mainENdPoint } from "../../const";
 
 function MainCopyComp() {
   const [page, setPage] = useState(0);
@@ -17,7 +18,7 @@ function MainCopyComp() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
   const { values } = useFormikContext();
-  const endpoint = `api/PurchasOrder?Take=1000${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}${searchParams.toString()}`;
 
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,

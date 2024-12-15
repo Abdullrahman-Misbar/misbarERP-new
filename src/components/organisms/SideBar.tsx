@@ -138,13 +138,13 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
     );
   };
 
-  const handleMouseEnter = () => {
-    setCollapsed(false);
-  };
+  // const handleMouseEnter = () => {
+  //   setCollapsed(false);
+  // };
 
-  const handleMouseLeave = () => {
-    setCollapsed(true);
-  };
+  // const handleMouseLeave = () => {
+  //   setCollapsed(true);
+  // };
 
   return (
     <Sidebar
@@ -153,8 +153,8 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
       transitionDuration={250}
       width="100%"
       collapsed={collapsed}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
     >
       <div
         className="absolute left-[10px] top-[20px] text-[30px] cursor-pointer text-primary"

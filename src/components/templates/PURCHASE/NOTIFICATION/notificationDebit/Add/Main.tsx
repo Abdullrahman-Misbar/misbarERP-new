@@ -19,6 +19,7 @@ function Main({ editable }: Main_TP) {
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
+  
 
   const postEndPoint = id ? `api/Notics/Update/${id}` : `api/Notics/Create`;
   const { mutate } = useMutate({
