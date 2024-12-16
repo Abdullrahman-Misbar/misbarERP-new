@@ -15,6 +15,7 @@ type SelectPartnerGroupProps = {
 interface Option {
   value: number;
   label: string;
+  code:string
 }
 
 interface FormikValues {
@@ -33,26 +34,31 @@ const SelectPartnerGroup: React.FC<SelectPartnerGroupProps> = ({
 
   const handleChange = (selectedOption: Option) => {
     setFieldValue(name, selectedOption.value); 
+    
+ 
     if (onPartnerGroupChange) {
       onPartnerGroupChange(selectedOption); 
     }
   };
 
   const endpoint = "api/PartnerGroups/Lookup";
-  const { data, isLoading } = useFetch<any>({
+  const { data, isLoading, } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
 
+  
+  
   const options: Option[] =
     //@ts-ignore
-    data?.data?.map((partnerGroup: { id: number; lookupName: string }) => ({
+    data?.data?.map((partnerGroup: { id: number; lookupName: string,lookupForignName:string }) => ({
       value: partnerGroup.id,
       label: partnerGroup.lookupName,
+      code:partnerGroup.lookupForignName
     })) || [];
   const selectedValue = options?.find((item) => item?.value == (value || values[name]));
-
+ 
   return (
     <SelectComp
       name={name}

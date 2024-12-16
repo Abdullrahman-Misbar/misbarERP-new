@@ -15,13 +15,13 @@ function Main() {
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
-    // page: page,
-    // term: word,
-    Take: 10 * page,
+    searchValue:'',
+    skip:0,
+   take: 10 * page>0?10 * page:10,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}/GetAll?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

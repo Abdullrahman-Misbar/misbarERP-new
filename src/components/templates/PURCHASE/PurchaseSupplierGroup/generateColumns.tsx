@@ -26,7 +26,7 @@ export const generateColumns = (
     },
     {
       header: `${t("group Name")}`,
-      accessorKey: "categoryName",
+      accessorKey: "ctaegoryName",
       cell: (info) => info.renderValue(),
     },
     {
@@ -68,24 +68,29 @@ export const generateColumns = (
     {
       header: `${t("Actions")}`,
       accessorKey: "actions",
-      cell: (info) => (
-        <div className="flex justify-center">
-          <ActionMenu>
-            <div>
-              <span>
-                <Edit
-                  action={() => {
-                    navigate(
-                      `/purchase/PurchaseSupplierGroup/edit/${info?.row?.original?.id}`
-                    );
-                  }}
-                />
-              </span>
-            </div>
-            <DeleteMain refetch={refetch} info={info} />
-          </ActionMenu>
-        </div>
-      ),
+      cell: (info) => 
+      {
+        console.log(info)
+        return  (
+          <div className="flex justify-center">
+            <ActionMenu>
+              <div>
+                <span>
+                  <Edit
+                    action={() => {
+                      navigate(
+                        `/purchase/PurchaseSupplierGroup/edit/${info?.row?.original?.id}`
+                      );
+                    }}
+                  />
+                </span>
+              </div>
+              <DeleteMain refetch={refetch} info={info} />
+            </ActionMenu>
+          </div>
+        )
+      }
+       ,
     },
   ];
 };

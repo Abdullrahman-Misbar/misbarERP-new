@@ -29,13 +29,19 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `${mainENdPoint}/UpdateRequest/${id}`
+    ? `${mainENdPoint}/${id}`
     : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    onSuccess: () => {
-      notify("success");
+    method:id?'PUT':'post',
+    onSuccess: (data:any) => {
+      if(data?.data.status==='1')
+      {
+        notify("success");
+      }
+    else
+    notify("error", data?.data.message);
     },
     Module: "PURCHASE",
     onError: (err) => {
@@ -65,7 +71,8 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-    
+    templateName:  response?.templateName || "",
+
     foreignTemplateName: response?.foreignTemplateName || "",
     discerption: response?.discerption || "",
     editable: editable ? true : false,
@@ -93,6 +100,8 @@ function Main({ editable }: Main_TP) {
         discountIfPaidWithIn: item?.discountIfPaidWithIn,
         paymentTemplateId: item?.paymentTemplateId,
         isDeleted: item?.isDeleted,
+        id: item?.id,
+
       }))
     : [],
     copValue: {

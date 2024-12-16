@@ -10,6 +10,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  newCodeEndpoint,
   postENdPoint,
 } from "../const";
 import MainData from "./MainData";
@@ -29,18 +30,34 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
+  const { data :newCode } = useFetch({
+    endpoint: `${newCodeEndpoint}`,
+    queryKey: [`${newCodeEndpoint}`],
+    Module: "PURCHASE",
+    enabled: !id && !editable,
+  }) ;
+
+
+  
+
   const postEndPoint = id
     ? `${postENdPoint}/${id}`
     : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    onSuccess: () => {
+    method:id?'PUT':'post',
+    onSuccess: (data:any) => {
+     
+      if(data?.data.status==='1')
       notify("success");
+    else
+    notify("error", data?.data.message);
     },
     Module: "PURCHASE",
     onError: (err) => {
-      notify("error", err?.response?.data?.message);
+      console.log(err)
+      notify("error", err.response?.data.message);
     },
   });
 
@@ -58,16 +75,18 @@ function Main({ editable }: Main_TP) {
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
-
+     console.log(jsonData)
     mutate(jsonData);
   };
   //@ts-ignore
   const response = data?.data;
+  const code = newCode?.data;
+
 
   const initialValues = {
     id: id ? +id : 0,
-    categoryCode: response?.categoryCode || "",
-    categoryName: response?.categoryName || "",
+    categoryCode: response?.categoryCode || code||"",
+    ctaegoryName: response?.ctaegoryName || "",
     editable: editable ? true : false,
     mainCategoryId: response?.mainCategoryId || 0,
   accountId: response?.accountId || 0,
@@ -83,17 +102,18 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
-    SourceActivityType: 1,
-      tags: response?.tags || [],
+    // SourceActivityType: 1,
+       tags: response?.tagNos || [],
+      // tags:   [],
 
     copValue: {
       categoryCode: "",
       categoryName: "",
-      mainCategoryId: 0,
+      mainCategoryId: null,
       
       note: "",
-      accountId: 0,
-      costCenterId: 0,
+      accountId: null,
+      costCenterId: null,
       accountName: "",
       costCenterName: "",
       mainCategoryName: "",

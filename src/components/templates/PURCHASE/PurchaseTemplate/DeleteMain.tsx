@@ -17,8 +17,14 @@ function DeleteMain({ refetch, info }: DeleteMain_TP) {
     mutationKey: [deleteEndPoint],
     endpoint: `${deleteEndPoint}/${id}`,
     onSuccess: () => {
-      refetch();
-      notify("success");
+      if(data?.data.status==='1')
+        {
+          refetch();
+          notify("success");
+        }
+           
+        else
+        notify("error", data?.data.message);
     },
     Module:"PURCHASE",
     onError: (err) => {

@@ -17,16 +17,20 @@ function Main() {
   const queryParams = {
     // page: page,
     // term: word,
-    Take: 10 * page,
+    searchValue:'',
+     skip:0,
+    take: 10 * page>0?10 * page:10,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
-  const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
+  const endpoint = `${mainENdPoint}/GetAllPartnerGroups?${searchParams.toString()}`;
+  const { data, refetch, isSuccess, isFetching, isLoading } = useFetch<any>({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    onSuccess: () => {},
+    onSuccess: () => {
+     
+    },
   });
 
   const columns = useMemo(
@@ -35,15 +39,21 @@ function Main() {
   );
 
   const handlePageChange = (selectedPage: number) => {
+    
     setPage(selectedPage);
   };
 
+  const getData=()=>{
+  
+
+return    data?.data.data
+  };
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data || []} />
+      <MainHeadLayout setWord={setWord} data={ getData() || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-          data={data?.data || []}
+          data={getData() || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}

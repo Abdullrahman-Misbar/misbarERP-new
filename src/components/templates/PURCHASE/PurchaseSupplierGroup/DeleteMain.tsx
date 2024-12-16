@@ -15,9 +15,16 @@ function DeleteMain({ refetch, info }: DeleteMain_TP) {
   const { mutate } = useMutate({
      mutationKey: [deleteEndPoint],
         endpoint: `${deleteEndPoint}/${id}`,
-    onSuccess: () => {
-      refetch();
-      notify("success");
+    onSuccess: (data:any) => {
+      if(data?.data.status==='1')
+      {
+        refetch();
+        notify("success");
+      }
+         
+      else
+      notify("error", data?.data.message);
+      
     },
     Module:"PURCHASE",
     onError: (err) => {

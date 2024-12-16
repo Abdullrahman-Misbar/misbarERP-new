@@ -27,16 +27,24 @@ function Main({ editable }: Main_TP) {
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
+
+  
   const postEndPoint = id ? `${mainENdPoint}/${id}` : `${mainENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    onSuccess: () => {
-      // refetch();
-      notify("success");
+    method:id?'PUT':'post',
+    onSuccess: (data:any) => {
+      if(data?.data.status==='1')
+      {
+        notify("success");
+      }
+    else
+    notify("error", data?.data.message);
     },
     Module: "PURCHASE",
     onError: (err) => {
+      console.log(err)
       notify("error", err?.response?.data?.message);
     },
   });
@@ -52,14 +60,13 @@ function Main({ editable }: Main_TP) {
 
   const initialValues = {
     id: id ? +id : 0,
-
     partnerCode: response?.partnerCode || "",
     editable:editable ? true : false ,
     foreignPartnerName: response?.foreignPartnerName || "",
     partnerName: response?.partnerName || "",
     accountId: response?.accountId || 0,
     partnerTypeId: response?.partnerTypeId || 0,
-    vendorType: response?.vendorType || 0,
+    vendorType: response?.vendorType || 1,
     companyName: response?.companyName || "",
     suffixId: response?.suffixId || 0,
     barcode: response?.barcode || "",
@@ -78,7 +85,7 @@ function Main({ editable }: Main_TP) {
     work: response?.work || "",
     workType: response?.workType || "",
     sex: response?.sex || "",
-    birthDate: response?.birthDate || "",
+    birthDate: response?.birthDate ||  null,
     country: response?.country || "",
     city: response?.city || "",
     area: response?.area || "",
@@ -108,7 +115,7 @@ function Main({ editable }: Main_TP) {
       partnerName: response?.partnerName || "",
       accountId: response?.accountId || 0,
       partnerTypeId: response?.partnerTypeId || 0,
-      vendorType: response?.vendorType || 0,
+      vendorType: response?.vendorType || 1,
       companyName: response?.companyName || "",
       suffixId: response?.suffixId || 0,
       barcode: response?.barcode || "",
@@ -127,7 +134,7 @@ function Main({ editable }: Main_TP) {
       work: response?.work || "",
       workType: response?.workType || "",
       sex: response?.sex || "",
-      birthDate: response?.birthDate || "",
+      birthDate: response?.birthDate || null,
       country: response?.country || "",
       city: response?.city || "",
       area: response?.area || "",

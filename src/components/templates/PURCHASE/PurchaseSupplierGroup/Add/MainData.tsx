@@ -50,7 +50,7 @@ function MainData() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <BaseInputField
-              name="categoryName"
+              name="ctaegoryName"
               placeholder="أسم المجموعة"
               type="text"
               label="أسم المجموعة"

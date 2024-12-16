@@ -16,6 +16,7 @@ import PartnerContact from "./partnerTable/PartnerContact";
 import PurchaseSaleSettings from "./partnertable/PurchaseSaleSettings";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import { useFetch } from "../../../../../hooks";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -72,6 +73,19 @@ function MainData() {
   
     partnerBankAccountsesDto: values?.copValue?.partnerBankAccountsesDto || [],
   };
+
+  const { data:newCode ,isFetching,} = useFetch<any>({
+      queryKey: [`api/Partner/newCode/${values?.partnerGroupId}`],
+      endpoint:  `api/Partner/newCode/${values?.partnerGroupId}`,
+      Module: "PURCHASE",
+        enabled:values?.partnerGroupId>0 && values?.id>0 ,
+    onSuccess: (data) => {
+      setFieldValue("partnerCode", data?.data);
+       
+        },
+    });
+    const code =newCode?.data
+
   const [tabIndex, setTabIndex] = useState(0);
 
   // Tab Change handler
@@ -80,8 +94,10 @@ function MainData() {
   };
 
   const handlePartnerGroupChange = (selectedGroup: { value: number; label: string }) => {
-    const categoryCode = `PG-${selectedGroup.value}`; 
-    setFieldValue("partnerCode", categoryCode); 
+    // const categoryCode = `PG-${selectedGroup.value}`; 
+    
+    // setFieldValue("partnerCode", code); 
+
   };
   const suffixOptions = [
     { label: "السيد", value: 1 },
@@ -105,7 +121,7 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
-      deleteEndPoint="api/PurchasRequest"
+      deleteEndPoint="api/Partner"
     >
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
@@ -120,11 +136,10 @@ function MainData() {
           <Grid item xs={12} sm={6}>
             <BaseInputField
               name="partnerCode"
-              placeholder="الرقم المرجعي"
+              placeholder="   رمز المورد"
               type="text"
-              disabled
               value={values.partnerCode}
-              label="الرقم المرجعي"
+              label="   رمز المورد"
             />
           </Grid>
           <Grid item xs={12} sm={6}>

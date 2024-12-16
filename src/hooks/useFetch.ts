@@ -39,12 +39,20 @@ function useFetch<T extends { data: any }>({
   };
 
   const baseURL = import.meta.env.VITE_BASE_URL;
-  const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  // const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  const customEndPoint = Module === "PURCHASE" ? "http://localhost:5057" : baseURL;
   
   const query = useQuery<T>({
     queryKey,
     queryFn: () => 
-      axios.get(`${customEndPoint}/${endpoint}`, config).then((res) => res.data),
+      axios.get(`${customEndPoint}/${endpoint}`, config).then((res) => {
+        
+        console.log(res.data)
+       
+        onSuccess&& onSuccess(res.data)
+        return res.data
+
+      }),
     enabled,
     select,
     //@ts-ignore
@@ -59,6 +67,7 @@ function useFetch<T extends { data: any }>({
         onError(error);
       }
     },
+
     onSuccess,
   });
 

@@ -34,8 +34,10 @@ export function useMutate<response_T>({
   const authorizationHeader = `Bearer ${token}`
   const isRTL = useIsRTL()
   const baseURL = import.meta.env.VITE_BASE_URL
-  const customEndPoint =
-    Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL
+  // const customEndPoint =
+  //   Module == "PURCHASE" ? "https://webapi.studioerp.com" : baseURL
+    const customEndPoint = Module === "PURCHASE" ? "http://localhost:5057" : baseURL;
+
     // const customEndPoint =
     // Module == "PURCHASE" ? "http://localhost:5057" : baseURL
 
@@ -43,6 +45,7 @@ export function useMutate<response_T>({
     useMutation({
       mutationKey,
       mutationFn: (values) => {
+        console.log(values)
         const requestConfig = {
           method: method.toUpperCase(),
           url: `${customEndPoint}/${endpoint}`,
