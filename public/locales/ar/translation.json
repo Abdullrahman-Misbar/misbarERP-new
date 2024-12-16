@@ -144,15 +144,6 @@
   "foreign Name": "الاسم الأجنبي",
   "discerption": "الوصف",
   "Date": "التاريخ",
-  "letter Of Credit Name": "اسم الاعتماد المستندي",
-  "letter Of Credit Name En": "الاسم الاجنبي",
-  "opening Date card": "تاريخ فتح الاعتماد",
-  "expected Closing Date": "تاريخ الاقفال المتوقع",
-  "closing Date": "تاريخ الاقفال",
-  "letter Status": "حالة الاعتماد",
-  "letter OfCredit Car": "بطاقة الاعتماد",
-  "Purchase Agreement": "اتفاقية الشراء",
-  "Add Purchase Agreement": "اضافة اتفاقية شراء",
   "Edit Purchase Agreement": " تعديل اتفاقية شراء ",
   "order Date": "تاريخ الاتفاقية",
   "agreement Dead line": "الموعد النهائي",
@@ -163,5 +154,8 @@
   "Purchase Request Offers": "العروض التابعة لطلب الشراء",
   "Choose Comparison Type": "اختر نوع المقارنة",
   "Compare Price Offers": "مقارنة عروض الأسعار",
-  "Add Price Offer": "إضافة عرض سعر"
+  "Add Price Offer": "إضافة عرض سعر",
+  "Employee Name": "اسم المندوب",
+  "hire Date": "تاريخ العمل",
+  "address": "العنوان"
 }

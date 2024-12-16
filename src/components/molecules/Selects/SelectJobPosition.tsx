@@ -4,7 +4,7 @@ import { useFormikContext } from "formik";
 import SelectComp from "../../atoms/formik/SelectComp";
 import { useFetch } from "../../../hooks";
 
-type SelelctJobPositionProps = {
+type SelectJobPositionProps = {
   name: string;
   label?: string;
 };
@@ -18,7 +18,7 @@ interface FormikValues {
   [key: string]: any;
 }
 
-const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({
+const SelectJobPosition: React.FC<SelectJobPositionProps> = ({
   name,
   label,
 }) => {
@@ -28,7 +28,7 @@ const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({
     setFieldValue(name, event.target.value);
   };
 
-  const endpoint = "Hr/GetPositionLookup";
+  const endpoint = "api/Hr/GetPositionLookup";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
@@ -55,4 +55,4 @@ const SelelctJobPosition: React.FC<SelelctJobPositionProps> = ({
   );
 };
 
-export default SelelctJobPosition;
+export default SelectJobPosition;

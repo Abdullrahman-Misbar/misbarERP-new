@@ -66,6 +66,11 @@ import AddPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessing
 import EditPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Edit/index";
 import FreeQuantitiesProcessingOperations from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/index";
 import PurchaseRequestsOffers from "../pages/PURCHASE/PurchaseRequest/PurchaseRequestsOffers";
+import PurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative";
+import AddPurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative/Add";
+import EditPurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative/Edit";
+
+
 
 export const AllRoutesProvider = () => {
   return (
@@ -391,9 +396,35 @@ export const AllRoutesProvider = () => {
           path="/purchase/PurchaseRequest/manual/:id"
           element={<ManualComparison title={t("Manual Comparison")} />}
         />
-         <Route
+        <Route
           path="/purchase/PurchaseRequest/PurchaseRequestsOffers/:id"
-          element={<PurchaseRequestsOffers title={t("Purchase Request Offers")} />}
+          element={
+            <PurchaseRequestsOffers title={t("Purchase Request Offers")} />
+          }
+        />
+
+        {/* ----------------------------------------- */}
+        <Route
+          path="/purchase/PurchaseRepresentative"
+          element={
+            <PurchaseRepresentative title={t("Purchasing representatives")} />
+          }
+        />
+        <Route
+          path="/purchase/PurchaseRepresentative/add"
+          element={
+            <AddPurchaseRepresentative
+              title={t("Add Purchasing representatives")}
+            />
+          }
+        />
+        <Route
+          path="/purchase/PurchaseRepresentative/edit/:id"
+          element={
+            <EditPurchaseRepresentative
+              title={t("Edit Purchasing representatives")}
+            />
+          }
         />
       </Route>
 

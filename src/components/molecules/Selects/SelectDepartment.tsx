@@ -24,7 +24,7 @@ const SelectDepartment: React.FC<SelectDepartmentProps> = ({ name }) => {
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "Hr/GetDeptLookUp";
+  const endpoint = "api/Hr/GetDeptLookUp";
   const { data } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,

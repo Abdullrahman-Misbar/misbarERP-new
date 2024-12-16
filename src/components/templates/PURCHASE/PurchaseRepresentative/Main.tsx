@@ -17,14 +17,12 @@ function Main() {
   const queryParams = {
     searchValue: debouncedWord,
     skip: 0,
-    // take: 10 * page > 0 ? 10 * page : 10,
     Take: 10 * page,
-
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `${mainENdPoint}/GetAllPartnerGroups?${searchParams.toString()}`;
-  const { data, refetch, isSuccess, isFetching, isLoading } = useFetch<any>({
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
+  const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
@@ -39,7 +37,6 @@ function Main() {
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
-
 
   return (
     <div>

@@ -3,23 +3,23 @@ import * as Yup from "yup";
 
 export type RowData = {
   id: number;
-  categoryCode: string;
-  categoryName: string;
-  mainCategoryId: number;
-  accountId: number;
-  costCenterId: number;
+  empCode: string;
+  empName: string;
+  phone: string;
+  email: string;
+  address: string;
+  generalDataNote: string;
+  hireDate: string; 
+  deptId: number;
+  jobPositionId: number;
+  managerId: number;
+  workRecord: string;
+  workDataNote: string;
+  isActive: boolean;
   note: string;
-  accountName: string;
-  costCenterName: string;
-  mainCategoryName: string;
-  tags: Array<{
-    tagId: number;
-    partnerId: string;
-    tagName: string;
-    isDeleted: boolean;
-  }>;
-  
+  actions?: unknown;
 };
+
 
 
 export const validationSchema = () =>

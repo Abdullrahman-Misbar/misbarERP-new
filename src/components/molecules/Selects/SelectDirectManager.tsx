@@ -5,6 +5,7 @@ import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectDirectManagerProps = {
   name: string
+  value:string
 }
 
 interface Option {
@@ -16,14 +17,14 @@ interface FormikValues {
   [key: string]: any
 }
 
-const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name }) => {
-  const { setFieldValue } = useFormikContext<FormikValues>()
+const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name , value }) => {
+  const { setFieldValue , values } = useFormikContext<FormikValues>()
 
   const handleChange = (event:{value:string}) => {
     setFieldValue(name, event.value)
   }
 
-  const endpoint = 'Hr/GetAllLookupEmployee'
+  const endpoint = 'api/Hr/GetAllLookupEmployee'
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
@@ -32,10 +33,11 @@ const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name }) => {
 
   const options: Option[] =
   //@ts-ignore
-    data?.data?.map((item: { id: number; name: string }) => ({
+    data?.map((item: { id: number; name: string }) => ({
       value: item.id,
       label: item.name
     })) || []
+    const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -43,9 +45,10 @@ const SelectDirectManager: React.FC<SelectDirectManagerProps> = ({ name }) => {
       label='المدير المباشر'
       placeholder='اختر المدير المباشر'
       options={options}
-      // value={values[name] || ''}
+      value={selectedValue}
       isLoading={isLoading}
       onChange={handleChange}
+
     />
   )
 }

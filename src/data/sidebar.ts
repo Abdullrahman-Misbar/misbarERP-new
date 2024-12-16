@@ -112,7 +112,7 @@ export const sideBarItems: MenuItem_TP[] = [
       {
         id: crypto.randomUUID(),
         label: "Purchasing representatives",
-        link: "",
+        link: "/purchase/PurchaseRepresentative",
         icon: FaRegCircle,
       },
       {
