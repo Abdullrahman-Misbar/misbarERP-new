@@ -39,8 +39,8 @@ function useFetch<T extends { data: any }>({
   };
 
   const baseURL = import.meta.env.VITE_BASE_URL;
-  // const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
-  const customEndPoint = Module === "PURCHASE" ? "http://localhost:5057" : baseURL;
+   const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  //const customEndPoint = Module === "PURCHASE" ? "http://localhost:5057" : baseURL;
   
   const query = useQuery<T>({
     queryKey,
