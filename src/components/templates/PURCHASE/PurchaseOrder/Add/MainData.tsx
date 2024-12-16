@@ -13,6 +13,7 @@ import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import SelectEmployee from "../../../../molecules/Selects/SelectEmployee";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -39,6 +40,7 @@ function MainData() {
       newValues={newValues}
     >
       <div>
+      <ChildrenLayout>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={4}>
             <BaseInputField
@@ -152,10 +154,13 @@ function MainData() {
             />
           </Grid>
         </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
         <Grid item xs={12} mt={5}>
           <MainSelectChoseModule moduleName="orderDetailsModal" />
           <ItemsTable moduleName="orderDetailsModal" />
         </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );
