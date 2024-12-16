@@ -172,7 +172,7 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
         {!collapsed ? (
           <>
             <div className="w-full p-3">
-              <img src="/src/assets/logo.png" alt="Logo" />
+              <img src="/assets/logo.png" alt="Logo" />
             </div>
             <p className="text-primary">مسبار الكون</p>
             <h1 className="text-xl text-light font-somarBold">

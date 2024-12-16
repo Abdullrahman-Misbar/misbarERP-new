@@ -3,7 +3,7 @@ function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[85vh] bg-gray-50 text-center">
       <img
-        src="/src/assets/404.png"
+        src="/assets/404.png"
         alt="Error 404"
         className="w-1/2 max-w-md mb-8"
       />

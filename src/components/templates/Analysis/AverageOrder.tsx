@@ -9,7 +9,7 @@ function AverageOrder() {
           <p className="text-light  font-normal">متوسط قيمة الطلب</p>
         </div>
         <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#FFF2EE] ">
-          <img src="/src/assets/avrage.png" alt="Payments" />
+          <img src="/assets/avrage.png" alt="Payments" />
         </div>
       </div>
       {/* sec0nd card  */}
@@ -20,7 +20,7 @@ function AverageOrder() {
           <p className="text-light font-normal">المهلة للشراء</p>
         </div>
         <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#E8EAF6] ">
-          <img src="/src/assets/graph.png" alt="Payments" />
+          <img src="/assets/graph.png" alt="Payments" />
         </div>
       </div>
     </div>

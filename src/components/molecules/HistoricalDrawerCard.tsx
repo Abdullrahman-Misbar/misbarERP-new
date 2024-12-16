@@ -8,7 +8,7 @@ function HistoricalDrawerCard({ item }) {
   return (
     <div className="flex items-start  my-4  border-b-2 pb-1">
       <div className=" border-l border-gray-300 min-h-[150px] px-2">
-        <img src="/src/assets/person.png" alt="person" className="size-14" />
+        <img src="/assets/person.png" alt="person" className="size-14" />
       </div>
       <div className="px-2">
         {/* item */}

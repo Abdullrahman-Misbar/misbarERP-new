@@ -10,7 +10,7 @@ const LoginForm = ({ isPending }: LoginForm_TP) => {
     <div className="grid min-h-screen grid-cols-1 md:grid-cols-12">
       <div className="items-center justify-center hidden bg-gray-100 md:col-span-8 md:flex">
         <img
-          src="/src/assets/login.png"
+          src="/assets/login.png"
           alt="Login Illustration"
           className="max-h-[680px] max-w-full m-12"
         />

@@ -14,7 +14,7 @@ const MainCardInfo: React.FC = () => {
             <p className="text-light font-normal">خلال آخر أسبوع</p>
           </div>
           <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#F0FAFF]">
-            <img src="/src/assets/chart.png" alt="Chart" />
+            <img src="/assets/chart.png" alt="Chart" />
           </div>
         </div>
 
@@ -28,7 +28,7 @@ const MainCardInfo: React.FC = () => {
             <p className="text-light font-normal">آخر ١٠ ايام</p>
           </div>
           <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#FFF2EE]">
-            <img src="/src/assets/Dollar.png" alt="Dollar" />
+            <img src="/assets/Dollar.png" alt="Dollar" />
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ const MainCardInfo: React.FC = () => {
             <p className="text-light font-normal">خلال آخر شهر</p>
           </div>
           <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#E0F2F1]">
-            <img src="/src/assets/Payments.png" alt="Payments" />
+            <img src="/assets/Payments.png" alt="Payments" />
           </div>
         </div>
       </div>

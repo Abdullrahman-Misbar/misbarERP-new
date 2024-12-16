@@ -4,7 +4,7 @@ function Curve() {
       <div className="bg-white p-4">
         <div className="bg-white flex items-center justify-between my-2">
           <span className="text-2xl  ">طلبات الشراء</span>
-          <img src="/src/assets/curve.png" alt="curve" />
+          <img src="/assets/curve.png" alt="curve" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3  gap-4 mt-20 mb-5 ">
           {/* First Column */}
@@ -12,7 +12,7 @@ function Curve() {
             <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#E8EAF6]  ">
               <img
                 className="w-[32px] h-[32px]"
-                src="/src/assets/Time.png"
+                src="/assets/Time.png"
                 alt="Payments"
               />
             </div>
@@ -33,7 +33,7 @@ function Curve() {
             <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#FFF2EE]">
               <img
                 className="w-[32px] h-[32px]"
-                src="/src/assets/progress.png"
+                src="/assets/progress.png"
                 alt="Payments"
               />
             </div>
@@ -52,7 +52,7 @@ function Curve() {
             <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#DBF0DC]">
               <img
                 className="w-[32px] h-[32px]"
-                src="/src/assets/Alert.png"
+                src="/assets/Alert.png"
                 alt="Payments"
               />
             </div>

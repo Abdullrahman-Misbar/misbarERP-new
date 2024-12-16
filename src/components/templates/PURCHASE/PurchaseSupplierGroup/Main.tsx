@@ -23,7 +23,7 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `${mainENdPoint}/GetAllPartnerGroups?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}/?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch<any>({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -46,7 +46,7 @@ function Main() {
       <MainHeadLayout setWord={setWord} data={data?.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-          data={data?.data || []}
+          data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}

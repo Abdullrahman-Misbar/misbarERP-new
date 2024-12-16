@@ -6,7 +6,7 @@ function ScheduledActivitiesCard({ item }) {
       <div className="flex items-center justify-between p-3 ">
         <div className="flex flex-col items-start justify-between ">
           <div className="flex items-center gap-2">
-            <img src="/src/assets/AnynmosPerson.png" alt="personName" />
+            <img src="/assets/AnynmosPerson.png" alt="personName" />
             <span className="text-primary text-xl font-somarBold ">
               مدير النظام
             </span>
@@ -18,7 +18,7 @@ function ScheduledActivitiesCard({ item }) {
 
         <div className="flex flex-col items-start justify-between ">
           <div className="flex items-center gap-2 justify-center">
-            <img src="/src/assets/DateRangeFilled.png" alt="personName" />
+            <img src="/assets/DateRangeFilled.png" alt="personName" />
             <span className="text-[#00000099]  font-somarBold ">
               {item?.approvalDate?.slice(0,10)}
             </span>

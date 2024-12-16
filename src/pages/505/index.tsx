@@ -4,7 +4,7 @@ function Error500() {
     <div className="flex flex-col items-center justify-center min-h-screen text-center text-gray-600">
       <div className="mb-4">
         <img
-          src="/src/assets/NoData.png"
+          src="/assets/NoData.png"
         />
       </div>
 
