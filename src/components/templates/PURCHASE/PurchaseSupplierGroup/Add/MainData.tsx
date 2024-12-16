@@ -11,6 +11,7 @@ import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import InputGetCode from "../../../../molecules/InputGetCode";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values } = useFormikContext<Values_TP>();
@@ -34,6 +35,9 @@ function MainData() {
       newValues={newValues}
     >
       <div>
+      <ChildrenLayout>
+
+
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
             <InputGetCode
@@ -76,6 +80,7 @@ function MainData() {
             />
           </Grid>
         </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

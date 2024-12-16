@@ -17,6 +17,7 @@ import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import { useFetch } from "../../../../../hooks";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -78,7 +79,7 @@ function MainData() {
     queryKey: [`api/Partner/newCode/${values?.partnerGroupId}`],
     endpoint: `api/Partner/newCode/${values?.partnerGroupId}`,
     Module: "PURCHASE",
-    enabled: !!values?.partnerGroupId ,
+    enabled: !!values?.partnerGroupId,
     onSuccess: (data) => {
       setFieldValue("partnerCode", data?.data);
     },
@@ -123,337 +124,341 @@ function MainData() {
       deleteEndPoint="api/Partner"
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={6}>
-            <SelectPartnerGroup
-              name="partnerGroupId"
-              label="مجموعة المورد "
-              placeholder="أختر مجموعة المورد"
-              onPartnerGroupChange={handlePartnerGroupChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="partnerCode"
-              placeholder="   رمز المورد"
-              type="text"
-              value={values.partnerCode}
-              label="   رمز المورد"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="work"
-              placeholder="عمل المورد"
-              type="text"
-              label="عمل المورد"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="workType"
-              placeholder="طبيعة عمل المورد"
-              type="text"
-              label="طبيعة عمل المورد"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <div className="flex items-center gap-4 mt-8">
-              <Label htmlFor="">نوع المورد</Label>
-              <RadioButtons
-                name="vendorType"
-                label="شركة"
-                checked={values?.vendorType === 0}
-                onChange={() => setFieldValue("vendorType", 0)}
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={6}>
+              <SelectPartnerGroup
+                name="partnerGroupId"
+                label="مجموعة المورد "
+                placeholder="أختر مجموعة المورد"
+                onPartnerGroupChange={handlePartnerGroupChange}
               />
-              <RadioButtons
-                name="vendorType"
-                label="فرد"
-                checked={values?.vendorType === 1}
-                onChange={() => setFieldValue("vendorType", 1)}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="partnerCode"
+                placeholder="   رمز المورد"
+                type="text"
+                value={values.partnerCode}
+                label="   رمز المورد"
               />
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="companyName"
-              placeholder="أسم الشركة"
-              type="text"
-              label="أسم الشركة"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="taxNumber"
-              placeholder="الرقم الضريبي"
-              type="text"
-              label="الرقم الضريبي"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="accountId"
-              placeholder="السجل التجاري"
-              type="text"
-              label="السجل التجاري"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="barcode"
-              placeholder="الباركود"
-              type="text"
-              label="الباركود"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="partnerName"
-              placeholder="أسم المورد"
-              type="text"
-              label="أسم المورد"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="foreignPartnerName"
-              placeholder="الاسم بالاجنبي"
-              type="text"
-              label="الاسم بالاجنبي"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="jobPosition"
-              placeholder="المنصب الوظيفي"
-              type="text"
-              label="المنصب الوظيفي"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="suffixId"
-              label="اللقب"
-              placeholder="اللقب"
-              options={suffixOptions}
-              onChange={(selectedOption: any) =>
-                setFieldValue("suffixId", selectedOption?.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="sex"
-              label="الجنس"
-              placeholder="الجنس"
-              options={sexOptions}
-              onChange={(selectedOption: any) =>
-                setFieldValue("sex", selectedOption?.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="birthDate"
-              placeholder="تاريخ الميلاد"
-              label="تاريخ الميلاد"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="phone"
-              placeholder="رقم الهاتف"
-              type="text"
-              label="رقم الهاتف"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="mobile"
-              placeholder="الهاتف المحمول"
-              type="text"
-              label="الهاتف المحمول"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="fax"
-              placeholder="الفاكس"
-              type="text"
-              label="الفاكس"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="email"
-              placeholder="البريد الالكتروني"
-              type="email"
-              label="البريد الالكتروني"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="website"
-              placeholder="الموقع الالكتروني"
-              type="text"
-              label="الموقع الالكتروني"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="language"
-              label="اللغة"
-              placeholder="اللغة"
-              options={languageOptions}
-              onChange={(selectedOption: any) =>
-                setFieldValue("language", selectedOption?.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="nationality"
-              label="الجنسية"
-              placeholder="اختر الجنسية"
-              options={[
-                { label: "Nationality 1", value: "nationality1" },
-                { label: "Nationality 2", value: "nationality2" },
-                { label: "Nationality 3", value: "nationality3" },
-              ]}
-              onChange={(selectedOption: any) =>
-                setFieldValue("nationality", selectedOption?.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="country"
-              label="الدولة"
-              placeholder="اختر الدولة"
-              options={[
-                { label: "Country 1", value: "country1" },
-                { label: "Country 2", value: "country2" },
-                { label: "Country 3", value: "country3" },
-              ]}
-              onChange={(selectedOption: any) =>
-                setFieldValue("country", selectedOption?.value)
-              }
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="city"
-              label="المدينة"
-              placeholder="اختر المدينة"
-              options={[
-                { label: "City 1", value: "city1" },
-                { label: "City 2", value: "city2" },
-                { label: "City 3", value: "city3" },
-              ]}
-              onChange={(selectedOption: any) =>
-                setFieldValue("city", selectedOption?.value)
-              }
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="area"
-              label="المنطقة"
-              placeholder="اختر المنطقة"
-              options={[
-                { label: "Area 1", value: "area1" },
-                { label: "Area 2", value: "area2" },
-                { label: "Area 3", value: "area3" },
-              ]}
-              onChange={(selectedOption: any) =>
-                setFieldValue("area", selectedOption?.value)
-              }
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
-            <SelectComp
-              name="street"
-              label="الشارع"
-              placeholder="اختر الشارع"
-              options={[
-                { label: "Street 1", value: "street1" },
-                { label: "Street 2", value: "street2" },
-                { label: "Street 3", value: "street3" },
-              ]}
-              onChange={(selectedOption: any) =>
-                setFieldValue("street", selectedOption?.value)
-              }
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="postCode"
-              placeholder="الرمز البريدي"
-              type="text"
-              label="الرمز البريدي"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <div className="flex items-center gap-4 mt-6">
-              <Label htmlFor="">موقف (خيار)</Label>
-              <SwitchComp
-                name="isActive"
-                defaultChecked={values?.isActive == true}
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="work"
+                placeholder="عمل المورد"
+                type="text"
+                label="عمل المورد"
               />
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <BaseInputField
-              name="note"
-              placeholder="الملاحظات"
-              type="textarea"
-              label="الملاحظات"
-            />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          {/* Tabs Component */}
-          <Tabs
-            value={tabIndex}
-            onChange={handleTabChange}
-            aria-label="Partner Details Tabs"
-          >
-            <Tab label="جهات اتصال المورد" className="!font-somarBold" />
-            <Tab label="عناوين المورد" className="!font-somarBold" />
-            <Tab label="حساب المورد" className="!font-somarBold" />
-            <Tab label="اعدادات الشراء والبيع" className="!font-somarBold" />
-          </Tabs>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="workType"
+                placeholder="طبيعة عمل المورد"
+                type="text"
+                label="طبيعة عمل المورد"
+              />
+            </Grid>
 
-          {/* Tab Panels */}
+            <Grid item xs={12} sm={6}>
+              <div className="flex items-center gap-4 mt-8">
+                <Label htmlFor="">نوع المورد</Label>
+                <RadioButtons
+                  name="vendorType"
+                  label="شركة"
+                  checked={values?.vendorType === 0}
+                  onChange={() => setFieldValue("vendorType", 0)}
+                />
+                <RadioButtons
+                  name="vendorType"
+                  label="فرد"
+                  checked={values?.vendorType === 1}
+                  onChange={() => setFieldValue("vendorType", 1)}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="companyName"
+                placeholder="أسم الشركة"
+                type="text"
+                label="أسم الشركة"
+              />
+            </Grid>
 
-          {tabIndex === 0 && (
-            <Grid item xs={12} mt={5}>
-              <PartnerContact moduleName="partnerContactsesDto" />
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="taxNumber"
+                placeholder="الرقم الضريبي"
+                type="text"
+                label="الرقم الضريبي"
+              />
             </Grid>
-          )}
-          {tabIndex === 1 && (
-            <Grid item xs={12} mt={5}>
-              <PartnerAddress moduleName="partnerAddressesesDto" />
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="accountId"
+                placeholder="السجل التجاري"
+                type="text"
+                label="السجل التجاري"
+              />
             </Grid>
-          )}
-          {tabIndex === 2 && (
-            <Grid item xs={12} mt={5}>
-              <BankAccountsTable moduleName="partnerBankAccountsesDto" />
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="barcode"
+                placeholder="الباركود"
+                type="text"
+                label="الباركود"
+              />
             </Grid>
-          )}
-          {tabIndex === 3 && (
-            <Grid item xs={12} mt={5}>
-              <PurchaseSaleSettings moduleName="partnerPaymentTerrmsesDto" />
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="partnerName"
+                placeholder="أسم المورد"
+                type="text"
+                label="أسم المورد"
+              />
             </Grid>
-          )}
-        </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="foreignPartnerName"
+                placeholder="الاسم بالاجنبي"
+                type="text"
+                label="الاسم بالاجنبي"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="jobPosition"
+                placeholder="المنصب الوظيفي"
+                type="text"
+                label="المنصب الوظيفي"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="suffixId"
+                label="اللقب"
+                placeholder="اللقب"
+                options={suffixOptions}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("suffixId", selectedOption?.value)
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="sex"
+                label="الجنس"
+                placeholder="الجنس"
+                options={sexOptions}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("sex", selectedOption?.value)
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="birthDate"
+                placeholder="تاريخ الميلاد"
+                label="تاريخ الميلاد"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="phone"
+                placeholder="رقم الهاتف"
+                type="text"
+                label="رقم الهاتف"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="mobile"
+                placeholder="الهاتف المحمول"
+                type="text"
+                label="الهاتف المحمول"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="fax"
+                placeholder="الفاكس"
+                type="text"
+                label="الفاكس"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="email"
+                placeholder="البريد الالكتروني"
+                type="email"
+                label="البريد الالكتروني"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="website"
+                placeholder="الموقع الالكتروني"
+                type="text"
+                label="الموقع الالكتروني"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="language"
+                label="اللغة"
+                placeholder="اللغة"
+                options={languageOptions}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("language", selectedOption?.value)
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="nationality"
+                label="الجنسية"
+                placeholder="اختر الجنسية"
+                options={[
+                  { label: "Nationality 1", value: "nationality1" },
+                  { label: "Nationality 2", value: "nationality2" },
+                  { label: "Nationality 3", value: "nationality3" },
+                ]}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("nationality", selectedOption?.value)
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="country"
+                label="الدولة"
+                placeholder="اختر الدولة"
+                options={[
+                  { label: "Country 1", value: "country1" },
+                  { label: "Country 2", value: "country2" },
+                  { label: "Country 3", value: "country3" },
+                ]}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("country", selectedOption?.value)
+                }
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="city"
+                label="المدينة"
+                placeholder="اختر المدينة"
+                options={[
+                  { label: "City 1", value: "city1" },
+                  { label: "City 2", value: "city2" },
+                  { label: "City 3", value: "city3" },
+                ]}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("city", selectedOption?.value)
+                }
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="area"
+                label="المنطقة"
+                placeholder="اختر المنطقة"
+                options={[
+                  { label: "Area 1", value: "area1" },
+                  { label: "Area 2", value: "area2" },
+                  { label: "Area 3", value: "area3" },
+                ]}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("area", selectedOption?.value)
+                }
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <SelectComp
+                name="street"
+                label="الشارع"
+                placeholder="اختر الشارع"
+                options={[
+                  { label: "Street 1", value: "street1" },
+                  { label: "Street 2", value: "street2" },
+                  { label: "Street 3", value: "street3" },
+                ]}
+                onChange={(selectedOption: any) =>
+                  setFieldValue("street", selectedOption?.value)
+                }
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="postCode"
+                placeholder="الرمز البريدي"
+                type="text"
+                label="الرمز البريدي"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <div className="flex items-center gap-4 mt-6">
+                <Label htmlFor="">موقف (خيار)</Label>
+                <SwitchComp
+                  name="isActive"
+                  defaultChecked={values?.isActive == true}
+                />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <BaseInputField
+                name="note"
+                placeholder="الملاحظات"
+                type="textarea"
+                label="الملاحظات"
+              />
+            </Grid>
+          </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            {/* Tabs Component */}
+            <Tabs
+              value={tabIndex}
+              onChange={handleTabChange}
+              aria-label="Partner Details Tabs"
+            >
+              <Tab label="جهات اتصال المورد" className="!font-somarBold" />
+              <Tab label="عناوين المورد" className="!font-somarBold" />
+              <Tab label="حساب المورد" className="!font-somarBold" />
+              <Tab label="اعدادات الشراء والبيع" className="!font-somarBold" />
+            </Tabs>
+
+            {/* Tab Panels */}
+
+            {tabIndex === 0 && (
+              <Grid item xs={12} mt={5}>
+                <PartnerContact moduleName="partnerContactsesDto" />
+              </Grid>
+            )}
+            {tabIndex === 1 && (
+              <Grid item xs={12} mt={5}>
+                <PartnerAddress moduleName="partnerAddressesesDto" />
+              </Grid>
+            )}
+            {tabIndex === 2 && (
+              <Grid item xs={12} mt={5}>
+                <BankAccountsTable moduleName="partnerBankAccountsesDto" />
+              </Grid>
+            )}
+            {tabIndex === 3 && (
+              <Grid item xs={12} mt={5}>
+                <PurchaseSaleSettings moduleName="partnerPaymentTerrmsesDto" />
+              </Grid>
+            )}
+          </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

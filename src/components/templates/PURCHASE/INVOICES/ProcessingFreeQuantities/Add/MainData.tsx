@@ -10,6 +10,7 @@ import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
 import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -77,74 +78,78 @@ function MainData() {
       className="p-0"
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4} p={3}>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="invoiceCode"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4} p={3}>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="invoiceCode"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="USER"
-              placeholder="  المستخدم "
-              type="text"
-              label=" المستخدم  "
-            />
-          </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="USER"
+                placeholder="  المستخدم "
+                type="text"
+                label=" المستخدم  "
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <BaseInputDatepicker
-              name="invoiceDate"
-              placeholder=" التاريخ "
-              label="التاريخ "
-            />
-          </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="invoiceDate"
+                placeholder=" التاريخ "
+                label="التاريخ "
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <SelectWarehouse name="warehouseId" label="اختر المستودع" />
-          </Grid>
+            <Grid item xs={12} sm={6}>
+              <SelectWarehouse name="warehouseId" label="اختر المستودع" />
+            </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="note"
-              placeholder="  ملاحظات "
-              type="text"
-              label=" ملاحظات  "
-            />
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="note"
+                placeholder="  ملاحظات "
+                type="text"
+                label=" ملاحظات  "
+              />
+            </Grid>
           </Grid>
-        </Grid>
+        </ChildrenLayout>
         <div className="bg-[#f6f8ff] w-100 h-10"></div>
-        <Grid item xs={12} mt={1}>
-          <Grid item xs={12} sm={6}>
-            <Label htmlFor=""> نوع المعالجة</Label>
-            <div className="flex items-start  gap-4 gap-4">
-              <RadioButtons
-                name="priceIncludeTax"
-                label=" هدية مجانية لعميل  "
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
-              />
-              <RadioButtons
-                name="priceIncludeTax"
-                label=" تخفيض التكلفة"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
-              />
-              <RadioButtons
-                name="priceIncludeTax"
-                label="  ايراد للشركة"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
-              />
-            </div>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={1}>
+            <Grid item xs={12} sm={6}>
+              <Label htmlFor=""> نوع المعالجة</Label>
+              <div className="flex items-start  gap-4 gap-4">
+                <RadioButtons
+                  name="priceIncludeTax"
+                  label=" هدية مجانية لعميل  "
+                  checked={values?.priceIncludeTax == true}
+                  onChange={() => setFieldValue("priceIncludeTax", true)}
+                />
+                <RadioButtons
+                  name="priceIncludeTax"
+                  label=" تخفيض التكلفة"
+                  checked={values?.priceIncludeTax == true}
+                  onChange={() => setFieldValue("priceIncludeTax", true)}
+                />
+                <RadioButtons
+                  name="priceIncludeTax"
+                  label="  ايراد للشركة"
+                  checked={values?.priceIncludeTax == true}
+                  onChange={() => setFieldValue("priceIncludeTax", true)}
+                />
+              </div>
+            </Grid>
+            <TabsInvoicesItem />
           </Grid>
-          <TabsInvoicesItem />
-        </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

@@ -15,6 +15,7 @@ import ItemsfreequantityTable from "../../../../molecules/tablesDynamic/Itemsfre
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -30,7 +31,7 @@ function MainData() {
     processingType: values?.copValue?.processingType || "",
     isApproved: values?.copValue?.isApproved || null,
     isCanceled: values?.copValue?.isCanceled || null,
-     
+
     freeQuantitiesDetailesModel:
       values?.copValue?.freeQuantitiesDetailesModel || [],
   };
@@ -42,87 +43,80 @@ function MainData() {
       newValues={newValues}
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="operationCode"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
-
-          
-          <Grid item xs={12} sm={6}>
-            <SelectVendor name="userId" />
-          </Grid>
-
-           
-
-          <Grid item xs={12} sm={6}>
-            <BaseInputDatepicker
-              name="operationDate"
-              placeholder="التاريخ "
-              label="التاريخ "
-            />
-          </Grid>
- 
-          <Grid item xs={12} sm={6}>
-            <SelectWarehouse name="warehouseId" label="مستودع الادخال" />
-          </Grid>
-
-             
-          <Grid item xs={6}>
-            <BaseInputField
-              name="note"
-              placeholder="ملاحظات"
-              type="textarea"
-              label="ملاحظات"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <SelectPurchaseAgreement name="ProcessingType" />
-          </Grid>
-
-           
-          <Label htmlFor="">طريقة معالجة الكميات المجانية  </Label>
-           
-
-          <Grid item xs={12} sm={6}>
-            <div className="flex items-center gap-4 mt-8">
-              
-              <RadioButtons
-                name="free"
-                label="هدية مجانية"
-                checked={values?.priceIncludeTax == false}
-                onChange={() => setFieldValue("priceIncludeTax", false)}
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="operationCode"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
               />
-              <RadioButtons
-                name="discountcost"
-                label="تخفيض التكلفة"
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
-              />
+            </Grid>
 
-              <RadioButtons
-                name="inconforcompany"
-                label="ايراد الشركة  "
-                checked={values?.priceIncludeTax == true}
-                onChange={() => setFieldValue("priceIncludeTax", true)}
-              />
+            <Grid item xs={12} sm={6}>
+              <SelectVendor name="userId" />
+            </Grid>
 
-            </div>
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="operationDate"
+                placeholder="التاريخ "
+                label="التاريخ "
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectWarehouse name="warehouseId" label="مستودع الادخال" />
+            </Grid>
+
+            <Grid item xs={6}>
+              <BaseInputField
+                name="note"
+                placeholder="ملاحظات"
+                type="textarea"
+                label="ملاحظات"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectPurchaseAgreement name="ProcessingType" />
+            </Grid>
+
+            <Label htmlFor="">طريقة معالجة الكميات المجانية </Label>
+
+            <Grid item xs={12} sm={6}>
+              <div className="flex items-center gap-4 mt-8">
+                <RadioButtons
+                  name="free"
+                  label="هدية مجانية"
+                  checked={values?.priceIncludeTax == false}
+                  onChange={() => setFieldValue("priceIncludeTax", false)}
+                />
+                <RadioButtons
+                  name="discountcost"
+                  label="تخفيض التكلفة"
+                  checked={values?.priceIncludeTax == true}
+                  onChange={() => setFieldValue("priceIncludeTax", true)}
+                />
+
+                <RadioButtons
+                  name="inconforcompany"
+                  label="ايراد الشركة  "
+                  checked={values?.priceIncludeTax == true}
+                  onChange={() => setFieldValue("priceIncludeTax", true)}
+                />
+              </div>
+            </Grid>
           </Grid>
-
-
-
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="freeQuantitiesDetailesModel" />
-          <ItemsfreequantityTable moduleName="freeQuantitiesDetailesModel" />
-        </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            <MainSelectChoseModule moduleName="freeQuantitiesDetailesModel" />
+            <ItemsfreequantityTable moduleName="freeQuantitiesDetailesModel" />
+          </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

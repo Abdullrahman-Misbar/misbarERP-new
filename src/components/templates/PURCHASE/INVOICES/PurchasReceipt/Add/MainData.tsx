@@ -15,6 +15,7 @@ import SelectWarehouse from "../../../../molecules/Selects/SelectWarehouse";
 import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -45,95 +46,100 @@ function MainData() {
       deleteEndPoint="api/PurchasRequest"
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="code"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="code"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectEmployee name="purchaseRepresentativeId" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectEmployee name="purchaseRepresentativeId" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId"  labelName="العملة"/>
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectCurrency name="currencyId" labelName="العملة" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectVendor name="vendorId" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectVendor name="vendorId" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectWarehouse name="warehouseId" label="اختر المستودع" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectWarehouse name="warehouseId" label="اختر المستودع" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="convertionRate"
-              placeholder="التعادل"
-              type="number"
-              label="التعادل"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="inDate"
-              placeholder="تاريخ الاستلام"
-              label="تاريخ الاستلام"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="convertionRate"
+                placeholder="التعادل"
+                type="number"
+                label="التعادل"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="inDate"
+                placeholder="تاريخ الاستلام"
+                label="تاريخ الاستلام"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4} mt={4}>
-            <div className="flex items-center gap-5">
-              <Label htmlFor="billingStatus">حالة الفوترة</Label>
+            <Grid item xs={12} sm={4} mt={4}>
+              <div className="flex items-center gap-5">
+                <Label htmlFor="billingStatus">حالة الفوترة</Label>
 
-              <ApprovedStatus />
-            </div>
-          </Grid>
+                <ApprovedStatus />
+              </div>
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectAccount name="accountId" labelName={"الحساب"} />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectAccount name="accountId" labelName={"الحساب"} />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="referenceDocument"
-              placeholder="المستند المرجعي"
-              type="text"
-              label="المستند المرجعي"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4} mt={4}>
-            <div className="flex items-center gap-5">
-              <Label htmlFor="">حالة</Label>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="referenceDocument"
+                placeholder="المستند المرجعي"
+                type="text"
+                label="المستند المرجعي"
+              />
+            </Grid>
+            <Grid item xs={12} sm={4} mt={4}>
+              <div className="flex items-center gap-5">
+                <Label htmlFor="">حالة</Label>
 
-              <ApprovedStatus />
-            </div>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
-          </Grid>
+                <ApprovedStatus />
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectCostCenter
+                name="costCenterId"
+                labelName={"مركز التكلفة"}
+              />
+            </Grid>
 
-         
-
-          <Grid item xs={6}>
-            <BaseInputField
-              name="note"
-              placeholder="ملاحظات"
-              type="textarea"
-              label="ملاحظات"
-            />
+            <Grid item xs={6}>
+              <BaseInputField
+                name="note"
+                placeholder="ملاحظات"
+                type="textarea"
+                label="ملاحظات"
+              />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="receiptDetailsModal" />
-          <ItemsTable moduleName="receiptDetailsModal" />
-        </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            <MainSelectChoseModule moduleName="receiptDetailsModal" />
+            <ItemsTable moduleName="receiptDetailsModal" />
+          </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );
