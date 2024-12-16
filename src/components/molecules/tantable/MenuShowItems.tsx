@@ -67,7 +67,7 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
       >
         <span className="px-6 !my-3 text-light"> الاعمدة</span>
         <hr className="mt-2 bg-light h-[2px]" />
-        <div className="p-3 h-[250px] overflow-scroll ">
+        <div className="p-3 h-[250px] overflow-scroll !overflow-x-hidden ">
           {table.getAllLeafColumns().map(
             (column: {
               id: React.Key | null | undefined;

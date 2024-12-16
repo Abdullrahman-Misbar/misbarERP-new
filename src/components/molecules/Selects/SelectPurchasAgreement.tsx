@@ -16,7 +16,7 @@ const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "api/PurchasAgreement/AggrementPurchaseLookup";
+  const endpoint = "api/PurchaseAgreement/GetAll";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
@@ -25,7 +25,7 @@ const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
   //@ts-ignore
   const options = data?.data?.map((item: any) => ({
     value: item?.id,
-    label: item?.lookupName,
+    label: item?.typeName,
   }));
   const selectedValue = options?.find((item) => item?.value == values[name]);
 
