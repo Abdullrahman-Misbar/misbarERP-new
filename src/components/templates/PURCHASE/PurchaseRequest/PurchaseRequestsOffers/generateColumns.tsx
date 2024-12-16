@@ -1,11 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
-import { indexTable } from "../../../../utils/helpers";
-import { Edit } from "../../../atoms/icons/Edit";
-import ActionMenu from "../../../molecules/ActionMenu";
-import DeleteMain from "./DeleteMain";
-import { RowData } from "./Types&Validation";
-import CancelApproved from "./CancelApproved";
+import { indexTable } from "../../../../../utils/helpers";
+import { Edit } from "../../../../atoms/icons/Edit";
+import ActionMenu from "../../../../molecules/ActionMenu";
+import { RowData } from "../Types&Validation";
+import CancelApproved from "../CancelApproved";
 import { AiOutlineDollarCircle } from "react-icons/ai";
 
 type RefetchFunction = () => void;
@@ -115,27 +114,15 @@ export const generateColumns = (
               className="flex items-center  gap-2"
               onClick={() =>
                 navigate(
-                  `/purchase/PurchaseRequest/PurchaseRequestsOffers/${info?.row?.original?.id}`
+                  `/purchase/PurchasQutations/edit/${info?.row?.original?.id}`
                 )
               }
             >
               <div className="bg-[#F3F6F9] p-1 rounded-md">
                 <AiOutlineDollarCircle className="text-[18px] text-[#B5B5C3]" />
               </div>
-              <span className="text-[14px] text-[#70707e] "> عروض الاسعار</span>
+              <span className="text-[14px] text-[#70707e] ">عرض</span>
             </div>
-            <div>
-              <span>
-                <Edit
-                  action={() => {
-                    navigate(
-                      `/purchase/PurchaseRequest/edit/${info?.row?.original?.id}`
-                    );
-                  }}
-                />
-              </span>
-            </div>
-            <DeleteMain refetch={refetch} info={info} />
           </ActionMenu>
         </div>
       ),
