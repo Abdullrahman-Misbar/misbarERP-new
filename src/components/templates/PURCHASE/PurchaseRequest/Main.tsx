@@ -13,6 +13,8 @@ function Main() {
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const [word, setWord] = useState("");
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
   const debouncedWord = useDebounce(word, 300);
   const queryParams = {
     searchValue: debouncedWord,
@@ -30,8 +32,8 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -40,20 +42,27 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
+      <MainHeadLayout
+        setWord={setWord}
+        data={data?.data?.data || []}
+        selectedIds={selectedIds}
+        refetch={refetch}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
-        //@ts-ignore
+          //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-        //@ts-ignore
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
           showStatusFilter
         />
       </div>

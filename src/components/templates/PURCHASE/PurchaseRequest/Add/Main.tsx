@@ -10,6 +10,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  newCodeEndpoint,
 } from "../const";
 import MainData from "./MainData";
 import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
@@ -90,6 +91,8 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+    newCodeEndpoint: newCodeEndpoint,
+
     
     SourceActivityType: 1,
     purchaseRequestDetailsDto: response?.purchaseRequestDetailsDto?.length

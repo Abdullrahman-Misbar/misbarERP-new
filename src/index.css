@@ -49,13 +49,14 @@ body {
   color: #fff;
 }
 *::-webkit-scrollbar {
-  width: 0px;
+  width: 10px !important;
+  height: 10px;
 }
 *::-webkit-scrollbar-track {
-  background-color: var(--dark-color);
+  background-color: #eeeeee;
 }
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, gray, #999);
+  background: #bdbdbd;
   border-radius: 8px;
 }
 *::-webkit-scrollbar-thumb:hover {
@@ -99,20 +100,40 @@ input {
 .swal2-container {
   z-index: 99999 !important;
 }
-.resizer {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 5px;
-  cursor: col-resize;
-  background: #ccc;
+
+.sweet-alerts .swal2-confirm {
+  background-color: #d32f2f !important;
+  color: #fff;
+  border: none;
 }
 
-.resizer:hover {
-  background: #ccc;
+.sweet-alerts .swal2-cancel {
+  background-color: transparent !important;
+  color: #000000de !important;
+  border: 1px solid #000000de !important;
+  padding: 8px 22px !important;
+  font-family: Somar-Bold !important;
 }
 
-.isResizing {
-  background: #999;
+.swal2-title {
+  color: #000000de !important;
 }
+.swal2-title {
+  font-size: 20px;
+  color: #000000de;
+}
+.swal2-html-container {
+  color: #000000de !important;
+}
+/* .muirtl-161ms7l-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked {
+  color:#2e3188 !important;
+} */
+
+.muirtl-4z7gnm-MuiGrid-root > .MuiGrid-item {
+  padding-top: 12px !important;
+}
+.muirtl-1cth5tq-MuiGrid-root > .MuiGrid-item {
+  padding-top: 0 !important;
+}
+
+/* Custom scrollbar styles for tables */

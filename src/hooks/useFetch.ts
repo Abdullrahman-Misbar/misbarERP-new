@@ -29,7 +29,7 @@ function useFetch<T extends { data: any }>({
   const token = user_token;
   const authorizationHeader = `Bearer ${token}`;
   const navigate = useNavigate();
-  
+
   const isRTL = useIsRTL();
   const config = {
     headers: {
@@ -39,19 +39,16 @@ function useFetch<T extends { data: any }>({
   };
 
   const baseURL = import.meta.env.VITE_BASE_URL;
-   const customEndPoint = Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
+  const customEndPoint =
+    Module === "PURCHASE" ? "https://webapi.studioerp.com" : baseURL;
   //const customEndPoint = Module === "PURCHASE" ? "http://localhost:5057" : baseURL;
-  
+
   const query = useQuery<T>({
     queryKey,
-    queryFn: () => 
+    queryFn: () =>
       axios.get(`${customEndPoint}/${endpoint}`, config).then((res) => {
-        
-        console.log(res.data)
-       
-        onSuccess&& onSuccess(res.data)
-        return res.data
-
+        onSuccess && onSuccess(res.data);
+        return res.data;
       }),
     enabled,
     select,

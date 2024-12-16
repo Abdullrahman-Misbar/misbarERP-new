@@ -1,21 +1,21 @@
-import { Helmet } from 'react-helmet-async'
-import Main from '../../../components/templates/SETTING/OrderSetting/Main'
+import { Helmet } from "react-helmet-async";
+import Main from "../../../components/templates/SETTING/OrderSetting/Main";
 
 type OrderSetting_TP = {
-    title:string
-}
+  title: string;
+};
 
-function OrderSetting({title}:OrderSetting_TP) {
+function OrderSetting({ title }: OrderSetting_TP) {
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>{title}</title>
       </Helmet>
-    <div>
-      <Main/>
-    </div>
+      <div>
+        <Main />
+      </div>
     </>
-  )
+  );
 }
 
-export default OrderSetting
+export default OrderSetting;

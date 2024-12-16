@@ -4,11 +4,13 @@ import { SwitchComp } from "../../../atoms/formik/SwitchComp";
 function ShownInformation() {
   return (
     <div className="bg-white rounded-lg p-6 my-4">
-      <span className="text-xl font-bold">تحديد المعلومات الظاهرة في النافذة</span>
-      <Grid container spacing={4} className="mt-4">
+      <span className="text-xl font-bold  ">
+        تحديد المعلومات الظاهرة في النافذة
+      </span>
+      <Grid container spacing={4} className="!mt-1 ">
         {/* Each Switch Item */}
         <Grid item xs={4}>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
             <SwitchComp name="highestPurchasePrice" />
             <span>أعلى سعر شراء</span>
           </div>

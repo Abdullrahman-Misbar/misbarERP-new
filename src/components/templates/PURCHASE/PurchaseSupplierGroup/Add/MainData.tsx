@@ -3,14 +3,14 @@ import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
-import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
-import SelectAccount from "../../../../molecules/Selects/SelectAccount";
-import SelectMultiCostCenter from "../../../../molecules/SelectMulti/SelectMultiCostCenter";
 import SelectMultiTags from "../../../../molecules/SelectMulti/SelectMultiTags";
+import SelectAccount from "../../../../molecules/Selects/SelectAccount";
+import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
 
+import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
+import InputGetCode from "../../../../molecules/InputGetCode";
 
 function MainData() {
   const { values } = useFormikContext<Values_TP>();
@@ -36,11 +36,9 @@ function MainData() {
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
-            <BaseInputField
+            <InputGetCode
               name="categoryCode"
               placeholder="الرقم المرجعي"
-              type="text"
-              disabled
               label="الرقم المرجعي"
             />
           </Grid>
@@ -57,10 +55,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <SelectCostCenter
-              name="costCenterId"
-              labelName={"مركز التكلفة"}
-            />
+            <SelectCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <SelectPartnerGroup

@@ -16,18 +16,18 @@ function Curve() {
                 alt="Payments"
               />
             </div>
-            <div className="flex flex-col items-start ">
-              <span className="text-black text-2xl  font-semibold my-1 m-auto">
-                15
-              </span>
-              <p className="rounded-[100px] w-full border-[2px] border-[#BDBDBD] text-[14px] p-2  font-normal">
-                {" "}
-                قيد الارسال(مسودة)
-              </p>
+            <div className="flex items-center gap-2 ">
+              <div className="flex flex-col items-start ">
+                <span className="text-black text-2xl  font-semibold my-1 m-auto">
+                  15
+                </span>
+                <p className="rounded-[100px] w-full border-[2px] border-[#BDBDBD] text-[14px] p-2  font-normal">
+                  قيد الارسال(مسودة)
+                </p>
+              </div>
+              <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
             </div>
-            <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
           </div>
-
           {/* Second Column */}
           <div className="w-full  flex items-center justify-between px-2 bg-white">
             <div className="w-20 h-20 flex items-center justify-center rounded-full bg-[#FFF2EE]">
@@ -37,14 +37,18 @@ function Curve() {
                 alt="Payments"
               />
             </div>
+            <div className="flex items-center gap-2 ">
+              <div className="flex flex-col items-start   ">
+                <span className="text-black text-2xl  font-semibold my-1 m-auto">
+                  2
+                </span>
+                <p className="rounded-[100px] w-full border-[2px] border-[#0288D1] p-2 text-[#0288D1]  font-normal">
+                  قيد الانتظار
+                </p>
+              </div>
 
-            <div className="flex flex-col items-start">
-              <span className="text-black text-2xl  font-semibold my-1 m-auto">2</span>
-              <p className="rounded-[100px] w-full border-[2px] border-[#0288D1] p-2 text-[#0288D1]  font-normal">
-                قيد الانتظار
-              </p>
+              <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
             </div>
-            <div className="w-[2px] bg-[#D9DAF2] h-20"></div>
           </div>
 
           {/* Third Column */}
@@ -57,7 +61,9 @@ function Curve() {
               />
             </div>
             <div className="flex flex-col items-start">
-              <span className="text-black text-2xl  font-semibold my-1 m-auto">3</span>
+              <span className="text-black text-2xl  font-semibold my-1 m-auto">
+                3
+              </span>
               <p className=" rounded-[100px] w-full border p-2 border-[#D32F2F] text-[#D32F2F]  font-normal">
                 متأخرة
               </p>

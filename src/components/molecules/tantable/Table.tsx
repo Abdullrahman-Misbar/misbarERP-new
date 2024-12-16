@@ -15,6 +15,7 @@ import DataNotFoundDrawer from "../DataNotFoundDrawer";
 import TableSkeleton from "../Skeleton/TableSkeleton";
 import MenuShowItems from "./MenuShowItems";
 import { ReactTableProps } from "./tableTypes";
+import { Checkbox } from "@mui/material";
 
 export const Table = <T extends object>({
   data,
@@ -27,6 +28,8 @@ export const Table = <T extends object>({
   setSortingData,
 
   footerData,
+  selectedIds,
+  setSelectedIds
 }: ReactTableProps<T>) => {
   const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
     const itemRank = rankItem(row.getValue(columnId), value);
@@ -124,6 +127,22 @@ export const Table = <T extends object>({
       </tr>
     ));
   };
+  const handleRowSelect = (id: number | "all") => {
+    if (id === "all") {
+      if (selectedIds.length === data.length) {
+        setSelectedIds([]);
+      } else {
+        setSelectedIds(data.map((item: any) => item.id));
+      }
+    } else {
+      setSelectedIds(
+        (prev) =>
+          prev.includes(id)
+            ? prev.filter((itemId) => itemId !== id) 
+            : [...prev, id] 
+      );
+    }
+  };
 
   return (
     <>
@@ -137,66 +156,85 @@ export const Table = <T extends object>({
             <table id="print-table" className="min-w-full text-center">
               <thead className="border-b  relative">
                 {table?.getHeaderGroups()?.map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) =>
-                      header.column.columnDef.isGroup ? (
-                        <th
-                          key={header.id}
-                          className="text-center bg-[#f5f5f5] rounded-none"
-                          colSpan={header.column.columnDef.colSpan || 1}
-                          style={{
-                            width: header.getSize(),
-                            textAlign: "center",
-                          }}
-                        >
-                          {flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                        </th>
-                      ) : (
-                        <th
-                          key={header.id}
-                          style={{
-                            ...(header.column.columnDef.headerStyle || {}),
-                            textAlign: "center",
-                          }}
-                          className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
-                        >
-                          {header.isPlaceholder ? null : (
-                            <div
-                              {...{
-                                className: header.column.getCanSort()
-                                  ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
-                                  : "",
-                                onClick: () => handleSorting(header),
+                  <>
+                    <tr key={headerGroup.id}>
+                      <th>
+                        <Checkbox
+                          checked={
+                            selectedIds?.length === data?.length &&
+                            data.length > 0
+                          }
+                          indeterminate={
+                            selectedIds?.length > 0 &&
+                            selectedIds?.length < data?.length
+                          }
+                          onChange={() => handleRowSelect("all")}
+                        />
+                      </th>
+                      {headerGroup.headers.map((header) =>
+                        header.column.columnDef.isGroup ? (
+                          <>
+                            <th
+                              key={header.id}
+                              className="text-center bg-[#f5f5f5] rounded-none"
+                              colSpan={header.column.columnDef.colSpan || 1}
+                              style={{
+                                width: header.getSize(),
+                                textAlign: "center",
                               }}
                             >
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                              {header.column?.columnDef?.filterKey && (
-                                <span className="table-sort-arrow">
-                                  {{
-                                    asc: " 🔼",
-                                    desc: " 🔽",
-                                  }[sortingState[header.id]] ?? null}
-                                </span>
+                            </th>
+                          </>
+                        ) : (
+                          <>
+                            <th
+                              key={header.id}
+                              style={{
+                                ...(header.column.columnDef.headerStyle || {}),
+                                textAlign: "center",
+                              }}
+                              className="!p-4 text-sm  text-white dark:!bg-dark-tertiary capitalize "
+                            >
+                              {header.isPlaceholder ? null : (
+                                <div
+                                  {...{
+                                    className: header.column.getCanSort()
+                                      ? "cursor-pointer select-none font-bold !text-[14px] text-[#000000de]"
+                                      : "",
+                                    onClick: () => handleSorting(header),
+                                  }}
+                                >
+                                  {flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext()
+                                  )}
+                                  {header.column?.columnDef?.filterKey && (
+                                    <span className="table-sort-arrow">
+                                      {{
+                                        asc: " 🔼",
+                                        desc: " 🔽",
+                                      }[sortingState[header.id]] ?? null}
+                                    </span>
+                                  )}
+                                </div>
                               )}
-                            </div>
-                          )}
-                        </th>
-                      )
-                    )}
+                            </th>
+                          </>
+                        )
+                      )}
 
-                    <div className="absolute top-[5px] left-[-10px]">
-                      <MenuShowItems
-                        table={table}
-                        setColumnVisibility={setColumnVisibility}
-                      />
-                    </div>
-                  </tr>
+                      <div className="absolute top-[5px] left-[-10px]">
+                        <MenuShowItems
+                          table={table}
+                          setColumnVisibility={setColumnVisibility}
+                        />
+                      </div>
+                    </tr>
+                  </>
                 ))}
               </thead>
 
@@ -204,6 +242,12 @@ export const Table = <T extends object>({
                 <tbody className="">
                   {table?.getRowModel()?.rows?.map((row) => (
                     <tr key={row.id} className="border-b ">
+                      <td>
+                        <Checkbox
+                          checked={selectedIds?.includes(row.original.id)}
+                          onChange={() => handleRowSelect(row.original.id)}
+                        />
+                      </td>
                       {row?.getVisibleCells()?.map((cell) => (
                         <td
                           className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "

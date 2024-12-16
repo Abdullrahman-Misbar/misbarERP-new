@@ -32,6 +32,7 @@ export type Values_TP = {
   categoryCode: string;
   categoryName: string;
   mainCategoryId: number;
+  newCodeEndpoint:string
   accountId: number;
   costCenterId: number;
   editable:boolean

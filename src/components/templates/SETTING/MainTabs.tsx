@@ -25,7 +25,7 @@ function MainTabs() {
       </div>
       {/* 
       <div className="bg-white rounded-lg  !mt-5 p-5">
-        <div className="flex items-center justify-start gap-4">
+        <div className="flex items-center justify-start gap-4 border-b border-[#f3f2f2]">
           <SettingList />
         </div>
       </div> */}

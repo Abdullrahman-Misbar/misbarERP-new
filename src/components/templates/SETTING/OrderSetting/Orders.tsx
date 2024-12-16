@@ -21,7 +21,6 @@ function Orders() {
 
   return (
     <>
-    
       <span className="text-xl font-bold">الطلبات</span>
       <div className="flex items-center justify-center gap-12 w-full">
         <div className="flex flex-col gap-12 w-[50%]">
@@ -45,7 +44,7 @@ function Orders() {
               label="دولار"
               type="text"
               onChange={(e) => handleInputChange(1, e.target.value)}
-              className="px-3 !border-none !outline-none"
+              className="px-3 !border-none !outline-none !w-[150px]"
             />
           </div>
 
@@ -57,10 +56,10 @@ function Orders() {
               onChange={(e) => handleSwitchChange(2, !e.target.checked)}
             />
             <div className="text-right">
-              <p className="m-1">اعتماد أمر الشراء في حال كانت قيمته دون</p>
+              <p className="m-1"> تذكير المورد قبل تاريخ الاستحقاق ب </p>
               <p className="font-[12px] text-light font-somarLight my-1">
-                يمكن للموظف اعتماد أمر الشراء دون الحاجة للرجوع إلى الموظف
-                المسؤول في حال عدم تجاوزه القيمة المحددة
+                سيتم تذكير المورد عن طريق البريد الالكتروني قبل تاريخ الاستحقاق
+                بعدد الأيام المحددة
               </p>
             </div>
             <BaseInputField
@@ -69,7 +68,7 @@ function Orders() {
               label="أيام"
               type="text"
               onChange={(e) => handleInputChange(2, e.target.value)}
-              className="px-3 !border-none !outline-none"
+              className="px-3 !border-none !outline-none !w-[150px]"
             />
           </div>
         </div>

@@ -10,7 +10,9 @@ function SettingList() {
   const isActive = (path) => location.pathname === path;
 
   const getLinkClass = (path) =>
-    isActive(path) ? "text-primary font-somarBold" : "text-gray-500";
+    isActive(path)
+      ? "text-primary font-somarBold border-b-2  border-primary"
+      : "text-gray-500";
 
   const getIconStyle = (path) => ({
     stroke: isActive(path) ? "#3F51B5" : "#B0B0B0", // Primary color if active, gray otherwise
@@ -55,9 +57,9 @@ function SettingList() {
         to="/setting/information"
         className={`${getLinkClass(
           "/setting/information"
-        )} flex px-4 py-2 items-center gap-2`}
+        )} flex px-4 py-2 items-center gap-2  `}
       >
-        <div style={getIconStyle("/setting/information")}>
+        <div style={getIconStyle("/setting/information ")}>
           <InformationWindowIcon />
         </div>
         <span>نافذة المعلومات</span>

@@ -51,7 +51,7 @@ const GlobalFilter = () => {
           className="flex items-center px-4 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <FilterIcon />
-          <span className="">فلتر</span>
+          <span className="text-primary">فلتر</span>
         </button>
         <FilterMenu
           anchorEl={filterMenuAnchor}
@@ -65,7 +65,7 @@ const GlobalFilter = () => {
           className="flex items-center px-4 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <GroupByIcon />
-          <span className="">تجميع حسب</span>
+          <span className="text-primary">تجميع حسب</span>
         </button>
         <GroupByMenu
           anchorEl={groupByMenuAnchor}
@@ -79,7 +79,7 @@ const GlobalFilter = () => {
           className="flex items-center px-6 py-2 border border-[#3F51B5] text-blue-500 rounded-md hover:bg-blue-50 transition gap-2"
         >
           <CoordinationIcon />
-          <span className="">التنسيقات</span>
+          <span className="text-primary">التنسيقات</span>
         </button>
         <CoordinationMenu
           anchorEl={coordinationMenuAnchor}

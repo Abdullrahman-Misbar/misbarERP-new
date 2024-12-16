@@ -7,15 +7,39 @@ import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import CancelApproved from "./CancelApproved";
 import { AiOutlineDollarCircle } from "react-icons/ai";
+import MultiDelete from "./MultiDelete";
+import { Checkbox } from "@mui/material";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
-  navigate: any
+  navigate: any,
+  selectedIds: number[],
+  setSelectedIds: Dispatch<SetStateAction<number[]>>
 ): ColumnDef<RowData>[] => {
+  // Handle Checkbox toggle
+  const handleCheckboxChange = (id: number) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
   return [
+    // {
+    //   header: "",
+    //   accessorKey: "id",
+    //   cell: (info) => (
+    //     <span>
+    //       <Checkbox
+    //         checked={selectedIds.includes(+info.row.original.id)}
+    //         onChange={() => handleCheckboxChange(info.row.original.id)}
+    //       />
+    //     </span>
+    //   ),
+    //   enableResizing: true,
+    // },
     {
       header: "#",
       accessorKey: "id",

@@ -7,8 +7,8 @@ type LayoutMainData_TP = {
   newValues?: { [key: string]: string };
   editable?: boolean;
   className?: string;
-  hiddenToolbar?: boolean; 
-  visibility?: { [key: string]: boolean }; 
+  hiddenToolbar?: boolean;
+  visibility?: { [key: string]: boolean };
 };
 
 function LayoutMainData({
@@ -17,22 +17,21 @@ function LayoutMainData({
   newValues,
   className,
   hiddenToolbar,
-  visibility, 
+  visibility,
 }: LayoutMainData_TP) {
   return (
-    <div className={` ${className} p-3 `}>
+    <div className={` ${className}  `}>
       {!hiddenToolbar && (
         <div className="bg-white rounded-xl">
           <Toolbar
             componentCopy={componentCopy}
             newValues={newValues}
-            visibility={visibility} 
+            visibility={visibility}
           />
         </div>
       )}
-        <div className="h-5 w-full bg-[#f7f9ff]  p-0 mt-2 "></div>
 
-      <div className="mt-2 bg-white rounded-xl">{children}</div>
+      <div className=" ">{children}</div>
     </div>
   );
 }

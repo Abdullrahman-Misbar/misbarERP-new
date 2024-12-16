@@ -1,22 +1,26 @@
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import { Formik } from "formik";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BreadcrumbComponent from "../../../molecules/Breadcrumb";
 import Button from "../../../atoms/button/Button";
 import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
-import ExportExcel from "../../../molecules/exel/ExportExcel";
-import Filter from "./Filter";
-import { Form, Formik } from "formik";
-import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
+import BreadcrumbComponent from "../../../molecules/Breadcrumb";
+import ExportExcel from "../../../molecules/exel/ExportExcel";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
+import ModalComp from "../../../molecules/ModalComp";
+import Filter from "./Filter";
 import { generateColumns } from "./generateColumns";
+import MultiDelete from "./MultiDelete";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
+  selectedIds:number[]
+  refetch:(options?: RefetchOptions) => Promise<QueryObserverResult>
 };
 
-function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
+function MainHeadLayout({ setWord, data , selectedIds , refetch }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -48,24 +52,25 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
-            {/* Display SettingsMenu when MdSettings is clicked */}
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={<MultiDelete selectedIds={selectedIds} refetch={refetch}/>}
             />
           </span>
         </div>
       </div>
-      {/* <Formik initialValues={{}} onSubmit={() => {}}>
-        <Form> */}
-          
-            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
-            setExportExcelModal={setExportExcelModal}
-            />
-         
-        {/* </Form>
-      </Formik> */}
+    
 
+      <ExportExcel
+        generateColumns={generateColumns}
+        data={data}
+        exportExcelModal={exportExcelModal}
+        setExportExcelModal={setExportExcelModal}
+      />
+
+     
       <ModalComp
         header=" الموردين - الاستيراد من اكسل "
         open={importExcelModal}

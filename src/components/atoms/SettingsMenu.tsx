@@ -1,4 +1,3 @@
-import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MdSettings } from "react-icons/md";
@@ -7,10 +6,13 @@ import ImportIcon from "./icons/ImportIcon";
 type SettingsMenu_TP = {
   setExportExcelModal: Dispatch<SetStateAction<boolean>>;
   setImportExcelModal: Dispatch<SetStateAction<boolean>>;
+  MultiDelete: React.ReactNode;
+  selectedIds: number[];
 };
 const SettingsMenu = ({
   setExportExcelModal,
   setImportExcelModal,
+  MultiDelete,
 }: SettingsMenu_TP) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -73,19 +75,13 @@ const SettingsMenu = ({
           </Typography>
         </MenuItem>
 
-        <MenuItem className="gap-2  items-center">
-          <DeleteIcon className="text-[#D32F2F]" />
-          <Typography
-            style={{
-              fontFamily: "Somar-Medium",
-              fontSize: "14px",
-              marginTop: "10px",
-              padding: " 5px 0",
-            }}
-          >
-            حذف
-          </Typography>
+        <MenuItem
+          className="gap-2  items-center"
+     
+        >
+          {MultiDelete}
         </MenuItem>
+        <span></span>
       </Menu>
     </div>
   );

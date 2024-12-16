@@ -7,15 +7,13 @@ const Analysis: React.FC = () => {
   return (
     <>
       <div className="grid grid-cols-12 gap-5 ">
-        {/* Curve: Takes 7 columns */}
         <div className="col-span-7">
           <Curve />
         </div>
 
-        {/* Average Order: Takes 5 columns */}
         <div className="col-span-5">
           <AverageOrder />
-          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-12 gap-5  mt-5">

@@ -55,7 +55,7 @@ const Toolbar = ({ componentCopy, newValues, visibility }: Toolbar_TP) => {
   const finalVisibility = { ...defaultVisibility, ...visibility };
 
   return (
-    <div className="!px-2">
+    <div className="!px-5">
       <div className="flex items-center justify-between ">
         <div className="flex items-center justify-start ">
           {finalVisibility.repeaterBar && (

@@ -29,14 +29,6 @@ function Main({ editable }: Main_TP) {
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
-
-  const { data: newCode } = useFetch({
-    endpoint: `${newCodeEndpoint}`,
-    queryKey: [`${newCodeEndpoint}`],
-    Module: "PURCHASE",
-    enabled: !id && !editable,
-  });
-
   const postEndPoint = id ? `${postENdPoint}/${id}` : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
@@ -64,6 +56,7 @@ function Main({ editable }: Main_TP) {
       IndexMainPath,
       mainENdPoint,
       ApproveOrDisApproveEndPoint,
+      newCodeEndpoint,
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
@@ -72,11 +65,9 @@ function Main({ editable }: Main_TP) {
   };
   //@ts-ignore
   const response = data?.data;
-  const code = newCode?.data;
-
   const initialValues = {
     id: id ? +id : 0,
-    categoryCode: response?.categoryCode || code || "",
+    categoryCode: response?.categoryCode || "",
     ctaegoryName: response?.ctaegoryName || "",
     editable: editable ? true : false,
     mainCategoryId: response?.mainCategoryId || 0,
@@ -86,13 +77,14 @@ function Main({ editable }: Main_TP) {
     accountName: response?.accountName || "",
     costCenterName: response?.costCenterName || "",
     mainCategoryName: response?.mainCategoryName || "",
-
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
     controlButtonEndPoint: controlButtonEndPoint,
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+    newCodeEndpoint: newCodeEndpoint,
+
     // SourceActivityType: 1,
     tags: response?.tagNos || [],
     // tags:   [],
@@ -101,7 +93,6 @@ function Main({ editable }: Main_TP) {
       categoryCode: "",
       categoryName: "",
       mainCategoryId: null,
-
       note: "",
       accountId: null,
       costCenterId: null,
