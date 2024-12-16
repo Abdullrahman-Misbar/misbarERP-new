@@ -13,8 +13,7 @@ function InformationWindowSetting() {
         </div>
       </div>
       <ShownInformation />
-      <InformationFrom/>
-     
+      <InformationFrom />
     </>
   );
 }

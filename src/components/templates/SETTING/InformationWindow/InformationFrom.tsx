@@ -1,7 +1,7 @@
 import RadioButtons from "../../../atoms/formik/RadioComp";
 function InformationFrom() {
   return (
-    <div className="bg-white w-full rounded-lg p-6 pb-16 my-4">
+    <div className="bg-white w-full rounded-lg p-6 pb-6 my-4">
       <span className="text-xl font-semibold">المعلومات معروضة من</span>
       <div className="mt-6 flex flex-col gap-4">
         <RadioButtons

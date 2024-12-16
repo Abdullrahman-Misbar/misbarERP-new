@@ -3,7 +3,7 @@ import RadioButtons from "../../../atoms/formik/RadioComp";
 
 function CloseOrder() {
   return (
-    <div className="bg-white rounded-lg p-6 my-4">
+    <div className="bg-white rounded-lg p-6 ">
       <span className="text-xl font-semibold">الخصم المكتسب</span>
       <div className="mt-6">
         <Grid container spacing={2} alignItems="center">

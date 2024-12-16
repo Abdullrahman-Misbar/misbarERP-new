@@ -145,7 +145,7 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
   return (
     <Sidebar
       rtl={isRTL}
-      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative "
+      className="h-screen col-start-1 col-end-2 row-start-2 row-end-3 relative overflow-hidden "
       transitionDuration={250}
       width="100%"
       collapsed={collapsed}
@@ -166,13 +166,17 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
       </div>
       <div
         className={`flex flex-col items-start px-5 py-2 ${
-          collapsed ? "h-[100px]" : "min-h-[240px]"
+          collapsed ? "h-[100px]" : ""
         }`}
       >
         {!collapsed ? (
           <>
-            <div className="w-full p-3">
-              <img src="/src/assets/logo.png" alt="Logo" />
+            <div className="w-full p-3 ">
+              <img
+                src="/src/assets/logo.png"
+                alt="Logo"
+                className="w-[120px] "
+              />
             </div>
             <p className="text-primary">مسبار الكون</p>
             <h1 className="text-xl text-light font-somarBold">
@@ -182,7 +186,11 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
         ) : null}
       </div>
 
-      <Menu>
+      <Menu className="overflow-y-scroll"
+      style={{
+        height: "calc(100vh - 156px)"
+      }}
+      >
         {sideBarItems.map((Item, index) => {
           if ((Item as any).header) {
             return collapsed ? (
@@ -222,7 +230,7 @@ export const SideBar = ({ setCollapsed, collapsed }) => {
               {Item.items.map((innerItem) => generateItem(innerItem))}
             </SubMenu>
           ) : (
-            generateItem(Item)
+            <div>{generateItem(Item)}</div>
           );
         })}
       </Menu>

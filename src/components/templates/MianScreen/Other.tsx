@@ -3,7 +3,7 @@ import React from "react";
 
 function Other() {
   return (
-    <div className="bg-white rounded-lg pb-16 p-6 my-4">
+    <div className="bg-white rounded-lg h-full pb-4 p-6 my-4">
       <p className="text-xl font-bold !mb-12 ">اخرى</p>
       <Grid container spacing={2} className="mt-4">
   

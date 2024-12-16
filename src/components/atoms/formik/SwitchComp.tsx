@@ -1,4 +1,4 @@
-import { Switch } from "@mui/material";
+import { styled, Switch } from "@mui/material";
 import { useFormikContext } from "formik";
 
 type EditProps_TP = {
@@ -7,6 +7,17 @@ type EditProps_TP = {
   name: string;
   onChange?: () => void;
 };
+
+const CustomSwitch = styled(Switch)(({ theme }) => ({
+  margin: "0",
+  "& .MuiSwitch-switchBase.Mui-checked": {
+    color: "#3F51B5",
+  },
+  "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+    backgroundColor: "#3F51B5",
+  },
+}));
+
 export const SwitchComp = ({
   disabled,
   defaultChecked,
@@ -15,8 +26,9 @@ export const SwitchComp = ({
 }: EditProps_TP) => {
   const { setFieldValue } = useFormikContext();
   return (
-    <div className="flex items-center  gap-2">
-      <Switch
+    <div className="flex items-center !m-0">
+      <CustomSwitch
+        color="primary"
         disabled={disabled}
         defaultChecked={defaultChecked}
         name={name}

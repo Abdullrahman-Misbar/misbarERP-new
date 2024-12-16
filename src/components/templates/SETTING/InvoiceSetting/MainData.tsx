@@ -12,7 +12,6 @@ function MainData() {
       item.id === id ? { ...item, isDisabled: checked } : item
     );
     setFieldValue("settings", updatedSettings);
-    
   };
 
   return (
@@ -21,28 +20,11 @@ function MainData() {
         <Invoices />
       </div>
 
-
-      <RadioButtons
-                name="withTax"
-                label="باستثناء الضريبة"
-                checked={values?.withTax == 1}
-                onChange={() => setFieldValue("withTax", 1)}
-              />
-
-              <RadioButtons
-                name="withTax"
-                label="شاملة الضريبة"
-                checked={values?.withTax == 0}
-                onChange={() => setFieldValue("withTax", 0)}
-              />
-
-
-
-      <div className="!my-5 w-full">
+      <div className="!mt-5 w-full">
         <Grid container spacing={4}>
           {/* Left Column */}
           <Grid item xs={12} sm={6}>
-            <div className="bg-white rounded-lg p-6 my-4">
+            <div className="bg-white rounded-lg px-4 py-5 my-6">
               <span className="text-xl font-semibold">سياسة الفوترة</span>
 
               <div className="flex items-center gap-4 mt-6 flex-wrap">
@@ -59,15 +41,13 @@ function MainData() {
                   onChange={(e) => handleRadioChange(19, !e.target.checked)}
                 />
               </div>
+
+
             </div>
 
-
-
-            
-
-            <div className="bg-white rounded-lg p-6 my-4">
+            <div className="bg-white rounded-lg px-4 py-5 my-6">
               <span className="text-xl font-semibold">الكميات المجانية</span>
-              <div className="mt-6">
+              <div className="mt-3">
                 <Grid container spacing={2} alignItems="center">
                   <Grid item xs={12} sm={6}>
                     <RadioButtons
@@ -97,9 +77,9 @@ function MainData() {
 
           {/* Right Column */}
           <Grid item xs={12} sm={6}>
-            <div className="bg-white w-full rounded-lg p-6 pb-16 my-4">
+            <div className="bg-white w-full rounded-lg px-4 py-5 pb-[42PX] my-6">
               <span className="text-xl font-semibold">مصاريف الشراء</span>
-              <div className="mt-6 flex flex-col gap-4">
+              <div className="mt-6 flex flex-col gap-2">
                 <RadioButtons
                   name="priceIncludeTax"
                   label="توزع على الأصناف نسبة وتناسب حسب القيمة"

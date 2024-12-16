@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#2E3188",
+        primary: "#3F51B5",
         light: "#999999",
         mainBorder: "#BDBDBD", // Add this line for the gray border color
       },
