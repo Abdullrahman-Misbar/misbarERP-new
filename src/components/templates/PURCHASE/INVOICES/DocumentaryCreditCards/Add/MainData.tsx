@@ -3,6 +3,7 @@ import BaseInputField from "../../../../../atoms/formik/BaseInputField";
 import LayoutMainData from "../../../../../molecules/LayoutMainData";
 import SelectCards from "../../../../../molecules/Selects/SelectCards";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
+import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
 
 function MainData() {
   return (
@@ -23,42 +24,44 @@ function MainData() {
       }}
     >
       <div>
-        <Grid
-          container
-          rowSpacing={4}
-          columnSpacing={4}
-          p={3}
-          className="overflow-hidden"
-        >
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="cardCode"
-              placeholder=" رمز البطاقة"
-              type="text"
-              label=" رمز البطاقة"
-              disabled
-            />
+        <ChildrenLayout>
+          <Grid
+            container
+            rowSpacing={4}
+            columnSpacing={4}
+            p={3}
+            className="overflow-hidden"
+          >
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="cardCode"
+                placeholder=" رمز البطاقة"
+                type="text"
+                label=" رمز البطاقة"
+                disabled
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="cardName"
+                placeholder=" اسم البطاقة"
+                type="text"
+                label=" اسم البطاقة"
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <SelectCards name="mainCardId" />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <BaseInputField
+                name="note"
+                placeholder=" ملاحظات"
+                type="text"
+                label=" ملاحظات"
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="cardName"
-              placeholder=" اسم البطاقة"
-              type="text"
-              label=" اسم البطاقة"
-            />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <SelectCards name="mainCardId" />
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <BaseInputField
-              name="note"
-              placeholder=" ملاحظات"
-              type="text"
-              label=" ملاحظات"
-            />
-          </Grid>
-        </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

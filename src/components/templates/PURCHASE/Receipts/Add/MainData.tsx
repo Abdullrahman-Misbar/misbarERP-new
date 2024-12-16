@@ -9,6 +9,7 @@ import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
 import ReceiptTable from "../../../../molecules/tablesDynamic/ReceiptTable";
 import { Values_TP } from "./Types&Validation";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 type Main_TP = {
   editable?: boolean;
@@ -55,69 +56,76 @@ function MainData({ VoucherType }: Main_TP) {
       newValues={newValues}
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="voucherCode"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="voucherCode"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId" labelName="العملة" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectCurrency name="currencyId" labelName="العملة" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="voucherDate"
-              placeholder="التاريخ"
-              label="التاريخ"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="voucherDate"
+                placeholder="التاريخ"
+                label="التاريخ"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="convertionRate"
-              placeholder="التعادل"
-              type="number"
-              label="التعادل"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="convertionRate"
+                placeholder="التعادل"
+                type="number"
+                label="التعادل"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="sourceDocument"
-              placeholder="المستند المرجعي"
-              type="text"
-              label="المستند المرجعي"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="sourceDocument"
+                placeholder="المستند المرجعي"
+                type="text"
+                label="المستند المرجعي"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectCostCenter name="costCenterId" labelName={"مركز التكلفة"} />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <SelectAccount name="otherAccountId" labelName={"الحساب"} />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectCostCenter
+                name="costCenterId"
+                labelName={"مركز التكلفة"}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectAccount name="otherAccountId" labelName={"الحساب"} />
+            </Grid>
 
-          <Grid item xs={8}>
-            <BaseInputField
-              name="note"
-              placeholder="البيان"
-              type="textarea"
-              label="البيان"
-            />
+            <Grid item xs={8}>
+              <BaseInputField
+                name="note"
+                placeholder="البيان"
+                type="textarea"
+                label="البيان"
+              />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          <ReceiptTable moduleName="voucherDetailsRequest" />
-          {/* <ItemsTable
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            <ReceiptTable moduleName="voucherDetailsRequest" />
+            {/* <ItemsTable
           
           /> */}
-        </Grid>
+          </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

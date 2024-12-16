@@ -13,6 +13,8 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
   const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
     // page: page,
@@ -40,7 +42,12 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
+      <MainHeadLayout
+        setWord={setWord}
+        data={data?.data?.data || []}
+        refetch={refetch}
+        selectedIds={selectedIds}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}

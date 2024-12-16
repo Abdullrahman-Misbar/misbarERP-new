@@ -12,6 +12,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  MultiDeleteEndPoint,
 } from "../const";
 
 type Main_TP = {
@@ -75,6 +76,8 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+    MultiDeleteEndPoint: MultiDeleteEndPoint,
+
     SourceActivityType: 1,
     qutationDetailsModal: response?.qutationDetailsModal?.length
       ? response?.qutationDetailsModal?.map((item: Item_TP) => ({

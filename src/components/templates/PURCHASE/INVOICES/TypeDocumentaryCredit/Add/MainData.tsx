@@ -13,6 +13,7 @@ import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import SelectEmployee from "../../../../molecules/Selects/SelectEmployee";
+import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -39,123 +40,127 @@ function MainData() {
       newValues={newValues}
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="code"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid>
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="code"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
+              />
+            </Grid>
 
-          {/* 1 */}
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="total"
-              placeholder=" الأجمالى"
-              type="number"
-              label=" الأجمالى"
-            />
-          </Grid>
+            {/* 1 */}
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="total"
+                placeholder=" الأجمالى"
+                type="number"
+                label=" الأجمالى"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="expectedReceiptDate"
-              placeholder=" تاريخ الاستلام المتوقع"
-              label=" تاريخ الاستلام المتوقع"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="expectedReceiptDate"
+                placeholder=" تاريخ الاستلام المتوقع"
+                label=" تاريخ الاستلام المتوقع"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="createDate"
-              placeholder="تاريخ انشاء الامر"
-              label="تاريخ انشاء الامر"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="createDate"
+                placeholder="تاريخ انشاء الامر"
+                label="تاريخ انشاء الامر"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="referenceDocument"
-              placeholder=" المستند المرجعي"
-              type="text"
-              label=" المستند المرجعي"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputField
+                name="referenceDocument"
+                placeholder=" المستند المرجعي"
+                type="text"
+                label=" المستند المرجعي"
+              />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectCurrency name="currencyId" labelName="العملة" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectCurrency name="currencyId" labelName="العملة" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectVendor name="vendorId" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectVendor name="vendorId" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectPurchaseAgreement name="purchaseAgreementId" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectPurchaseAgreement name="purchaseAgreementId" />
+            </Grid>
 
-          <Grid item xs={12} sm={4} mt={4}>
-            <div className="flex items-center gap-5">
-              <Label htmlFor="">الحالة</Label>
-              <div>
-                <span className="status-text">
-                  {/* {values?.status === 0
+            <Grid item xs={12} sm={4} mt={4}>
+              <div className="flex items-center gap-5">
+                <Label htmlFor="">الحالة</Label>
+                <div>
+                  <span className="status-text">
+                    {/* {values?.status === 0
                     ? "لم يتم الاستلام"
                     : values?.status === 1
                     ? "استلام جزئي"
                     : values?.status === 2
                     ? "استلام كلي"
                     : ""} */}
-                  {values?.status == 1 ? (
-                    <p className="text-orange-500">استلام جزئي</p>
-                  ) : values?.status == 2 ? (
-                    <p className="text-green-400">استلم كلي</p>
-                  ) : (
-                    <p className="text-black">لم يتم الاستلام </p>
-                  )}
-                </span>
+                    {values?.status == 1 ? (
+                      <p className="text-orange-500">استلام جزئي</p>
+                    ) : values?.status == 2 ? (
+                      <p className="text-green-400">استلم كلي</p>
+                    ) : (
+                      <p className="text-black">لم يتم الاستلام </p>
+                    )}
+                  </span>
+                </div>
               </div>
-            </div>
-          </Grid>
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            {/* <BaseInputField
+            <Grid item xs={12} sm={4}>
+              {/* <BaseInputField
               name="purchaseRepresentativeId"
               placeholder=" مندوب المشتريات"
               type="text"
               label=" مندوب المشتريات"
             /> */}
-            <SelectEmployee name="purchaseRepresentativeId" />
-          </Grid>
+              <SelectEmployee name="purchaseRepresentativeId" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <SelectWarehouse name="warehouseId" label="اختر المستودع" />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <SelectWarehouse name="warehouseId" label="اختر المستودع" />
+            </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <BaseInputDatepicker
-              name="approvalDate"
-              placeholder="تاريخ الاعتماد"
-              label="تاريخ الاعتماد"
-            />
-          </Grid>
+            <Grid item xs={12} sm={4}>
+              <BaseInputDatepicker
+                name="approvalDate"
+                placeholder="تاريخ الاعتماد"
+                label="تاريخ الاعتماد"
+              />
+            </Grid>
 
-          <Grid item xs={8}>
-            <BaseInputField
-              name="note"
-              placeholder="ملاحظات"
-              type="textarea"
-              label="ملاحظات"
-            />
+            <Grid item xs={8}>
+              <BaseInputField
+                name="note"
+                placeholder="ملاحظات"
+                type="textarea"
+                label="ملاحظات"
+              />
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="orderDetailsModal" />
-          <ItemsTable moduleName="orderDetailsModal" />
-        </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            <MainSelectChoseModule moduleName="orderDetailsModal" />
+            <ItemsTable moduleName="orderDetailsModal" />
+          </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );

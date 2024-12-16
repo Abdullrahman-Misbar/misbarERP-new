@@ -3,17 +3,18 @@ import { useFormikContext } from "formik";
 import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
- 
+
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectCurrency from "../../../../molecules/Selects/SelectCurrency";
 import SelectPurchaseAgreement from "../../../../molecules/Selects/SelectPurchasAgreement";
 import SelectVendor from "../../../../molecules/Selects/SelectVendor";
- 
+
 import ItemsTableagreement from "../../../../molecules/tablesDynamic/ItemsTableagreement";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import MainSelectChoseModule from "../../../../molecules/MainSelectChoseModule";
 import AgreementStatus from "../../../../molecules/AgreementStatus";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -31,8 +32,7 @@ function MainData() {
     agreementDeadline: values?.copValue?.agreementDeadline || "",
     referenceDocument: values?.copValue?.referenceDocument || "",
     note: values?.copValue?.note || "",
-    agreementDetailesModel:
-      values?.copValue?.agreementDetailesModel || [],
+    agreementDetailesModel: values?.copValue?.agreementDetailesModel || [],
   };
 
   return (
@@ -42,89 +42,87 @@ function MainData() {
       newValues={newValues}
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="agreementCode"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
+        <ChildrenLayout>
+          <Grid container rowSpacing={4} columnSpacing={4}>
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="agreementCode"
+                placeholder="الرقم المرجعي"
+                type="text"
+                disabled
+                label="الرقم المرجعي"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectPurchaseAgreement name="aggreementTypeId" />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectVendor name="vendorId" />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="orderDate"
+                placeholder="تاريخ الاتفاقية"
+                label="تاريخ الاتفاقية"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <SelectCurrency name="responsibleId" labelName="المسئول" />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="agreementDeadline"
+                placeholder="الموعد النهائي"
+                label=" الموعد النهائي"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6} mt={4}>
+              <div className="flex items-center gap-5">
+                <Label htmlFor="">الحالة</Label>
+                <AgreementStatus />
+              </div>
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputDatepicker
+                name="receiptDate"
+                placeholder="تاريخ الاستلام"
+                label="تاريخ الاستلام"
+              />
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              <BaseInputField
+                name="referenceDocument"
+                placeholder="المستند المرجعي"
+                type="text"
+                label="المستند المرجعي"
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              <BaseInputField
+                name="note"
+                placeholder="ملاحظات"
+                type="textarea"
+                label="ملاحظات"
+              />
+            </Grid>
           </Grid>
+        </ChildrenLayout>
+        <ChildrenLayout>
+          <Grid item xs={12} mt={5}>
+            <MainSelectChoseModule moduleName="agreementDetailesModel" />
 
-          <Grid item xs={12} sm={6}>
-            <SelectPurchaseAgreement name="aggreementTypeId" />
+            <ItemsTableagreement moduleName="agreementDetailesModel" />
           </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <SelectVendor name="vendorId" />
-          </Grid>
-
-           
-          <Grid item xs={12} sm={6}>
-            <BaseInputDatepicker
-              name="orderDate"
-              placeholder="تاريخ الاتفاقية"
-              label="تاريخ الاتفاقية"
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <SelectCurrency name="responsibleId" labelName="المسئول" />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <BaseInputDatepicker
-              name="agreementDeadline"
-              placeholder="الموعد النهائي"
-              label=" الموعد النهائي"
-            />
-          </Grid>
-
-            
-
-          <Grid item xs={12} sm={6} mt={4}>
-            <div className="flex items-center gap-5">
-              <Label htmlFor="">الحالة</Label>
-              <AgreementStatus />
-            </div>
-          </Grid>
-
-           
-
-          <Grid item xs={12} sm={6}>
-            <BaseInputDatepicker
-              name="receiptDate"
-              placeholder="تاريخ الاستلام"
-              label="تاريخ الاستلام"
-            />
-          </Grid>
-
-          
-          <Grid item xs={12} sm={6}>
-            <BaseInputField
-              name="referenceDocument"
-              placeholder="المستند المرجعي"
-              type="text"
-              label="المستند المرجعي"
-            />
-          </Grid>
-
-          <Grid item xs={6}>
-            <BaseInputField
-              name="note"
-              placeholder="ملاحظات"
-              type="textarea"
-              label="ملاحظات"
-            />
-          </Grid>
-        </Grid>
-        <Grid item xs={12} mt={5}>
-          <MainSelectChoseModule moduleName="agreementDetailesModel" />
-
-          <ItemsTableagreement moduleName="agreementDetailesModel" />
-        </Grid>
+        </ChildrenLayout>
       </div>
     </LayoutMainData>
   );
