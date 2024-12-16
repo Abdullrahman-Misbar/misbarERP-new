@@ -13,13 +13,13 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
-    // term: word,
-    searchValue:'',
-     skip:0,
-    take: 10 * page>0?10 * page:10,
+    searchValue: debouncedWord,
+    skip: 0,
+    // take: 10 * page > 0 ? 10 * page : 10,
+    Take: 10 * page,
+
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
@@ -28,9 +28,7 @@ function Main() {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    onSuccess: () => {
-     
-    },
+    onSuccess: () => {},
   });
 
   const columns = useMemo(
@@ -39,21 +37,16 @@ function Main() {
   );
 
   const handlePageChange = (selectedPage: number) => {
-    
     setPage(selectedPage);
   };
 
-  const getData=()=>{
-  
 
-return    data?.data.data
-  };
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={ getData() || []} />
+      <MainHeadLayout setWord={setWord} data={data?.data.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-          data={getData() || []}
+          data={data?.data.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}

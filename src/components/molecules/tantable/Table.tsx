@@ -233,7 +233,7 @@ export const Table = <T extends object>({
           !footerData?.length &&
           !isLoading &&
           !isFetching && (
-            <div className="pr-5 mb-5">
+            <div className="pr-5 mb-5 flex justify-center">
               {/* <Header
                 header={t("nothing")}
                 className="text-2xl font-bold text-center dark:text-white"

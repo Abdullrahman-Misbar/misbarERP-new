@@ -1,22 +1,28 @@
 import { useMemo, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from "../../../../hooks";
-import useDebounce from "../../../../hooks/useDebounce";
-import Paginate from "../../../molecules/table/Paginate";
-import { Table } from "../../../molecules/tantable/Table";
-import { mainENdPoint } from "./const";
+import { useFetch } from "../../../../../hooks";
+import useDebounce from "../../../../../hooks/useDebounce";
+import Paginate from "../../../../molecules/table/Paginate";
+import { Table } from "../../../../molecules/tantable/Table";
+import { mainENdPoint } from "../const";
 import { generateColumns } from "./generateColumns";
-import MainHeadLayout from "./MainHeadLayout";
+import MainHeadLayout from "../MainHeadLayout";
+import BreadcrumbComponent from "../../../../molecules/Breadcrumb";
+import { Button } from "@mui/material";
+import BaseInputSearch from "../../../../atoms/formik/BaseInputSearch";
+import Filter from "../Filter";
+import CoomparisonNavigator from "./CoomparisonNavigator";
+import { t } from "i18next";
 
 function Main() {
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
   const [word, setWord] = useState("");
-  const debouncedWord = useDebounce(word, 300);
+  const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
-    searchValue: debouncedWord,
-    skip: 0,
+    // page: page,
+    // term: word,
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
@@ -38,19 +44,44 @@ function Main() {
     setPage(selectedPage);
   };
 
+  const breadcrumbItems = [
+    { label: "الصفحة الرئيسية", link: "/" },
+    { label: "طلبات الشراء" },
+    { label: "العروض التابعة لطلب الشراء" },
+  ];
+
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
+      <p className=" bg-white rounded-lg mb-2">
+        <BreadcrumbComponent items={breadcrumbItems} />
+      </p>
+      <div className="grid grid-cols-12 p-3 my-5 bg-white rounded-md">
+        <div className="col-span-12">
+          <BaseInputSearch placeholder="بحث سريع" name="" setWord={setWord} />
+          <Filter />
+        </div>
+      </div>
+      <div className="bg-white p-4 mb-2 flex gap-4">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          onClick={() => navigate(`/purchase/PurchasQutations/add`)}
+        >
+          {t("Add Price Offer")}
+        </Button>{" "}
+        <CoomparisonNavigator />
+      </div>{" "}
       <div className="p-3 bg-white rounded-md">
         <Table
-        //@ts-ignore
+          //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-        //@ts-ignore
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton

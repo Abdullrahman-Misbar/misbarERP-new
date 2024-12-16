@@ -65,6 +65,7 @@ import PurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement";
 import AddPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Add/index";
 import EditPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Edit/index";
 import FreeQuantitiesProcessingOperations from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/index";
+import PurchaseRequestsOffers from "../pages/PURCHASE/PurchaseRequest/PurchaseRequestsOffers";
 
 export const AllRoutesProvider = () => {
   return (
@@ -389,6 +390,10 @@ export const AllRoutesProvider = () => {
         <Route
           path="/purchase/PurchaseRequest/manual/:id"
           element={<ManualComparison title={t("Manual Comparison")} />}
+        />
+         <Route
+          path="/purchase/PurchaseRequest/PurchaseRequestsOffers/:id"
+          element={<PurchaseRequestsOffers title={t("Purchase Request Offers")} />}
         />
       </Route>
 
