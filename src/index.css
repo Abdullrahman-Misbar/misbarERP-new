@@ -86,7 +86,9 @@ body {
 }
 input {
   /* font-family: "Somar-Light" !; */
-  font-family: 'Somar-Light' !important;
+  font-family: "Somar-Light" !important;
+  height: 28px !important;
+  padding: 5px 16px !important;
 }
 .ps-menu-label {
   @apply font-somarBold;

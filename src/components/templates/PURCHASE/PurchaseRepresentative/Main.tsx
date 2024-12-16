@@ -26,7 +26,6 @@ function Main() {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    onSuccess: () => {},
   });
 
   const columns = useMemo(
@@ -40,15 +39,21 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data || []} />
+      <MainHeadLayout
+        setWord={setWord}
+        //@ts-ignore
+        data={data?.data || []}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
+          //@ts-ignore
           data={data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
@@ -57,6 +62,7 @@ function Main() {
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
+          //@ts-ignore
           pagesCount={data?.data?.totalCount / 10}
           previousLabel={<IoIosArrowBack />}
           nextLabel={<IoIosArrowForward />}

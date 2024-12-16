@@ -34,6 +34,13 @@ export type Values_TP = {
   mainCategoryId: number;
   accountId: number;
   costCenterId: number;
+  editable:boolean
+  controlButtonEndPoint:string
+  IndexMainPath:string
+  cancelRequestEndPoint:string
+  deleteEndPoint:string
+  mainENdPoint:string
+  ApproveOrDisApproveEndPoint:string
   note: string;
   accountName: string;
   costCenterName: string;

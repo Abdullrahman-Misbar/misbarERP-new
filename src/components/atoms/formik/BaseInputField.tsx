@@ -51,7 +51,7 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
           {label}
         </Label>
       )}
-      <div className={`rtl:text-right ${style} relative mt-1`} dir="rtl">
+      <div className={`rtl:text-right ${style} relative `} dir="rtl">
         <TextField
           // {...field}
           type={type === "password" && !showPassword ? "password" : type}
@@ -82,6 +82,8 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
               },
               "& input": {
                 color: "rgba(0, 0, 0, 0.5)",
+                height: "28px",
+                padding: "5px 16px"
               },
             }),
             ...sx,

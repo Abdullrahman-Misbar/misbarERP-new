@@ -20,9 +20,9 @@ function LayoutMainData({
   visibility, 
 }: LayoutMainData_TP) {
   return (
-    <div className={` ${className} p-3 bg-white rounded-md`}>
+    <div className={` ${className} p-3 `}>
       {!hiddenToolbar && (
-        <div>
+        <div className="bg-white rounded-xl">
           <Toolbar
             componentCopy={componentCopy}
             newValues={newValues}
@@ -30,7 +30,9 @@ function LayoutMainData({
           />
         </div>
       )}
-      <div>{children}</div>
+        <div className="h-5 w-full bg-[#f7f9ff]  p-0 mt-2 "></div>
+
+      <div className="mt-2 bg-white rounded-xl">{children}</div>
     </div>
   );
 }

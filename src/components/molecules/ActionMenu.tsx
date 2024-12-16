@@ -1,6 +1,7 @@
 import React, { useState, ReactNode } from "react";
 import { Menu, MenuItem, Typography, Divider } from "@mui/material";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import SettingIcon from "../atoms/icons/SettingIcon";
 
 type ActionMenu_TP = {
   children: ReactNode;
@@ -25,7 +26,7 @@ function ActionMenu({ children }: ActionMenu_TP) {
         className="flex items-center gap-3 cursor-pointer"
         style={{ cursor: "pointer" }}
       >
-        <HiOutlineDotsVertical className="w-5 h-5 text-black fs-2" />
+        <SettingIcon stroke="#B0B0B0" action={()=>{}} />
       </div>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {React.Children.map(children, (child, index) => {

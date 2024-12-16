@@ -55,26 +55,28 @@ const Toolbar = ({ componentCopy, newValues, visibility }: Toolbar_TP) => {
   const finalVisibility = { ...defaultVisibility, ...visibility };
 
   return (
-    <div className="flex items-center justify-between p-4">
-      <div className="flex items-center justify-start ">
-        {finalVisibility.repeaterBar && (
-          <RepeaterBar componentCopy={componentCopy} newValues={newValues} />
-        )}
-        {finalVisibility.addBar && <AddBar />}
-        {finalVisibility.undoBar && <UndoBar />}
-        {finalVisibility.deleteBar && <DeleteBar />}
-        {finalVisibility.saveBar && <SaveBar />}
-        {finalVisibility.printBar && <PrintBar />}
-        {finalVisibility.uploadFileBar && <UploadFileBar />}
-        {finalVisibility.approvedBar && <ApprovedBar />}
-        {finalVisibility.cancelBar && <CancelBar />}
-        {finalVisibility.settingBar && <SettingBar />}
-        {finalVisibility.closeBar && <CloseBar />}
-      </div>
-      {finalVisibility.controlTableButton && <ControlTableButton />}
-      <div className="flex items-center justify-start ">
-        {finalVisibility.operationLogsBar && <OperationLogsBar />}
-        {finalVisibility.scheduledActivities && <ScheduledActivities />}
+    <div className="!px-2">
+      <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-start ">
+          {finalVisibility.repeaterBar && (
+            <RepeaterBar componentCopy={componentCopy} newValues={newValues} />
+          )}
+          {finalVisibility.addBar && <AddBar />}
+          {finalVisibility.undoBar && <UndoBar />}
+          {finalVisibility.deleteBar && <DeleteBar />}
+          {finalVisibility.saveBar && <SaveBar />}
+          {finalVisibility.printBar && <PrintBar />}
+          {finalVisibility.uploadFileBar && <UploadFileBar />}
+          {finalVisibility.approvedBar && <ApprovedBar />}
+          {finalVisibility.cancelBar && <CancelBar />}
+          {finalVisibility.settingBar && <SettingBar />}
+          {finalVisibility.closeBar && <CloseBar />}
+        </div>
+        {finalVisibility.controlTableButton && <ControlTableButton />}
+        <div className="flex items-center justify-start ">
+          {finalVisibility.operationLogsBar && <OperationLogsBar />}
+          {finalVisibility.scheduledActivities && <ScheduledActivities />}
+        </div>
       </div>
     </div>
   );

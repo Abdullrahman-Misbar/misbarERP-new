@@ -13,7 +13,7 @@ import {
   postENdPoint,
 } from "../const";
 import MainData from "./MainData";
-import { validationSchema, Values_TP } from "./Types&Validation";
+import { Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -29,9 +29,7 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id
-    ? `${postENdPoint}/${id}`
-    : `${postENdPoint}`;
+  const postEndPoint = id ? `${postENdPoint}/${id}` : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -42,13 +40,12 @@ function Main({ editable }: Main_TP) {
     onError: (err) => {
       notify("error", err?.response?.data?.message);
     },
-    method:id ? "PUT" :"post"
+    method: id ? "PUT" : "post",
   });
 
   const handleSubmit = (values: Values_TP) => {
     const {
       copValue,
-     
       editable,
       cancelRequestEndPoint,
       deleteEndPoint,
@@ -68,19 +65,19 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     empCode: response?.empCode || "",
-  empName: response?.empName || "",
-  phone: response?.phone || "",
-  email: response?.email || "",
-  address: response?.address || "",
-  generalDataNote: response?.generalDataNote || "",
-  hireDate: response?.hireDate || "",
-  deptId: response?.deptId || 0,
-  jobPositionId: response?.jobPositionId || 0,
-  managerId: response?.managerId || 0,
-  workRecord: response?.workRecord || "",
-  workDataNote: response?.workDataNote || "",
-  note: response?.note || "",
-  editable: editable ? true : false,
+    empName: response?.empName || "",
+    phone: response?.phone || "",
+    email: response?.email || "",
+    address: response?.address || "",
+    generalDataNote: response?.generalDataNote || "",
+    hireDate: response?.hireDate || "",
+    deptId: response?.deptId || 0,
+    jobPositionId: response?.jobPositionId || 0,
+    managerId: response?.managerId || 0,
+    workRecord: response?.workRecord || "",
+    workDataNote: response?.workDataNote || "",
+    note: response?.note || "",
+    editable: editable ? true : false,
 
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
@@ -89,7 +86,6 @@ function Main({ editable }: Main_TP) {
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
     SourceActivityType: 1,
-     
 
     copValue: {
       id: 0,
@@ -105,8 +101,7 @@ function Main({ editable }: Main_TP) {
       managerId: 0,
       workRecord: "",
       workDataNote: "",
-      note: ""
-    
+      note: "",
     },
   };
 

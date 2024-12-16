@@ -21,7 +21,7 @@ function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
   const endpoint = `${mainENdPoint}/${id}`;
-  const { data, refetch, isLoading } = useFetch({
+  const { data,  isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",

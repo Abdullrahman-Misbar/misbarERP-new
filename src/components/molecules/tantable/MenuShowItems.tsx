@@ -106,7 +106,7 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
             )
           )}
         </div>
-        <div className="flex items-center justify-between px-2 w-full">
+        {/* <div className="flex items-center justify-between px-2 w-full">
           <button
             className="text-[14px] text-primary p-1"
             onClick={hideAllColumns} // استدعاء دالة إخفاء الجميع
@@ -119,7 +119,7 @@ export default function MenuShowItems({ table, setColumnVisibility }) {
           >
             اظهار الجميع
           </button>
-        </div>
+        </div> */}
       </Menu>
     </div>
   );

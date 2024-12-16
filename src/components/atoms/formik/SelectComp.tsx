@@ -66,7 +66,7 @@ const SelectComp: React.FC<DynamicSelectProps> = ({
           }),
           control: (baseStyles, state) => ({
             ...baseStyles,
-            height: "56px",
+            height: "38px",
             borderRadius: "4px",
             borderColor: state.isFocused ? "#0000008F" : baseStyles.borderColor,
             boxShadow: state.isFocused

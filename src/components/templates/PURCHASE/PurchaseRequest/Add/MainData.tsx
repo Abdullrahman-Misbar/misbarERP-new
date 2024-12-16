@@ -46,10 +46,11 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
+      className="!p-0 "
     >
       <div>
-        <Grid container rowSpacing={4} columnSpacing={4}>
-          <Grid item xs={12} sm={6}>
+        <Grid container rowSpacing={1.5} columnSpacing={4} p={2}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="code"
               placeholder="الرقم المرجعي"
@@ -59,15 +60,15 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <SelectPurchaseAgreement name="purchaseAgreementId" />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <SelectVendor name="vendorId" />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <div className="flex items-center gap-4 mt-6">
               <Label htmlFor="">تأكيد موعد الاستلام</Label>
               <SwitchComp
@@ -98,7 +99,7 @@ function MainData() {
             </div>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="requestDate"
               placeholder="تاريخ الطلب"
@@ -106,11 +107,11 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <SelectCurrency name="currencyId" labelName="العملة" />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="requestEndDate"
               placeholder="تاريخ انتهاء الطلب"
@@ -118,11 +119,11 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <SelectWarehouse name="warehouseId" label="اختر المستودع" />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="approvalDate"
               placeholder="تاريخ اعتماد الطلب"
@@ -130,14 +131,14 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6} mt={4}>
+          <Grid item xs={12} sm={4} mt={4}>
             <div className="flex items-center gap-5">
               <Label htmlFor="">الحالة</Label>
               <ApprovedStatus />
             </div>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="expectedReceiptDate"
               placeholder="الحد الاقصى للاستلام"
@@ -145,7 +146,7 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="total"
               placeholder="الإجمالي"
@@ -154,7 +155,7 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputDatepicker
               name="deliverdDate"
               placeholder="تاريخ الاستلام"
@@ -162,7 +163,7 @@ function MainData() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <div className="flex items-center gap-4 mt-8">
               <Label htmlFor="">الحصول على الأسعار</Label>
               <RadioButtons
@@ -180,7 +181,7 @@ function MainData() {
             </div>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="referenceDocument"
               placeholder="المستند المرجعي"
@@ -198,7 +199,9 @@ function MainData() {
             />
           </Grid>
         </Grid>
-        <Grid item xs={12} mt={5}>
+        <div className="h-5 w-full bg-[#f7f9ff]  p-0 mt-2"></div>
+
+        <Grid item xs={12} mt={5} px={2}>
           <MainSelectChoseModule moduleName="purchaseRequestDetailsDto" />
 
           <ItemsTable moduleName="purchaseRequestDetailsDto" />

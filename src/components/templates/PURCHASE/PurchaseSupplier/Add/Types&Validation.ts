@@ -27,6 +27,7 @@ export type Values_TP = {
   id: number;
   partnerCode: string;
   foreignPartnerName: string;
+  editable:boolean
   partnerName: string;
   accountId: number;
   partnerTypeId: number;

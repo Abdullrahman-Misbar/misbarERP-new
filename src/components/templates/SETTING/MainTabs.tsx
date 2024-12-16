@@ -18,19 +18,20 @@ function MainTabs() {
             printBar: false,
             repeaterBar: false,
             uploadFileBar: false,
-            settingBar: false,
+            // settingBar: false,
             scheduledActivities: false,
           }}
         />
       </div>
-
+      {/* 
       <div className="bg-white rounded-lg  !mt-5 p-5">
         <div className="flex items-center justify-start gap-4">
           <SettingList />
         </div>
+      </div> */}
+      <div className="bg-white rounded-lg  !mt-5 p-5">
+        <Outlet />
       </div>
-
-      <Outlet />
     </>
   );
 }

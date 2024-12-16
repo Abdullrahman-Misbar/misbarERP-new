@@ -14,7 +14,7 @@ import {
   postENdPoint,
 } from "../const";
 import MainData from "./MainData";
-import { validationSchema, Values_TP } from "./Types&Validation";
+import { Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;
@@ -30,33 +30,25 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const { data :newCode } = useFetch({
+  const { data: newCode } = useFetch({
     endpoint: `${newCodeEndpoint}`,
     queryKey: [`${newCodeEndpoint}`],
     Module: "PURCHASE",
     enabled: !id && !editable,
-  }) ;
+  });
 
-
-  
-
-  const postEndPoint = id
-    ? `${postENdPoint}/${id}`
-    : `${postENdPoint}`;
+  const postEndPoint = id ? `${postENdPoint}/${id}` : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    method:id?'PUT':'post',
-    onSuccess: (data:any) => {
-     
-      if(data?.data.status==='1')
-      notify("success");
-    else
-    notify("error", data?.data.message);
+    method: id ? "PUT" : "post",
+    onSuccess: (data: any) => {
+      if (data?.data.status === "1") notify("success");
+      else notify("error", data?.data.message);
     },
     Module: "PURCHASE",
     onError: (err) => {
-      console.log(err)
+      console.log(err);
       notify("error", err.response?.data.message);
     },
   });
@@ -64,7 +56,7 @@ function Main({ editable }: Main_TP) {
   const handleSubmit = (values: Values_TP) => {
     const {
       copValue,
-     
+
       editable,
       cancelRequestEndPoint,
       deleteEndPoint,
@@ -75,26 +67,25 @@ function Main({ editable }: Main_TP) {
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
-     console.log(jsonData)
+    console.log(jsonData);
     mutate(jsonData);
   };
   //@ts-ignore
   const response = data?.data;
   const code = newCode?.data;
 
-
   const initialValues = {
     id: id ? +id : 0,
-    categoryCode: response?.categoryCode || code||"",
+    categoryCode: response?.categoryCode || code || "",
     ctaegoryName: response?.ctaegoryName || "",
     editable: editable ? true : false,
     mainCategoryId: response?.mainCategoryId || 0,
-  accountId: response?.accountId || 0,
-  costCenterId: response?.costCenterId || 0,
-  note: response?.note || "",
-  accountName: response?.accountName || "",
-  costCenterName: response?.costCenterName || "",
-  mainCategoryName: response?.mainCategoryName || "",
+    accountId: response?.accountId || 0,
+    costCenterId: response?.costCenterId || 0,
+    note: response?.note || "",
+    accountName: response?.accountName || "",
+    costCenterName: response?.costCenterName || "",
+    mainCategoryName: response?.mainCategoryName || "",
 
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
@@ -103,14 +94,14 @@ function Main({ editable }: Main_TP) {
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
     // SourceActivityType: 1,
-       tags: response?.tagNos || [],
-      // tags:   [],
+    tags: response?.tagNos || [],
+    // tags:   [],
 
     copValue: {
       categoryCode: "",
       categoryName: "",
       mainCategoryId: null,
-      
+
       note: "",
       accountId: null,
       costCenterId: null,

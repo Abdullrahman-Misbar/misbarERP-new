@@ -5,7 +5,7 @@ import SelectComp from '../../atoms/formik/SelectComp'
 
 type SelectDirectManagerProps = {
   name: string
-  value:string
+  value?:string
 }
 
 interface Option {

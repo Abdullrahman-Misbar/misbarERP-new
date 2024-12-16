@@ -41,7 +41,13 @@ export type Values_TP = {
   managerId: number;
   workRecord: string;
   workDataNote: string;
- 
+  editable:boolean
+  cancelRequestEndPoint:string
+  deleteEndPoint:string
+  controlButtonEndPoint:string
+  IndexMainPath:string
+  mainENdPoint:string
+  ApproveOrDisApproveEndPoint:string
   note: string;
   copValue: {
     id: number;

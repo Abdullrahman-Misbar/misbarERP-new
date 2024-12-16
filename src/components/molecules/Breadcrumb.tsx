@@ -11,9 +11,9 @@ const BreadcrumbComponent: React.FC<BreadcrumbComponentProps> = ({ items }) => {
   return (
     <div className="w-full p-4 bg-white rounded-lg mb-2">
       <Breadcrumbs aria-label="breadcrumb" separator=" / " className="text-gray-600 text-sm">
-        <span>
+        <Link to={'/'}>
           <FaHome className="mr-1" size={14} />
-        </span>
+        </Link>
 
         {items.map((item, index) => {
           return index === items.length - 1 ? (

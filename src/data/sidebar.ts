@@ -83,11 +83,11 @@ export const sideBarItems: MenuItem_TP[] = [
         label: "Supplier groups",
         link: "/purchase/PurchaseSupplierGroup"
       },
-      {
-        id: crypto.randomUUID(),
-        icon: FaRegCircle,
-        label: "Tags",
-      },
+      // {
+      //   id: crypto.randomUUID(),
+      //   icon: FaRegCircle,
+      //   label: "Tags",
+      // },
       {
         id: crypto.randomUUID(),
         icon: FaRegCircle,
@@ -115,24 +115,24 @@ export const sideBarItems: MenuItem_TP[] = [
         link: "/purchase/PurchaseRepresentative",
         icon: FaRegCircle,
       },
-      {
-        id: crypto.randomUUID(),
-        label: "Items",
-        link: "",
-        icon: FaRegCircle,
-      },
+      // {
+      //   id: crypto.randomUUID(),
+      //   label: "Items",
+      //   link: "",
+      //   icon: FaRegCircle,
+      // },
       {
         id: crypto.randomUUID(),
         label: "Suppliers",
         link: "/purchase/PurchaseSupplier",
         icon: FaRegCircle,
       },
-      {
-        id: crypto.randomUUID(),
-        label: "Class variables",
-        link: "",
-        icon: FaRegCircle,
-      },
+      // {
+      //   id: crypto.randomUUID(),
+      //   label: "Class variables",
+      //   link: "",
+      //   icon: FaRegCircle,
+      // },
     ],
   },
 

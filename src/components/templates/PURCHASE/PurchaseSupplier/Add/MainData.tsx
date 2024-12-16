@@ -10,16 +10,13 @@ import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
-// import PartnerAddress from "./partnerTable/PartnerAddress";
-// import BankAccountsTable from "./partnerTable/PartnerBankAccount";
-// import PartnerContact from "./partnerTable/PartnerContact";
-import PurchaseSaleSettings from "./partnertable/PurchaseSaleSettings";
+import PartnerAddress from "./partnerTable/PartnerAddress";
+import BankAccountsTable from "./partnerTable/PartnerBankAccount";
+import PartnerContact from "./partnerTable/PartnerContact";
+import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import { useFetch } from "../../../../../hooks";
-import PartnerContact from "./partnertable/PartnerContact";
-import PartnerAddress from "./partnertable/PartnerAddress";
-import BankAccountsTable from "./partnertable/PartnerBankAccount";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -73,21 +70,19 @@ function MainData() {
         isDeleted: false,
       },
     ],
-  
+
     partnerBankAccountsesDto: values?.copValue?.partnerBankAccountsesDto || [],
   };
 
-  const { data:newCode ,isFetching,} = useFetch<any>({
-      queryKey: [`api/Partner/newCode/${values?.partnerGroupId}`],
-      endpoint:  `api/Partner/newCode/${values?.partnerGroupId}`,
-      Module: "PURCHASE",
-        enabled:values?.partnerGroupId>0 && values?.id>0 ,
+  const { data: newCode } = useFetch<any>({
+    queryKey: [`api/Partner/newCode/${values?.partnerGroupId}`],
+    endpoint: `api/Partner/newCode/${values?.partnerGroupId}`,
+    Module: "PURCHASE",
+    enabled: !!values?.partnerGroupId ,
     onSuccess: (data) => {
       setFieldValue("partnerCode", data?.data);
-       
-        },
-    });
-    const code =newCode?.data
+    },
+  });
 
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -96,11 +91,12 @@ function MainData() {
     setTabIndex(newIndex);
   };
 
-  const handlePartnerGroupChange = (selectedGroup: { value: number; label: string }) => {
-    // const categoryCode = `PG-${selectedGroup.value}`; 
-    
-    // setFieldValue("partnerCode", code); 
-
+  const handlePartnerGroupChange = (selectedGroup: {
+    value: number;
+    label: string;
+  }) => {
+    // const categoryCode = `PG-${selectedGroup.value}`;
+    // setFieldValue("partnerCode", code);
   };
   const suffixOptions = [
     { label: "السيد", value: 1 },
@@ -129,11 +125,11 @@ function MainData() {
       <div>
         <Grid container rowSpacing={4} columnSpacing={4}>
           <Grid item xs={12} sm={6}>
-            <SelectPartnerGroup 
-            name="partnerGroupId" 
-            label="مجموعة المورد " 
-            placeholder="أختر مجموعة المورد"
-            onPartnerGroupChange={handlePartnerGroupChange} 
+            <SelectPartnerGroup
+              name="partnerGroupId"
+              label="مجموعة المورد "
+              placeholder="أختر مجموعة المورد"
+              onPartnerGroupChange={handlePartnerGroupChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -161,7 +157,7 @@ function MainData() {
               label="طبيعة عمل المورد"
             />
           </Grid>
-         
+
           <Grid item xs={12} sm={6}>
             <div className="flex items-center gap-4 mt-8">
               <Label htmlFor="">نوع المورد</Label>
@@ -187,7 +183,7 @@ function MainData() {
               label="أسم الشركة"
             />
           </Grid>
-         
+
           <Grid item xs={12} sm={4}>
             <BaseInputField
               name="taxNumber"
@@ -265,7 +261,7 @@ function MainData() {
               label="تاريخ الميلاد"
             />
           </Grid>
-          
+
           <Grid item xs={12} sm={4}>
             <BaseInputField
               name="phone"
@@ -319,84 +315,84 @@ function MainData() {
             />
           </Grid>
           <Grid item xs={12} sm={4}>
-  <SelectComp
-    name="nationality"
-    label="الجنسية"
-    placeholder="اختر الجنسية"
-    options={[
-      { label: "Nationality 1", value: "nationality1" },
-      { label: "Nationality 2", value: "nationality2" },
-      { label: "Nationality 3", value: "nationality3" },
-    ]}
-    onChange={(selectedOption: any) =>
-      setFieldValue("nationality", selectedOption?.value)
-    }
-  />
-</Grid>
+            <SelectComp
+              name="nationality"
+              label="الجنسية"
+              placeholder="اختر الجنسية"
+              options={[
+                { label: "Nationality 1", value: "nationality1" },
+                { label: "Nationality 2", value: "nationality2" },
+                { label: "Nationality 3", value: "nationality3" },
+              ]}
+              onChange={(selectedOption: any) =>
+                setFieldValue("nationality", selectedOption?.value)
+              }
+            />
+          </Grid>
           <Grid item xs={12} sm={4}>
-  <SelectComp
-    name="country"
-    label="الدولة"
-    placeholder="اختر الدولة"
-    options={[
-      { label: "Country 1", value: "country1" },
-      { label: "Country 2", value: "country2" },
-      { label: "Country 3", value: "country3" },
-    ]}
-    onChange={(selectedOption: any) =>
-      setFieldValue("country", selectedOption?.value)
-    }
-  />
-</Grid>
+            <SelectComp
+              name="country"
+              label="الدولة"
+              placeholder="اختر الدولة"
+              options={[
+                { label: "Country 1", value: "country1" },
+                { label: "Country 2", value: "country2" },
+                { label: "Country 3", value: "country3" },
+              ]}
+              onChange={(selectedOption: any) =>
+                setFieldValue("country", selectedOption?.value)
+              }
+            />
+          </Grid>
 
-<Grid item xs={12} sm={4}>
-  <SelectComp
-    name="city"
-    label="المدينة"
-    placeholder="اختر المدينة"
-    options={[
-      { label: "City 1", value: "city1" },
-      { label: "City 2", value: "city2" },
-      { label: "City 3", value: "city3" },
-    ]}
-    onChange={(selectedOption: any) =>
-      setFieldValue("city", selectedOption?.value)
-    }
-  />
-</Grid>
+          <Grid item xs={12} sm={4}>
+            <SelectComp
+              name="city"
+              label="المدينة"
+              placeholder="اختر المدينة"
+              options={[
+                { label: "City 1", value: "city1" },
+                { label: "City 2", value: "city2" },
+                { label: "City 3", value: "city3" },
+              ]}
+              onChange={(selectedOption: any) =>
+                setFieldValue("city", selectedOption?.value)
+              }
+            />
+          </Grid>
 
-<Grid item xs={12} sm={4}>
-  <SelectComp
-    name="area"
-    label="المنطقة"
-    placeholder="اختر المنطقة"
-    options={[
-      { label: "Area 1", value: "area1" },
-      { label: "Area 2", value: "area2" },
-      { label: "Area 3", value: "area3" },
-    ]}
-    onChange={(selectedOption: any) =>
-      setFieldValue("area", selectedOption?.value)
-    }
-  />
-</Grid>
+          <Grid item xs={12} sm={4}>
+            <SelectComp
+              name="area"
+              label="المنطقة"
+              placeholder="اختر المنطقة"
+              options={[
+                { label: "Area 1", value: "area1" },
+                { label: "Area 2", value: "area2" },
+                { label: "Area 3", value: "area3" },
+              ]}
+              onChange={(selectedOption: any) =>
+                setFieldValue("area", selectedOption?.value)
+              }
+            />
+          </Grid>
 
-<Grid item xs={12} sm={4}>
-  <SelectComp
-    name="street"
-    label="الشارع"
-    placeholder="اختر الشارع"
-    options={[
-      { label: "Street 1", value: "street1" },
-      { label: "Street 2", value: "street2" },
-      { label: "Street 3", value: "street3" },
-    ]}
-    onChange={(selectedOption: any) =>
-      setFieldValue("street", selectedOption?.value)
-    }
-  />
-</Grid>
-<Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4}>
+            <SelectComp
+              name="street"
+              label="الشارع"
+              placeholder="اختر الشارع"
+              options={[
+                { label: "Street 1", value: "street1" },
+                { label: "Street 2", value: "street2" },
+                { label: "Street 3", value: "street3" },
+              ]}
+              onChange={(selectedOption: any) =>
+                setFieldValue("street", selectedOption?.value)
+              }
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
             <BaseInputField
               name="postCode"
               placeholder="الرمز البريدي"
@@ -455,7 +451,6 @@ function MainData() {
           {tabIndex === 3 && (
             <Grid item xs={12} mt={5}>
               <PurchaseSaleSettings moduleName="partnerPaymentTerrmsesDto" />
-              
             </Grid>
           )}
         </Grid>

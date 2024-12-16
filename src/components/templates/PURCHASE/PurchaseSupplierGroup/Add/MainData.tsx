@@ -10,9 +10,10 @@ import SelectMultiTags from "../../../../molecules/SelectMulti/SelectMultiTags";
 
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
+import SelectCostCenter from "../../../../molecules/Selects/SelectCostCenter";
 
 function MainData() {
-  const { values, setFieldValue } = useFormikContext<Values_TP>();
+  const { values } = useFormikContext<Values_TP>();
   const newValues = {
     categoryCode: values?.copValue?.categoryCode || "",
     categoryName: values?.copValue?.categoryName || "",
@@ -56,7 +57,7 @@ function MainData() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <SelectMultiCostCenter
+            <SelectCostCenter
               name="costCenterId"
               labelName={"مركز التكلفة"}
             />

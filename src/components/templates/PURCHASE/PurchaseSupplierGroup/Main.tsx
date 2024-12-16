@@ -17,9 +17,7 @@ function Main() {
   const queryParams = {
     searchValue: debouncedWord,
     skip: 0,
-    // take: 10 * page > 0 ? 10 * page : 10,
     Take: 10 * page,
-
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
@@ -40,18 +38,25 @@ function Main() {
     setPage(selectedPage);
   };
 
-
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data || []} />
+      <MainHeadLayout
+        setWord={setWord}
+        //@ts-ignore
+        data={data?.data || []}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
+          //@ts-ignore
+
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
+          //@ts-ignore
+
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
@@ -60,6 +65,8 @@ function Main() {
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
+          //@ts-ignore
+
           pagesCount={data?.data?.totalCount / 10}
           previousLabel={<IoIosArrowBack />}
           nextLabel={<IoIosArrowForward />}
