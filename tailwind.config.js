@@ -6,7 +6,7 @@ export default {
       colors: {
         primary: "#2E3188",
         light: "#999999",
-        mainBorder: "#BDBDBD", // Add this line for the gray border color
+        mainBorder: "#BDBDBD", 
       },
       fontFamily: {
         somar: ["Somar-Medium", "sans-serif"],
