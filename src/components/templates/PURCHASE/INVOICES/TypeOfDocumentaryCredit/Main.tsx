@@ -19,9 +19,10 @@ function Main() {
   const navigate = useNavigate();
   const [mainData, setMainData] = useState({});
 
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord, 
+
     // term: word,
     Take: 10 * page,
   };

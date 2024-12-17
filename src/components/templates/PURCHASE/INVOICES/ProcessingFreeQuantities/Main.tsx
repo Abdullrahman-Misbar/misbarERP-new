@@ -14,9 +14,10 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
+
     // term: word,
     Take: 10 * page,
   };
@@ -39,7 +40,7 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord}   />
+      <MainHeadLayout setWord={setWord} />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}

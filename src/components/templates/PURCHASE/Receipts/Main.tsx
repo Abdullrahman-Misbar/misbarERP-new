@@ -15,9 +15,9 @@ function Main({ type }: Main_TP) {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
     // term: word,
     Take: 10 * page,
   };
