@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useMutate } from "../../../../hooks";
 import { notify } from "../../../../utils/toast";
 import showAlert from "../../../molecules/ShowAlert";
-import { MultiDeleteEndPoint } from "./const";
 import { Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { MultiDeleteEndPoint } from "./const";
 
 type MultiDelete_TP = {
   refetch: () => void;

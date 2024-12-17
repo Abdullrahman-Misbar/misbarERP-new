@@ -5,5 +5,6 @@ export const mainPostENdPoint =
 export const UpdateENdPoint =
   "api/LetterOfCredit/UpdateLettersOfCreditExpensesTypes";
 export const cancelRequestEndPoint = "api/PurchasInvoice/CancleRequest";
+export const MultiDeleteEndPoint = "api/PurchasInvoice/CancleRequdddddddest";
 export const deleteEndPoint =
   "api/LetterOfCredit/RemoveLettersOfCreditExpensesTypes";

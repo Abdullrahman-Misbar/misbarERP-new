@@ -5,7 +5,7 @@ import Button from "../../../atoms/button/Button";
 import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
 import ExportExcel from "../../../molecules/exel/ExportExcel";
 import Filter from "./Filter";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
@@ -15,12 +15,16 @@ import MultiDelete from "./MultiDelete";
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
-  selectedIds:number[]
-  refetch:(options?: RefetchOptions) => Promise<QueryObserverResult>
-
+  selectedIds: number[];
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
 
-function MainHeadLayout({ setWord, data , selectedIds , refetch }: MainHeadLayout_TP) {
+function MainHeadLayout({
+  setWord,
+  data,
+  selectedIds,
+  refetch,
+}: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -57,19 +61,24 @@ function MainHeadLayout({ setWord, data , selectedIds , refetch }: MainHeadLayou
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
               selectedIds={selectedIds}
-              MultiDelete={<MultiDelete selectedIds={selectedIds} refetch={refetch}/>}
+              MultiDelete={
+                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
+              }
             />
           </span>
         </div>
       </div>
       {/* <Formik initialValues={{}} onSubmit={() => {}}>
         <Form> */}
-          
-            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
-            setExportExcelModal={setExportExcelModal}
-            />
-         
-        {/* </Form>
+
+      <ExportExcel
+        generateColumns={generateColumns}
+        data={data}
+        exportExcelModal={exportExcelModal}
+        setExportExcelModal={setExportExcelModal}
+      />
+
+      {/* </Form>
       </Formik> */}
 
       <ModalComp

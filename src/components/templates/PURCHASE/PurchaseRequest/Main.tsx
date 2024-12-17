@@ -23,7 +23,9 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
+
   const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
+  
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -32,14 +34,13 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+    () => generateColumns(page, refetch, navigate),
     [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
-
   return (
     <div>
       <MainHeadLayout

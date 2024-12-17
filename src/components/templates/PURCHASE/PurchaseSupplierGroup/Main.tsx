@@ -19,6 +19,8 @@ function Main() {
     skip: 0,
     Take: 10 * page,
   };
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
   const searchParams = new URLSearchParams(queryParams as any);
 
   const endpoint = `${mainENdPoint}/?${searchParams.toString()}`;
@@ -31,9 +33,8 @@ function Main() {
 
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    [page, refetch, selectedIds]
   );
-
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
@@ -42,8 +43,9 @@ function Main() {
     <div>
       <MainHeadLayout
         setWord={setWord}
-        //@ts-ignore
-        data={data?.data || []}
+        data={data?.data?.data || []}
+        selectedIds={selectedIds}
+        refetch={refetch}
       />
       <div className="p-3 bg-white rounded-md">
         <Table
@@ -61,6 +63,8 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

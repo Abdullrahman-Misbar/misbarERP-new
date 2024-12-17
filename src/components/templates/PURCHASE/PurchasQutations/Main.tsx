@@ -31,10 +31,9 @@ function Main() {
     Module: "PURCHASE",
     onSuccess: () => {},
   });
-
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -61,6 +60,8 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

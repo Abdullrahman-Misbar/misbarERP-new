@@ -29,8 +29,8 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
