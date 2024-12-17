@@ -126,6 +126,12 @@ export const sideBarItems: MenuItem_TP[] = [
         link: "/purchase/PurchaseSupplier",
         icon: FaRegCircle,
       },
+       {
+        id: crypto.randomUUID(),
+        label: "Purchase Agreements Type",
+        link: "/purchase/PurchaseAgreementsType",
+        icon: FaRegCircle,
+      },
       {
         id: crypto.randomUUID(),
         label: "Class variables",

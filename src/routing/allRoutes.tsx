@@ -44,11 +44,15 @@ import EditPurchaseSupplier from "../pages/PURCHASE/PurchaseSupplier/Edit";
 import EditPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Edit";
 import AddPurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement/Add";
 import PurchaseAgreement from "../pages/PURCHASE/PurchaseAgreement";
+
 import AddPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Add/index";
 import EditPurchasFreeQuantities from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/Edit/index";
 import FreeQuantitiesProcessingOperations from "../pages/PURCHASE/FreeQuantitiesProcessingOperations/index";
+import PurchaseAgreementsType from "../pages/PURCHASE/PurchaseAgreementsType/index";
+import AddPurchaseAgreementsType from "../pages/PURCHASE/PurchaseAgreementsType/Add/index";
+import EditPurchaseAgreementsType from "../pages/PURCHASE/PurchaseAgreementsType/Edit/index";
 
-
+ 
 
 export const AllRoutesProvider = () => {
   return (
@@ -59,6 +63,21 @@ export const AllRoutesProvider = () => {
 
 
         {/* PURCHASE */}
+
+        <Route
+          path="/purchase/PurchaseAgreementsType"
+          element={<PurchaseAgreementsType title={t("Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreementsType/add"
+          element={<AddPurchaseAgreementsType title={t("Add Purchase request")} />}
+        />
+        <Route
+          path="/purchase/PurchaseAgreementsType/edit/:id"
+          element={<EditPurchaseAgreementsType title={t("Edit Purchase request")} />}
+        />
+        {/* ----------------------------------------- */}
+
         <Route
           path="/purchase/PurchaseAgreement"
           element={<PurchaseAgreement title={t("Purchase request")} />}

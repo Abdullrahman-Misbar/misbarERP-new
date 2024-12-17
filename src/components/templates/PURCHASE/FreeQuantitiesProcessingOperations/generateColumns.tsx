@@ -27,40 +27,29 @@ export const generateColumns = (
     },
 
     {
-      header: `${t("operation Date")}`,
+      header: `${t("Date")}`,
       accessorKey: "operationDate",
       cell: (info) => (
         <div>{info?.row?.original?.operationDate?.slice(0, 10)}</div>
       ),
     },
     
+    
     {
-      header: `${t("warehouse Name")}`,
-      accessorKey: "warehouseName",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("user Name")}`,
+      header: `${t("user")}`,
       accessorKey: "userName",
       cell: (info) => info.renderValue(),
     },
-   
-     
-     
-    {
-      header: `${t("status approved")}`,
-      accessorKey: "isApproved",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
-    },
-    {
-      header: `${t("status Canceled Request")}`,
-      accessorKey: "isCanceled",
-      cell: (info) => <div>{info?.row?.original?.isCanceled ? <p>تم الالغاء</p> : <p> غير ملغاة </p>}</div>,
-    },
      
 
+      
+    {
+      header: `${t("Warehouse Input")}`,
+      accessorKey: "Warehouse.name",
+      cell: (info) => info.renderValue(),
+    },
+ 
     
-
     {
       header: `${t("note")}`,
       accessorKey: "note",
@@ -78,7 +67,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchaseRequest/edit/${info?.row?.original?.id}`
+                      `/purchase/FreeQuantitiesProcessingOperations/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

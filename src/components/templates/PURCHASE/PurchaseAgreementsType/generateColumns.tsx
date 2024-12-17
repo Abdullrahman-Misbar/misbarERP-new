@@ -5,8 +5,7 @@ import { Edit } from "../../../atoms/icons/Edit";
 import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
-import AgrementStatu from "./AgrementStatu";
-
+ 
 type RefetchFunction = () => void;
 
 export const generateColumns = (
@@ -21,56 +20,32 @@ export const generateColumns = (
       cell: (info) => <span>{indexTable(info.row.index, page)}</span>,
     },
     {
-      header: `${t("Reference number")}`,
-      accessorKey: "agreementCode",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("vendor Name")}`,
-      accessorKey: "partnerName",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("reference Document")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
-    },
-    {
-      header: `${t("order Date")}`,
-      accessorKey: "orderDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.requestDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("Agreement Dead line")}`,
-      accessorKey: "agreementDeadline",
-      cell: (info) => (
-        <div>{info?.row?.original?.requestEndDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("Receipt Date")}`,
-      accessorKey: "receiptDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-    },
-    {
-      header: `${t("Status Agrement")}`,
-      accessorKey: "agrementStatuId",
-      cell: (info) => <AgrementStatu info={info}  />,
-    },
-     
-    {
-      header: `${t("Responsible")}`,
-      accessorKey: "responsibleId",
+      header: `${t("aggreement Type")}`,
+      accessorKey: "TypeName",
       cell: (info) => info.renderValue(),
     },
  
     {
+      header: `${t("Quotations Selection Method Name")}`,
+      accessorKey: "quotationsSelectionMethod",
+      cell: (info) => info.renderValue(),
+    },
+    {
+      header: `${t("Items Selection Method Name")}`,
+      accessorKey: "itemsSelectionMethod",
+      cell: (info) => info.renderValue(),
+    },
+   
+    {
+      header: `${t("quantity Determine Method Name")}`,
+      accessorKey: "quantityDetermineMethod",
+      cell: (info) => info.renderValue(),
+    },
+      
+
+    {
       header: `${t("note")}`,
-      accessorKey: "note",
+      accessorKey: "notes",
       cell: (info) => info.renderValue(),
     },
 
@@ -85,7 +60,7 @@ export const generateColumns = (
                 <Edit
                   action={() => {
                     navigate(
-                      `/purchase/PurchaseAgreement/edit/${info?.row?.original?.id}`
+                      `/purchase/PurchaseAgreementsType/edit/${info?.row?.original?.id}`
                     );
                   }}
                 />

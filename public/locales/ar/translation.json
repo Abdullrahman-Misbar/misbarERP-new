@@ -126,8 +126,8 @@
   "convertionRate" : "التعادل",
   "cost center" : "مركز التكلفه",
   "voucher code" : "الرقم المرجعي",
-
-  "Purchase Agreement":"اتفاقية الشراء",
+ 
+  
   "Add Purchase Agreement":"اضافة اتفاقية شراء",
   "Edit Purchase Agreement": " تعديل اتفاقية شراء ",
   "order Date": "تاريخ الاتفاقية",
@@ -135,5 +135,16 @@
   "Receipt Date": "تاريخ الاستلام",
   "agrement Status": "الحالة",
   "aggreement Type": "نوع الاتفاقية",
-  "Responsible Name": "المسئول"
+  "Responsible Name": "المسئول",
+  "warehouse Name": "المخزن",
+  "Warehouse Input": "مستودع الادخال" ,
+  "Agreement Dead line":"الموعد النهائي",
+  "Status Agrement":"الحالة",
+  "Responsible":"المسئول",
+  "Purchase Agreements Type":" انواع اتفاقيات الشراء",
+  "Quotations Selection Method Name":"طريقة اختيار العروض",
+  "Items Selection Method Name":"الية اختيار الاصناف",
+  "quantity Determine Method Name":"الية تحديد الكميات"
+
+
 }
