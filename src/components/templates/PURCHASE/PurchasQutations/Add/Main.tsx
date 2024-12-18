@@ -1,10 +1,10 @@
 import { Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
+import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
 import {
   ApproveOrDisApproveEndPoint,
   cancelRequestEndPoint,
@@ -13,6 +13,7 @@ import {
   IndexMainPath,
   mainENdPoint,
   MultiDeleteEndPoint,
+  newCodeEndpoint,
 } from "../const";
 
 type Main_TP = {
@@ -20,21 +21,24 @@ type Main_TP = {
 };
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+
+  const endpoint = `api/PurchasQutations/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
-  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
+  const postEndPoint = id ? `api/PurchasQutations/Update/${id}` : `api/PurchasQutations`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     method: id ? "PUT" : "post",
     endpoint: postEndPoint,
     onSuccess: () => {
       // refetch();
+      navigate('/purchase/PurchasQutations')
       notify("success");
     },
     Module: "PURCHASE",
@@ -44,7 +48,7 @@ function Main({ editable }: Main_TP) {
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
+    const { copValue, uoms, editable,newCodeEndpoint , ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -56,12 +60,12 @@ function Main({ editable }: Main_TP) {
     id: id ? +id : 0,
     qCode: response?.qCode || "",
     purchaseRequestId: response?.purchaseRequestId || null,
-    vendorId: response?.vendorId || 0,
+    vendorId: response?.vendorId || "",
     vendorName: response?.vendorName || "",
-    quotationDate: response?.quotationDate || "",
+    quotationDate: response?.quotationDate || new Date(),
     quotationDeadLine: response?.quotationDeadLine || "",
     duration: response?.duration || 0,
-    approvalDate: response?.approvalDate || "",
+    approvalDate: response?.approvalDate || new Date(),
     referenceDocument: response?.referenceDocument || "",
     status: response?.status || 0,
     currencyId: response?.currencyId || 0,
@@ -77,6 +81,7 @@ function Main({ editable }: Main_TP) {
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
     MultiDeleteEndPoint: MultiDeleteEndPoint,
+    newCodeEndpoint:newCodeEndpoint,
 
     SourceActivityType: 1,
     qutationDetailsModal: response?.qutationDetailsModal?.length
@@ -127,6 +132,7 @@ function Main({ editable }: Main_TP) {
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
         enableReinitialize
+        validationSchema={validationSchema}
       >
         <Form>
           <MainData />

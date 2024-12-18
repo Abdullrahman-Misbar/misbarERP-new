@@ -25,6 +25,7 @@ const SelectMultiTags: React.FC<TagsProps> = ({
   disabled,
 }) => {
   const { setFieldValue, values } = useFormikContext<FormikValues>();
+  console.log("🚀 ~ values:", values)
   const handleChange = (event:any) => {
     console.log( event)
      setFieldValue(name, event?.map((option:any )=> option.value))
@@ -45,7 +46,10 @@ const SelectMultiTags: React.FC<TagsProps> = ({
       value: item?.id,
       label: item?.tagName,
     })) || [];
-  const selectedValue = options?.find((item) => item?.value == values[name]);
+    const selectedValues =
+    values[name]?.map((id: string | number) =>
+      options.find((option) => option.value === id)
+    ) || [];
 
   return (
     <SelectMultiComp
@@ -53,7 +57,7 @@ const SelectMultiTags: React.FC<TagsProps> = ({
       label={labelName ? labelName : "الوسوم"}
       placeholder="الوسوم"
       options={options}
-      value={selectedValue}
+      value={selectedValues}
       onChange={handleChange}
       isLoading={isLoading}
       disabled={disabled}

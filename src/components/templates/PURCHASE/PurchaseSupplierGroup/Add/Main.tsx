@@ -22,7 +22,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `api/PartnerGroups/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

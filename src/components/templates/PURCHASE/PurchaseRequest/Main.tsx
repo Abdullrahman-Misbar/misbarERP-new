@@ -7,7 +7,7 @@ import ChildrenLayout from "../../../molecules/ChildrenLayout";
 import Paginate from "../../../molecules/table/Paginate";
 import TreeTable from "../../../molecules/tantable/TreeTable";
 import { mainENdPoint } from "./const";
-import { columns } from "./generateColumns";
+import {  generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
 
 function Main() {
@@ -132,10 +132,10 @@ function Main() {
     });
   }, [data?.data?.data]);
 
-  // const columns = useMemo(
-  //   () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
-  //   [page, refetch, selectedIds]
-  // );
+  const columns = useMemo(
+    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+    [page, refetch, selectedIds]
+  );
 
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);

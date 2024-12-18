@@ -98,7 +98,7 @@ function ControlTableButton() {
             placeholder="0"
             type="text"
             value={controlInput}
-            className="rounded-[4px] border w-10 px-2 py-1 border-[#0000003B] text-center focus:outline-none"
+            className="rounded-[4px] border w-20  py-1 border-[#0000003B] text-center focus:outline-none"
           />
 
           <div className="flex items-center gap-2">

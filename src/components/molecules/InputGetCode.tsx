@@ -17,6 +17,7 @@ function InputGetCode({ name , placeholder , label }: InputGetCode_TP) {
       setFieldValue(name, data?.data);
     },
     Module: "PURCHASE",
+    enabled : !values?.editable
   });
   return (
     <div>

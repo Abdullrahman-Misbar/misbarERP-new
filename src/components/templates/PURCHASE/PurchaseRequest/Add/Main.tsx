@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
@@ -21,8 +21,9 @@ type Main_TP = {
 };
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
+  const navigate = useNavigate()
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `api/PurchasRequest/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -36,8 +37,9 @@ function Main({ editable }: Main_TP) {
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    onSuccess: () => {
-      notify("success");
+    onSuccess: (data) => {
+      navigate('/purchase/PurchaseRequest')
+      notify("success"  , "");
     },
     Module: "PURCHASE",
     onError: (err) => {
@@ -71,10 +73,10 @@ function Main({ editable }: Main_TP) {
     vendorId: response?.vendorId || "",
     editable: editable ? true : false,
     requestDate: response?.requestDate || new Date(),
-    requestEndDate: response?.requestEndDate || "",
+    requestEndDate: response?.requestEndDate || new Date(),
     approvalDate: response?.approvalDate || new Date(),
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    deliverdDate: response?.deliverdDate || "",
+    expectedReceiptDate: response?.expectedReceiptDate || new Date(),
+    deliverdDate: response?.deliverdDate || new Date(),
     referenceDocument: response?.referenceDocument || "",
     deliverdConfirmation: response?.deliverdConfirmation || false,
     purchaseAgreementId: response?.purchaseAgreementId || "",
@@ -110,7 +112,7 @@ function Main({ editable }: Main_TP) {
           description: item?.description,
           uoms: item?.product?.uoms,
         }))
-      : [],
+      : [], 
     copValue: {
       code: "",
       purchaseAgreementId: "",

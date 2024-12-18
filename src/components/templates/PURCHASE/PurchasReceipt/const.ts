@@ -6,3 +6,4 @@ export const IndexMainPath = "/purchase/PurchasOrder";
 export const ApproveOrDisApproveEndPoint =
   "api/PurchasReceipt/ApproveOrDisApprove";
 export const MultiDeleteEndPoint = "api/PurchasReceipt/ApproveOrDisApprove1";
+export const newCodeEndpoint = "api/PurchasReceipt/newCode"

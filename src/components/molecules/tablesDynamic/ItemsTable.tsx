@@ -7,7 +7,10 @@ import SelectWarehouse from "../Selects/SelectWarehouse";
 import TableDynamic from "../table/TableDynamic";
 import { FormValues, Header, ItemsTableProps } from "./Types&Validation";
 
-export default function ItemsTable({ moduleName , headerImporting  }: ItemsTableProps) {
+export default function ItemsTable({
+  moduleName,
+  headerImporting,
+}: ItemsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
   const headers: Header[] = [
@@ -98,7 +101,7 @@ export default function ItemsTable({ moduleName , headerImporting  }: ItemsTable
       type: "text",
     },
   ];
-  
+
   const handleTabPress = (
     e: React.KeyboardEvent,
     index: number,
@@ -155,27 +158,17 @@ export default function ItemsTable({ moduleName , headerImporting  }: ItemsTable
             <div className="relative">
               <TableDynamic
                 //@ts-ignore
-                headers={headerImporting ? headerImporting :headers}
+                headers={headerImporting ? headerImporting : headers}
                 moduleName={moduleName}
                 //@ts-ignore
                 remove={remove}
-                actions={(index: number) => (
+                actions={(index: number, remove: Function) => (
                   <button
                     type="button"
-                    onClick={() => {
-                      setFieldValue(`${moduleName}[${index}].isDeleted`, true);
-                    }}
-                    className=""
+                    onClick={() => remove(index)}
+                    className="text-red-500"
                   >
-                    <DeleteIcon
-                      action={() => {
-                        setFieldValue(
-                          `${moduleName}[${index}].isDeleted`,
-                          true
-                        );
-                      }}
-                      fillCustom="red"
-                    />
+                    <DeleteIcon fillCustom="red" />
                   </button>
                 )}
                 //@ts-ignore

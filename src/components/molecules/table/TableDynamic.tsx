@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 import { useFormikContext } from "formik";
+import React, { useEffect, useRef, useState } from "react";
 
 const TableDynamic: React.FC<any> = ({
   headers,
@@ -13,10 +13,10 @@ const TableDynamic: React.FC<any> = ({
   const tableRefs = useRef<Array<Array<HTMLInputElement | null>>>([]);
 
   const filteredItems =
-    values[moduleName]?.map((item: any, index: number) => ({
-      ...item,
-      originalIndex: index,
-    })) || [];
+  values[moduleName]?.filter((item: any) => !item.isDeleted).map((item: any, index: number) => ({
+    ...item,
+    originalIndex: index,
+  })) || [];
 
   useEffect(() => {
     tableRefs.current = filteredItems.map(() =>
@@ -90,7 +90,7 @@ const TableDynamic: React.FC<any> = ({
               {headers.map((header: any, colIndex: number) => (
                 <td
                   key={colIndex}
-                  className={`p-2 border min-w-[200px] ${
+                  className={`p-2 border min-w-[270px] ${
                     activeRow === rowIndex && activeColumn === colIndex
                       ? "bg-blue-100"
                       : ""
@@ -135,6 +135,7 @@ const TableDynamic: React.FC<any> = ({
                           }
                     }
                   />
+                   
                 </td>
               ))}
               <td className="p-2 border text-center">

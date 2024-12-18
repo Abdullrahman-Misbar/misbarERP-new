@@ -20,7 +20,6 @@ import InputGetCode from "../../../../molecules/InputGetCode";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
-  console.log("🚀 ~ MainData ~ values:", values);
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",

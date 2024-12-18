@@ -16,11 +16,12 @@ import ItemsTable from "../../../../molecules/tablesDynamic/ItemsTable";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import ChildrenLayout from "../../../../molecules/ChildrenLayout";
+import InputGetCode from "../../../../molecules/InputGetCode";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
   const newValues = {
-    code: values?.copValue?.code || "",
+    // code: values?.copValue?.code || "",
     purchaseRepresentativeId: values?.copValue?.purchaseRepresentativeId || "",
     currencyId: values?.copValue?.currencyId || 0,
     vendorId: values?.copValue?.vendorId || 0,
@@ -48,11 +49,9 @@ function MainData() {
         <ChildrenLayout>
           <Grid container rowSpacing={4} columnSpacing={4}>
             <Grid item xs={12} sm={4}>
-              <BaseInputField
+              <InputGetCode
                 name="code"
                 placeholder="الرقم المرجعي"
-                type="text"
-                disabled
                 label="الرقم المرجعي"
               />
             </Grid>

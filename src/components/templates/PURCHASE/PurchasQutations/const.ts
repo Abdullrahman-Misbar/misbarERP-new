@@ -5,3 +5,5 @@ export const controlButtonEndPoint = "api/PurchasQutations/GetRow"
 export const IndexMainPath = "/purchase/PurchasQutations" 
 export const ApproveOrDisApproveEndPoint = "api/PurchasQutations/ApproveOrDisApprove"
 export const MultiDeleteEndPoint = "api/PurchasRequest/deletePatch"
+export const newCodeEndpoint = "api/PurchasQutations/newCode"
+

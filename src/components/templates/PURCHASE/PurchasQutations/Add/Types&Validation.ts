@@ -14,8 +14,14 @@ export type RowData = {
 };
 export const validationSchema = () =>
   Yup.object({
-    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
-    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+    vendorId: Yup.string().trim().required("المورد  مطلوب"),
+    referenceDocument: Yup.string().trim().required(" المستند المرجعي مطلوبة"),
+    total: Yup.string().trim().required("  الإجمالي مطلوبة"),
+    quotationDeadLine: Yup.string()
+      .trim()
+      .required("  تاريخ انتهاء العرض مطلوبة"),
+    currencyId: Yup.string().trim().required("    العملة مطلوبة"),
+    
   });
 
 export type Values_TP = {
@@ -23,6 +29,7 @@ export type Values_TP = {
   quotationDate: string;
   quotationDeadLine: string;
   duration: number;
+  newCodeEndpoint: string;
   expectedReceiptDate: string;
   editable: boolean;
 
@@ -134,5 +141,5 @@ export type Item_TP = {
   isDeleted: boolean;
   itemName: string;
   isChoosen: boolean;
-  product:string
+  product: string;
 };
