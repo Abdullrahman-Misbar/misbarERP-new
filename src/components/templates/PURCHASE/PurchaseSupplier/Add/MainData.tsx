@@ -13,9 +13,9 @@ import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
 // import PartnerAddress from "./partnerTable/PartnerAddress";
-import PartnerBankAccount from "./partnerTable/PartnerBankAccount";
+// import PartnerBankAccount from "./partnerTable/PartnerBankAccount";
 import PartnerContact from "./partnerTable/PartnerContact";
-import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
+// import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 
@@ -449,12 +449,12 @@ function MainData() {
             )}
             {tabIndex === 2 && (
               <Grid item xs={12} mt={5}>
-                <PartnerBankAccount moduleName="partnerBankAccountsesDto" />
+                {/* <PartnerBankAccount moduleName="partnerBankAccountsesDto" /> */}
               </Grid>
             )}
             {tabIndex === 3 && (
               <Grid item xs={12} mt={5}>
-                <PurchaseSaleSettings moduleName="partnerPaymentTerrmsesDto" />
+                {/* <PurchaseSaleSettings moduleName="partnerPaymentTerrmsesDto" /> */}
               </Grid>
             )}
           </Grid>
