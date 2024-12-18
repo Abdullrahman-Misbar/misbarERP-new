@@ -12,7 +12,7 @@ import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
-import PartnerAddress from "./partnerTable/PartnerAddress";
+// import PartnerAddress from "./partnerTable/PartnerAddress";
 import PartnerBankAccount from "./partnerTable/PartnerBankAccount";
 import PartnerContact from "./partnerTable/PartnerContact";
 import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
@@ -444,7 +444,7 @@ function MainData() {
             )}
             {tabIndex === 1 && (
               <Grid item xs={12} mt={5}>
-                <PartnerAddress moduleName="partnerAddressesesDto" />
+                {/* <PartnerAddress moduleName="partnerAddressesesDto" /> */}
               </Grid>
             )}
             {tabIndex === 2 && (
