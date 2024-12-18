@@ -1,1 +1,1 @@
-export const MultiDeleteEndPoint = "msssssssssssss";
+export const MultiDeleteEndPoint = "api/Notics/deletePatch";

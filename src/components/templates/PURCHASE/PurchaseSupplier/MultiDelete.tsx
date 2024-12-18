@@ -1,10 +1,11 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Typography } from "@mui/material";
 import { t } from "i18next";
-import { useMutate } from "../../../../../hooks";
+import { useState } from "react";
+import { useMutate } from "../../../../hooks";
+import { notify } from "../../../../utils/toast";
+import showAlert from "../../../molecules/ShowAlert";
 import { MultiDeleteEndPoint } from "./const";
-import showAlert from "../../../../molecules/ShowAlert";
-import { notify } from "../../../../../utils/toast";
+import { Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 type MultiDelete_TP = {
   refetch: () => void;
@@ -12,6 +13,7 @@ type MultiDelete_TP = {
   selectedIds: number[];
 };
 function MultiDelete({ refetch, selectedIds }: MultiDelete_TP) {
+  const [id, setID] = useState("");
   const { mutate } = useMutate({
     mutationKey: [MultiDeleteEndPoint],
     endpoint: `${MultiDeleteEndPoint}`,

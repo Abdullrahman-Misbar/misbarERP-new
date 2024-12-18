@@ -10,13 +10,22 @@ import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
 import { generateColumns } from "./generateColumns";
+import MultiDelete from "./MultiDelete";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
+  selectedIds: number[];
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
 
-function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
+function MainHeadLayout({
+  setWord,
+  data,
+  selectedIds,
+  refetch,
+}: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -52,18 +61,25 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={
+                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
+              }
             />
           </span>
         </div>
       </div>
       {/* <Formik initialValues={{}} onSubmit={() => {}}>
         <Form> */}
-          
-            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
-            setExportExcelModal={setExportExcelModal}
-            />
-         
-        {/* </Form>
+
+      <ExportExcel
+        generateColumns={generateColumns}
+        data={data}
+        exportExcelModal={exportExcelModal}
+        setExportExcelModal={setExportExcelModal}
+      />
+
+      {/* </Form>
       </Formik> */}
 
       <ModalComp

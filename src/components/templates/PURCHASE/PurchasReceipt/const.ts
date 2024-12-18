@@ -5,4 +5,4 @@ export const controlButtonEndPoint = "api/PurchasReceipt/GetRow";
 export const IndexMainPath = "/purchase/PurchasOrder";
 export const ApproveOrDisApproveEndPoint =
   "api/PurchasReceipt/ApproveOrDisApprove";
-export const MultiDeleteEndPoint = "api/PurchasReceipt/ApproveOrDisApprove1";
+export const MultiDeleteEndPoint = "api/PurchasReceipt/deletePatch";

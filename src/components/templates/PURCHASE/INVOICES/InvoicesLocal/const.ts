@@ -6,4 +6,4 @@ export const IndexMainPath = "/purchase/invoices/local";
 export const ApproveOrDisApproveEndPoint =
   "api/PurchasInvoice/ApproveOrDisApprove";
 export const controlButtonEndPoint = "api/PurchasInvoice/GetRow";
-export const MultiDeleteEndPoint = "api/PurchasInvoice/ddd";
+export const MultiDeleteEndPoint = "api/PurchasInvoice/deletePatch";
