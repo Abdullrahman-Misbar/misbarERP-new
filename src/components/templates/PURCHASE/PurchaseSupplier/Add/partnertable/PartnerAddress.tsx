@@ -5,7 +5,7 @@ import BaseInputRepeater from "../../../../../atoms/formik/BaseInputRepeater";
 import TableDynamic from "../../../../../molecules/table/TableDynamic";
 import { FormValues, Header, ContactsTableProps } from "../Types&Validation";
 
-export default function PartnerAddress({ moduleName }: ContactsTableProps) {
+ function PartnerAddress({ moduleName }: ContactsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
   const headers: Header[] = [
@@ -181,3 +181,4 @@ export default function PartnerAddress({ moduleName }: ContactsTableProps) {
     </div>
   );
 }
+export default PartnerAddress
