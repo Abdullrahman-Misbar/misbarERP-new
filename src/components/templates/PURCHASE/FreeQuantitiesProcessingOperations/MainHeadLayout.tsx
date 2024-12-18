@@ -15,12 +15,10 @@ type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
 };
-
 function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
-
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
     { label: "الع مليات" },
@@ -44,7 +42,9 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/FreeQuantitiesProcessingOperations/add")}
+            action={() =>
+              navigate("/purchase/FreeQuantitiesProcessingOperations/add")
+            }
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
@@ -58,12 +58,15 @@ function MainHeadLayout({ setWord, data }: MainHeadLayout_TP) {
       </div>
       {/* <Formik initialValues={{}} onSubmit={() => {}}>
         <Form> */}
-          
-            <ExportExcel generateColumns={generateColumns} data={data}  exportExcelModal={exportExcelModal}
-            setExportExcelModal={setExportExcelModal}
-            />
-         
-        {/* </Form>
+
+      <ExportExcel
+        generateColumns={generateColumns}
+        data={data}
+        exportExcelModal={exportExcelModal}
+        setExportExcelModal={setExportExcelModal}
+      />
+
+      {/* </Form>
       </Formik> */}
 
       <ModalComp

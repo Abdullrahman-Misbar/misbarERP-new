@@ -10,13 +10,22 @@ import SettingsMenu from "../../../../atoms/SettingsMenu";
 import ModalComp from "../../../../molecules/ModalComp";
 import ExportExcel from "../../../../molecules/exel/ExportExcel";
 import ImportExcelModal from "../../../../molecules/exel/ImportExcelModal";
-
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import MultiDelete from "./MultiDelete";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
+  data: string[];
+  selectedIds: number[];
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
 
-function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
+function MainHeadLayout({
+  setWord,
+  data,
+  selectedIds,
+  refetch,
+}: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -24,7 +33,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
   const breadcrumbItems = [
     { label: "الصفحة الرئيسية", link: "/" },
     { label: "الاشعارات" },
-    { label: " الاشعارات الدائنة" },
+    { label: " الاشعارات المدينة" },
   ];
 
   return (
@@ -44,7 +53,7 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
           <Button
             text="اضافة"
             type="button"
-            action={() => navigate("/purchase/notification/credit/add")}
+            action={() => navigate("/purchase/notification/debit/add")}
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
@@ -52,6 +61,10 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={
+                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
+              }
             />
           </span>
         </div>

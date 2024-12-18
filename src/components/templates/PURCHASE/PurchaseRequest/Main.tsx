@@ -3,14 +3,12 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../../hooks";
 import useDebounce from "../../../../hooks/useDebounce";
-import Paginate from "../../../molecules/table/Paginate";
-import { Table } from "../../../molecules/tantable/Table";
-import { mainENdPoint } from "./const";
-import { columns, generateColumns } from "./generateColumns";
-import MainHeadLayout from "./MainHeadLayout";
-import TreeTable from "../../../molecules/tantable/TreeTable";
-import { Box } from "@mui/material";
 import ChildrenLayout from "../../../molecules/ChildrenLayout";
+import Paginate from "../../../molecules/table/Paginate";
+import TreeTable from "../../../molecules/tantable/TreeTable";
+import { mainENdPoint } from "./const";
+import { columns } from "./generateColumns";
+import MainHeadLayout from "./MainHeadLayout";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -26,7 +24,9 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
+
   const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
+  
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -40,91 +40,91 @@ function Main() {
       if (index % 2 == 0) {
         return {
           ...row,
-          children: [
-            {
-              id: `${row.id}-1`,
-              name: `Child Row 1 of ${row.id}`,
-              description: "Description for child 1",
-              isApproved: true,
-              children: [
-                {
-                  id: `${row.id}-1`,
-                  name: `Child Row 1 of ${row.id}`,
-                  description: "Description for child 1",
-                  isApproved: true,
-                },
-                {
-                  id: `${row.id}-1-1`,
-                  name: `Child Row 1 of ${row.id}-1`,
-                  description: "Nested Child",
-                  isApproved: true,
-                  total: row.total, // تمرير نفس total إلى المستوى الأعمق
-                },
+          // children: [
+          //   {
+          //     id: `${row.id}-1`,
+          //     name: `Child Row 1 of ${row.id}`,
+          //     description: "Description for child 1",
+          //     isApproved: true,
+          //     children: [
+          //       {
+          //         id: `${row.id}-1`,
+          //         name: `Child Row 1 of ${row.id}`,
+          //         description: "Description for child 1",
+          //         isApproved: true,
+          //       },
+          //       {
+          //         id: `${row.id}-1-1`,
+          //         name: `Child Row 1 of ${row.id}-1`,
+          //         description: "Nested Child",
+          //         isApproved: true,
+          //         total: row.total, // تمرير نفس total إلى المستوى الأعمق
+          //       },
             
-              ],
-            },
-            {
-              id: `${row.id}-1`,
-              name: `Child Row 1 of ${row.id}`,
-              description: "Description for child 1",
-              isApproved: true,
-              children: [
-                {
-                  id: `${row.id}-1`,
-                  name: `Child Row 1 of ${row.id}`,
-                  description: "Description for child 1",
-                  isApproved: true,
-                },
-                {
-                  id: `${row.id}-1-1`,
-                  name: `Child Row 1 of ${row.id}-1`,
-                  description: "Nested Child",
-                  isApproved: true,
-                  total: row.total, 
-                  children: [
-                    {
-                      id: `${row.id}-1`,
-                      name: `Child Row 1 of ${row.id}`,
-                      description: "Description for child 1",
-                      isApproved: true,
-                    },
-                    {
-                      id: `${row.id}-1-1`,
-                      name: `Child Row 1 of ${row.id}-1`,
-                      description: "Nested Child",
-                      isApproved: true,
-                      total: row.total, // تمرير نفس total إلى المستوى الأعمق
-                    },
+          //     ],
+          //   },
+          //   {
+          //     id: `${row.id}-1`,
+          //     name: `Child Row 1 of ${row.id}`,
+          //     description: "Description for child 1",
+          //     isApproved: true,
+          //     children: [
+          //       {
+          //         id: `${row.id}-1`,
+          //         name: `Child Row 1 of ${row.id}`,
+          //         description: "Description for child 1",
+          //         isApproved: true,
+          //       },
+          //       {
+          //         id: `${row.id}-1-1`,
+          //         name: `Child Row 1 of ${row.id}-1`,
+          //         description: "Nested Child",
+          //         isApproved: true,
+          //         total: row.total, 
+          //         children: [
+          //           {
+          //             id: `${row.id}-1`,
+          //             name: `Child Row 1 of ${row.id}`,
+          //             description: "Description for child 1",
+          //             isApproved: true,
+          //           },
+          //           {
+          //             id: `${row.id}-1-1`,
+          //             name: `Child Row 1 of ${row.id}-1`,
+          //             description: "Nested Child",
+          //             isApproved: true,
+          //             total: row.total, // تمرير نفس total إلى المستوى الأعمق
+          //           },
                 
-                  ],
-                },
+          //         ],
+          //       },
             
-              ],
-            },
-            {
-              id: `${row.id}-1`,
-              name: `Child Row 1 of ${row.id}`,
-              description: "Description for child 1",
-              isApproved: true,
-              children: [
-                {
-                  id: `${row.id}-1`,
-                  name: `Child Row 1 of ${row.id}`,
-                  description: "Description for child 1",
-                  isApproved: true,
-                },
-                {
-                  id: `${row.id}-1-1`,
-                  name: `Child Row 1 of ${row.id}-1`,
-                  description: "Nested Child",
-                  isApproved: true,
-                  total: row.total, // تمرير نفس total إلى المستوى الأعمق
-                },
+          //     ],
+          //   },
+          //   {
+          //     id: `${row.id}-1`,
+          //     name: `Child Row 1 of ${row.id}`,
+          //     description: "Description for child 1",
+          //     isApproved: true,
+          //     children: [
+          //       {
+          //         id: `${row.id}-1`,
+          //         name: `Child Row 1 of ${row.id}`,
+          //         description: "Description for child 1",
+          //         isApproved: true,
+          //       },
+          //       {
+          //         id: `${row.id}-1-1`,
+          //         name: `Child Row 1 of ${row.id}-1`,
+          //         description: "Nested Child",
+          //         isApproved: true,
+          //         total: row.total, // تمرير نفس total إلى المستوى الأعمق
+          //       },
             
-              ],
-            },
+          //     ],
+          //   },
         
-          ],
+          // ],
           
         };
       }

@@ -13,6 +13,7 @@ type Main_TP = {
   type?: string;
 };
 function Main({ type }: Main_TP) {
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
@@ -50,6 +51,8 @@ function Main({ type }: Main_TP) {
         data={data?.data?.data || []}
         VoucherType={VoucherType}
         type={type}
+        selectedIds={selectedIds}
+        refetch={refetch}
       />
       <div className="p-3 bg-white rounded-md">
         <Table
@@ -63,6 +66,8 @@ function Main({ type }: Main_TP) {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

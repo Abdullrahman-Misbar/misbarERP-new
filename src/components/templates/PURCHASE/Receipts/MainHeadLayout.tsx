@@ -5,17 +5,21 @@ import Button from "../../../atoms/button/Button";
 import BaseInputSearch from "../../../atoms/formik/BaseInputSearch";
 import ExportExcel from "../../../molecules/exel/ExportExcel";
 import Filter from "./Filter";
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
 import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
 import { generateColumns } from "./generateColumns";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
+import MultiDelete from "./MultiDelete";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
   data: string[];
   VoucherType?: number;
   type?: string;
+  selectedIds: number[];
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
 
 function MainHeadLayout({
@@ -23,6 +27,9 @@ function MainHeadLayout({
   type,
   setWord,
   data,
+
+  selectedIds,
+  refetch,
 }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
@@ -66,6 +73,10 @@ function MainHeadLayout({
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={
+                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
+              }
             />
           </span>
         </div>

@@ -52,13 +52,11 @@ function MainHeadLayout({ setWord , selectedIds , refetch }: MainHeadLayout_TP) 
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
-            <SettingsMenu
+          <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
               selectedIds={selectedIds}
-              MultiDelete={
-                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
-              }
+              MultiDelete={<MultiDelete selectedIds={selectedIds} refetch={refetch}/>}
             />
           </span>
         </div>

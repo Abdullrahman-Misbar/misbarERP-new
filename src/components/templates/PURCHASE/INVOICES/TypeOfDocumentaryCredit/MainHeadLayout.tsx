@@ -10,13 +10,21 @@ import ModalComp from "../../../../molecules/ModalComp";
 import ExportExcel from "../../../../molecules/exel/ExportExcel";
 import ImportExcelModal from "../../../../molecules/exel/ImportExcelModal";
 import { generateColumns } from "./generateColumns";
-
+import MultiDelete from "./MultiDelete";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  data: string[];
+  selectedIds: number[];
+  refetch: (options?: RefetchOptions) => Promise<QueryObserverResult>;
 };
 
-function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
+function MainHeadLayout({
+  setWord,
+  data,
+  selectedIds,
+  refetch,
+}: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -54,6 +62,10 @@ function MainHeadLayout({ setWord, setOpen }: MainHeadLayout_TP) {
             <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={
+                <MultiDelete selectedIds={selectedIds} refetch={refetch} />
+              }
             />
           </span>
         </div>

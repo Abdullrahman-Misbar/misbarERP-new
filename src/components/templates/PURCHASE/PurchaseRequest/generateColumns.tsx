@@ -1,31 +1,21 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { t } from "i18next";
+import { AiOutlineDollarCircle } from "react-icons/ai";
 import { indexTable } from "../../../../utils/helpers";
 import { Edit } from "../../../atoms/icons/Edit";
 import ActionMenu from "../../../molecules/ActionMenu";
+import CancelApproved from "./CancelApproved";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
-import CancelApproved from "./CancelApproved";
-import { AiOutlineDollarCircle } from "react-icons/ai";
-import MultiDelete from "./MultiDelete";
-import { Box, Checkbox } from "@mui/material";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Box } from "@mui/material";
 
 type RefetchFunction = () => void;
 
 export const generateColumns = (
   page: number,
   refetch: RefetchFunction,
-  navigate: any,
-  selectedIds: number[],
-  setSelectedIds: Dispatch<SetStateAction<number[]>>
+  navigate: any
 ): ColumnDef<RowData>[] => {
-  // Handle Checkbox toggle
-  const handleCheckboxChange = (id: number) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
   return [
     // {
     //   header: "",
@@ -167,6 +157,7 @@ export const generateColumns = (
     },
   ];
 };
+
 export const columns = [
   { id: "code", label: "الرقم المرجعي" },
   { id: "partnerName", label: "المورد" },

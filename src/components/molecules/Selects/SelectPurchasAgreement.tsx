@@ -10,7 +10,7 @@ type Formik_Values = {
   name: string;
 };
 const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
-  const { setFieldValue , values } = useFormikContext<Formik_Values>();
+  const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
@@ -22,6 +22,7 @@ const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
     endpoint: endpoint,
     Module: "PURCHASE",
   });
+
   //@ts-ignore
   const options = data?.data?.data?.map((item: any) => ({
     value: item?.id,
