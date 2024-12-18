@@ -22,6 +22,7 @@
   "offer price": "عرض سعر",
   "purchase order": "امر شراء",
   "Purchase quotes": "عروض الاسعار",
+  "Purchase Quotes": "عروض اسعار",
   "Purchase receipt": "امر استلام",
   "Receipt order": "امر استلام",
   "billing Status": "حالة الفاتورة",
@@ -57,6 +58,7 @@
   "user": "المستخدم",
   "quotation Date": "تاريخ العرض",
   "quotation DeadLine": "تاريخ انتهاء العرض",
+  "quotation approval Date": "تاريخ اعتماد العرض",
   "total Amount": "الاجمالي",
   "expected Receipt Date": "تاريخ انتهاء الطلب",
   "status": "الحالة",
@@ -157,5 +159,12 @@
   "Add Price Offer": "إضافة عرض سعر",
   "Employee Name": "اسم المندوب",
   "hire Date": "تاريخ العمل",
-  "address": "العنوان"
+  "address": "العنوان",
+  "Add Purchase quotes related to purchase Request": "اضافة عرض سعر مرتبط بطلب شراء",
+  "Agreement Purchase Requests": "طلبات شراء الاتفاقية",
+  "inventory": "المخزن",
+  "show all offers": "اظهار كل العروض",
+  "confirm Before": "تأكيد قبل",
+  "Confirm Delivery Date": "تأكيد موعد الاستلام",
+  "view":"عرض"
 }

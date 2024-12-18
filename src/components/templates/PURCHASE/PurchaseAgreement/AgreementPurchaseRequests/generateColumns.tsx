@@ -4,8 +4,8 @@ import { indexTable } from "../../../../../utils/helpers";
 import { Edit } from "../../../../atoms/icons/Edit";
 import ActionMenu from "../../../../molecules/ActionMenu";
 import { RowData } from "../Types&Validation";
-import CancelApproved from "../CancelApproved";
 import { AiOutlineDollarCircle } from "react-icons/ai";
+import { Button, Switch } from "@mui/material";
 
 type RefetchFunction = () => void;
 
@@ -34,14 +34,12 @@ export const generateColumns = (
       enableResizing: true,
     },
     {
-      header: `${t("user")}`,
-      accessorKey: "user",
-      cell: (info) => info.renderValue(),
-      enableResizing: true,
+      header: `${t("currancy Name")}`,
+      accessorKey: "currancyName",
+      cell: (info) => info.renderValue() || "-",
     },
-
     {
-      header: `${t("quotation Date")}`,
+      header: `${t("request Date")}`,
       accessorKey: "requestDate",
       cell: (info) => (
         <div>{info?.row?.original?.requestDate?.slice(0, 10)}</div>
@@ -49,7 +47,7 @@ export const generateColumns = (
       enableResizing: true,
     },
     {
-      header: `${t("quotation DeadLine")}`,
+      header: `${t("request End Date")}`,
       accessorKey: "requestEndDate",
       cell: (info) => (
         <div>{info?.row?.original?.requestEndDate?.slice(0, 10)}</div>
@@ -57,7 +55,7 @@ export const generateColumns = (
       enableResizing: true,
     },
     {
-      header: `${t("quotation approval Date")}`,
+      header: `${t("approval Date")}`,
       accessorKey: "approvalDate",
       cell: (info) => (
         <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
@@ -65,25 +63,34 @@ export const generateColumns = (
       enableResizing: true,
     },
     {
-      header: `${t("reference Document")}`,
-      accessorKey: "referenceDocument",
-      cell: (info) => info.renderValue(),
+      header: `${t("Receipt Date")}`,
+      accessorKey: "receiptDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.receiptDate?.slice(0, 10)}</div>
+      ),
       enableResizing: true,
     },
     {
-      header: `${t("status approved")}`,
-      accessorKey: "isApproved",
-      cell: (info) => <CancelApproved info={info} refetch={refetch} />,
-      enableResizing: true,
+      header: `${t("confirm Before")}`,
+      accessorKey: "confirmBefore",
+      cell: (info) => <div>{info.renderValue()} أيام</div>,
     },
- 
- 
+    {
+      header: `${t("Confirm Delivery Date")}`,
+      accessorKey: "confirmDelivery",
+      cell: (info) => (
+        <Switch
+          checked={info.row.original.confirmDelivery}
+          onChange={() => {}}
+          color="primary"
+        />
+      ),
+    },
 
     {
-      header: `${t("total")}`,
-      accessorKey: "total",
-      cell: (info) => info.renderValue(),
-      enableResizing: true,
+      header: `${t("inventory")}`,
+      accessorKey: "inventoryId",
+      cell: (info) => info.renderValue() || "-",
     },
 
     {
@@ -94,25 +101,23 @@ export const generateColumns = (
     },
 
     {
-      header: `${t("Actions")}`,
-      accessorKey: "actions",
+      header: `${t("Purchase quotes")}`,
+      accessorKey: "purchaseQuotes",
       cell: (info) => (
         <div className="flex justify-center">
-          <ActionMenu>
-            <div
-              className="flex items-center  gap-2"
-              onClick={() =>
-                navigate(
-                  `/purchase/PurchasQutations/edit/${info?.row?.original?.id}`
-                )
-              }
-            >
-              <div className="bg-[#F3F6F9] p-1 rounded-md">
-                <AiOutlineDollarCircle className="text-[18px] text-[#B5B5C3]" />
-              </div>
-              <span className="text-[14px] text-[#70707e] ">عرض</span>
-            </div>
-          </ActionMenu>
+          <Button
+            variant="contained"
+            className="whitespace-nowrap"
+            color="primary"
+            onClick={() =>
+              /*   navigate(
+                `/purchase/PurchasQutations/edit/${info?.row?.original?.id}`
+              ) */
+              console.log(info.row.original?.id)
+            }
+          >
+            {info.row.original.purchaseQuotes} {t("Purchase Quotes")}
+          </Button>
         </div>
       ),
       enableResizing: true,

@@ -6,6 +6,7 @@ import ActionMenu from "../../../molecules/ActionMenu";
 import DeleteMain from "./DeleteMain";
 import { RowData } from "./Types&Validation";
 import AgrementStatu from "./AgrementStatu";
+import { View } from "../../../atoms/icons/View";
 
 type RefetchFunction = () => void;
 
@@ -80,6 +81,17 @@ export const generateColumns = (
       cell: (info) => (
         <div className="flex justify-center">
           <ActionMenu>
+          <div>
+              <span>
+                <View
+                  action={() => {
+                    navigate(
+                      `/purchase/PurchaseAgreement/AgreementPurchaseRequests/${info?.row?.original?.id}`
+                    );
+                  }}
+                />
+              </span>
+            </div>
             <div>
               <span>
                 <Edit

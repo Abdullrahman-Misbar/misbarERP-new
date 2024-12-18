@@ -11,7 +11,7 @@ import MainHeadLayout from "./MainHeadLayout";
 
 function Main() {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page)
+  console.log("🚀 ~ Main ~ page:", page);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 3000);
@@ -22,7 +22,7 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}/GetAll?take=100&${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -44,14 +44,14 @@ function Main() {
       <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-        //@ts-ignore
+          //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-        //@ts-ignore
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton

@@ -19,7 +19,7 @@ type Main_TP = {
   editable?: boolean;
 };
 function Main({ editable }: Main_TP) {
-  const { id } = useParams();
+  const { id, purchaseRequestId } = useParams();
 
   const endpoint = `${mainENdPoint}/Get/${id}`;
   const { data, refetch, isLoading } = useFetch({
@@ -55,7 +55,7 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     qCode: response?.qCode || "",
-    purchaseRequestId: response?.purchaseRequestId || null,
+    purchaseRequestId: response?.purchaseRequestId || purchaseRequestId,
     vendorId: response?.vendorId || 0,
     vendorName: response?.vendorName || "",
     quotationDate: response?.quotationDate || "",
