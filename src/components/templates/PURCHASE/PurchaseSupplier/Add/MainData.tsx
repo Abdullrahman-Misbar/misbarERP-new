@@ -2,22 +2,22 @@ import { Grid, Tab, Tabs } from "@mui/material";
 import { SetStateAction, useState } from "react";
 
 import { useFormikContext } from "formik";
+import { useFetch } from "../../../../../hooks";
+import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../atoms/formik/Label";
 import RadioButtons from "../../../../atoms/formik/RadioComp";
 import SelectComp from "../../../../atoms/formik/SelectComp";
-import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
+import ChildrenLayout from "../../../../molecules/ChildrenLayout";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
-import BankAccountsTable from "./partnerTable/PartnerBankAccount";
+import PartnerAddress from "./partnerTable/PartnerAddress";
+import PartnerBankAccount from "./partnerTable/PartnerBankAccount";
 import PartnerContact from "./partnerTable/PartnerContact";
 import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import { useFetch } from "../../../../../hooks";
-import ChildrenLayout from "../../../../molecules/ChildrenLayout";
-import PartnerAddress from "./partnerTable/PartnerAddress";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -449,7 +449,7 @@ function MainData() {
             )}
             {tabIndex === 2 && (
               <Grid item xs={12} mt={5}>
-                <BankAccountsTable moduleName="partnerBankAccountsesDto" />
+                <PartnerBankAccount moduleName="partnerBankAccountsesDto" />
               </Grid>
             )}
             {tabIndex === 3 && (

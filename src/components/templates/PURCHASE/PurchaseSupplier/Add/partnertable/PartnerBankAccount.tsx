@@ -5,7 +5,7 @@ import BaseInputRepeater from "../../../../../atoms/formik/BaseInputRepeater";
 import TableDynamic from "../../../../../molecules/table/TableDynamic";
 import { FormValues, Header, ContactsTableProps } from "../Types&Validation";
 
-export default function BankAccountsTable({ moduleName }: ContactsTableProps) {
+export default function PartnerBankAccount({ moduleName }: ContactsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
 
   const headers: Header[] = [
