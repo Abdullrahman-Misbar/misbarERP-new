@@ -7,6 +7,7 @@ import Paginate from "../../../molecules/table/Paginate";
 import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
+import { mainENdPoint } from "./const";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -21,7 +22,7 @@ function Main() {
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `api/PurchasOrder?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

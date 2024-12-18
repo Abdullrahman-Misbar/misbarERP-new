@@ -7,6 +7,7 @@ import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { mainENdPoint } from "./const";
 
 type Main_TP = {
   type?: string;
@@ -16,17 +17,16 @@ function Main({ type }: Main_TP) {
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 300);
+  const VoucherType =
+    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2;
   const queryParams = {
     searchValue: debouncedWord,
-    // term: word,
-    Take: 10 * page,
+    voucherType: VoucherType,
+    Take: 100 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const VoucherType =
-    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2;
-
-  const endpoint = `api/Accounting/GetAllExpensessAndCredit?Take=100&voucherType=${VoucherType}&${searchParams.toString()}`; // Dynamically pass the type in the API request
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],

@@ -20,6 +20,7 @@ import InputGetCode from "../../../../molecules/InputGetCode";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
+  console.log("🚀 ~ MainData ~ values:", values);
   const newValues = {
     code: values?.copValue?.code || "",
     purchaseAgreementId: values?.copValue?.purchaseAgreementId || "",
@@ -53,13 +54,6 @@ function MainData() {
         <ChildrenLayout>
           <Grid container rowSpacing={1.5} columnSpacing={4}>
             <Grid item xs={12} sm={4}>
-              {/* <BaseInputField
-                name="code"
-                placeholder="الرقم المرجعي"
-                type="text"
-                disabled
-                label="الرقم المرجعي"
-              /> */}
               <InputGetCode
                 name="code"
                 placeholder="الرقم المرجعي"

@@ -6,8 +6,11 @@ import useDebounce from "../../../../hooks/useDebounce";
 import Paginate from "../../../molecules/table/Paginate";
 import { Table } from "../../../molecules/tantable/Table";
 import { mainENdPoint } from "./const";
-import { generateColumns } from "./generateColumns";
+import { columns, generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
+import TreeTable from "../../../molecules/tantable/TreeTable";
+import { Box } from "@mui/material";
+import ChildrenLayout from "../../../molecules/ChildrenLayout";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -30,15 +33,114 @@ function Main() {
     Module: "PURCHASE",
     onSuccess: () => {},
   });
+  const modifiedData = useMemo(() => {
+    if (!data?.data?.data) return [];
 
-  const columns = useMemo(
-    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
-    [page, refetch, selectedIds]
-  );
+    return data.data.data.map((row: any, index: number) => {
+      if (index % 2 == 0) {
+        return {
+          ...row,
+          children: [
+            {
+              id: `${row.id}-1`,
+              name: `Child Row 1 of ${row.id}`,
+              description: "Description for child 1",
+              isApproved: true,
+              children: [
+                {
+                  id: `${row.id}-1`,
+                  name: `Child Row 1 of ${row.id}`,
+                  description: "Description for child 1",
+                  isApproved: true,
+                },
+                {
+                  id: `${row.id}-1-1`,
+                  name: `Child Row 1 of ${row.id}-1`,
+                  description: "Nested Child",
+                  isApproved: true,
+                  total: row.total, // تمرير نفس total إلى المستوى الأعمق
+                },
+            
+              ],
+            },
+            {
+              id: `${row.id}-1`,
+              name: `Child Row 1 of ${row.id}`,
+              description: "Description for child 1",
+              isApproved: true,
+              children: [
+                {
+                  id: `${row.id}-1`,
+                  name: `Child Row 1 of ${row.id}`,
+                  description: "Description for child 1",
+                  isApproved: true,
+                },
+                {
+                  id: `${row.id}-1-1`,
+                  name: `Child Row 1 of ${row.id}-1`,
+                  description: "Nested Child",
+                  isApproved: true,
+                  total: row.total, 
+                  children: [
+                    {
+                      id: `${row.id}-1`,
+                      name: `Child Row 1 of ${row.id}`,
+                      description: "Description for child 1",
+                      isApproved: true,
+                    },
+                    {
+                      id: `${row.id}-1-1`,
+                      name: `Child Row 1 of ${row.id}-1`,
+                      description: "Nested Child",
+                      isApproved: true,
+                      total: row.total, // تمرير نفس total إلى المستوى الأعمق
+                    },
+                
+                  ],
+                },
+            
+              ],
+            },
+            {
+              id: `${row.id}-1`,
+              name: `Child Row 1 of ${row.id}`,
+              description: "Description for child 1",
+              isApproved: true,
+              children: [
+                {
+                  id: `${row.id}-1`,
+                  name: `Child Row 1 of ${row.id}`,
+                  description: "Description for child 1",
+                  isApproved: true,
+                },
+                {
+                  id: `${row.id}-1-1`,
+                  name: `Child Row 1 of ${row.id}-1`,
+                  description: "Nested Child",
+                  isApproved: true,
+                  total: row.total, // تمرير نفس total إلى المستوى الأعمق
+                },
+            
+              ],
+            },
+        
+          ],
+          
+        };
+      }
+      return row;
+    });
+  }, [data?.data?.data]);
+
+  // const columns = useMemo(
+  //   () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+  //   [page, refetch, selectedIds]
+  // );
 
   const handlePageChange = (selectedPage: number) => {
     setPage(selectedPage);
   };
+
 
   return (
     <div>
@@ -48,7 +150,7 @@ function Main() {
         selectedIds={selectedIds}
         refetch={refetch}
       />
-      <div className="p-3 bg-white rounded-md">
+      {/* <div className="p-3 bg-white rounded-md">
         <Table
           //@ts-ignore
           data={data?.data?.data || []}
@@ -65,7 +167,11 @@ function Main() {
           setSelectedIds={setSelectedIds}
           showStatusFilter
         />
-      </div>
+      </div> */}
+      <ChildrenLayout>
+      <TreeTable columns={columns || []} rows={modifiedData || []} />
+
+      </ChildrenLayout>
       <div className="flex justify-end mt-3">
         <Paginate
           pagesCount={data?.data?.totalCount / 10}

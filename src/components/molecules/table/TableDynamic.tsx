@@ -90,7 +90,7 @@ const TableDynamic: React.FC<any> = ({
               {headers.map((header: any, colIndex: number) => (
                 <td
                   key={colIndex}
-                  className={`p-2 border ${
+                  className={`p-2 border min-w-[200px] ${
                     activeRow === rowIndex && activeColumn === colIndex
                       ? "bg-blue-100"
                       : ""
@@ -115,6 +115,7 @@ const TableDynamic: React.FC<any> = ({
                     type={header?.type}
                     autoFocus={activeRow == rowIndex && activeColumn == colIndex}
                     moduleName={moduleName}
+                    index={rowIndex}
                     disabled={header?.disabled}
                     onChange={
                       header?.onChange

@@ -11,6 +11,7 @@ import {
   IndexMainPath,
   mainENdPoint,
   newCodeEndpoint,
+  postENdPoint,
 } from "../const";
 import MainData from "./MainData";
 import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
@@ -30,8 +31,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `${mainENdPoint}/UpdateRequest/${id}`
-    : `${mainENdPoint}`;
+    ? `${postENdPoint}/UpdateRequest/${id}`
+    : `${postENdPoint}`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,

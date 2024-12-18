@@ -11,14 +11,13 @@ import MainHeadLayout from "./MainHeadLayout";
 
 function Main() {
   const [page, setPage] = useState(0);
-  console.log("🚀 ~ Main ~ page:", page)
+  console.log("🚀 ~ Main ~ page:", page);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
   const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    searchValue: debouncedWord, 
-
-    // term: word,
+    searchValue: debouncedWord,
+    skip: 0,
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
@@ -28,7 +27,6 @@ function Main() {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
-    onSuccess: () => {},
   });
 
   const columns = useMemo(
@@ -45,14 +43,14 @@ function Main() {
       <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-        //@ts-ignore
+          //@ts-ignore
           data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-        //@ts-ignore
+          //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton

@@ -26,10 +26,10 @@ const CustomTreeItemContent = styled(TreeItem2Content)(({ theme }) => ({
 interface CustomTreeItemProps
   extends Omit<UseTreeItem2Parameters, "rootRef">,
     Omit<React.HTMLAttributes<HTMLLIElement>, "onFocus"> {
-  isParent: boolean; // Determines if the item is a parent
-  hasChildren: boolean; // Determines if the item has children
-  level: number; // Depth level in the tree
-  setCardID: React.Dispatch<React.SetStateAction<string>>; // Function to set the card ID
+  isParent: boolean; 
+  hasChildren: boolean; 
+  level: number;
+  setCardID: React.Dispatch<React.SetStateAction<string>>; 
 }
 
 const CustomTreeItem = React.forwardRef(function CustomTreeItem(
@@ -116,9 +116,9 @@ export default function HeadlessAPI({ data, setCardID }: any) {
             isParent={isParent}
             hasChildren={hasChildren}
             level={level}
-            setCardID={setCardID} // Pass the setCardID function to the child
+            setCardID={setCardID} 
           >
-            {buildTree(nodes, node.id, level + 1)} {/* Increment level for children */}
+            {buildTree(nodes, node.id, level + 1)} 
           </CustomTreeItem>
         );
       });

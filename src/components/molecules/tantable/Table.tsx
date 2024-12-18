@@ -5,6 +5,7 @@ import {
   SortingState,
   flexRender,
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -29,7 +30,7 @@ export const Table = <T extends object>({
 
   footerData,
   selectedIds,
-  setSelectedIds
+  setSelectedIds,
 }: ReactTableProps<T>) => {
   const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
     const itemRank = rankItem(row.getValue(columnId), value);
@@ -46,6 +47,7 @@ export const Table = <T extends object>({
   const [sortingState, setSortingState] = useState<Record<string, string>>({});
   const [columnVisibility, setColumnVisibility] = useState({});
   const [columnSizing, setColumnSizing] = useState({});
+  const [expanded, setExpanded] = useState({}); // حالة التوسيع
 
   const table = useReactTable(
     {
@@ -60,7 +62,9 @@ export const Table = <T extends object>({
         globalFilter,
         sorting,
         columnSizing,
+        expanded,
       },
+      onExpandedChange: setExpanded,
       initialState: {
         pagination: {
           pageSize: 100,
@@ -78,6 +82,7 @@ export const Table = <T extends object>({
       getFilteredRowModel: getFilteredRowModel(),
       getSortedRowModel: getSortedRowModel(),
       getPaginationRowModel: getPaginationRowModel(),
+      getExpandedRowModel: getExpandedRowModel(),
     },
     // @ts-ignore
     (hooks: { onPageChange: (({ rows }: { rows: any }) => void)[] }) => {
@@ -135,11 +140,10 @@ export const Table = <T extends object>({
         setSelectedIds(data.map((item: any) => item.id));
       }
     } else {
-      setSelectedIds(
-        (prev) =>
-          prev.includes(id)
-            ? prev.filter((itemId) => itemId !== id) 
-            : [...prev, id] 
+      setSelectedIds((prev) =>
+        prev.includes(id)
+          ? prev.filter((itemId) => itemId !== id)
+          : [...prev, id]
       );
     }
   };
@@ -248,6 +252,16 @@ export const Table = <T extends object>({
                           onChange={() => handleRowSelect(row.original.id)}
                         />
                       </td>
+                      {/* <td>
+                        {row.getCanExpand() && (
+                          <button
+                            onClick={row.getToggleExpandedHandler()}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {row.getIsExpanded() ? "🔽" : "▶️"}
+                          </button>
+                        )}
+                      </td> */}
                       {row?.getVisibleCells()?.map((cell) => (
                         <td
                           className="!p-4 text-sm  text-[#000000de]whitespace-nowrap  td-col-dark !text-[14px] font-normal  first:text-black !bg-white "
@@ -264,6 +278,18 @@ export const Table = <T extends object>({
                           )}
                         </td>
                       ))}
+                      {/* {row.getIsExpanded() && (
+                        <tr>
+                          <td
+                            colSpan={columns.length + 1}
+                            className="bg-gray-100 p-4"
+                          >
+                            <div>
+                              Expanded Content: {JSON.stringify(row.original)}
+                            </div>
+                          </td>
+                        </tr>
+                      )} */}
                     </tr>
                   ))}
                 </tbody>
