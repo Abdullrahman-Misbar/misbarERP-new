@@ -10,22 +10,23 @@ type Formik_Values = {
   name: string;
 };
 const SelectPurchaseAgreement = ({ name }: SelectPurchaseAgreement_TP) => {
-  const { setFieldValue , values } = useFormikContext<Formik_Values>();
+  const { setFieldValue, values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: { value: string }) => {
     setFieldValue(name, event.value);
   };
 
-  const endpoint = "api/PurchaseAgreement/GetAll";
+  const endpoint = "api/PurchaseAgreement/GetAll?take=100000";
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,
     Module: "PURCHASE",
   });
+
   //@ts-ignore
-  const options = data?.data?.map((item: any) => ({
+  const options = data?.data?.data?.map((item: any) => ({
     value: item?.id,
-    label: item?.typeName,
+    label: item?.agreementCode,
   }));
   const selectedValue = options?.find((item) => item?.value == values[name]);
 

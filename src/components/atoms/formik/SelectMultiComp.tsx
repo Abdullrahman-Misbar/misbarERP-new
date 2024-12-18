@@ -70,9 +70,9 @@ const SelectMultiComp: React.FC<DynamicSelectProps> = ({
           }),
           control: (baseStyles, state) => ({
             ...baseStyles,
-            height: "56px",
+            height: "38px",
             borderRadius: "4px",
-            borderColor: state.isFocused ? "#0000008F" : baseStyles.borderColor,
+            borderColor: state.isFocused ? "#0000008F" : hasError ?  "#cc0000" : baseStyles.borderColor,
             boxShadow: state.isFocused
               ? "0 0 0 0px #0000003B"
               : baseStyles.boxShadow,

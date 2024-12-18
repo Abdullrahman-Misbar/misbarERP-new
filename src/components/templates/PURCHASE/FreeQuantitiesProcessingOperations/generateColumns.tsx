@@ -33,7 +33,7 @@ export const generateColumns = (
         <div>{info?.row?.original?.operationDate?.slice(0, 10)}</div>
       ),
     },
-    
+
     {
       header: `${t("warehouse Name")}`,
       accessorKey: "warehouseName",
@@ -44,9 +44,7 @@ export const generateColumns = (
       accessorKey: "userName",
       cell: (info) => info.renderValue(),
     },
-   
-     
-     
+
     {
       header: `${t("status approved")}`,
       accessorKey: "isApproved",
@@ -55,11 +53,16 @@ export const generateColumns = (
     {
       header: `${t("status Canceled Request")}`,
       accessorKey: "isCanceled",
-      cell: (info) => <div>{info?.row?.original?.isCanceled ? <p>تم الالغاء</p> : <p> غير ملغاة </p>}</div>,
+      cell: (info) => (
+        <div>
+          {info?.row?.original?.isCanceled ? (
+            <p>تم الالغاء</p>
+          ) : (
+            <p> غير ملغاة </p>
+          )}
+        </div>
+      ),
     },
-     
-
-    
 
     {
       header: `${t("note")}`,

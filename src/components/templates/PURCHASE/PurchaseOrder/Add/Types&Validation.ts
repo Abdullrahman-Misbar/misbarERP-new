@@ -14,8 +14,20 @@ export type RowData = {
 };
 export const validationSchema = () =>
   Yup.object({
-    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
-    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+    total: Yup.string().trim().required("  الأجمالى مطلوب"),
+    expectedReceiptDate: Yup.string()
+      .trim()
+      .required("تاريخ الاستلام المتوقع مطلوب"),
+    createDate: Yup.string().trim().required(" تاريخ انشاء الامر مطلوب"),
+    referenceDocument: Yup.string().trim().required(" المستند المرجعي مطلوب"),
+    currencyId: Yup.string().trim().required(" العملة مطلوب"),
+    vendorId: Yup.string().trim().required(" المورد مطلوب"),
+    purchaseAgreementId: Yup.string().trim().required(" اتفاقية الشراء مطلوب"),
+    purchaseRepresentativeId: Yup.string()
+      .trim()
+      .required("  مندوب المشتريات مطلوب"),
+    warehouseId: Yup.string().trim().required("   المستودع مطلوب"),
+    approvalDate: Yup.string().trim().required("   تاريخ الاعتماد مطلوب"),
   });
 
 export type Values_TP = {
@@ -46,7 +58,7 @@ export type Values_TP = {
     purchaseAgreementId: string;
     vendorId: string;
     createDate: string;
-    deliverdConfirmation:boolean
+    deliverdConfirmation: boolean;
     note: string;
     approvalDate: string;
     confirmationDayes: string;
@@ -59,7 +71,7 @@ export type Values_TP = {
     priceIncludeTax: string;
     isApproved: string;
   };
-  uoms:string
+  uoms: string;
 };
 
 export type PurchaseOrderData = {
@@ -112,18 +124,17 @@ export type FetchResponse<T> = {
   error?: string;
 };
 
-
-export type Item_TP ={
+export type Item_TP = {
   itemId: string;
   note: string;
-  id:string
+  id: string;
   price: number;
   quantity: number;
   total: number;
   uomId: string;
   warehouseId: string;
-  description:string
-  product:{
-    uoms:string
-  }
-}
+  description: string;
+  product: {
+    uoms: string;
+  };
+};

@@ -45,7 +45,6 @@ export function useMutate<response_T>({
     useMutation({
       mutationKey,
       mutationFn: (values) => {
-        console.log(values)
         const requestConfig = {
           method: method.toUpperCase(),
           url: `${customEndPoint}/${endpoint}`,

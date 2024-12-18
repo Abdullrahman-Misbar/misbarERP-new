@@ -7,26 +7,27 @@ import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { mainENdPoint } from "./const";
 
 type Main_TP = {
   type?: string;
 };
 function Main({ type }: Main_TP) {
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
+  const VoucherType =
+    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2;
   const queryParams = {
-    // page: page,
-    // term: word,
-    Take: 10 * page,
+    searchValue: debouncedWord,
+    voucherType: VoucherType,
+    Take: 100 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const VoucherType =
-    type === "cash-receipts" ? 0 : type === "cash-payments" ? 1 : 2;
-
-  const endpoint = `api/Accounting/GetAllExpensessAndCredit?Take=100&voucherType=${VoucherType}&${searchParams.toString()}`; // Dynamically pass the type in the API request
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -50,6 +51,8 @@ function Main({ type }: Main_TP) {
         data={data?.data?.data || []}
         VoucherType={VoucherType}
         type={type}
+        selectedIds={selectedIds}
+        refetch={refetch}
       />
       <div className="p-3 bg-white rounded-md">
         <Table
@@ -63,6 +66,8 @@ function Main({ type }: Main_TP) {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

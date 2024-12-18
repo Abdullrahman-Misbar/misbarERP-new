@@ -13,9 +13,11 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
+
     // term: word,
     Take: 10 * page,
   };
@@ -31,7 +33,7 @@ function Main() {
 
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -40,7 +42,12 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
+      <MainHeadLayout
+        selectedIds={selectedIds}
+        setWord={setWord}
+        data={data?.data?.data || []}
+        refetch={refetch}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}
@@ -53,6 +60,8 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

@@ -1,4 +1,5 @@
 export const mainENdPoint= 'api/PurchasRequest/GetAll'
+export const postENdPoint= 'api/PurchasRequest'
 export const deleteEndPoint = "api/PurchasRequest"
 export const cancelRequestEndPoint = "api/PurchasRequest/CancleRequest"
 export const controlButtonEndPoint = "api/PurchasRequest/GetRow"

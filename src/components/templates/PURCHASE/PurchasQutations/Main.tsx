@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../../hooks";
 import useDebounce from "../../../../hooks/useDebounce";
 import Paginate from "../../../molecules/table/Paginate";
 import { Table } from "../../../molecules/tantable/Table";
+import { mainENdPoint } from "./const";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { mainENdPoint } from "./const";
 
 function Main() {
   const [page, setPage] = useState(0);
@@ -15,9 +15,10 @@ function Main() {
   const navigate = useNavigate();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
+
     // term: word,
     Take: 10 * page,
   };
@@ -30,10 +31,9 @@ function Main() {
     Module: "PURCHASE",
     onSuccess: () => {},
   });
-
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -60,6 +60,8 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

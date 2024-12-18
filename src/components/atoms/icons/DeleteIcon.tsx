@@ -1,7 +1,7 @@
 
 type DeleteIcon_TP = {
   disabled?: boolean;
-  action: () => void;
+  action?: () => void;
   fillCustom?:string
 };
 

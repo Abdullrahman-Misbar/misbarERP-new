@@ -14,8 +14,16 @@ export type RowData = {
 };
 export const validationSchema = () =>
   Yup.object({
-    username: Yup.string().trim().required("اسم المستخدم مطلوب"),
-    password: Yup.string().trim().required("كلمة المرور مطلوبة"),
+    purchaseRepresentativeId: Yup.string().trim().required(" مندوب المشتريات مطلوب"),
+    currencyId: Yup.string().trim().required(" العملة مطلوب"),
+    vendorId: Yup.string().trim().required(" المورد مطلوب"),
+    warehouseId: Yup.string().trim().required(" المستودع مطلوب"),
+    convertionRate: Yup.string().trim().required(" التعادل مطلوب"),
+    inDate: Yup.string().trim().required(" تاريخ الاستلام مطلوب"),
+    accountId: Yup.string().trim().required("  الحساب مطلوب"),
+    referenceDocument: Yup.string().trim().required("  المستند المرجعي مطلوب"),
+    costCenterId: Yup.string().trim().required("   مركز التكلفة مطلوب"),
+
   });
 
 export type Values_TP = {

@@ -10,7 +10,6 @@ import BaseInputDatepicker from "../../../../atoms/formik/BaseInputDatepicker";
 import { SwitchComp } from "../../../../atoms/formik/SwitchComp";
 import LayoutMainData from "../../../../molecules/LayoutMainData";
 import SelectPartnerGroup from "../../../../molecules/Selects/SelectPartnerGroup";
-import PartnerAddress from "./partnerTable/PartnerAddress";
 import BankAccountsTable from "./partnerTable/PartnerBankAccount";
 import PartnerContact from "./partnerTable/PartnerContact";
 import PurchaseSaleSettings from "./partnerTable/PurchaseSaleSettings";
@@ -18,6 +17,7 @@ import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import { useFetch } from "../../../../../hooks";
 import ChildrenLayout from "../../../../molecules/ChildrenLayout";
+import PartnerAddress from "./partnerTable/PartnerAddress";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();

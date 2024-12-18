@@ -15,11 +15,13 @@ function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
+
     // term: word,
-    invoiceType:InvoiceLocalType,
+    invoiceType: InvoiceLocalType,
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
@@ -33,7 +35,7 @@ function Main() {
 
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -42,7 +44,12 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord}   />
+      <MainHeadLayout
+        setWord={setWord}
+        data={data?.data?.data || []}
+        selectedIds={selectedIds}
+        refetch={refetch}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
           //@ts-ignore
@@ -57,11 +64,14 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          refetch={refetch}
+          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
-      //@ts-ignore
+          //@ts-ignore
           pagesCount={data?.data?.totalCount / 10}
           previousLabel={<IoIosArrowBack />}
           nextLabel={<IoIosArrowForward />}

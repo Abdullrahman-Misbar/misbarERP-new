@@ -17,7 +17,24 @@ export const validationSchema = () =>
     requestDate: Yup.string().trim().required("تاريخ الطلب مطلوب"),
     approvalDate: Yup.string().trim().required("تاريخ اعتماد الطلب"),
     warehouseId: Yup.string().trim().required("المستودع مطلوب"),
-
+    purchaseAgreementId: Yup.string().trim().required("اتفاقية الشراء مطلوب"),
+    vendorId: Yup.string().trim().required("المورد مطلوب"),
+    currencyId: Yup.string().trim().required("العملة مطلوب"),
+    total: Yup.string().trim().required("الإجمالي مطلوب"),
+    referenceDocument: Yup.string().trim().required("الإجمالي مطلوب"),
+    // purchaseRequestDetailsDto: Yup.array()
+    // .of(
+    //   Yup.object().shape({
+    //     uomId: Yup.string().required("اسم العنصر مطلوب"),
+    //     quantity: Yup.number()
+    //       .required("الكمية مطلوبة")
+    //       .min(1, "الكمية يجب أن تكون على الأقل 1"),
+    //     price: Yup.number()
+    //       .required("السعر مطلوب")
+    //       .min(0, "السعر يجب أن يكون قيمة موجبة"),
+    //   })
+    // )
+    // .min(1, "يجب إضافة عنصر واحد على الأقل"),
   });
 
 export type Values_TP = {
@@ -26,20 +43,20 @@ export type Values_TP = {
   editable: boolean;
   total: string;
   priceIncludeTax: boolean;
-  cancelRequestEndPoint:string
-  controlButtonEndPoint:string
+  cancelRequestEndPoint: string;
+  controlButtonEndPoint: string;
   creationDate: string;
-  deleteEndPoint:string
+  deleteEndPoint: string;
   referenceDocument: string;
   currency: string;
   supplier: string;
   purchaseAgreement: string;
   notes: string;
   deliverdConfirmation: boolean;
-  confirmationDayes:string
-  IndexMainPath:string
-  mainENdPoint:string
-  ApproveOrDisApproveEndPoint:string
+  confirmationDayes: string;
+  IndexMainPath: string;
+  mainENdPoint: string;
+  ApproveOrDisApproveEndPoint: string;
   purchaseRequestDetailsDto: string[];
   copValue: {
     code: string;

@@ -4,7 +4,7 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
+import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
 import {
   ApproveOrDisApproveEndPoint,
   cancelRequestEndPoint,
@@ -12,6 +12,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  newCodeEndpoint,
 } from "../const";
 type Main_TP = {
   editable?: boolean;
@@ -65,17 +66,17 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     code: response?.code || "",
-    purchaseRepresentativeId: response?.purchaseRepresentativeId || 0,
-    currencyId: response?.currencyId || 0,
-    vendorId: response?.partnerId || 0,
-    warehouseId: response?.warehouseId || 0,
+    purchaseRepresentativeId: response?.purchaseRepresentativeId || "",
+    currencyId: response?.currencyId || "",
+    vendorId: response?.partnerId || "",
+    warehouseId: response?.warehouseId || "",
     convertionRate: response?.convertionRate || 0,
-    inDate: response?.inDate || "",
+    inDate: response?.inDate || new Date(),
     billingStatus: response?.billingStatus || "",
-    accountId: response?.accountId || 0,
+    accountId: response?.accountId || "",
     referenceDocument: response?.referenceDocument || "",
     status: response?.status || 0,
-    costCenterId: response?.costCenterId || 0,
+    costCenterId: response?.costCenterId || "",
     note: response?.note || "",
     partnerId: 8,
     editable: editable ? true : false,
@@ -87,6 +88,7 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+    newCodeEndpoint:newCodeEndpoint,
 
     
     receiptDetailsModal: response?.receiptDetailsModal?.length
@@ -134,6 +136,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
+        validationSchema={validationSchema}
         enableReinitialize
       >
         <Form>

@@ -4,8 +4,16 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
-import { Item_TP, Values_TP } from "./Types&Validation";
-import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
+import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+  newCodeEndpoint,
+} from "../const";
 
 type Main_TP = {
   editable?: boolean;
@@ -13,7 +21,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `api/PurchasOrder/Get/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -22,8 +30,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `${mainENdPoint}/Update/${id}`
-    : `${mainENdPoint}`;
+    ? `api/PurchasOrder/Update/${id}`
+    : `api/PurchasOrder`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -37,7 +45,6 @@ function Main({ editable }: Main_TP) {
     },
   });
 
-
   const handleSubmit = (values: Values_TP) => {
     const { copValue, uoms, editable, ...valuesWithoutCopValue } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
@@ -49,10 +56,10 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     code: response?.code || "",
-    editable:editable,
+    editable: editable,
     total: response?.total || "",
-    expectedReceiptDate: response?.expectedReceiptDate || "",
-    createDate: response?.createDate || "",
+    expectedReceiptDate: response?.expectedReceiptDate || new Date(),
+    createDate: response?.createDate || new Date(),
     referenceDocument: response?.referenceDocument || "",
     currencyId: response?.currencyId || "",
     purchaseAgreementId: response?.purchaseAgreementId || "",
@@ -62,8 +69,7 @@ function Main({ editable }: Main_TP) {
     vendorId: response?.vendorId || "",
     // purchaseAgreementId: response?.purchaseAgreementId || "",
 
-
-    approvalDate: response?.approvalDate || "",
+    approvalDate: response?.approvalDate || new Date(),
     status: response?.status || 0,
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
@@ -71,10 +77,9 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
-
+    newCodeEndpoint: newCodeEndpoint,
 
     orderDetailsModal: response?.orderDetailsModal?.length
-    
       ? response?.orderDetailsModal?.map((item: Item_TP) => ({
           itemId: item?.itemId,
           id: item?.id,
@@ -118,6 +123,7 @@ function Main({ editable }: Main_TP) {
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
         enableReinitialize
+        validationSchema={validationSchema}
       >
         <Form>
           <MainData />

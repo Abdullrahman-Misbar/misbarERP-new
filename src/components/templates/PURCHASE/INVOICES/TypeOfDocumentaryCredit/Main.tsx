@@ -19,9 +19,11 @@ function Main() {
   const navigate = useNavigate();
   const [mainData, setMainData] = useState({});
 
-  const debouncedWord = useDebounce(word, 3000);
+  const debouncedWord = useDebounce(word, 300);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
   const queryParams = {
-    // page: page,
+    searchValue: debouncedWord,
     // term: word,
     Take: 10 * page,
   };
@@ -34,8 +36,8 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate, setOpen, setMainData),
-    [page, refetch]
+    () => generateColumns(page, refetch, navigate),
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -57,6 +59,9 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
+          refetch={refetch}
         />
       </div>
       <div className="flex justify-end mt-3">
@@ -74,7 +79,7 @@ function Main() {
         header="اضافة بطاقة اعتماد مستندي"
         hiddenFooter
       >
-        <MainAdd refetch={refetch}  mainData={mainData}  />
+        <MainAdd refetch={refetch} mainData={mainData} />
       </ModalComp>
     </div>
   );

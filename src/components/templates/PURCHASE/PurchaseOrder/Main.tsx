@@ -7,20 +7,22 @@ import Paginate from "../../../molecules/table/Paginate";
 import { Table } from "../../../molecules/tantable/Table";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
+import { mainENdPoint } from "./const";
 
 function Main() {
   const [page, setPage] = useState(0);
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 3000);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const debouncedWord = useDebounce(word, 300);
   const queryParams = {
-    // page: page,
-    // term: word,
+    searchValue: debouncedWord, 
     Take: 10 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
-  const endpoint = `api/PurchasOrder?${searchParams.toString()}`;
+  const endpoint = `${mainENdPoint}?${searchParams.toString()}`;
   const { data, refetch, isSuccess, isFetching, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -28,8 +30,8 @@ function Main() {
   });
 
   const columns = useMemo(
-    () => generateColumns(page, refetch, navigate),
-    [page, refetch]
+    () => generateColumns(page, refetch, navigate, selectedIds, setSelectedIds),
+    [page, refetch, selectedIds]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -38,7 +40,12 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout setWord={setWord} />
+      <MainHeadLayout
+        setWord={setWord}
+        refetch={refetch}
+        data={data?.data?.data}
+        selectedIds={selectedIds}
+      />
       <div className="p-3 bg-white rounded-md">
         <Table
           data={data?.data?.data || []}
@@ -51,6 +58,8 @@ function Main() {
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
+          setSelectedIds={setSelectedIds}
+          selectedIds={selectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">

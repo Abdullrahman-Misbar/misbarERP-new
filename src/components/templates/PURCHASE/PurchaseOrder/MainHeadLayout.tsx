@@ -9,12 +9,18 @@ import { Form, Formik } from "formik";
 import ModalComp from "../../../molecules/ModalComp";
 import SettingsMenu from "../../../atoms/SettingsMenu";
 import ImportExcelModal from "../../../molecules/exel/ImportExcelModal";
+import MultiDelete from "./MultiDelete";
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query";
 
 type MainHeadLayout_TP = {
   setWord: Dispatch<SetStateAction<string>>;
+  data: string[];
+  selectedIds:number[]
+  refetch:(options?: RefetchOptions) => Promise<QueryObserverResult>
 };
 
-function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
+
+function MainHeadLayout({ setWord , selectedIds , refetch }: MainHeadLayout_TP) {
   const navigate = useNavigate();
   const [exportExcelModal, setExportExcelModal] = useState(false);
   const [importExcelModal, setImportExcelModal] = useState(false);
@@ -46,10 +52,11 @@ function MainHeadLayout({ setWord }: MainHeadLayout_TP) {
             className="!w-[100px]"
           />
           <span className="bg-[#E0E0E0] size-10 rounded-full flex items-center justify-center">
-            {/* Display SettingsMenu when MdSettings is clicked */}
-            <SettingsMenu
+          <SettingsMenu
               setExportExcelModal={setExportExcelModal}
               setImportExcelModal={setImportExcelModal}
+              selectedIds={selectedIds}
+              MultiDelete={<MultiDelete selectedIds={selectedIds} refetch={refetch}/>}
             />
           </span>
         </div>

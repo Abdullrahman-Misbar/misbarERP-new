@@ -35,7 +35,7 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => setShowPassword((prev) => !prev);
-
+  const hasError = touched[name] && Boolean(errors[name]);
   const handleBlur = () => setFieldTouched(name, true);
 
   const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -83,7 +83,22 @@ const BaseInputField: React.FC<BaseInputFieldProps> = ({
               "& input": {
                 color: "rgba(0, 0, 0, 0.5)",
                 height: "28px",
-                padding: "5px 16px"
+                padding: "5px 16px",
+                border:"1px solid",
+            
+              },
+            }),
+            ...(hasError && {
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "red", 
+                },
+                "&:hover fieldset": {
+                  borderColor: "darkred", 
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "darkred", 
+                },
               },
             }),
             ...sx,
