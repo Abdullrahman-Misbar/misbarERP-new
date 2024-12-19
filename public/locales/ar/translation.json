@@ -144,6 +144,7 @@
   "foreign Name": "الاسم الأجنبي",
   "discerption": "الوصف",
   "Date": "التاريخ",
+  "Add Purchase Agreement":"اضافة اتفاقية شراء",
   "Edit Purchase Agreement": " تعديل اتفاقية شراء ",
   "order Date": "تاريخ الاتفاقية",
   "agreement Dead line": "الموعد النهائي",
@@ -157,5 +158,16 @@
   "Add Price Offer": "إضافة عرض سعر",
   "Employee Name": "اسم المندوب",
   "hire Date": "تاريخ العمل",
-  "address": "العنوان"
+  "address": "العنوان",
+  "warehouse Name": "المخزن",
+  "Warehouse Input": "مستودع الادخال" ,
+  "Agreement Dead line":"الموعد النهائي",
+  "Status Agrement":"الحالة",
+  "Responsible":"المسئول",
+  "Purchase Agreements Type":" انواع اتفاقيات الشراء",
+  "Quotations Selection Method Name":"طريقة اختيار العروض",
+  "Items Selection Method Name":"الية اختيار الاصناف",
+  "quantity Determine Method Name":"الية تحديد الكميات"
+
+
 }

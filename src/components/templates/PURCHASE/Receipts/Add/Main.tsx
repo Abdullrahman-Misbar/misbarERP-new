@@ -30,7 +30,7 @@ function Main({ VoucherType, editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
   const postEndPoint = id
-    ? `api/Accounting/UdpateExpensessAndCreditById?Id=${id}`
+    ? `api/Accounting/Create?Id=${id}`
     : `api/Accounting/Create`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],

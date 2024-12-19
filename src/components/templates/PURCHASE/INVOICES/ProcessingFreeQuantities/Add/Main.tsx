@@ -21,7 +21,7 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id ? `${mainENdPoint}/Update/${id}` : `${mainENdPoint}`;
+  const postEndPoint = id ? `api/PurchasFreeQuantities/Update/${id}` : `api/PurchasFreeQuantities`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,

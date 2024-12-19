@@ -4,6 +4,7 @@ import { useFetch, useMutate } from "../../../../../hooks";
 import { notify } from "../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../molecules/Skeleton/AddLayoutSkeleton";
 import {
+  ApproveOrDisApproveEndPoint,
   cancelRequestEndPoint,
   controlButtonEndPoint,
   deleteEndPoint,
@@ -19,7 +20,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/Get/${id}`;
+  const endpoint = `${mainENdPoint}/GetAgreementsTypes/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -28,8 +29,8 @@ function Main({ editable }: Main_TP) {
   });
 
   const postEndPoint = id
-    ? `api/PurchaseAgreement/UpdateAgreement/${id}`
-    : `api/PurchaseAgreement`;
+    ? `api/PurchaseAgreement/CreateAgreementsTypes/UpdateAgreementsTypes/${id}`
+    : `api/PurchaseAgreement/CreateAgreementsTypes`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -45,14 +46,10 @@ function Main({ editable }: Main_TP) {
   const handleSubmit = (values: Values_TP) => {
     const {
       copValue,
-      uoms,
       editable,
-      cancelRequestEndPoint,
       deleteEndPoint,
-      controlButtonEndPoint,
       IndexMainPath,
       mainENdPoint,
-      ApproveOrDisApproveEndPoint,
       ...valuesWithoutCopValue
     } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
@@ -63,18 +60,12 @@ function Main({ editable }: Main_TP) {
   const response = data?.data;
 
   const initialValues = {
-    id: id ? +id : 0,
-    agreementCode: response?.code || "",
-    vendorId: response?.vendorId || "",
     editable: editable ? true : false,
-    orderDate: response?.orderDate || "",
-    agreementDeadline: response?.agreementDeadline || "",
-    receiptDate: response?.receiptDate || "",
-    referenceDocument: response?.referenceDocument || "",
-    purchaseAgreementId: response?.purchaseAgreementId || "",
-    responsibleId: response?.responsibleId || "",
-    aggreementTypeId: response?.aggreementTypeId || "",
-    agrementStatuId: response?.agrementStatuId || 0,
+    id: id ? +id : 0,
+    typeName: response?.typeName || "",
+    quotationsSelectionMethod: response?.quotationsSelectionMethod || "",
+    itemsSelectionMethod: response?.itemsSelectionMethod || "",
+    quantityDetermineMethod: response?.quantityDetermineMethod || "",
     note: response?.note || "",
 
     cancelRequestEndPoint: cancelRequestEndPoint,
@@ -83,33 +74,19 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     SourceActivityType: 1,
-    agreementDetailesModel: response?.agreementDetailesModel?.length
-      ? response?.agreementDetailesModel?.map((item: Item_TP) => ({
-          itemId: item?.itemId,
-          id: item?.id,
-          note: item?.note,
-          price: item?.price,
-          quantity: item?.quantity,
-          total: item?.total,
-          uomId: item?.uomId,
-          warehouseId: item?.warehouseId,
-          isDeleted: false,
-          description: item?.description,
-          uoms: item?.product?.uoms,
-        }))
-      : [],
     copValue: {
-      agreementCode: "",
-      purchaseAgreementId: "",
-      vendorId: "",
+      typeName: "",
+      OperationId: "",
+      itemsSelectionMethod: "",
       createDate: "",
-      receiptDate: "",
+      CancledDate: "",
+      total: "",
       referenceDocument: "",
       note: "",
-      agreementDeadline: "",
-      agrementStatuId: 0,
-      aggreementTypeId: "",
-      agreementDetailesModel: [],
+      operationDate: "",
+      quantityDetermineMethod: "",
+      quotationsSelectionMethod: "",
+      freeQuantitiesDetailesModel: [],
     },
   };
 
@@ -124,7 +101,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
-        enableReinitialize
+        enableReinitialize 
       >
         <Form>
           <MainData />

@@ -1,4 +1,4 @@
-export const mainENdPoint = "api/Accounting/GetAllExpensessAndCredit/GetAll";
+export const mainENdPoint = "api/Accounting/GetAll";
 export const cancelRequestEndPoint = "api/Accounting/CancleRequest";
 export const deleteEndPoint = "api/Accounting/DeleteExpensessAndCreditById?Id";
 

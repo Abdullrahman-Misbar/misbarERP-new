@@ -20,37 +20,43 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/${id}`;
-  const { data,  isLoading } = useFetch({
+  const endpoint = `api/Partner/${id}`;
+  const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
     enabled: !!id && !!editable,
   });
 
-  
-  const postEndPoint = id ? `${mainENdPoint}/${id}` : `${mainENdPoint}`;
+  const postEndPoint = id ? `api/Partner/${id}` : `api/Partner`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
-    method:id?'PUT':'post',
-    onSuccess: (data:any) => {
-      if(data?.data.status==='1')
-      {
+    method: id ? "PUT" : "post",
+    onSuccess: (data: any) => {
+      if (data?.data.status === "1") {
         notify("success");
-      }
-    else
-    notify("error", data?.data.message);
+      } else notify("error", data?.data.message);
     },
     Module: "PURCHASE",
     onError: (err) => {
-      console.log(err)
+      console.log(err);
       notify("error", err?.response?.data?.message);
     },
   });
 
   const handleSubmit = (values: Values_TP) => {
-    const { copValue, editable, ...valuesWithoutCopValue } = values;
+    const {
+      copValue,
+      editable,
+      ApproveOrDisApproveEndPoint,
+      IndexMainPath,
+      cancelRequestEndPoint,
+      controlButtonEndPoint,
+      mainENdPoint ,
+      deleteEndPoint ,
+      ...valuesWithoutCopValue
+    } = values;
     const jsonData = JSON.stringify(valuesWithoutCopValue);
 
     mutate(jsonData);
@@ -61,7 +67,7 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     partnerCode: response?.partnerCode || "",
-    editable:editable ? true : false ,
+    editable: editable ? true : false,
     foreignPartnerName: response?.foreignPartnerName || "",
     partnerName: response?.partnerName || "",
     accountId: response?.accountId || 0,
@@ -85,7 +91,7 @@ function Main({ editable }: Main_TP) {
     work: response?.work || "",
     workType: response?.workType || "",
     sex: response?.sex || "",
-    birthDate: response?.birthDate ||  null,
+    birthDate: response?.birthDate || null,
     country: response?.country || "",
     city: response?.city || "",
     area: response?.area || "",
@@ -161,7 +167,7 @@ function Main({ editable }: Main_TP) {
       <Formik
         initialValues={initialValues}
         onSubmit={(values: any) => handleSubmit(values)}
-         validationSchema={validationSchema}
+        validationSchema={validationSchema}
         enableReinitialize
       >
         <Form>

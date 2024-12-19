@@ -26,7 +26,7 @@ const SelectPurchasePaymentTerm = ({
     setFieldValue(name, event.value);
   };
 
-  const endpoint = `api/PurchasePaymentTemplate/${values[moduleName][index]?.invoiceType}`;
+  const endpoint = `api/PurchasePaymentTemplate/Get/${values[moduleName][index]?.invoiceType}`;
   const { data, isLoading } = useFetch<any>({
     queryKey: [endpoint],
     endpoint: endpoint,

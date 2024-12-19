@@ -1,30 +1,24 @@
 import { useMemo, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-
+import { useFetch } from "../../../../hooks";
+import useDebounce from "../../../../hooks/useDebounce";
+import Paginate from "../../../molecules/table/Paginate";
+import { Table } from "../../../molecules/tantable/Table";
+import { mainENdPoint } from "./const";
 import { generateColumns } from "./generateColumns";
 import MainHeadLayout from "./MainHeadLayout";
-import useDebounce from "../../../../../hooks/useDebounce";
-import { useFetch } from "../../../../../hooks";
-import { Table } from "../../../../molecules/tantable/Table";
-import Paginate from "../../../../molecules/table/Paginate";
-import { mainENdPoint } from "./const";
-import { InvoiceLocalType } from "../../../../../utils/globalConst";
 
 function Main() {
   const [page, setPage] = useState(0);
+  console.log("🚀 ~ Main ~ page:", page)
   const [word, setWord] = useState("");
   const navigate = useNavigate();
-  const debouncedWord = useDebounce(word, 300);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-
+  const debouncedWord = useDebounce(word, 3000);
   const queryParams = {
-    searchValue: debouncedWord,
-
+    // page: page,
     // term: word,
-    invoiceType: InvoiceLocalType,
-    Take: 10 * page,
-    typeId:0
+    Take: 50 * page,
   };
   const searchParams = new URLSearchParams(queryParams as any);
 
@@ -33,11 +27,12 @@ function Main() {
     endpoint: endpoint,
     queryKey: [endpoint],
     Module: "PURCHASE",
+    onSuccess: () => {},
   });
 
   const columns = useMemo(
     () => generateColumns(page, refetch, navigate),
-    [page, refetch, selectedIds]
+    [page, refetch]
   );
 
   const handlePageChange = (selectedPage: number) => {
@@ -46,33 +41,25 @@ function Main() {
 
   return (
     <div>
-      <MainHeadLayout
-        setWord={setWord}
-        data={data?.data?.data || []}
-        selectedIds={selectedIds}
-        refetch={refetch}
-      />
+      <MainHeadLayout setWord={setWord} data={data?.data?.data || []} />
       <div className="p-3 bg-white rounded-md">
         <Table
-          //@ts-ignore
-          data={data?.data?.data || []}
+        //@ts-ignore
+          data={data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
           isFetching={isFetching}
           isLoading={isLoading}
-          //@ts-ignore
+        //@ts-ignore
           pageSize={data?.data?.totalCount}
           // setPageSize={setPageSize}
           showEmptyButton
           showStatusFilter
-          selectedIds={selectedIds}
-          setSelectedIds={setSelectedIds}
         />
       </div>
       <div className="flex justify-end mt-3">
         <Paginate
-          //@ts-ignore
           pagesCount={data?.data?.totalCount / 10}
           previousLabel={<IoIosArrowBack />}
           nextLabel={<IoIosArrowForward />}
