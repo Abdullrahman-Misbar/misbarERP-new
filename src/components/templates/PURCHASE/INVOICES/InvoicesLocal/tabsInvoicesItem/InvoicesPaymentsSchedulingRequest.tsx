@@ -108,7 +108,7 @@ function InvoicesPaymentsSchedulingRequest({ moduleName }: any) {
             />
           </td>
           <td className={className}>
-            <BaseInputDatepicker
+            <BaseInputRepeater
               name={`dueDate`}
               label=""
               placeholder="تاريخ الاستحقاق"

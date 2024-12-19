@@ -136,7 +136,7 @@ function InvoiceDiscountsAndAdditionsRequest({ moduleName }: any) {
               name={`equivalent`}
               type="number"
               placeholder="المكافئ"
-              value={item.equivalent || 0}
+              value={item.equivalent ||values[moduleName]?.[index]?.freeQuantities}
               readOnly
             />
           </td>

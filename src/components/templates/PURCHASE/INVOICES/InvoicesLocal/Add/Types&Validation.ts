@@ -23,6 +23,7 @@ export type Values_TP = {
   expectedReceiptDate: string;
   editable: boolean;
   total: string;
+  newCodeEndpoint:string
   priceIncludeTax: boolean;
   creationDate: string;
   referenceDocument: string;

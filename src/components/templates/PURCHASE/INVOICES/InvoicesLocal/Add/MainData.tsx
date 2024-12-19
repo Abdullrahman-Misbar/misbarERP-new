@@ -1,23 +1,24 @@
 import { Grid } from "@mui/material";
 import { useFormikContext } from "formik";
+import { useEffect } from "react";
 import BaseInputDatepicker from "../../../../../atoms/formik/BaseInputDatepicker";
 import BaseInputField from "../../../../../atoms/formik/BaseInputField";
 import { Label } from "../../../../../atoms/formik/Label";
 import RadioButtons from "../../../../../atoms/formik/RadioComp";
+import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
+import InputGetCode from "../../../../../molecules/InputGetCode";
 import LayoutMainData from "../../../../../molecules/LayoutMainData";
+import SelectAccount from "../../../../../molecules/Selects/SelectAccount";
 import SelectBranch from "../../../../../molecules/Selects/SelectBranch";
 import SelectCostCenter from "../../../../../molecules/Selects/SelectCostCenter";
 import SelectCurrency from "../../../../../molecules/Selects/SelectCurrency";
 import SelectEmployee from "../../../../../molecules/Selects/SelectEmployee";
 import SelectPaymentMethod from "../../../../../molecules/Selects/SelectPaymentMethod";
-import SelectPaymentStatus from "../../../../../molecules/Selects/SelectPaymentStatus";
 import SelectVendor from "../../../../../molecules/Selects/SelectVendor";
 import SelectWarehouse from "../../../../../molecules/Selects/SelectWarehouse";
 import TabsInvoicesItem from "../tabsInvoicesItem/TabsInvoicesItem";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
-import { useEffect } from "react";
-import ChildrenLayout from "../../../../../molecules/ChildrenLayout";
 
 function MainData() {
   const { values, setFieldValue } = useFormikContext<Values_TP>();
@@ -91,11 +92,9 @@ function MainData() {
         <ChildrenLayout>
           <Grid container rowSpacing={4} columnSpacing={4} p={3}>
             <Grid item xs={12} sm={4}>
-              <BaseInputField
+              <InputGetCode
                 name="invoiceCode"
                 placeholder="الرقم المرجعي"
-                type="text"
-                disabled
                 label="الرقم المرجعي"
               />
             </Grid>
@@ -108,7 +107,7 @@ function MainData() {
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <SelectPaymentStatus name="paymentAccountId" />
+              <SelectAccount labelName="حساب الدفع" name="paymentAccountId" />
             </Grid>
             <Grid item xs={12} sm={4}>
               <SelectVendor name="vendorId" />
@@ -145,11 +144,11 @@ function MainData() {
             <Grid item xs={12} sm={4} mt={4}>
               <div className="flex items-center gap-5">
                 <Label htmlFor="">حالة الدفع</Label>
-                {values?.paymentStatus == 0 ? (
-                  <p className="bg-gray-300 rounded-full p-3">غير مدفوعة</p>
-                ) : (
-                  <p className="bg-gray-300 rounded-full p-3"> مدفوعة</p>
-                )}
+                {values?.paymentStatus == 2 ? (
+                  <p className="bg-gray-300 rounded-full p-3"> مكتمل </p>
+                ) : values?.paymentStatus == 1 ? (
+                  <p className="bg-gray-300 rounded-full p-3"> جزئي</p>
+                ) :<p className="bg-gray-300 rounded-full p-3"> غير مدفوعه</p>}
               </div>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -167,8 +166,10 @@ function MainData() {
             <Grid item xs={12} sm={4} mt={4}>
               <div className="flex items-center gap-5">
                 <Label htmlFor=""> حالة الفوترة</Label>
-                {values?.invoiceStatus == 0 && (
+                {values?.invoiceStatus == 0 ? (
                   <p className="bg-gray-300 rounded-full p-3">مسودة</p>
+                ) : (
+                  <p className="bg-gray-300 rounded-full p-3">معتمدة</p>
                 )}
               </div>
             </Grid>
@@ -252,35 +253,10 @@ function MainData() {
                 />
               </div>
             </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <Label htmlFor=""> آلية معالجة الكميات المجانية</Label>
-              <div className="flex items-center gap-4">
-                <RadioButtons
-                  name="priceIncludeTax"
-                  label="اعتبارها ايراد للشركة"
-                  checked={values?.priceIncludeTax == false}
-                  onChange={() => setFieldValue("priceIncludeTax", false)}
-                />
-
-                <RadioButtons
-                  name="priceIncludeTax"
-                  label=" تخفيض التكاليف"
-                  checked={values?.priceIncludeTax == true}
-                  onChange={() => setFieldValue("priceIncludeTax", true)}
-                />
-                <RadioButtons
-                  name="priceIncludeTax"
-                  label="معلقة (غير معالجة)"
-                  checked={values?.priceIncludeTax == true}
-                  onChange={() => setFieldValue("priceIncludeTax", true)}
-                />
-              </div>
-            </Grid>
           </Grid>
         </ChildrenLayout>
         <ChildrenLayout>
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             {/* <MainSelectChoseModule moduleName="orderDetailsModal" /> */}
             {/* <ItemsTable moduleName="orderDetailsModal" /> */}
             <TabsInvoicesItem />
@@ -288,7 +264,7 @@ function MainData() {
         </ChildrenLayout>
         <hr />
         <ChildrenLayout>
-          <Grid container rowSpacing={4} columnSpacing={4}  py={2} >
+          <Grid container rowSpacing={4} columnSpacing={4} py={2}>
             <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="total"

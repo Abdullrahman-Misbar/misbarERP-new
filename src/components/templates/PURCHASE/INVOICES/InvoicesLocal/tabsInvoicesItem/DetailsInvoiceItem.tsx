@@ -97,7 +97,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               onChange={(e) =>
                 handleInputChange(index, "price", +e.target.value)
               }
-              value={item?.cost}
+              value={item?.cost || values[moduleName]?.[index]?.price}
             />
           </td>
           <td className={className}>
@@ -224,7 +224,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               name={`freeQuantities`}
               type="number"
               placeholder="الكميات المجانية"
-              value={item?.freeQuantities}
+              value={item?.freeQuantities || values[moduleName]?.[index]?.freeQuantities}
             />
           </td>
           <td className="min-w-[200px] border-l px-1 border-b py-1">
@@ -232,7 +232,7 @@ function DetailsInvoiceItem({ moduleName }: DetailsInvoiceItem_TP) {
               name={`note`}
               type="text"
               placeholder="الملاحظات"
-              value={item?.note}
+              value={item?.note || values[moduleName]?.[index]?.note }
             />
           </td>
         </tr>

@@ -18,7 +18,7 @@ const SelectImpactCost = ({ name  , label }: SelectImpactCost_TP) => {
 
   const options = [
     { label: "التوزيع نسبة وتناسب حسب القيمة", value: 1 },
-    { label: "التوزيع نبة وتناسب حسب الكمية", value: 2 },
+    { label: "التوزيع نسبة وتناسب حسب الكمية", value: 2 },
     { label: "التوزيع يدويا", value: 3 },
     { label: "لايؤثر على التكلفة", value: 4 },
 

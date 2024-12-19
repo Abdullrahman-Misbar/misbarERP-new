@@ -5,7 +5,15 @@ import { notify } from "../../../../../../utils/toast";
 import AddLayoutSkeleton from "../../../../../molecules/Skeleton/AddLayoutSkeleton";
 import MainData from "./MainData";
 import { Item_TP, Values_TP } from "./Types&Validation";
-import { ApproveOrDisApproveEndPoint, cancelRequestEndPoint, controlButtonEndPoint, deleteEndPoint, IndexMainPath, mainENdPoint } from "../const";
+import {
+  ApproveOrDisApproveEndPoint,
+  cancelRequestEndPoint,
+  controlButtonEndPoint,
+  deleteEndPoint,
+  IndexMainPath,
+  mainENdPoint,
+  newCodeEndpoint,
+} from "../const";
 import { InvoiceLocalType } from "../../../../../../utils/globalConst";
 
 type Main_TP = {
@@ -22,7 +30,9 @@ function Main({ editable }: Main_TP) {
     enabled: !!id && !!editable,
   });
 
-  const postEndPoint = id ? `api/PurchasInvoice/Update/${id}` : `api/PurchasInvoice`;
+  const postEndPoint = id
+    ? `api/PurchasInvoice/Update/${id}`
+    : `api/PurchasInvoice`;
   const { mutate } = useMutate({
     mutationKey: [postEndPoint],
     endpoint: postEndPoint,
@@ -43,21 +53,30 @@ function Main({ editable }: Main_TP) {
       editable,
       cancelRequestEndPoint,
       deleteEndPoint,
+      newCodeEndpoint,
       ...valuesWithoutCopValue
     } = values;
-    console.log(
-      "🚀 ~ handleSubmit ~ valuesWithoutCopValue:",
-      valuesWithoutCopValue
-    );
+  
+    // إزالة خاصية `uoms` من invoiceDetailsRequest
+    if (valuesWithoutCopValue?.invoiceDetailsRequest) {
+      valuesWithoutCopValue.invoiceDetailsRequest = valuesWithoutCopValue?.invoiceDetailsRequest.map(
+        (item: any) => {
+          const { uoms, ...rest } = item;
+          return rest;
+        }
+      );
+    }
+  
     const jsonData = JSON.stringify(valuesWithoutCopValue);
     mutate(jsonData);
   };
+  
   //@ts-ignore
   const response = data?.data;
 
   const initialValues = {
     id: id ? +id : 0,
-    editable:editable,
+    editable: editable,
     invoiceCode: response?.invoiceCode || "",
     invoiceType: InvoiceLocalType,
     invoiceDate: response?.invoiceDate || "",
@@ -87,6 +106,7 @@ function Main({ editable }: Main_TP) {
     approvalDate: response?.approvalDate || "",
     notes: response?.notes || "",
 
+    newCodeEndpoint: newCodeEndpoint,
     cancelRequestEndPoint: cancelRequestEndPoint,
     deleteEndPoint: deleteEndPoint,
     controlButtonEndPoint: controlButtonEndPoint,

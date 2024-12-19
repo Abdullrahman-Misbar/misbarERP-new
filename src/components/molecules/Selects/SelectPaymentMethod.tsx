@@ -16,9 +16,9 @@ const SelectPaymentMethod = ({ name , value }: SelectPaymentMethod_TP) => {
   };
 
   const options = [
-    { label: "نقدي", value: 0 },
-    { label: "شيك", value: 1 },
-    { label: "اجل", value: 2 },
+    { label: "نقدي", value: 1 },
+    { label: "شيك", value: 2 },
+    { label: "اجل", value: 3 },
   ];
   const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
