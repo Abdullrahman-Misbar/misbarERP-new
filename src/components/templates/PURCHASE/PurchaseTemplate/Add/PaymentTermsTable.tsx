@@ -9,6 +9,7 @@ import { FormValues, Header, TermsTableProps } from "./Types&Validation";
 
 export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
   const { setFieldValue, values } = useFormikContext<FormValues>();
+  console.log("🚀 ~ PaymentTermsTable ~ values:", values);
 
   const headers: Header[] = [
     {
@@ -23,7 +24,7 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
       component: BaseInputRepeater,
       type: "text",
     },
-    
+
     {
       name: "invoicePortion",
       label: "نسبة الفاتورة",
@@ -31,51 +32,60 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
       type: "number",
     },
     {
-        name: "dueDateBasedOn",
-        label: "تاريخ الاستحقاق يعتمد على",
-        component: SelectImpactPortion,
-        type: "text",
-      },
+      name: "dueDateBasedOn",
+      label: "تاريخ الاستحقاق يعتمد على",
+      component: SelectImpactPortion,
+      type: "text",
+    },
 
-      {
-        name: "creditDays",
-        label: "أيام الائتمان",
-        component: BaseInputRepeater,
-        type: "number",
+    {
+      name: "creditDays",
+      label: "أيام الائتمان",
+      component: BaseInputRepeater,
+      type: "number",
+    },
+    {
+      name: "hasDiscount",
+      label: "لدية خصم",
+      component: SwitchComp,
+      type: "switch",
+      onChange: (
+        e: any,
+        setFieldValue: (arg0: string, arg1: any) => void,
+        values: any,
+        moduleName: any,
+        index: any
+      ) => {
+        setFieldValue(`${moduleName}[${index}].hasDiscount`, e.target.checked);
       },
-      {
-        name: "hasDiscount",
-        label: "لدية خصم",
-        component: SwitchComp,
-        type: "text",
-        onChange: (e: any) => {
-            const index = e.target?.dataset?.index;
-            setFieldValue(`${moduleName}[${index}].hasDiscount`, e.target.checked); 
-          },
-        },
-    
-      {
-        name: "isDiscountValueOrRatio",
-        label: "نوع الخصم",
-        component: SelectDiscountRatio,
-        type: "text",
-      },
-      {
-        name: "discount",
-        label: "الخصم",
-        component: BaseInputRepeater,
-        type: "number",
-      },
-      {
-        name: "discountIfPaidWithIn",
-        label: "الخصم إذا تم السداد خلال",
-        component: BaseInputRepeater,
-        type: "number",
-      },
-    
+     
+    },
+
+    {
+      name: "isDiscountValueOrRatio",
+      label: "نوع الخصم",
+      component: SelectDiscountRatio,
+      type: "text",
+    },
+    {
+      name: "discount",
+      label: "الخصم",
+      component: BaseInputRepeater,
+      type: "number",
+    },
+    {
+      name: "discountIfPaidWithIn",
+      label: "الخصم إذا تم السداد خلال",
+      component: BaseInputRepeater,
+      type: "number",
+    },
   ];
 
-  const handleTabPress = (e: React.KeyboardEvent, index: number, push: Function) => {
+  const handleTabPress = (
+    e: React.KeyboardEvent,
+    index: number,
+    push: Function
+  ) => {
     if (e.key === "Tab") {
       const lastIndex = values[moduleName]?.length - 1;
       const currentRow = values[moduleName]?.[index];
@@ -94,7 +104,6 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
           paymentTemplateId: 0,
 
           isDeleted: false,
-          
         });
       }
     }
@@ -120,7 +129,7 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
                     discount: 0,
                     discountIfPaidWithIn: 0,
                     paymentTemplateId: 0,
-          
+
                     isDeleted: false,
                   })
                 }
@@ -146,7 +155,10 @@ export default function PaymentTermsTable({ moduleName }: TermsTableProps) {
                   >
                     <DeleteIcon
                       action={() => {
-                        setFieldValue(`${moduleName}[${index}].isDeleted`, true);
+                        setFieldValue(
+                          `${moduleName}[${index}].isDeleted`,
+                          true
+                        );
                       }}
                       fillCustom="red"
                     />

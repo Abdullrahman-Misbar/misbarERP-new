@@ -73,8 +73,7 @@ import PurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative";
 import AddPurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative/Add";
 import EditPurchaseRepresentative from "../pages/PURCHASE/PurchaseRepresentative/Edit";
 import PurchaseRequestsOffers from "../pages/PURCHASE/PurchaseRequest/PurchaseRequestsOffers";
-
- 
+import AgreementPurchaseRequests from "../pages/PURCHASE/PurchaseAgreement/AgreementPurchaseRequests";
 
 export const AllRoutesProvider = () => {
   return (
@@ -442,6 +441,24 @@ export const AllRoutesProvider = () => {
           element={
             <EditPurchaseRepresentative
               title={t("Edit Purchasing representatives")}
+            />
+          }
+        />
+        <Route
+          path="/purchase/PurchasQutations/add/:purchaseRequestId"
+          element={
+            <AddPurchasQutations
+              title={t("Add Purchase quotes related to purchase Request")}
+            />
+          }
+        />
+        {/* -------------------------- */}
+
+        <Route
+          path="/purchase/PurchaseAgreement/AgreementPurchaseRequests/:purchaseAgreementId"
+          element={
+            <AgreementPurchaseRequests
+              title={t("Agreement Purchase Requests")}
             />
           }
         />

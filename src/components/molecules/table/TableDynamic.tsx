@@ -106,6 +106,7 @@ const TableDynamic: React.FC<any> = ({
                       }
                       tableRefs.current[rowIndex][colIndex] = el;
                     }}
+                    defaultChecked={header?.type == "switch" ? values[moduleName]?.[item.originalIndex]?.[header.name] : false}
                     name={`${moduleName}[${item.originalIndex}].${header.name}`}
                     value={
                       values[moduleName]?.[item.originalIndex]?.[header.name] ||

@@ -20,7 +20,7 @@ type Main_TP = {
   editable?: boolean;
 };
 function Main({ editable }: Main_TP) {
-  const { id } = useParams();
+  const { id, purchaseRequestId } = useParams();
   const navigate = useNavigate();
 
 
@@ -59,8 +59,8 @@ function Main({ editable }: Main_TP) {
   const initialValues = {
     id: id ? +id : 0,
     qCode: response?.qCode || "",
-    purchaseRequestId: response?.purchaseRequestId || null,
-    vendorId: response?.vendorId || "",
+    purchaseRequestId: response?.purchaseRequestId || purchaseRequestId,
+    vendorId: response?.vendorId || 0,
     vendorName: response?.vendorName || "",
     quotationDate: response?.quotationDate || new Date(),
     quotationDeadLine: response?.quotationDeadLine || "",

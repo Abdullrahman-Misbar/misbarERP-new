@@ -94,11 +94,11 @@ export const sideBarItems: MenuItem_TP[] = [
         label: "Payment terms",
         link: "/purchase/PurchaseTemplate"
       },
-      {
-        id: crypto.randomUUID(),
-        icon: FaRegCircle,
-        label: "Types of purchase agreements",
-      },
+      // {
+      //   id: crypto.randomUUID(),
+      //   icon: FaRegCircle,
+      //   label: "Types of purchase agreements",
+      // },
       // inputs select
     ],
   },

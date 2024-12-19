@@ -10,6 +10,7 @@ import SelectJobPosition from "../../../../molecules/Selects/SelectJobPosition";
 import MainCopyComp from "./toolbarComponents/MainCopyComp";
 import { Values_TP } from "./Types&Validation";
 import ChildrenLayout from "../../../../molecules/ChildrenLayout";
+import InputGetCode from "../../../../molecules/InputGetCode";
 
 function MainData() {
   const { values } = useFormikContext<Values_TP>();
@@ -34,6 +35,13 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
+      visibility={{
+        approvedBar:false ,
+        operationLogsBar:false,
+        settingBar:false ,
+        cancelBar:false,
+        
+      }}
     >
       <ChildrenLayout>
         <div>
@@ -46,7 +54,7 @@ function MainData() {
           </Grid>
 
           <Grid container rowSpacing={4} columnSpacing={4}>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="empCode"
                 placeholder="الرقم المرجعي"
@@ -54,9 +62,16 @@ function MainData() {
                 disabled
                 label="الرقم المرجعي"
               />
+            </Grid> */}
+            <Grid item xs={12} sm={4}>
+              <InputGetCode
+                name="empCode"
+                placeholder="الرقم المرجعي"
+                label="الرقم المرجعي"
+              />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="email"
                 placeholder="البريد الالكتروني"
@@ -88,7 +103,7 @@ function MainData() {
                 label="الهاتف"
               />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="generalDataNote"
                 placeholder="الملاحظات"
@@ -97,11 +112,11 @@ function MainData() {
               />
             </Grid>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} mt={3}>
             <h4
               style={{
                 fontSize: "1.5rem",
-                margin: "10px 0 8px",
+                margin: "10px 0 20px",
                 color: "#333",
               }}
             >
@@ -109,7 +124,7 @@ function MainData() {
             </h4>
           </Grid>
           <Grid container rowSpacing={4} columnSpacing={4}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <BaseInputDatepicker
                 name="hireDate"
                 placeholder="تاريخ الانضمام الى العمل"
@@ -117,13 +132,13 @@ function MainData() {
               />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <SelectDirectManager name="managerId" />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <SelectDepartment name="deptId" />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="workRecord"
                 placeholder="سجل العمل"
@@ -131,10 +146,10 @@ function MainData() {
                 label="سجل العمل"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <SelectJobPosition name="jobPositionId" />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <BaseInputField
                 name="workDataNote"
                 placeholder="ملاحظات العمل"

@@ -27,6 +27,13 @@ function MainData() {
       componentCopy={<MainCopyComp />}
       //@ts-ignore
       newValues={newValues}
+      visibility={{
+        approvedBar:false ,
+        operationLogsBar:false,
+        settingBar:false ,
+        cancelBar:false,
+        
+      }}
     >
       <ChildrenLayout>
         <Grid container rowSpacing={2}>

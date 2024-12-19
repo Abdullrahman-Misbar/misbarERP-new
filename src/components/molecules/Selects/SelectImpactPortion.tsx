@@ -5,12 +5,13 @@ import SelectComp from "../../atoms/formik/SelectComp";
 type SelectImpactPortion_TP = {
   name: string;
   label:string
+  value?:string
 };
 type Formik_Values = {
   name: string;
 };
-const SelectImpactPortion = ({ name  , label }: SelectImpactPortion_TP) => {
-  const { setFieldValue } = useFormikContext<Formik_Values>();
+const SelectImpactPortion = ({ name  , label  , value   }: SelectImpactPortion_TP) => {
+  const { setFieldValue , values } = useFormikContext<Formik_Values>();
 
   const handleChange = (event: {value:string}) => {
     setFieldValue(name, event.value);
@@ -25,6 +26,7 @@ const SelectImpactPortion = ({ name  , label }: SelectImpactPortion_TP) => {
 
 
   ];
+  const selectedValue = options?.find((item) => item?.value == (value || values[name]));
 
   return (
     <SelectComp
@@ -32,7 +34,7 @@ const SelectImpactPortion = ({ name  , label }: SelectImpactPortion_TP) => {
       label={label}
       placeholder="تاريخ الاستحقاق يعتمد على"
       options={options}
-      // value={values[name as keyof Formik_Values] || ""}
+      value={selectedValue}
       onChange={handleChange}
     />
   );

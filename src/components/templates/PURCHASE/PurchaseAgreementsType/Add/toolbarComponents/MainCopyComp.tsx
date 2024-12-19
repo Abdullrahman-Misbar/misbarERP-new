@@ -43,7 +43,7 @@ function MainCopyComp() {
 
       <div className="p-3 bg-white rounded-md">
         <Table
-          data={data?.data?.data || []}
+          data={data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}

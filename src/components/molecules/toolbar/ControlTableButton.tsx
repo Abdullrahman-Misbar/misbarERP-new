@@ -35,6 +35,7 @@ function ControlTableButton() {
     nextType: 0,
     id: parseInt(id, 10),
   });
+  console.log("🚀 ~ ControlTableButton ~ controlButton:", controlButton)
 
   const endpoint = `${values?.controlButtonEndPoint}/${controlButton.nextType}/${controlButton.id}`;
 
@@ -49,7 +50,8 @@ function ControlTableButton() {
   useEffect(() => {
     if (data && response) {
       //@ts-ignore
-      setControlButton(() => ({
+      setControlButton((prevState) => ({
+        ...prevState,
         id: response?.id,
       }));
       setControlInput(response?.id);

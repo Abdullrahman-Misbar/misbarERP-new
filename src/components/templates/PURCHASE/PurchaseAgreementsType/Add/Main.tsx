@@ -20,7 +20,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/GetAgreementsTypes/${id}`;
+  const endpoint = `api/PurchaseAgreement/GetAgreementsTypes/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -60,11 +60,11 @@ function Main({ editable }: Main_TP) {
   const response = data?.data;
 
   const initialValues = {
-    editable: editable ? true : false,
+    editable: editable ,
     id: id ? +id : 0,
     typeName: response?.typeName || "",
     quotationsSelectionMethod: response?.quotationsSelectionMethod || "",
-    itemsSelectionMethod: response?.itemsSelectionMethod || "",
+    itemsSelectionMethod: response?.itemsSelectionMethod || 0,
     quantityDetermineMethod: response?.quantityDetermineMethod || "",
     note: response?.note || "",
 

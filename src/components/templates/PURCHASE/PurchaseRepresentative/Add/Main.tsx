@@ -10,6 +10,7 @@ import {
   deleteEndPoint,
   IndexMainPath,
   mainENdPoint,
+  newCodeEndpoint,
   postENdPoint,
 } from "../const";
 import MainData from "./MainData";
@@ -21,7 +22,7 @@ type Main_TP = {
 function Main({ editable }: Main_TP) {
   const { id } = useParams();
 
-  const endpoint = `${mainENdPoint}/${id}`;
+  const endpoint = `api/Hr/${id}`;
   const { data, isLoading } = useFetch({
     endpoint: endpoint,
     queryKey: [endpoint],
@@ -85,6 +86,7 @@ function Main({ editable }: Main_TP) {
     IndexMainPath: IndexMainPath,
     mainENdPoint: mainENdPoint,
     ApproveOrDisApproveEndPoint: ApproveOrDisApproveEndPoint,
+    newCodeEndpoint:newCodeEndpoint ,
     SourceActivityType: 1,
 
     copValue: {

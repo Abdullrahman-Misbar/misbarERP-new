@@ -23,14 +23,45 @@ export const generateColumns = (
     },
     {
       header: `${t("Reference number")}`,
-      accessorKey: "code",
+      accessorKey: "qCode",
       cell: (info) => info.renderValue(),
       enableResizing: true,
     },
     {
       header: `${t("vendor Name")}`,
-      accessorKey: "partnerName",
+      accessorKey: "vendorName",
       cell: (info) => info.renderValue(),
+      enableResizing: true,
+    },
+    {
+      header: `${t("user")}`,
+      accessorKey: "userName",
+      cell: (info) => info.renderValue(),
+      enableResizing: true,
+    },
+
+    {
+      header: `${t("quotation Date")}`,
+      accessorKey: "quotationDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.quotationDate?.slice(0, 10)}</div>
+      ),
+      enableResizing: true,
+    },
+    {
+      header: `${t("quotation DeadLine")}`,
+      accessorKey: "quotationDeadLine",
+      cell: (info) => (
+        <div>{info?.row?.original?.quotationDeadLine?.slice(0, 10)}</div>
+      ),
+      enableResizing: true,
+    },
+    {
+      header: `${t("quotation approval Date")}`,
+      accessorKey: "approvalDate",
+      cell: (info) => (
+        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
+      ),
       enableResizing: true,
     },
     {
@@ -40,55 +71,13 @@ export const generateColumns = (
       enableResizing: true,
     },
     {
-      header: `${t("request Date")}`,
-      accessorKey: "requestDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.requestDate?.slice(0, 10)}</div>
-      ),
-      enableResizing: true,
-    },
-    {
-      header: `${t("request End Date")}`,
-      accessorKey: "requestEndDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.requestEndDate?.slice(0, 10)}</div>
-      ),
-      enableResizing: true,
-    },
-    {
-      header: `${t("approval Date")}`,
-      accessorKey: "approvalDate",
-      cell: (info) => (
-        <div>{info?.row?.original?.approvalDate?.slice(0, 10)}</div>
-      ),
-      enableResizing: true,
-    },
-    {
       header: `${t("status approved")}`,
       accessorKey: "isApproved",
       cell: (info) => <CancelApproved info={info} refetch={refetch} />,
       enableResizing: true,
     },
-    {
-      header: `${t("status Canceled Request")}`,
-      accessorKey: "isCanceled",
-      cell: (info) => (
-        <div>
-          {info?.row?.original?.isCanceled ? (
-            <p>تم الالغاء</p>
-          ) : (
-            <p> غير ملغاة </p>
-          )}
-        </div>
-      ),
-      enableResizing: true,
-    },
-    {
-      header: `${t("Number of offers")}`,
-      accessorKey: "totalQutotaionCount",
-      cell: (info) => info.renderValue(),
-      enableResizing: true,
-    },
+ 
+ 
 
     {
       header: `${t("total")}`,

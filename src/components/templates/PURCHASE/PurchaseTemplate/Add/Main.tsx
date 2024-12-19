@@ -12,7 +12,7 @@ import {
   mainENdPoint,
 } from "../const";
 import MainData from "./MainData";
-import { Item_TP, validationSchema, Values_TP } from "./Types&Validation";
+import { validationSchema, Values_TP } from "./Types&Validation";
 
 type Main_TP = {
   editable?: boolean;

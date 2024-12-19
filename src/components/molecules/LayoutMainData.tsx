@@ -8,7 +8,22 @@ type LayoutMainData_TP = {
   editable?: boolean;
   className?: string;
   hiddenToolbar?: boolean;
-  visibility?: { [key: string]: boolean };
+  visibility?:  {
+    repeaterBar?: boolean;
+    addBar?: boolean;
+    undoBar?: boolean;
+    deleteBar?: boolean;
+    saveBar?: boolean;
+    printBar?: boolean;
+    uploadFileBar?: boolean;
+    approvedBar?: boolean;
+    cancelBar?: boolean;
+    settingBar?: boolean;
+    closeBar?: boolean;
+    controlTableButton?: boolean;
+    operationLogsBar?: boolean;
+    scheduledActivities?: boolean;
+  };
 };
 
 function LayoutMainData({

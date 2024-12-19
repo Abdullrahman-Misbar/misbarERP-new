@@ -47,7 +47,7 @@ function Main() {
       <div className="p-3 bg-white rounded-md">
         <Table
           //@ts-ignore
-          data={data?.data || []}
+          data={data?.data?.data || []}
           columns={columns}
           columnsToRemove={[7]}
           isSuccess={isSuccess}
