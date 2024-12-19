@@ -43,15 +43,7 @@ function MainData() {
       <div>
         <ChildrenLayout>
           <Grid container rowSpacing={4} columnSpacing={4}>
-            {/* <Grid item xs={12} sm={4}>
-            <BaseInputField
-              name="code"
-              placeholder="الرقم المرجعي"
-              type="text"
-              disabled
-              label="الرقم المرجعي"
-            />
-          </Grid> */}
+      
             <Grid item xs={12} sm={4}>
               <InputGetCode
                 name="code"
